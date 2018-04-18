@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Python,PyQt,Database," />
 
 
 
@@ -79,16 +79,30 @@
 
 
 
-<meta name="description" content="Our business is life itself">
-<meta property="og:type" content="website">
-<meta property="og:title" content="EXECUTER">
-<meta property="og:url" content="https://github.com/ChaosRinkHan/myblog.github.io/archives/2018/index.html">
+<meta name="description" content="前言这是我python入门写的第一个项目，从前天晚上开始构思到今天做了第一个Release。这两天时间做了读了Qt库和pymssql的不少文档，边学边做写了一个可视化窗口实现数据库的操作。对PyQt的理解也就限于槽和信号沟通环节，pymssql主要是连接部分，并未过多涉及。内容为医院挂号系统，基本实现和练习了增删查改操作。介绍环境和配置上的操作以及搭建经验。">
+<meta name="keywords" content="Python,PyQt,Database">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PyQt5+python+数据库可视化操作界面">
+<meta property="og:url" content="https://github.com/ChaosRinkHan/myblog.github.io/2016/12/02/基于PyQt5的数据库可视化操作界面/index.html">
 <meta property="og:site_name" content="EXECUTER">
-<meta property="og:description" content="Our business is life itself">
+<meta property="og:description" content="前言这是我python入门写的第一个项目，从前天晚上开始构思到今天做了第一个Release。这两天时间做了读了Qt库和pymssql的不少文档，边学边做写了一个可视化窗口实现数据库的操作。对PyQt的理解也就限于槽和信号沟通环节，pymssql主要是连接部分，并未过多涉及。内容为医院挂号系统，基本实现和练习了增删查改操作。介绍环境和配置上的操作以及搭建经验。">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="http://img.blog.csdn.net/20171210214927091?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvRVhFQ1VURVJf/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20171210220436814?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvRVhFQ1VURVJf/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20171212134439142?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvRVhFQ1VURVJf/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20171212134700558?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvRVhFQ1VURVJf/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20171212135141464?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvRVhFQ1VURVJf/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20171212142559598?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvRVhFQ1VURVJf/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20171212142610709?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvRVhFQ1VURVJf/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20171212135307129?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvRVhFQ1VURVJf/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20171212135433968?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvRVhFQ1VURVJf/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20171210224641546?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvRVhFQ1VURVJf/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20171210224654534?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvRVhFQ1VURVJf/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:updated_time" content="2018-04-18T07:45:46.196Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="EXECUTER">
-<meta name="twitter:description" content="Our business is life itself">
+<meta name="twitter:title" content="PyQt5+python+数据库可视化操作界面">
+<meta name="twitter:description" content="前言这是我python入门写的第一个项目，从前天晚上开始构思到今天做了第一个Release。这两天时间做了读了Qt库和pymssql的不少文档，边学边做写了一个可视化窗口实现数据库的操作。对PyQt的理解也就限于槽和信号沟通环节，pymssql主要是连接部分，并未过多涉及。内容为医院挂号系统，基本实现和练习了增删查改操作。介绍环境和配置上的操作以及搭建经验。">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20171210214927091?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvRVhFQ1VURVJf/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 
 
 
@@ -118,7 +132,7 @@
 
 
 
-  <link rel="canonical" href="https://github.com/ChaosRinkHan/myblog.github.io/archives/2018/"/>
+  <link rel="canonical" href="https://github.com/ChaosRinkHan/myblog.github.io/2016/12/02/基于PyQt5的数据库可视化操作界面/"/>
 
 
 
@@ -134,7 +148,7 @@
     })();
 </script>
 
-  <title>Archive | EXECUTER</title>
+  <title>PyQt5+python+数据库可视化操作界面 | EXECUTER</title>
   
 
 
@@ -153,7 +167,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -281,111 +295,214 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
-
-      <span class="archive-page-counter">
-        
-        
-        
-          
-        
-        Um..! 5 posts in total. Keep on posting.
-      </span>
-
-      
-
-        
-        
-        
-
-        
-          
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2018">2018</h1>
-          </div>
-        
-        
-
-        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://github.com/ChaosRinkHan/myblog.github.io/myblog.github.io/2016/12/02/基于PyQt5的数据库可视化操作界面/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chaolin Han">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/myblog.github.io/images/icn.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="EXECUTER">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/myblog.github.io/2018/04/17/My-first-post/" itemprop="url">
-              
-                <span itemprop="name">My first post</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">PyQt5+python+数据库可视化操作界面</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-04-17T19:03:30+08:00"
-              content="2018-04-17" >
-          04-17
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-02T17:39:05+08:00">
+                2016-12-02
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
 
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  1,433
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/myblog.github.io/2018/03/31/cx_Freeze发布Python程序的一些经验/" itemprop="url">
-              
-                <span itemprop="name">cx_Freeze发布Python程序的一些经验</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-03-31T22:44:37+08:00"
-              content="2018-03-31" >
-          03-31
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="﻿前言"></a>﻿前言</h1><p>这是我python入门写的第一个项目，从前天晚上开始构思到今天做了第一个Release。这两天时间做了读了Qt库和pymssql的不少文档，边学边做写了一个可视化窗口实现数据库的操作。对PyQt的理解也就限于槽和信号沟通环节，pymssql主要是连接部分，并未过多涉及。内容为<strong>医院挂号系统</strong>，基本实现和练习了增删查改操作。介绍环境和配置上的操作以及搭建经验。</p>
+ <a id="more"></a>
+<h1 id="PyQt5环境"><a href="#PyQt5环境" class="headerlink" title="PyQt5环境"></a>PyQt5环境</h1><p>参考<a href="http://blog.csdn.net/a359680405/article/details/45074761%20PyQt5+python3+pycharm%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE" target="_blank" rel="noopener">PyQt5+python3+pycharm开发环境配置</a><br>集成了PyUIC和QtDeisgner。其中Designer跨语言，可以画一些简单的窗口和控件，输出.ui格式的文件，利用PyUIC转码为.py进行编辑。<br>PyQt库非常庞大，但我实际操作主要聚焦于控件的方法和定义。Qt的参考文档为C++环境，结合Pycharm自动补全基本可以避开转换的问题。<br>可以看到MainWindow代码很长，但大部分都是ui文件转码自动生成的（retranslateUi、setupUi），实际需要编写的就是逻辑和实现部分。</p>
+<h1 id="数据库连接"><a href="#数据库连接" class="headerlink" title="数据库连接"></a>数据库连接</h1><p>由于要求和环境的限制，我使用了SQL server 2012。MySQL,SQLite等连接更为简洁方便。选用的库为pymssql，参考官方文档<a href="http://www.pymssql.org/en/stable/pymssql_examples.html" target="_blank" rel="noopener">pymssql</a><br>连接方面，需要首先登陆SQL Management Studio以管理员身份，然后设置中添加用于该项目连接的用户并给它授权。授权选项中我是全部勾选。<br><img src="http://img.blog.csdn.net/20171210214927091?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvRVhFQ1VURVJf/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br>然后在其中建好设计好的两个表Doctor（用于检索医生）和Reg（用于前端操作）<br>注意设计时，将<code>varchar()</code>数据类型更改为<code>nvarcahar</code>,便于中文输入输出，同时连接时采用utf8字集：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">server = <span class="string">"DESKTOP-9RUT87E"</span></span><br><span class="line">user = <span class="string">"Hospital"</span></span><br><span class="line">password = <span class="string">"123456"</span></span><br><span class="line"><span class="comment">#print('Connecting to MSSQL...')</span></span><br><span class="line">conn = pymssql.connect(server, user, password, database=<span class="string">"Hospital"</span>, charset=<span class="string">'utf8'</span>)</span><br></pre></td></tr></table></figure>
+<p>之后阅读学习python中获取光标进行简单的数据库操作，即可实现在程序中实现数据库操作了，可以参考pymaasql的example。</p>
+<h1 id="Python编辑"><a href="#Python编辑" class="headerlink" title="Python编辑"></a>Python编辑</h1><p>本项目的意义在于简单的图像化操作代替数据库语言来实现数据的增删查改。考虑到绘制的问题，采用的简单的单一界面交互。对于多界面交互则需要绘制多个ui文件并在主程序中调用。</p>
+<ul>
+<li>QtDesigner绘界面</li>
+</ul>
+<hr>
+<p> <img src="http://img.blog.csdn.net/20171210220436814?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvRVhFQ1VURVJf/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br> 非常方便地从左侧选取想要加入的元素，右侧属性栏也可以很好地自定义。对应生成了<strong>retranslateUi、setupUi中的代码，参考意义不大故移入附录。</strong></p>
+<ul>
+<li>转码为.py文件进行编辑</li>
+</ul>
+<hr>
+<p>若搭建好开发环境，可直接从Pycharm中选择外部工具对ui文件转码，或是直接文件夹下shift+右键打开cmd调用pyuic转码。<br> 由于 QtDesigner提供的信号和槽连接非常简单而且多数需要实现的功能为SQL连接和操作，故需要自定信号和槽函数来实现这些按钮，所以转码后在IDE中进行编写。<br> 熟悉了PyQT空间的语法和事件命名方式后，就可以轻松写出自定槽函数来接受按钮信号，同时获取和改变它们的各种状态。有空会写PyQt常见类的常见操作供交流。接下来就是由设计的界面、数据库结构设计交互逻辑并实现。</p>
+<h1 id="交互设计"><a href="#交互设计" class="headerlink" title="交互设计"></a>交互设计</h1><p>窗口的交互分了7个按钮，交互逻辑如下</p>
+<ul>
+<li><p><strong>查询在岗医生</strong><br>根据科室和是否专家查询可用的医生</p>
+</li>
+<li><p><strong>挂号</strong><br>挂号需要提供个人信息，同时根据需要挂的科室，可执行上一步操作，选择合适的医生，填入医生号码进行挂号</p>
+<p><img src="http://img.blog.csdn.net/20171212134439142?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvRVhFQ1VURVJf/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br>截图：此时点击<em>挂号</em>即可完成挂号<br><img src="http://img.blog.csdn.net/20171212134700558?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvRVhFQ1VURVJf/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br>其中1、2两步顺序随意。</p>
+</li>
+<li><p><strong>查、删、改</strong><br>根据提供的信息构建操作来实现，要注意到这些信息并不是全部需要，例如可以查询急症科的所有病人，也可以查询具体的某一个人</p>
+<p><img src="http://img.blog.csdn.net/20171212135141464?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvRVhFQ1VURVJf/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><img src="http://img.blog.csdn.net/20171212142559598?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvRVhFQ1VURVJf/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><img src="http://img.blog.csdn.net/20171212142610709?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvRVhFQ1VURVJf/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br>例：查询<strong>急症科</strong>的<strong>男</strong>病人<br><img src="http://img.blog.csdn.net/20171212135307129?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvRVhFQ1VURVJf/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+</li>
+</ul>
+<ul>
+<li><p><strong>记录日志</strong><br>简单的文件写入操作</p>
+<p>保存的log：<br><img src="http://img.blog.csdn.net/20171212135433968?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvRVhFQ1VURVJf/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<h1 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h1></li>
+<li><p>按钮槽函数的编写<br>DB_开头的函数为自定槽函数，用于响应按钮点击的事件。同时需要一些自定辅助函数和全局变量用于系统状态的维护。<br>编写思路见代码注释。</p>
+</li>
+<li>引用并执行<br>编写HospitalRegSys.py作为主程序来调用编写好的ui转码而来的文件，实现主程序和UI界面代码的分离，也方便添加多个界面。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># HospitalRegSys0045.py</span></span><br><span class="line"><span class="keyword">from</span> PyQt5 <span class="keyword">import</span> QtCore, QtGui, QtWidgets</span><br><span class="line"><span class="keyword">from</span> MainWindow <span class="keyword">import</span> Ui_MainWindow</span><br><span class="line"><span class="keyword">import</span> decimal</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">mwindow</span><span class="params">(QtWidgets.QMainWindow,Ui_MainWindow)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        super(mwindow,self).__init__()</span><br><span class="line">        self.setupUi(self)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    <span class="keyword">import</span> sys</span><br><span class="line">    app=QtWidgets.QApplication(sys.argv)</span><br><span class="line">    mshow=mwindow()</span><br><span class="line">    mshow.show()</span><br><span class="line">    sys.exit(app.exec_())</span><br></pre></td></tr></table></figure>
+<p>主窗口代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 不再提供</span></span><br><span class="line"><span class="comment"># No avilable now</span></span><br></pre></td></tr></table></figure>
+<h1 id="pyinstaller生成可执行文件"><a href="#pyinstaller生成可执行文件" class="headerlink" title="pyinstaller生成可执行文件"></a>pyinstaller生成可执行文件</h1><p>生成exe的时候遇到了很多困难，和python3.6环境以及pymssql、pyinstaller设置的参数有关。经过多次测试和参考官方文档，在cmd中执行程序，根据报错“没有找到模块XXX”，直接在主程序中引入该模块即可，即是</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> decimal</span><br><span class="line"><span class="comment"># import的具体模块和报错缺少的模块有关</span></span><br></pre></td></tr></table></figure>
+<p>这个模块和_mssql有关，可见库和环境的不兼容性。</p>
+<h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><h2 id="数据库结构"><a href="#数据库结构" class="headerlink" title="数据库结构"></a>数据库结构</h2><p><img src="http://img.blog.csdn.net/20171210224641546?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvRVhFQ1VURVJf/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br><img src="http://img.blog.csdn.net/20171210224654534?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvRVhFQ1VURVJf/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<h2 id="retranslateUi、setupUi代码"><a href="#retranslateUi、setupUi代码" class="headerlink" title="retranslateUi、setupUi代码"></a>retranslateUi、setupUi代码</h2><p>只需编辑setupUi最后连接部分的信号，以实现按钮的功能。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 不再提供</span></span><br><span class="line"><span class="comment"># No avilable now</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h2><p><a href="http://pyqt.sourceforge.net/Docs/PyQt5/" target="_blank" rel="noopener">PyQt5 Reference Guide</a><br><a href="http://www.pymssql.org/en/stable/intro.html" target="_blank" rel="noopener">pymssql</a></p>
+
+      
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/myblog.github.io/tags/Python/" rel="tag"># Python</a>
+          
+            <a href="/myblog.github.io/tags/PyQt/" rel="tag"># PyQt</a>
+          
+            <a href="/myblog.github.io/tags/Database/" rel="tag"># Database</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/myblog.github.io/2016/12/02/写在年末——聚合类应用趋势/" rel="prev" title="写在年末——聚合类应用趋势">
+                写在年末——聚合类应用趋势 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -393,6 +510,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -413,8 +534,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -503,6 +633,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">﻿前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#PyQt5环境"><span class="nav-number">2.</span> <span class="nav-text">PyQt5环境</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库连接"><span class="nav-number">3.</span> <span class="nav-text">数据库连接</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Python编辑"><span class="nav-number">4.</span> <span class="nav-text">Python编辑</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#交互设计"><span class="nav-number">5.</span> <span class="nav-text">交互设计</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实现"><span class="nav-number">6.</span> <span class="nav-text">实现</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pyinstaller生成可执行文件"><span class="nav-number">7.</span> <span class="nav-text">pyinstaller生成可执行文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#附录"><span class="nav-number">8.</span> <span class="nav-text">附录</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库结构"><span class="nav-number">8.1.</span> <span class="nav-text">数据库结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#retranslateUi、setupUi代码"><span class="nav-number">8.2.</span> <span class="nav-text">retranslateUi、setupUi代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ref"><span class="nav-number">8.3.</span> <span class="nav-text">Ref</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -642,6 +788,10 @@
   
 
   
+  <script type="text/javascript" src="/myblog.github.io/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/myblog.github.io/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 

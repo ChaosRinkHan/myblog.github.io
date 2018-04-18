@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[My first post]]></title>
+    <url>%2Fmyblog.github.io%2F2018%2F04%2F17%2FMy-first-post%2F</url>
+    <content type="text"><![CDATA[Hello World! 我迁移到这里啦之前CSDN的文章、微信公众号的文章会慢慢迁移过来。 CSDN多是技术方面的文章，微信上面个人体验和测评和扯淡比较多。有时候还会发知乎专栏等等，但是没有一个统一的平台来做一些管理。以后主要一些随笔和文章就发表在这里了。 Markdown语法的支持变得愈发重要，微信公众号不支持Markdown语法，迁移过来会稍微费事一点。以后一般都用MD写作，所以统一在这里发布了。 同时最近有了一个小相机也慢慢去了不少地方了。网上图片社区也不是很喜欢，等找到好的图床，拍的照片会慢慢传上来。 个人博客和域名这个博客是基于Hexo和Github搭建的，大概半天就配置好了，其实挺方便的。有空会慢慢加上新的功能，比如评论系统和RSS。 由于Github时常抽风，在考虑购买一个非.cn的域名。各位有要转让的域名可以联系我。预算有限。 这里就可以为所欲为地发文章了。 嗯。 没有CSDN的原创核审，没有微信的和谐。 联系我其实主页是有About的我还没有写。 chaorinkhan@gmail.com executer@qq.com]]></content>
+      <tags>
+        <tag>Writings</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[cx_Freeze发布Python程序的一些经验]]></title>
+    <url>%2Fmyblog.github.io%2F2018%2F03%2F31%2Fcx_Freeze%E5%8F%91%E5%B8%83Python%E7%A8%8B%E5%BA%8F%E7%9A%84%E4%B8%80%E4%BA%9B%E7%BB%8F%E9%AA%8C%2F</url>
+    <content type="text"><![CDATA[前言最近用Python写了一个化工方面的辅助计算软件，使用PyQt实现界面，同时用了很多库来实现作图和科学计算、求解等功能。使用界面与逻辑分离的方法，画好UI再编码具体功能。这次规模比第一次写的PyQt+SQL的单一界面复杂很多，在打包发布时遇到的问题也是非常多，一方面代码量非常大，另一方面涉及到的库非常多。 pyinstaller和cx_Freeze的对比之前用pyinstaller打包，遇到的问题也就是decimal的问题，属于隐藏的库的没有导入，这次由于库太多，用pyinstaller打包的时候单个程序出来大概60M，而且打开极慢。同时根据报错来看，pyinstaller并非支持所有库，有的库无法打包发布，比如这次程序使用的scipy。于是采用了cx_Freeze来打包。虽然理论上来讲是可以成功打包的，但是由于这个工具的简单性导致了一系列error。 matplotlib，numpy，scipymatplotlib库在导入时会出现报错，这是因为它的作图依赖于tkinter，cx_Freeze打包不会将它直接包括； 123os.environ['TCL_LIBRARY'] = '*\\Python36-32\\tcl\\tcl8.6'os.environ['TK_LIBRARY'] = '*\\Python36-32\\tcl\\tk8.6'# *处为Python目录位置，反斜杠依然两个 numpy.core._methods无法找到的报错：options里面includes： 1'includes': ['numpy.core._methods'] 程序中使用from … import … ，cx_Freeze打包可能出现库导入不完全的情况，即是看报错信息，没有什么module，在程序中import all或者在setup中include： 1'packages':['scipy', 'numpy', 'matplotlib', 'tkinter'] 目前Python 3.6里面包括的tk导入会出现dll错误：ImportError: DLL load failed，这个和cx_Freeze自身有关，需要include： 12'include_files': ['*\\Python36-32\\DLLs\\tk86t.dll'],# *处为Python目录位置，反斜杠依然两个 使用绝对位置的资源文件： 1include_files=[&apos;1.png&apos;, &apos;2.png&apos;, &apos;bg.png&apos;, &apos;bg1.png&apos;] buildbuild文件夹包含了所有的要用到的编译好的库文件，文件结构决定了程序运行非常快，基本能秒开了。 setup.py仅供参考。比较麻烦的几个库都用了，没用这些应该会简单很多。 1234567891011121314151617181920212223242526272829from cx_Freeze import setup, Executableimport sysimport osos.environ['TCL_LIBRARY'] = 'C:\\Users\\Chaolin Han\\AppData\\Local\\Programs\\Python\\Python36-32\\tcl\\tcl8.6'os.environ['TK_LIBRARY'] = 'C:\\Users\\Chaolin Han\\AppData\\Local\\Programs\\Python\\Python36-32\\tcl\\tk8.6'base = 'WIN32GUI' if sys.platform == "win32" else Noneexecutables = [Executable("Main_new.py", base=base)]packages = []include_files=['1.png', '2.png', 'bg.png', 'bg1.png']options = &#123; 'build_exe': &#123; 'packages':['scipy', 'numpy', 'matplotlib', 'tkinter'], 'include_files': ['C:\\Users\\Chaolin Han\\AppData\\Local\\Programs\\Python\\Python36-32\\DLLs\\tcl86t.dll', 'C:\\Users\\Chaolin Han\\AppData\\Local\\Programs\\Python\\Python36-32\\DLLs\\tk86t.dll'], 'includes': ['numpy.core._methods'] &#125;,&#125;setup( name = "Prog", options = options, version = "1.0", description = 'desc of program', executables = executables)]]></content>
+      <tags>
+        <tag>Python</tag>
+        <tag>PyQt</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[PyQt5 多窗口连接]]></title>
+    <url>%2Fmyblog.github.io%2F2017%2F12%2F22%2FPyQt5%20%E5%A4%9A%E7%AA%97%E5%8F%A3%E8%BF%9E%E6%8E%A5%2F</url>
+    <content type="text"><![CDATA[前言之前做过pyqt的一个简单界面，在一个窗口（MainWindow）中实现一些操作；之前嫌麻烦没有去做多窗口和它们的切换功能。最近研究了下窗口的调用和切换。pyqt4和5有很多不同，在参考别人案例的时候走了很多弯路，最后在pyqt5下实现了简洁的多窗口切换为大家参考。 思路多窗口的切换和显示连接到按钮的信号上再进行show（）就行，格式上有别于pyqt4。一个逻辑比较清晰的解决方案是，使用一个主程序，在其中实例化各个窗口，然后定义它们的显示逻辑即是按钮的槽函数。格式上稍有不对就会报错，也是让我重新审视了一下python类和继承的语法= =同时窗口的类型也和pyqt4有所不同，pyqt5下QWidgets为主，与4中QDialog显示方式也有所不同。具体方式见代码。 代码主程序——实例化各个窗口1234567891011121314151617181920212223242526272829303132333435from PyQt5 import QtCore, QtGui, QtWidgetsfrom test import Ui_Dialogfrom Login import Ui_MainWindow_Loginclass Ui_Dialog(QtWidgets.QWidget,Ui_Dialog): def __init__(self): super(Ui_Dialog,self).__init__() self.setupUi(self) #定义登出按钮的功能 def logoutEvent(self): self.hide() #隐藏此窗口 self.log = loginWindow() self.log.show() #显示登录窗口 #必须加上selfclass loginWindow(QtWidgets.QMainWindow,Ui_MainWindow_Login): def __init__(self): super(loginWindow,self).__init__() self.setupUi(self) #定义登录按钮的功能 def loginEvent(self): self.hide() self.dia = Ui_Dialog() self.dia.show() #self.dia.exec_() #pyqt5下show()方法有所改变，不再使用exec_()方法。#运行窗口Loginif __name__=="__main__": import sys app=QtWidgets.QApplication(sys.argv) login_show=loginWindow() login_show.show() sys.exit(app.exec_()) 多窗口需要用到的多个窗口可以用Designer直接生成，主窗口实例化。在其中定义好信号连接即可 12345678910111213141516from PyQt5 import QtCore, QtGui, QtWidgetsclass Ui_MainWindow_Login(object): def setupUi(self, MainWindow_Login): #略 def retranslateUi(self, MainWindow_Login): #略 if __name__=="__main__": import sys app=QtWidgets.QApplication(sys.argv) widget = QtWidgets.QMainWindow() login = Ui_MainWindow_Login() login.setupUi(widget) widget.show() sys.exit(app.exec_()) 效果点击登陆：退出登录则返回到第一个窗口。 切换理解好这个实例后，添加更多窗口都是线性复杂度的操作，在Designer中设计好窗口，直接转码后就可在主程序中实例化该窗口并设计它们的显示逻辑。]]></content>
+      <tags>
+        <tag>Python</tag>
+        <tag>PyQt</tag>
+      </tags>
+  </entry>
+</search>

@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[大马之行]]></title>
+    <url>%2Fmyblog.github.io%2F%E5%A4%A7%E9%A9%AC%E4%B9%8B%E8%A1%8C%2F</url>
+    <content type="text"><![CDATA[前言去马来西亚玩了四天，主要是体验人文。前两天槟城，后两天吉隆坡。 时逢马来西亚大选，也看到街上密集的选战旗帜了。 为了避免误解，有些东西必须提及 我并不闲。我去旅游并不代表我闲，也不代表我空时间多，更不会代表我喜欢玩。有的人情愿每天吃几块钱馒头，但是买几千的钢笔；有的人买几块钱的菜都要讲价，但是买豪车却是一手几百万。这不是花销的问题，而是态度和观念的问题。 为什么会想去马来西亚呢 大概是因为便宜吧 马来西亚好玩吗 对第一次出国的我来说，马来西亚是体验异国人文的高性价比选择，所以我觉得很值得一去马来西亚是一个伊斯兰国家 。我在此之前对清真很反感，觉得到一个90％都是伊斯兰教徒的国家可能会有点失望的。结果确是很惊喜。 对马来西亚的印象 包容和多元之前觉得，包容和多元可以形容上海。去过大马之后，才发现上海和马来西亚相比，根本不能叫多元。这里有各种肤色的人在街头攒动，各种口音和语言交织在一起，各种风俗文化共存，却很少有冲突。拿槟城举例，乔治市遗产区老街有英殖民时期的建筑和教堂，也有清真寺在晚上诵经，街上各种各样老店不少打着中文招牌；有小印度和印度寺庙，也有海边的姓氏桥，它们是很早以前中国渔民下南洋定居的地方，还有更早的娘惹文化，小吃和博物馆。至于吉隆坡，更是如此了。这里不再是泥泞的河口，而是国际化的大城市。街上不只有亚洲面孔，其他大洲的面孔也非常多。随着各种民族定居，它们的文化传统也流了下来，在吉隆坡继续传承着。吉隆坡的华人街 茨厂街 旁边有佳美清真寺，有印度教神庙，也有关公庙。它们不冲突，也不极端。 印象最深的 这里的女性大部分带头巾，我还见到过只露出眼睛的那种。可能看到一个妹纸会去想要是她们不带头巾会不会很漂亮，会不会有很飘逸的头发。但是她们并不封建，或者说并不是那种传统意义上的封建。似乎任何职业都有他们的身影。有女警察，售货员，酒店前台小姐姐，等等。头巾并不会给你任何负面的印象，反而会慢慢习惯。虽然头巾限制了她们在头发上的发挥，但爱美和追求时尚仍然可行。 各种化妆品都有售卖，广告上的模特也戴着头巾。虽然上半身保留着传统，但是鲜艳前沿的鞋子和袜子展示着她们对时尚的理解。]]></content>
+      <tags>
+        <tag>Trip</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Hexo 博文简单美化]]></title>
     <url>%2Fmyblog.github.io%2FHexo-%E5%8D%9A%E6%96%87%E7%AE%80%E5%8D%95%E7%BE%8E%E5%8C%96%2F</url>
     <content type="text"><![CDATA[文字背景色块添加打开themes/next/source/css/_custom 下的 custom.styl 文件,添加自定属性样式 1234567891011121314// 颜色块-黄span#inline-yellow &#123;display:inline;padding:.2em .6em .3em;font-size:80%;font-weight:bold;line-height:1;color:#fff;text-align:center;white-space:nowrap;vertical-align:baseline;border-radius:0;background-color: #f0ad4e;&#125; 想添加自定义颜色，修改最后的backgroud-color即可。 使用在md正文中如下格式： &lt;span id=&quot;inline-blue&quot;&gt; Text here &lt;/span&gt; 就可使用了。 效果： Text Text Text Text 使用FA图标在md正文中使用 &lt;i class=&quot;fa fa-subway&quot;&gt;&lt;/i&gt; 来调用FA图标。第二个fa后单词改为需要的图标名称即可。 改变大小：经过测试，有用的包括 1234&lt;i class="fa fa-camera-retro fa-lg"&gt;&lt;/i&gt;&lt;i class="fa fa-camera-retro fa-2x"&gt;&lt;/i&gt;&lt;i class="fa fa-camera-retro fa-3x"&gt;&lt;/i&gt;&lt;i class="fa fa-camera-retro fa-5x"&gt;&lt;/i&gt; 效果 Bootstrap Callout12345&#123;% note primary %&#125;primary&#123;% endnote %&#125;&#123;% note success %&#125;success&#123;% endnote %&#125;&#123;% note info %&#125;info&#123;% endnote %&#125;&#123;% note warning %&#125;warning&#123;% endnote %&#125;&#123;% note danger %&#125;danger&#123;% endnote %&#125; 效果： primary success info warning danger]]></content>

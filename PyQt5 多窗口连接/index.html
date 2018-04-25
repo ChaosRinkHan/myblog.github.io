@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Python,PyQt," />
 
 
 
@@ -79,16 +79,21 @@
 
 
 
-<meta name="description" content="Our business is life itself">
-<meta property="og:type" content="website">
-<meta property="og:title" content="EXECUTER">
-<meta property="og:url" content="https://github.com/ChaosRinkHan/myblog.github.io/tags/Database/index.html">
+<meta name="description" content="前言之前做过pyqt的一个简单界面，在一个窗口（MainWindow）中实现一些操作；之前嫌麻烦没有去做多窗口和它们的切换功能。最近研究了下窗口的调用和切换。pyqt4和5有很多不同，在参考别人案例的时候走了很多弯路，最后在pyqt5下实现了简洁的多窗口切换为大家参考。">
+<meta name="keywords" content="Python,PyQt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PyQt5 多窗口连接">
+<meta property="og:url" content="https://github.com/ChaosRinkHan/myblog.github.io/PyQt5 多窗口连接/index.html">
 <meta property="og:site_name" content="EXECUTER">
-<meta property="og:description" content="Our business is life itself">
+<meta property="og:description" content="前言之前做过pyqt的一个简单界面，在一个窗口（MainWindow）中实现一些操作；之前嫌麻烦没有去做多窗口和它们的切换功能。最近研究了下窗口的调用和切换。pyqt4和5有很多不同，在参考别人案例的时候走了很多弯路，最后在pyqt5下实现了简洁的多窗口切换为大家参考。">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="http://img.blog.csdn.net/20171222223034659?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvRVhFQ1VURVJf/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20171222223112535?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvRVhFQ1VURVJf/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:updated_time" content="2018-04-18T03:06:02.043Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="EXECUTER">
-<meta name="twitter:description" content="Our business is life itself">
+<meta name="twitter:title" content="PyQt5 多窗口连接">
+<meta name="twitter:description" content="前言之前做过pyqt的一个简单界面，在一个窗口（MainWindow）中实现一些操作；之前嫌麻烦没有去做多窗口和它们的切换功能。最近研究了下窗口的调用和切换。pyqt4和5有很多不同，在参考别人案例的时候走了很多弯路，最后在pyqt5下实现了简洁的多窗口切换为大家参考。">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20171222223034659?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvRVhFQ1VURVJf/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 
 
 
@@ -118,7 +123,7 @@
 
 
 
-  <link rel="canonical" href="https://github.com/ChaosRinkHan/myblog.github.io/tags/Database/"/>
+  <link rel="canonical" href="https://github.com/ChaosRinkHan/myblog.github.io/PyQt5 多窗口连接/"/>
 
 
 
@@ -134,7 +139,7 @@
     })();
 </script>
 
-  <title>Tag: Database | EXECUTER</title>
+  <title>PyQt5 多窗口连接 | EXECUTER</title>
   
 
 
@@ -153,7 +158,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -281,54 +286,179 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>Database<small>Tag</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://github.com/ChaosRinkHan/myblog.github.io/myblog.github.io/PyQt5 多窗口连接/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chaolin Han">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/myblog.github.io/images/icn.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="EXECUTER">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/myblog.github.io/基于PyQt5的数据库可视化操作界面/" itemprop="url">
-              
-                <span itemprop="name">PyQt5+python+数据库可视化操作界面</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">PyQt5 多窗口连接</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-12-10T22:51:46+08:00"
-              content="2017-12-10" >
-          12-10
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-22T22:00:33+08:00">
+                2017-12-22
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  621
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>之前做过pyqt的一个简单界面，在一个窗口（MainWindow）中实现一些操作；之前嫌麻烦没有去做多窗口和它们的切换功能。最近研究了下窗口的调用和切换。<br>pyqt4和5有很多不同，在参考别人案例的时候走了很多弯路，最后在pyqt5下实现了简洁的多窗口切换为大家参考。</p>
+ <a id="more"></a>
+<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>多窗口的切换和显示连接到按钮的信号上再进行show（）就行，格式上有别于pyqt4。<br><strong>一个逻辑比较清晰的解决方案是，使用一个主程序，在其中实例化各个窗口，然后定义它们的显示逻辑即是按钮的槽函数。</strong><br>格式上稍有不对就会报错，也是让我重新审视了一下python类和继承的语法= =<br>同时窗口的类型也和pyqt4有所不同，pyqt5下QWidgets为主，与4中QDialog显示方式也有所不同。<br>具体方式见代码。</p>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><h2 id="主程序——实例化各个窗口"><a href="#主程序——实例化各个窗口" class="headerlink" title="主程序——实例化各个窗口"></a>主程序——实例化各个窗口</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PyQt5 <span class="keyword">import</span> QtCore, QtGui, QtWidgets</span><br><span class="line"><span class="keyword">from</span> test <span class="keyword">import</span> Ui_Dialog</span><br><span class="line"><span class="keyword">from</span> Login <span class="keyword">import</span> Ui_MainWindow_Login</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Ui_Dialog</span><span class="params">(QtWidgets.QWidget,Ui_Dialog)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        super(Ui_Dialog,self).__init__()</span><br><span class="line">        self.setupUi(self)</span><br><span class="line">	<span class="comment">#定义登出按钮的功能</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">logoutEvent</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.hide()           <span class="comment">#隐藏此窗口</span></span><br><span class="line">        self.log = loginWindow() </span><br><span class="line">        self.log.show()       <span class="comment">#显示登录窗口</span></span><br><span class="line">                              <span class="comment">#必须加上self</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">loginWindow</span><span class="params">(QtWidgets.QMainWindow,Ui_MainWindow_Login)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        super(loginWindow,self).__init__()</span><br><span class="line">        self.setupUi(self)</span><br><span class="line">	<span class="comment">#定义登录按钮的功能</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">loginEvent</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.hide()</span><br><span class="line">        self.dia = Ui_Dialog()</span><br><span class="line">        self.dia.show()</span><br><span class="line">        <span class="comment">#self.dia.exec_()</span></span><br><span class="line">        <span class="comment">#pyqt5下show()方法有所改变，不再使用exec_()方法。</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#运行窗口Login</span></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    <span class="keyword">import</span> sys</span><br><span class="line">    app=QtWidgets.QApplication(sys.argv)</span><br><span class="line">    login_show=loginWindow()</span><br><span class="line">    login_show.show()</span><br><span class="line">    sys.exit(app.exec_())</span><br></pre></td></tr></table></figure>
+<h2 id="多窗口"><a href="#多窗口" class="headerlink" title="多窗口"></a>多窗口</h2><p>需要用到的多个窗口可以用Designer直接生成，主窗口实例化。在其中定义好信号连接即可</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PyQt5 <span class="keyword">import</span> QtCore, QtGui, QtWidgets</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Ui_MainWindow_Login</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">setupUi</span><span class="params">(self, MainWindow_Login)</span>:</span></span><br><span class="line">        <span class="comment">#略</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">retranslateUi</span><span class="params">(self, MainWindow_Login)</span>:</span></span><br><span class="line">		<span class="comment">#略</span></span><br><span class="line">		</span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    <span class="keyword">import</span> sys</span><br><span class="line">    app=QtWidgets.QApplication(sys.argv)</span><br><span class="line">    widget = QtWidgets.QMainWindow()</span><br><span class="line">    login = Ui_MainWindow_Login()</span><br><span class="line">    login.setupUi(widget)</span><br><span class="line">    widget.show()</span><br><span class="line">    sys.exit(app.exec_())</span><br></pre></td></tr></table></figure>
+<h1 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h1><p><img src="http://img.blog.csdn.net/20171222223034659?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvRVhFQ1VURVJf/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br>点击登陆：<br><img src="http://img.blog.csdn.net/20171222223112535?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvRVhFQ1VURVJf/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br>退出登录则返回到第一个窗口。</p>
+<h1 id="切换"><a href="#切换" class="headerlink" title="切换"></a>切换</h1><p>理解好这个实例后，添加更多窗口都是线性复杂度的操作，在Designer中设计好窗口，直接转码后就可在主程序中实例化该窗口并设计它们的显示逻辑。</p>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/myblog.github.io/tags/Python/" rel="tag"># Python</a>
+          
+            <a href="/myblog.github.io/tags/PyQt/" rel="tag"># PyQt</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/myblog.github.io/基于PyQt5的数据库可视化操作界面/" rel="next" title="PyQt5+python+数据库可视化操作界面">
+                <i class="fa fa-chevron-left"></i> PyQt5+python+数据库可视化操作界面
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/myblog.github.io/cx_Freeze发布Python程序的一些经验/" rel="prev" title="cx_Freeze发布Python程序的一些经验">
+                cx_Freeze发布Python程序的一些经验 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -336,6 +466,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -356,8 +490,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -446,6 +589,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#思路"><span class="nav-number">2.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码"><span class="nav-number">3.</span> <span class="nav-text">代码</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#主程序——实例化各个窗口"><span class="nav-number">3.1.</span> <span class="nav-text">主程序——实例化各个窗口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多窗口"><span class="nav-number">3.2.</span> <span class="nav-text">多窗口</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#效果"><span class="nav-number">4.</span> <span class="nav-text">效果</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#切换"><span class="nav-number">5.</span> <span class="nav-text">切换</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -585,6 +744,10 @@
   
 
   
+  <script type="text/javascript" src="/myblog.github.io/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/myblog.github.io/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 

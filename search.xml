@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[机器学习 李宏毅 HW]]></title>
+    <url>%2Fmyblog.github.io%2FMLHW%2F</url>
+    <content type="text"><![CDATA[HW0Pt. 1123456789101112131415161718192021f = open('data.txt')readline=f.readlines()for line in readline: line = line.replace(',', ' ') line = line.replace('.', ' ') line = line.strip() allWord = line.split(' ')##print(line)wordCount = []wordDict = &#123;&#125;.fromkeys(allWord)wordList = list(wordDict.keys())cnt = 0for i in wordList: wordDict[i] = allWord.count(i) print(i + ' ' + str(cnt) + ' ' + str(wordDict[i])) cnt = cnt+1##print(wordDict) Sample input: data.txt12data.txt:A small sample of texts from Project Gutenberg appears in the corpus collection. However, you may be interested in analyzing other texts from Project Gutenberg. You can browse the catalog of 25,000 free online books at xxx, and obtain a URL to an ASCII text file. Although 90% of the texts in Project Gutenberg are in English, it includes material in over 50 other languages. Sample output123456789101112A 0 1small 1 1sample 2 1of 3 3texts 4 3from 5 2Project 6 3Gutenberg 7 3appears 8 1in 9 5the 10 3... 打开文件后读取所有的字符，用replace去除符号后用split讲字符串分割成list 然后用字典方法去重。在wordList中记录单词和出现次数（key为单词，value为出现次数） 最后输出]]></content>
+      <tags>
+        <tag>Python</tag>
+        <tag>机器学习</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[关于赛车]]></title>
     <url>%2Fmyblog.github.io%2FAbout-Racing-Cars%2F</url>
     <content type="text"><![CDATA[前言FIA旗下最大的三个汽车运动赛事：F1，WEC，WRC。国际摩联旗下还有著名的moto GP。我今年开始看的汽车运动赛事越来越多。也是对汽车运动越来越有兴趣。在看的有F1，F2，WEC，看得少的有moto GP，戴那通，纳斯卡。 F1F1圈内的事情就不谈了，新闻很多了。F1自从被自由媒体买了之后就开始有点变味。虽然说的是为了观众为了收视，但是我觉得背后更多的是为了商业运作。伯尼走了之后F1的商业模式目前各方都不敢下注，毕竟把这么大个F1盘活本来就不容易。对我们观众来讲，感受就是HUD变得更加详细，动画挺好，数据有点意思，字体挺好看。从今年开始看了F1的都能感受到这个HUD慢慢完善的过程。最早阿尔伯特公园站的时候还有很多bug，甚至直接没上HUD。现在已经很完善了，甚至还有大牙过生日的提示。自由媒体加上人字拖（Halo）就是非常激进的举动了。虽然说安全第一，但我想车迷都更期望看到更好的解决方案，特别是不要在中间加上那个竖杠。由于F1的影响力，F2，FE都开始使用人字拖，并且各大模拟器和游戏也跟上潮流加入了人字拖。从今年整体趋势来看，法拉利能拿到好成绩甚至冲击冠亚军给今年比赛带来不少看点。其实到现在汉密尔顿在梅赛德斯-奔驰车队破了多少记录都没什么意义了，因为梅奔是空前地快，这么四五年都开最好的车，是历史上都没有的事情。虽然梅奔投入巨大，但是我还是希望看到引擎地差异越来越小，车手和策略因素影响越来越大。如阿隆索所说，在直道上差80匹马力，就算你开了DRS也会追不上没开DRS的奔驰。迈凯伦的今年是跌到谷底剧变的一年。之前车队高层变动就不评论了，懂的都懂。换了引擎也没什么用，同样是雷诺引擎，追不上红牛也追不上雷诺厂队。所以只能是空气动力的原因了。这个研发太水了。头哥这两年赚了天价酬金之后很可能就会离开F1了，最近几站在排位赛就开始绝望地抱怨：我没有轮胎，在弯道缺少动力。我不知道继续比赛还有什么意义。 F2 &amp; FE]]></content>

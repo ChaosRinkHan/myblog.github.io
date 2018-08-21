@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[JetBrains学生免费版申请指南]]></title>
+    <url>%2Fmyblog.github.io%2FJetBrainsCount%2F</url>
+    <content type="text"><![CDATA[JetBrains它很多评价较好的IDE和工具： CLion，PyCharm相信用的不少吧。谁是最强IDE就不争了，反正都算一流的。 学生免费使用随便选一个收费IDE，比如CLion，选择Buy： 右上选择DISCOUNTE…这个Tab： 选第一项，对教师和学生免费，然后Apply Now； 第一种：使用学校邮箱（我学校邮箱GG了就没用） 第二种：使用ISIC/ITIC（没有） 第三种：只用正式文件： 根据学校信息填好表，我上传了三张图片作为文件： 学生证封面 学生证信息页 学生证注册页 然后在comment栏里面填写对应的解释（用英语写一下就好了） 然后Apply，等待邮件，一周之内处理完成。 我申请后两天就出来了： 选择Link your free license, 将免费的这个激活状态绑定到已有账号或是创建的新账号上面。然后就可以下载软件，登陆账户就可用了。]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[机器学习 李宏毅 HW]]></title>
     <url>%2Fmyblog.github.io%2FMLHW%2F</url>
     <content type="text"><![CDATA[HW0 Q1123456789101112131415161718192021f = open('data.txt')readline=f.readlines()for line in readline: line = line.replace(',', ' ') line = line.replace('.', ' ') line = line.strip() allWord = line.split(' ')##print(line)wordCount = []wordDict = &#123;&#125;.fromkeys(allWord)wordList = list(wordDict.keys())cnt = 0for i in wordList: wordDict[i] = allWord.count(i) print(i + ' ' + str(cnt) + ' ' + str(wordDict[i])) cnt = cnt+1##print(wordDict) Sample input: data.txt12data.txt:A small sample of texts from Project Gutenberg appears in the corpus collection. However, you may be interested in analyzing other texts from Project Gutenberg. You can browse the catalog of 25,000 free online books at xxx, and obtain a URL to an ASCII text file. Although 90% of the texts in Project Gutenberg are in English, it includes material in over 50 other languages. Sample output123456789101112A 0 1small 1 1sample 2 1of 3 3texts 4 3from 5 2Project 6 3Gutenberg 7 3appears 8 1in 9 5the 10 3... 打开文件后读取所有的字符，用 replace 去除符号后用split将字符串分割成list 然后用字典方法去重。在wordList中记录单词和出现次数（key为单词，value为出现次数） 最后输出 Q2 图片淡化1234567891011121314151617from PIL import ImageoriImg = Image.open("westbrook.jpg")pixel = oriImg.load()##print(oriImg.size)##(a, b) = oriImg.sizeprint((a, b))for x in range(oriImg.size[0]): for y in range(oriImg.size[1]): ##print(x, y) (r ,g, b) = pixel[x, y] #print((r, g, b)) ##print((int(r/2), int(g/2), int(b/2))) oriImg.putpixel((x, y), (int(r/2), int(g/2), int(b/2))) ##oriImg.putpixel((x, y), (100,100,100))oriImg.save("new.jpg") 原图片： 减淡后： 遍历图片，putpixel即可。]]></content>

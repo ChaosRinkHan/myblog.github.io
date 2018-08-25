@@ -79,13 +79,13 @@
 
 
 
-<meta name="description" content="Intro   Supervised Learning: 需要大量training data Structured Learning:  输出具有结构的结果，例如语句   Lecture 1: Regression - Case Study 输出是一个scalar  妙蛙种子cp值的例子 对可微分的f，可以用梯度下降法解最优（另：这可以直接最小二乘求最优）： 单参数做法：   双参数做法：  如此">
+<meta name="description" content="Intro   Supervised Learning: 需要大量training data Structured Learning:  输出具有结构的结果，例如语句   Lecture 1: Regression - Case Study Regression: 输出是一个scalar  妙蛙种子cp值的例子 对可微分的f，可以用梯度下降法解最优（另：这可以直接最小二乘求最优）： 单参数做法：">
 <meta name="keywords" content="机器学习,Notes">
 <meta property="og:type" content="article">
 <meta property="og:title" content="机器学习 李宏毅 笔记">
 <meta property="og:url" content="https://github.com/ChaosRinkHan/myblog.github.io/MLNotes/index.html">
 <meta property="og:site_name" content="EXECUTER">
-<meta property="og:description" content="Intro   Supervised Learning: 需要大量training data Structured Learning:  输出具有结构的结果，例如语句   Lecture 1: Regression - Case Study 输出是一个scalar  妙蛙种子cp值的例子 对可微分的f，可以用梯度下降法解最优（另：这可以直接最小二乘求最优）： 单参数做法：   双参数做法：  如此">
+<meta property="og:description" content="Intro   Supervised Learning: 需要大量training data Structured Learning:  输出具有结构的结果，例如语句   Lecture 1: Regression - Case Study Regression: 输出是一个scalar  妙蛙种子cp值的例子 对可微分的f，可以用梯度下降法解最优（另：这可以直接最小二乘求最优）： 单参数做法：">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNbRwgy1ful6t1lim9j31h2142wnq.jpg">
 <meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwgy1ful6s6d342j31h613ijxy.jpg">
@@ -110,10 +110,10 @@
 <meta property="og:image" content="http://p7qhfeth9.bkt.clouddn.com/FtnM9epeWTtbMFEXdWwWkurlIRaw">
 <meta property="og:image" content="http://p7qhfeth9.bkt.clouddn.com/Fuj25qIXjbk5nLQSijFIjnfwWtAR">
 <meta property="og:image" content="http://p7qhfeth9.bkt.clouddn.com/Fq4bkpKdvBmvY-IPXsy42YtP_P46">
-<meta property="og:updated_time" content="2018-08-25T02:31:31.452Z">
+<meta property="og:updated_time" content="2018-08-25T02:33:26.367Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习 李宏毅 笔记">
-<meta name="twitter:description" content="Intro   Supervised Learning: 需要大量training data Structured Learning:  输出具有结构的结果，例如语句   Lecture 1: Regression - Case Study 输出是一个scalar  妙蛙种子cp值的例子 对可微分的f，可以用梯度下降法解最优（另：这可以直接最小二乘求最优）： 单参数做法：   双参数做法：  如此">
+<meta name="twitter:description" content="Intro   Supervised Learning: 需要大量training data Structured Learning:  输出具有结构的结果，例如语句   Lecture 1: Regression - Case Study Regression: 输出是一个scalar  妙蛙种子cp值的例子 对可微分的f，可以用梯度下降法解最优（另：这可以直接最小二乘求最优）： 单参数做法：">
 <meta name="twitter:image" content="https://ws4.sinaimg.cn/large/006tNbRwgy1ful6t1lim9j31h2142wnq.jpg">
 
 
@@ -382,7 +382,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  647
+                  648
                 </span>
               
 
@@ -415,9 +415,9 @@
 </ul>
 <p><img src="https://ws4.sinaimg.cn/large/006tNbRwgy1ful6qdgpk5j31gk12qwli.jpg" alt=""></p>
 <h2 id="Lecture-1-Regression-Case-Study"><a href="#Lecture-1-Regression-Case-Study" class="headerlink" title="Lecture 1: Regression - Case Study"></a>Lecture 1: Regression - Case Study</h2><ul>
-<li>输出是一个scalar</li>
+<li>Regression: 输出是一个scalar</li>
 </ul>
-<h1 id="妙蛙种子cp值的例子"><a href="#妙蛙种子cp值的例子" class="headerlink" title="妙蛙种子cp值的例子"></a>妙蛙种子cp值的例子</h1><p><img src="http://p7qhfeth9.bkt.clouddn.com/Fm2tzUvXwNikB_vnWMOXq1CNzwMS" alt=""></p>
+<h3 id="妙蛙种子cp值的例子"><a href="#妙蛙种子cp值的例子" class="headerlink" title="妙蛙种子cp值的例子"></a>妙蛙种子cp值的例子</h3><p><img src="http://p7qhfeth9.bkt.clouddn.com/Fm2tzUvXwNikB_vnWMOXq1CNzwMS" alt=""></p>
 <p>对可微分的f，可以用<code>梯度下降法</code>解最优（另：这可以直接最小二乘求最优）：</p>
 <p>单参数做法：</p>
 <p><img src="http://p7qhfeth9.bkt.clouddn.com/Fh-rem93jHUFMkVG68ip2gmP0oG6" alt=""></p>
@@ -675,7 +675,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Intro"><span class="nav-number">1.</span> <span class="nav-text">Intro</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Lecture-1-Regression-Case-Study"><span class="nav-number">2.</span> <span class="nav-text">Lecture 1: Regression - Case Study</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#妙蛙种子cp值的例子"><span class="nav-number"></span> <span class="nav-text">妙蛙种子cp值的例子</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Regularition"><span class="nav-number">0.1.</span> <span class="nav-text">Regularition</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Demo："><span class="nav-number">0.2.</span> <span class="nav-text">Demo：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Lecture-2-Error来源-Model选取"><span class="nav-number">1.</span> <span class="nav-text">Lecture 2: Error来源 - Model选取</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#如何减小误差"><span class="nav-number">1.1.</span> <span class="nav-text">如何减小误差</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模型的选择上的问题："><span class="nav-number">1.2.</span> <span class="nav-text">模型的选择上的问题：</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Intro"><span class="nav-number">1.</span> <span class="nav-text">Intro</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Lecture-1-Regression-Case-Study"><span class="nav-number">2.</span> <span class="nav-text">Lecture 1: Regression - Case Study</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#妙蛙种子cp值的例子"><span class="nav-number">2.1.</span> <span class="nav-text">妙蛙种子cp值的例子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Regularition"><span class="nav-number">2.2.</span> <span class="nav-text">Regularition</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Demo："><span class="nav-number">2.3.</span> <span class="nav-text">Demo：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Lecture-2-Error来源-Model选取"><span class="nav-number">3.</span> <span class="nav-text">Lecture 2: Error来源 - Model选取</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#如何减小误差"><span class="nav-number">3.1.</span> <span class="nav-text">如何减小误差</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模型的选择上的问题："><span class="nav-number">3.2.</span> <span class="nav-text">模型的选择上的问题：</span></a></li></ol></li></ol></div>
             
 
           </div>

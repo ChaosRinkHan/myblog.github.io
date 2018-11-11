@@ -87,13 +87,13 @@
 <meta property="og:site_name" content="EXECUTER">
 <meta property="og:description" content="HW0">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://p7qhfeth9.bkt.clouddn.com/westbrook.jpg">
-<meta property="og:image" content="http://p7qhfeth9.bkt.clouddn.com/new.jpg">
-<meta property="og:updated_time" content="2018-08-24T14:55:38.650Z">
+<meta property="og:image" content="https://i.imgur.com/JLD89lD.jpg">
+<meta property="og:image" content="https://i.imgur.com/Q0Ivmin.jpg">
+<meta property="og:updated_time" content="2018-11-11T18:52:50.809Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习 李宏毅 HW">
 <meta name="twitter:description" content="HW0">
-<meta name="twitter:image" content="http://p7qhfeth9.bkt.clouddn.com/westbrook.jpg">
+<meta name="twitter:image" content="https://i.imgur.com/JLD89lD.jpg">
 
 
 
@@ -396,9 +396,9 @@
 <hr>
 <h4 id="Q2-图片淡化"><a href="#Q2-图片淡化" class="headerlink" title="Q2 图片淡化"></a>Q2 图片淡化</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"></span><br><span class="line">oriImg = Image.open(<span class="string">"westbrook.jpg"</span>)</span><br><span class="line">pixel = oriImg.load()</span><br><span class="line"><span class="comment">##print(oriImg.size)</span></span><br><span class="line"><span class="comment">##(a, b) = oriImg.size</span></span><br><span class="line">print((a, b))</span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> range(oriImg.size[<span class="number">0</span>]):</span><br><span class="line">    <span class="keyword">for</span> y <span class="keyword">in</span> range(oriImg.size[<span class="number">1</span>]):</span><br><span class="line">        <span class="comment">##print(x, y)</span></span><br><span class="line">        (r ,g, b) = pixel[x, y]</span><br><span class="line">        <span class="comment">#print((r, g, b))</span></span><br><span class="line">        <span class="comment">##print((int(r/2), int(g/2), int(b/2)))</span></span><br><span class="line">        oriImg.putpixel((x, y), (int(r/<span class="number">2</span>), int(g/<span class="number">2</span>), int(b/<span class="number">2</span>)))</span><br><span class="line">        <span class="comment">##oriImg.putpixel((x, y), (100,100,100))</span></span><br><span class="line"></span><br><span class="line">oriImg.save(<span class="string">"new.jpg"</span>)</span><br></pre></td></tr></table></figure>
 <p>原图片：</p>
-<p><img src="http://p7qhfeth9.bkt.clouddn.com/westbrook.jpg" alt=""></p>
+<p><img src="https://i.imgur.com/JLD89lD.jpg" alt=""></p>
 <p>减淡后：</p>
-<p><img src="http://p7qhfeth9.bkt.clouddn.com/new.jpg" alt=""></p>
+<p><img src="https://i.imgur.com/Q0Ivmin.jpg" alt=""></p>
 <p>遍历图片，<code>putpixel</code>即可。</p>
 
       

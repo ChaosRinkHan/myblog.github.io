@@ -2,6 +2,15 @@
 
 
 
+
+
+
+
+
+
+
+
+
   
 
 
@@ -9,8 +18,11 @@
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
 <meta name="theme-color" content="#222">
+
+
+
 
 
 
@@ -38,48 +50,65 @@
 
 
 
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.5.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.5.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.5.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.5.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
   
-  
-  <link href="/myblog.github.io/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
 
-
-
-
-<link href="/myblog.github.io/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/myblog.github.io/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/myblog.github.io/images/apple-touch-icon-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/myblog.github.io/images/favicon-32x32-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/myblog.github.io/images/favicon-16x16-next.png?v=5.1.4">
-
-
-  <link rel="mask-icon" href="/myblog.github.io/images/logo.svg?v=5.1.4" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="Hexo, NexT" />
-
-
-
-
-
-
-
-
-
-
-<meta name="description" content="Our business is life itself.">
+  <meta name="description" content="Our business is life itself.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="EXECUTER">
 <meta property="og:url" content="https://github.com/ChaosRinkHan/myblog.github.io/archives/2018/04/index.html">
@@ -92,29 +121,6 @@
 
 
 
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/myblog.github.io/',
-    scheme: 'Mist',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: 'Author'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
 
 
 
@@ -122,16 +128,10 @@
 
 
 
-
-<script>
-    (function(){
-        if(''){
-            if (prompt('Enter password: ') !== ''){
-                alert('Wrong password');
-                history.back();
-            }
-        }
-    })();
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
 </script>
 
   <title>Archive | EXECUTER</title>
@@ -143,6 +143,36 @@
 
 
 
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
 
 </head>
 
@@ -162,19 +192,17 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/myblog.github.io/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">EXECUTER</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
-      
-        <p class="site-subtitle"></p>
-      
+    
   </div>
 
   <div class="site-nav-toggle">
-    <button>
+    <button aria-label="Toggle navigation bar">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -182,66 +210,124 @@
   </div>
 </div>
 
-<nav class="site-nav">
-  
 
+
+<nav class="site-nav">
   
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-home">
-          <a href="/myblog.github.io/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            Home
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-about">
-          <a href="/myblog.github.io/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-address-card"></i> <br />
-            
-            About
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-tags">
-          <a href="/myblog.github.io/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            Tags
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/myblog.github.io/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            Archives
-          </a>
-        </li>
-      
+          
+          <li class="menu-item menu-item-home">
 
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-address-card"></i> <br />About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags<span class="badge">14</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives menu-item-active">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives<span class="badge">21</span></a>
+
+  </li>
+
+      
       
         <li class="menu-item menu-item-search">
           
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
-            
-            Search
-          </a>
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />Search</a>
         </li>
       
     </ul>
+  
+
+  
+    
+
+    
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+    
+
+  
+
+
   
 
   
@@ -272,12 +358,20 @@
 
 
 
- </div>
+  
+
+
+
+</div>
     </header>
+
+    
+
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
+          
           <div id="content" class="content">
             
 
@@ -288,14 +382,16 @@
     <div id="posts" class="posts-collapse">
       <span class="archive-move-on"></span>
 
+      
       <span class="archive-page-counter">
         
         
         
           
         
-        Um..! 20 posts in total. Keep on posting.
+        Um..! 21 posts in total. Keep on posting.
       </span>
+      
 
       
 
@@ -318,7 +414,7 @@
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/myblog.github.io/吉隆坡——都会与宗教/" itemprop="url">
+            <a class="post-title-link" href="/吉隆坡——都会与宗教/" itemprop="url">
               
                 <span itemprop="name">吉隆坡——大都会</span>
               
@@ -355,7 +451,7 @@
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/myblog.github.io/Thought-stays-upon-the-Penang-Hill/" itemprop="url">
+            <a class="post-title-link" href="/Thought-stays-upon-the-Penang-Hill/" itemprop="url">
               
                 <span itemprop="name">Thought stays upon the Penang Hill</span>
               
@@ -392,7 +488,7 @@
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/myblog.github.io/槟城——南洋遗产/" itemprop="url">
+            <a class="post-title-link" href="/槟城——南洋遗产/" itemprop="url">
               
                 <span itemprop="name">槟城——南洋遗产</span>
               
@@ -429,7 +525,7 @@
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/myblog.github.io/大马之行/" itemprop="url">
+            <a class="post-title-link" href="/大马之行/" itemprop="url">
               
                 <span itemprop="name">大马之行</span>
               
@@ -466,7 +562,7 @@
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/myblog.github.io/Hexo-博文简单美化/" itemprop="url">
+            <a class="post-title-link" href="/Hexo-博文简单美化/" itemprop="url">
               
                 <span itemprop="name">Hexo 博文简单美化</span>
               
@@ -503,7 +599,7 @@
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/myblog.github.io/Trip-to-Mlaysia/" itemprop="url">
+            <a class="post-title-link" href="/Trip-to-Mlaysia/" itemprop="url">
               
                 <span itemprop="name">Trip to Malaysia</span>
               
@@ -540,7 +636,7 @@
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/myblog.github.io/My-first-post/" itemprop="url">
+            <a class="post-title-link" href="/My-first-post/" itemprop="url">
               
                 <span itemprop="name">My first post</span>
               
@@ -576,9 +672,6 @@
           </div>
           
 
-
-          
-
         </div>
         
           
@@ -604,85 +697,132 @@
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image"
-                src="/myblog.github.io/images/icn.jpg"
+                src="/images/icn.jpg"
                 alt="Chaolin Han" />
             
               <p class="site-author-name" itemprop="name">Chaolin Han</p>
               <p class="site-description motion-element" itemprop="description">Our business is life itself.</p>
           </div>
 
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
+          
+            <nav class="site-state motion-element">
               
-                <a href="/myblog.github.io/archives/">
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">21</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
               
-                  <span class="site-state-item-count">20</span>
-                  <span class="site-state-item-name">posts</span>
-                </a>
-              </div>
-            
 
-            
-
-            
               
-              
-              <div class="site-state-item site-state-tags">
-                <a href="/myblog.github.io/tags/index.html">
-                  <span class="site-state-item-count">14</span>
-                  <span class="site-state-item-name">tags</span>
-                </a>
-              </div>
-            
 
-          </nav>
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
 
           
 
           
             <div class="links-of-author motion-element">
-                
-                  <span class="links-of-author-item">
-                    <a href="https://github.com/ChaosRinkHan" target="_blank" title="GitHub">
-                      
-                        <i class="fa fa-fw fa-github"></i></a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="chaosrinkhan@gmail.com" target="_blank" title="E-Mail">
-                      
-                        <i class="fa fa-fw fa-envelope"></i></a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="https://plus.google.com/chaosrinkhan" target="_blank" title="Google">
-                      
-                        <i class="fa fa-fw fa-google-plus"></i></a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="https://twitter.com/C_R__Han" target="_blank" title="Twitter">
-                      
-                        <i class="fa fa-fw fa-twitter"></i></a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="https://www.instagram.com/cl_han" target="_blank" title="Instagram">
-                      
-                        <i class="fa fa-fw fa-instagram"></i></a>
-                  </span>
-                
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/ChaosRinkHan" title="GitHub &rarr; https://github.com/ChaosRinkHan"><i class="fa fa-fw fa-github"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="/chaosrinkhan@gmail.com" title="E-Mail &rarr; chaosrinkhan@gmail.com"><i class="fa fa-fw fa-envelope"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://plus.google.com/chaosrinkhan" title="Google &rarr; https://plus.google.com/chaosrinkhan" rel="noopener" target="_blank"><i class="fa fa-fw fa-google-plus"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://twitter.com/C_R__Han" title="Twitter &rarr; https://twitter.com/C_R__Han" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://www.instagram.com/cl_han" title="Instagram &rarr; https://www.instagram.com/cl_han" rel="noopener" target="_blank"><i class="fa fa-fw fa-instagram"></i></a>
+                </span>
+              
             </div>
           
 
           
-          
 
           
           
 
+          
+            
+          
           
 
         </div>
@@ -702,43 +842,29 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-</script>
-
-
-<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
-  <span class="with-love">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Chaolin Han</span>
 
   
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item-icon">
-      <i class="fa fa-area-chart"></i>
-    </span>
-    
-      <span class="post-meta-item-text">Site words total count&#58;</span>
-    
-    <span title="Site words total count">14.9k</span>
+
   
 </div>
 
 
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
 
 
 
-  <span class="post-meta-divider">|</span>
 
-
-
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v6.5.0</div>
 
 
 
 
         
+
 
 
 
@@ -758,7 +884,10 @@
     
 
     
+	
+    
 
+    
   </div>
 
   
@@ -777,7 +906,6 @@
 
 
 
-  
 
 
 
@@ -790,43 +918,33 @@
 
 
 
+
+
+
+
+
   
   
-    <script type="text/javascript" src="/myblog.github.io/lib/jquery/index.js?v=2.1.3"></script>
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
   
 
   
   
-    <script type="text/javascript" src="/myblog.github.io/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
   
 
   
   
-    <script type="text/javascript" src="/myblog.github.io/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/myblog.github.io/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/myblog.github.io/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/myblog.github.io/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
   
 
 
   
 
 
-  <script type="text/javascript" src="/myblog.github.io/js/src/utils.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=6.5.0"></script>
 
-  <script type="text/javascript" src="/myblog.github.io/js/src/motion.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=6.5.0"></script>
 
 
 
@@ -838,21 +956,7 @@
   
 
 
-  <script type="text/javascript" src="/myblog.github.io/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.5.0"></script>
 
 
 
@@ -860,11 +964,7 @@
 
 
 
-
-
   
-
-
 
 
 
@@ -888,7 +988,7 @@
     } else if (/json$/i.test(search_path)) {
       isXml = false;
     }
-    var path = "/myblog.github.io/" + search_path;
+    var path = "/" + search_path;
     // monitor main search box;
 
     var onPopupClose = function (e) {
@@ -926,6 +1026,8 @@
         .css('overflow', 'hidden');
       $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
 
+      
+
       $.ajax({
         url: path,
         dataType: isXml ? "xml" : "json",
@@ -959,6 +1061,7 @@
                 var title = data.title.trim();
                 var titleInLowerCase = title.toLowerCase();
                 var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
                 var contentInLowerCase = content.toLowerCase();
                 var articleUrl = decodeURIComponent(data.url);
                 var indexOfTitle = [];
@@ -1205,19 +1308,23 @@
   
 
   
+
+  
+
+  
   
 
   
 
   
-  <script type="text/javascript" src="/myblog.github.io/js/src/js.cookie.js?v=5.1.4"></script>
-  <script type="text/javascript" src="/myblog.github.io/js/src/scroll-cookie.js?v=5.1.4"></script>
 
+  
+
+  
+
+  
 
   
 
 </body>
 </html>
-
-<!-- 页面点击小红心 -->
-<script type="text/javascript" src="/myblog.github.io/js/src/love.js"></script>

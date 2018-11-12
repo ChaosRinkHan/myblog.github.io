@@ -2,15 +2,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
   
 
 
@@ -18,11 +9,8 @@
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
-
-
-
 
 
 
@@ -50,6 +38,10 @@
 
 
 
+  
+  
+  <link href="/myblog.github.io/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
 
 
 
@@ -58,57 +50,36 @@
 
 <link href="/myblog.github.io/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/myblog.github.io/css/main.css?v=6.5.0" rel="stylesheet" type="text/css" />
+<link href="/myblog.github.io/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/myblog.github.io/images/apple-touch-icon-next.png?v=6.5.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/myblog.github.io/images/apple-touch-icon-next.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/myblog.github.io/images/favicon-32x32-next.png?v=6.5.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/myblog.github.io/images/favicon-32x32-next.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/myblog.github.io/images/favicon-16x16-next.png?v=6.5.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/myblog.github.io/images/favicon-16x16-next.png?v=5.1.4">
 
 
-  <link rel="mask-icon" href="/myblog.github.io/images/logo.svg?v=6.5.0" color="#222">
-
-
-
+  <link rel="mask-icon" href="/myblog.github.io/images/logo.svg?v=5.1.4" color="#222">
 
 
 
 
 
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/myblog.github.io/',
-    scheme: 'Mist',
-    version: '6.5.0',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: false,
-    fastclick: false,
-    lazyload: false,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-  
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
 
-  <meta name="description" content="Our business is life itself.">
+
+
+
+
+
+
+<meta name="description" content="Our business is life itself.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="EXECUTER">
 <meta property="og:url" content="https://github.com/ChaosRinkHan/myblog.github.io/index.html">
@@ -121,6 +92,29 @@
 
 
 
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/myblog.github.io/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
 
 
 
@@ -128,10 +122,16 @@
 
 
 
-<script type="text/javascript" id="page.configurations">
-  CONFIG.page = {
-    sidebar: "",
-  };
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('Enter password: ') !== ''){
+                alert('Wrong password');
+                history.back();
+            }
+        }
+    })();
 </script>
 
   <title>EXECUTER</title>
@@ -143,36 +143,6 @@
 
 
 
-
-
-
-
-  <noscript>
-  <style type="text/css">
-    .use-motion .motion-element,
-    .use-motion .brand,
-    .use-motion .menu-item,
-    .sidebar-inner,
-    .use-motion .post-block,
-    .use-motion .pagination,
-    .use-motion .comments,
-    .use-motion .post-header,
-    .use-motion .post-body,
-    .use-motion .collection-title { opacity: initial; }
-
-    .use-motion .logo,
-    .use-motion .site-title,
-    .use-motion .site-subtitle {
-      opacity: initial;
-      top: initial;
-    }
-
-    .use-motion {
-      .logo-line-before i { left: initial; }
-      .logo-line-after i { right: initial; }
-    }
-  </style>
-</noscript>
 
 </head>
 
@@ -193,17 +163,19 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/myblog.github.io/" class="brand" rel="start">
+      <a href="/myblog.github.io/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">EXECUTER</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
-    
+      
+        <p class="site-subtitle"></p>
+      
   </div>
 
   <div class="site-nav-toggle">
-    <button aria-label="Toggle navigation bar">
+    <button>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -211,97 +183,66 @@
   </div>
 </div>
 
-
-
 <nav class="site-nav">
+  
+
   
     <ul id="menu" class="menu">
       
         
-        
-        
-          
-          <li class="menu-item menu-item-home">
-
-    
-    
-    
+        <li class="menu-item menu-item-home">
+          <a href="/myblog.github.io/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
       
-    
-
-    
-
-    <a href="/myblog.github.io/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
-
-  </li>
         
-        
-        
-          
-          <li class="menu-item menu-item-about">
-
-    
-    
-    
+        <li class="menu-item menu-item-about">
+          <a href="/myblog.github.io/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-address-card"></i> <br />
+            
+            About
+          </a>
+        </li>
       
-    
-
-    
-
-    <a href="/myblog.github.io/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-address-card"></i> <br />About</a>
-
-  </li>
         
-        
-        
-          
-          <li class="menu-item menu-item-tags">
-
-    
-    
-    
+        <li class="menu-item menu-item-tags">
+          <a href="/myblog.github.io/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
       
-    
-
-    
-
-    <a href="/myblog.github.io/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
-
-  </li>
         
-        
-        
-          
-          <li class="menu-item menu-item-archives">
-
-    
-    
-    
+        <li class="menu-item menu-item-archives">
+          <a href="/myblog.github.io/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
       
-    
 
-    
-
-    <a href="/myblog.github.io/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
-
-  </li>
-
-      
       
         <li class="menu-item menu-item-search">
           
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />Search</a>
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
         </li>
       
     </ul>
-  
-
-  
-    
-
   
 
   
@@ -332,20 +273,12 @@
 
 
 
-  
-
-
-
-</div>
+ </div>
     </header>
-
-    
-
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
-          
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
@@ -358,8 +291,6 @@
   
   
 
-  
-
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
@@ -369,8 +300,8 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Chaolin Han">
-      <meta itemprop="description" content="Our business is life itself.">
-      <meta itemprop="image" content="/myblog.github.io/images/avatar.gif">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/myblog.github.io/images/icn.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -384,20 +315,11 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                
-                <a href="/myblog.github.io/myblog.github.io/theshelloftech/" class="post-title-link" itemprop="https://github.com/ChaosRinkHan/myblog.github.io/index.html">科技以换壳为本</a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/myblog.github.io/theshelloftech/" itemprop="url">科技以换壳为本</a></h1>
         
 
         <div class="post-meta">
           <span class="post-time">
-
-            
-            
-            
-
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -405,30 +327,13 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-
-              
-                
-              
-
-              <time title="Created: 2018-10-30 21:16:16" itemprop="dateCreated datePublished" datetime="2018-10-30T21:16:16+00:00">2018-10-30</time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-30T21:16:16+00:00">
+                2018-10-30
+              </time>
             
 
             
-              
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-11-11 15:33:26" itemprop="dateModified" datetime="2018-11-11T15:33:26+00:00">2018-11-11</time>
-              
             
           </span>
 
@@ -443,6 +348,25 @@
 
           
 
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  1,952
+                </span>
+              
+
+              
+
+              
+            </div>
           
 
           
@@ -469,29 +393,21 @@
 <p>对十年前，现在的技术先进很多倍。但是很少有发布会，<strong>能让我们真正“哇”出来的</strong>，甚至是苹果自己和谷歌的发布会。我们需要的的确是更强大更好用的产品，但是十年前，十五年前，它就是这样了。所以它们发展到极致也就是那样。</p>
 <p>真正能让人“哇”出来的，是那些打破界限，打破思维定式的创新，而不是<strong>隐藏刘海这些误入歧途的创新</strong>。</p>
           <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/myblog.github.io/theshelloftech/" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-         
+          <div class="post-button text-center">
+            <a class="btn" href="/myblog.github.io/theshelloftech/" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
           <!--/noindex-->
         
       
     </div>
-
-    
-
     
     
     
 
     
 
-    
-       
-    
     
 
     
@@ -524,8 +440,6 @@
   
   
 
-  
-
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
@@ -535,8 +449,8 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Chaolin Han">
-      <meta itemprop="description" content="Our business is life itself.">
-      <meta itemprop="image" content="/myblog.github.io/images/avatar.gif">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/myblog.github.io/images/icn.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -550,20 +464,11 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                
-                <a href="/myblog.github.io/myblog.github.io/rx100-24-70/" class="post-title-link" itemprop="https://github.com/ChaosRinkHan/myblog.github.io/index.html">简单谈谈RX100上面的这颗24-70镜头</a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/myblog.github.io/rx100-24-70/" itemprop="url">简单谈谈RX100上面的这颗24-70镜头</a></h1>
         
 
         <div class="post-meta">
           <span class="post-time">
-
-            
-            
-            
-
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -571,30 +476,13 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-
-              
-                
-              
-
-              <time title="Created: 2018-09-24 20:45:34" itemprop="dateCreated datePublished" datetime="2018-09-24T20:45:34+01:00">2018-09-24</time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-24T20:45:34+01:00">
+                2018-09-24
+              </time>
             
 
             
-              
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-11-11 18:11:20" itemprop="dateModified" datetime="2018-11-11T18:11:20+00:00">2018-11-11</time>
-              
             
           </span>
 
@@ -609,6 +497,25 @@
 
           
 
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  441
+                </span>
+              
+
+              
+
+              
+            </div>
           
 
           
@@ -629,29 +536,21 @@
         
           <h3 id="总体感受"><a href="#总体感受" class="headerlink" title="总体感受"></a>总体感受</h3><p><strong>整体焦段</strong>：由于镜头结构和两段式的电动变焦结构，整个焦段表现都没有出现翻车的情况，靠近70端改变了变焦结构保证70的非球面成像质量，不过实际体验下来70端除非特殊要求还真的少用比较好，因为70端的光圈和边缘画质非常不稳定，吃光线非常厉害，室内用70段经常ISO乱飙手动压下来。</p>
           <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/myblog.github.io/rx100-24-70/" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-         
+          <div class="post-button text-center">
+            <a class="btn" href="/myblog.github.io/rx100-24-70/" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
           <!--/noindex-->
         
       
     </div>
-
-    
-
     
     
     
 
     
 
-    
-       
-    
     
 
     
@@ -684,8 +583,6 @@
   
   
 
-  
-
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
@@ -695,8 +592,8 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Chaolin Han">
-      <meta itemprop="description" content="Our business is life itself.">
-      <meta itemprop="image" content="/myblog.github.io/images/avatar.gif">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/myblog.github.io/images/icn.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -710,20 +607,11 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                
-                <a href="/myblog.github.io/myblog.github.io/MLNotes/" class="post-title-link" itemprop="https://github.com/ChaosRinkHan/myblog.github.io/index.html">机器学习 李宏毅 笔记</a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/myblog.github.io/MLNotes/" itemprop="url">机器学习 李宏毅 笔记</a></h1>
         
 
         <div class="post-meta">
           <span class="post-time">
-
-            
-            
-            
-
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -731,30 +619,13 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-
-              
-                
-              
-
-              <time title="Created: 2018-08-24 22:54:59" itemprop="dateCreated datePublished" datetime="2018-08-24T22:54:59+01:00">2018-08-24</time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-24T22:54:59+01:00">
+                2018-08-24
+              </time>
             
 
             
-              
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-11-11 18:20:08" itemprop="dateModified" datetime="2018-11-11T18:20:08+00:00">2018-11-11</time>
-              
             
           </span>
 
@@ -769,6 +640,25 @@
 
           
 
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  648
+                </span>
+              
+
+              
+
+              
+            </div>
           
 
           
@@ -801,29 +691,21 @@ Regression: 输出是一个scalar
 妙蛙种子
           ...
           <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/myblog.github.io/MLNotes/" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
+          <div class="post-button text-center">
+            <a class="btn" href="/myblog.github.io/MLNotes/" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
           <!--/noindex-->
         
       
     </div>
-
-    
-
     
     
     
 
     
 
-    
-       
-    
     
 
     
@@ -856,8 +738,6 @@ Regression: 输出是一个scalar
   
   
 
-  
-
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
@@ -867,8 +747,8 @@ Regression: 输出是一个scalar
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Chaolin Han">
-      <meta itemprop="description" content="Our business is life itself.">
-      <meta itemprop="image" content="/myblog.github.io/images/avatar.gif">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/myblog.github.io/images/icn.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -882,20 +762,11 @@ Regression: 输出是一个scalar
         
           <h1 class="post-title" itemprop="name headline">
                 
-                
-                <a href="/myblog.github.io/myblog.github.io/JetBrainsCount/" class="post-title-link" itemprop="https://github.com/ChaosRinkHan/myblog.github.io/index.html">JetBrains学生免费版申请指南</a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/myblog.github.io/JetBrainsCount/" itemprop="url">JetBrains学生免费版申请指南</a></h1>
         
 
         <div class="post-meta">
           <span class="post-time">
-
-            
-            
-            
-
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -903,30 +774,13 @@ Regression: 输出是一个scalar
               
                 <span class="post-meta-item-text">Posted on</span>
               
-
-              
-                
-              
-
-              <time title="Created: 2018-08-21 22:54:22" itemprop="dateCreated datePublished" datetime="2018-08-21T22:54:22+01:00">2018-08-21</time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-21T22:54:22+01:00">
+                2018-08-21
+              </time>
             
 
             
-              
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-11-11 18:22:11" itemprop="dateModified" datetime="2018-11-11T18:22:11+00:00">2018-11-11</time>
-              
             
           </span>
 
@@ -941,6 +795,25 @@ Regression: 输出是一个scalar
 
           
 
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  255
+                </span>
+              
+
+              
+
+              
+            </div>
           
 
           
@@ -971,29 +844,21 @@ CLion，PyCharm相信用的不少吧。谁是最强IDE就不争了，反正都�
 
           ...
           <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/myblog.github.io/JetBrainsCount/" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
+          <div class="post-button text-center">
+            <a class="btn" href="/myblog.github.io/JetBrainsCount/" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
           <!--/noindex-->
         
       
     </div>
-
-    
-
     
     
     
 
     
 
-    
-       
-    
     
 
     
@@ -1026,8 +891,6 @@ CLion，PyCharm相信用的不少吧。谁是最强IDE就不争了，反正都�
   
   
 
-  
-
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
@@ -1037,8 +900,8 @@ CLion，PyCharm相信用的不少吧。谁是最强IDE就不争了，反正都�
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Chaolin Han">
-      <meta itemprop="description" content="Our business is life itself.">
-      <meta itemprop="image" content="/myblog.github.io/images/avatar.gif">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/myblog.github.io/images/icn.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1052,20 +915,11 @@ CLion，PyCharm相信用的不少吧。谁是最强IDE就不争了，反正都�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                
-                <a href="/myblog.github.io/myblog.github.io/MLHW/" class="post-title-link" itemprop="https://github.com/ChaosRinkHan/myblog.github.io/index.html">机器学习 李宏毅 HW</a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/myblog.github.io/MLHW/" itemprop="url">机器学习 李宏毅 HW</a></h1>
         
 
         <div class="post-meta">
           <span class="post-time">
-
-            
-            
-            
-
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -1073,30 +927,13 @@ CLion，PyCharm相信用的不少吧。谁是最强IDE就不争了，反正都�
               
                 <span class="post-meta-item-text">Posted on</span>
               
-
-              
-                
-              
-
-              <time title="Created: 2018-08-20 17:01:56" itemprop="dateCreated datePublished" datetime="2018-08-20T17:01:56+01:00">2018-08-20</time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-20T17:01:56+01:00">
+                2018-08-20
+              </time>
             
 
             
-              
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-11-11 18:52:50" itemprop="dateModified" datetime="2018-11-11T18:52:50+00:00">2018-11-11</time>
-              
             
           </span>
 
@@ -1111,6 +948,25 @@ CLion，PyCharm相信用的不少吧。谁是最强IDE就不争了，反正都�
 
           
 
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  381
+                </span>
+              
+
+              
+
+              
+            </div>
           
 
           
@@ -1131,29 +987,21 @@ CLion，PyCharm相信用的不少吧。谁是最强IDE就不争了，反正都�
         
           <h3 id="HW0"><a href="#HW0" class="headerlink" title="HW0"></a>HW0</h3>
           <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/myblog.github.io/MLHW/" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-         
+          <div class="post-button text-center">
+            <a class="btn" href="/myblog.github.io/MLHW/" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
           <!--/noindex-->
         
       
     </div>
-
-    
-
     
     
     
 
     
 
-    
-       
-    
     
 
     
@@ -1186,8 +1034,6 @@ CLion，PyCharm相信用的不少吧。谁是最强IDE就不争了，反正都�
   
   
 
-  
-
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
@@ -1197,8 +1043,8 @@ CLion，PyCharm相信用的不少吧。谁是最强IDE就不争了，反正都�
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Chaolin Han">
-      <meta itemprop="description" content="Our business is life itself.">
-      <meta itemprop="image" content="/myblog.github.io/images/avatar.gif">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/myblog.github.io/images/icn.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1212,20 +1058,11 @@ CLion，PyCharm相信用的不少吧。谁是最强IDE就不争了，反正都�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                
-                <a href="/myblog.github.io/myblog.github.io/About-Racing-Cars/" class="post-title-link" itemprop="https://github.com/ChaosRinkHan/myblog.github.io/index.html">关于赛车</a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/myblog.github.io/About-Racing-Cars/" itemprop="url">关于赛车</a></h1>
         
 
         <div class="post-meta">
           <span class="post-time">
-
-            
-            
-            
-
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -1233,30 +1070,13 @@ CLion，PyCharm相信用的不少吧。谁是最强IDE就不争了，反正都�
               
                 <span class="post-meta-item-text">Posted on</span>
               
-
-              
-                
-              
-
-              <time title="Created: 2018-07-19 16:54:08" itemprop="dateCreated datePublished" datetime="2018-07-19T16:54:08+01:00">2018-07-19</time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-19T16:54:08+01:00">
+                2018-07-19
+              </time>
             
 
             
-              
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-11-11 20:43:14" itemprop="dateModified" datetime="2018-11-11T20:43:14+00:00">2018-11-11</time>
-              
             
           </span>
 
@@ -1271,6 +1091,25 @@ CLion，PyCharm相信用的不少吧。谁是最强IDE就不争了，反正都�
 
           
 
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  696
+                </span>
+              
+
+              
+
+              
+            </div>
           
 
           
@@ -1294,29 +1133,21 @@ CLion，PyCharm相信用的不少吧。谁是最强IDE就不争了，反正都�
 F1F1圈内的事情就不谈了，新闻很多了。F1自从被自由媒体买了
           ...
           <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/myblog.github.io/About-Racing-Cars/" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
+          <div class="post-button text-center">
+            <a class="btn" href="/myblog.github.io/About-Racing-Cars/" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
           <!--/noindex-->
         
       
     </div>
-
-    
-
     
     
     
 
     
 
-    
-       
-    
     
 
     
@@ -1349,8 +1180,6 @@ F1F1圈内的事情就不谈了，新闻很多了。F1自从被自由媒体买�
   
   
 
-  
-
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
@@ -1360,8 +1189,8 @@ F1F1圈内的事情就不谈了，新闻很多了。F1自从被自由媒体买�
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Chaolin Han">
-      <meta itemprop="description" content="Our business is life itself.">
-      <meta itemprop="image" content="/myblog.github.io/images/avatar.gif">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/myblog.github.io/images/icn.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1375,20 +1204,11 @@ F1F1圈内的事情就不谈了，新闻很多了。F1自从被自由媒体买�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                
-                <a href="/myblog.github.io/myblog.github.io/整理和收纳/" class="post-title-link" itemprop="https://github.com/ChaosRinkHan/myblog.github.io/index.html">整理和收纳</a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/myblog.github.io/整理和收纳/" itemprop="url">整理和收纳</a></h1>
         
 
         <div class="post-meta">
           <span class="post-time">
-
-            
-            
-            
-
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -1396,30 +1216,13 @@ F1F1圈内的事情就不谈了，新闻很多了。F1自从被自由媒体买�
               
                 <span class="post-meta-item-text">Posted on</span>
               
-
-              
-                
-              
-
-              <time title="Created: 2018-06-19 12:03:31" itemprop="dateCreated datePublished" datetime="2018-06-19T12:03:31+01:00">2018-06-19</time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-19T12:03:31+01:00">
+                2018-06-19
+              </time>
             
 
             
-              
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-11-11 18:23:13" itemprop="dateModified" datetime="2018-11-11T18:23:13+00:00">2018-11-11</time>
-              
             
           </span>
 
@@ -1434,6 +1237,25 @@ F1F1圈内的事情就不谈了，新闻很多了。F1自从被自由媒体买�
 
           
 
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  60
+                </span>
+              
+
+              
+
+              
+            </div>
           
 
           
@@ -1454,29 +1276,21 @@ F1F1圈内的事情就不谈了，新闻很多了。F1自从被自由媒体买�
         
           <div class="note primary"><p>Google的生态可以说是已经很棒了。上次I/O大会的新奇现在已经可以感受了。</p></div>
           <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/myblog.github.io/整理和收纳/" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-         
+          <div class="post-button text-center">
+            <a class="btn" href="/myblog.github.io/整理和收纳/" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
           <!--/noindex-->
         
       
     </div>
-
-    
-
     
     
     
 
     
 
-    
-       
-    
     
 
     
@@ -1509,8 +1323,6 @@ F1F1圈内的事情就不谈了，新闻很多了。F1自从被自由媒体买�
   
   
 
-  
-
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
@@ -1520,8 +1332,8 @@ F1F1圈内的事情就不谈了，新闻很多了。F1自从被自由媒体买�
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Chaolin Han">
-      <meta itemprop="description" content="Our business is life itself.">
-      <meta itemprop="image" content="/myblog.github.io/images/avatar.gif">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/myblog.github.io/images/icn.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1535,20 +1347,11 @@ F1F1圈内的事情就不谈了，新闻很多了。F1自从被自由媒体买�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                
-                <a href="/myblog.github.io/myblog.github.io/屏幕杂谈/" class="post-title-link" itemprop="https://github.com/ChaosRinkHan/myblog.github.io/index.html">屏幕杂谈</a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/myblog.github.io/屏幕杂谈/" itemprop="url">屏幕杂谈</a></h1>
         
 
         <div class="post-meta">
           <span class="post-time">
-
-            
-            
-            
-
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -1556,18 +1359,13 @@ F1F1圈内的事情就不谈了，新闻很多了。F1自从被自由媒体买�
               
                 <span class="post-meta-item-text">Posted on</span>
               
-
-              
-                
-              
-
-              <time title="Created: 2018-05-24 17:17:49 / Modified: 10:27:28" itemprop="dateCreated datePublished" datetime="2018-05-24T17:17:49+01:00">2018-05-24</time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-24T17:17:49+01:00">
+                2018-05-24
+              </time>
             
 
             
-              
 
-              
             
           </span>
 
@@ -1582,6 +1380,25 @@ F1F1圈内的事情就不谈了，新闻很多了。F1自从被自由媒体买�
 
           
 
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  653
+                </span>
+              
+
+              
+
+              
+            </div>
           
 
           
@@ -1605,29 +1422,21 @@ F1F1圈内的事情就不谈了，新闻很多了。F1自从被自由媒体买�
 之前的发刘海屏都还不敢吹嘘咋样咋样，华为p20这次发布会上把隐藏刘海当作一个“特性”还要拿出来讲…我接触的人大多数都不喜欢刘海吧。不管是审美上还是功能上。iOS刘海没什么，虽然那么多UI元素被压缩在角落瑟瑟发抖，但是苹果是龙头，叫你适配你就
           ...
           <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/myblog.github.io/屏幕杂谈/" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
+          <div class="post-button text-center">
+            <a class="btn" href="/myblog.github.io/屏幕杂谈/" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
           <!--/noindex-->
         
       
     </div>
-
-    
-
     
     
     
 
     
 
-    
-       
-    
     
 
     
@@ -1660,8 +1469,6 @@ F1F1圈内的事情就不谈了，新闻很多了。F1自从被自由媒体买�
   
   
 
-  
-
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
@@ -1671,8 +1478,8 @@ F1F1圈内的事情就不谈了，新闻很多了。F1自从被自由媒体买�
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Chaolin Han">
-      <meta itemprop="description" content="Our business is life itself.">
-      <meta itemprop="image" content="/myblog.github.io/images/avatar.gif">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/myblog.github.io/images/icn.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1686,20 +1493,11 @@ F1F1圈内的事情就不谈了，新闻很多了。F1自从被自由媒体买�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                
-                <a href="/myblog.github.io/myblog.github.io/一周图片——May-13-2018/" class="post-title-link" itemprop="https://github.com/ChaosRinkHan/myblog.github.io/index.html">一周图片——May 13 2018</a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/myblog.github.io/一周图片——May-13-2018/" itemprop="url">一周图片——May 13 2018</a></h1>
         
 
         <div class="post-meta">
           <span class="post-time">
-
-            
-            
-            
-
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -1707,30 +1505,13 @@ F1F1圈内的事情就不谈了，新闻很多了。F1自从被自由媒体买�
               
                 <span class="post-meta-item-text">Posted on</span>
               
-
-              
-                
-              
-
-              <time title="Created: 2018-05-13 17:11:20" itemprop="dateCreated datePublished" datetime="2018-05-13T17:11:20+01:00">2018-05-13</time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-13T17:11:20+01:00">
+                2018-05-13
+              </time>
             
 
             
-              
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-11-11 18:55:02" itemprop="dateModified" datetime="2018-11-11T18:55:02+00:00">2018-11-11</time>
-              
             
           </span>
 
@@ -1745,6 +1526,25 @@ F1F1圈内的事情就不谈了，新闻很多了。F1自从被自由媒体买�
 
           
 
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  247
+                </span>
+              
+
+              
+
+              
+            </div>
           
 
           
@@ -1768,29 +1568,21 @@ F1F1圈内的事情就不谈了，新闻很多了。F1自从被自由媒体买�
 Astonish Sunrise  500px原图页面8.8mm  ƒ/8 5s  ISO 1002018 5/3 4:43一周前破晓时分在海湾拍的。这是延时摄影中的一帧，完整延时视频。人眼感觉其实比这个加强了饱和度和对比度的照片更震撼。人眼宽容度是真的强。从地平线到头顶，是烟红-紫-粉-橙-黄-
           ...
           <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/myblog.github.io/一周图片——May-13-2018/" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
+          <div class="post-button text-center">
+            <a class="btn" href="/myblog.github.io/一周图片——May-13-2018/" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
           <!--/noindex-->
         
       
     </div>
-
-    
-
     
     
     
 
     
 
-    
-       
-    
     
 
     
@@ -1823,8 +1615,6 @@ Astonish Sunrise  500px原图页面8.8mm  ƒ/8 5s  ISO 1002018 5/3 4:43一周前
   
   
 
-  
-
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
@@ -1834,8 +1624,8 @@ Astonish Sunrise  500px原图页面8.8mm  ƒ/8 5s  ISO 1002018 5/3 4:43一周前
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Chaolin Han">
-      <meta itemprop="description" content="Our business is life itself.">
-      <meta itemprop="image" content="/myblog.github.io/images/avatar.gif">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/myblog.github.io/images/icn.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1849,20 +1639,11 @@ Astonish Sunrise  500px原图页面8.8mm  ƒ/8 5s  ISO 1002018 5/3 4:43一周前
         
           <h1 class="post-title" itemprop="name headline">
                 
-                
-                <a href="/myblog.github.io/myblog.github.io/吉隆坡——都会与宗教/" class="post-title-link" itemprop="https://github.com/ChaosRinkHan/myblog.github.io/index.html">吉隆坡——大都会</a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/myblog.github.io/吉隆坡——都会与宗教/" itemprop="url">吉隆坡——大都会</a></h1>
         
 
         <div class="post-meta">
           <span class="post-time">
-
-            
-            
-            
-
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -1870,30 +1651,13 @@ Astonish Sunrise  500px原图页面8.8mm  ƒ/8 5s  ISO 1002018 5/3 4:43一周前
               
                 <span class="post-meta-item-text">Posted on</span>
               
-
-              
-                
-              
-
-              <time title="Created: 2018-04-29 15:39:46" itemprop="dateCreated datePublished" datetime="2018-04-29T15:39:46+01:00">2018-04-29</time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-29T15:39:46+01:00">
+                2018-04-29
+              </time>
             
 
             
-              
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-11-11 20:41:22" itemprop="dateModified" datetime="2018-11-11T20:41:22+00:00">2018-11-11</time>
-              
             
           </span>
 
@@ -1908,6 +1672,25 @@ Astonish Sunrise  500px原图页面8.8mm  ƒ/8 5s  ISO 1002018 5/3 4:43一周前
 
           
 
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  2,013
+                </span>
+              
+
+              
+
+              
+            </div>
           
 
           
@@ -1928,29 +1711,21 @@ Astonish Sunrise  500px原图页面8.8mm  ƒ/8 5s  ISO 1002018 5/3 4:43一周前
         
           <p>两天之前在雪邦的吉隆坡机场直接转机去了槟城，现在回到了马来西亚的都会。<br>现代化和传统、宗教在这里似乎并不矛盾。同槟城一样，它的包容性也同样让人印象深刻。</p>
           <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/myblog.github.io/吉隆坡——都会与宗教/" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-         
+          <div class="post-button text-center">
+            <a class="btn" href="/myblog.github.io/吉隆坡——都会与宗教/" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
           <!--/noindex-->
         
       
     </div>
-
-    
-
     
     
     
 
     
 
-    
-       
-    
     
 
     
@@ -1983,8 +1758,6 @@ Astonish Sunrise  500px原图页面8.8mm  ƒ/8 5s  ISO 1002018 5/3 4:43一周前
   
   
 
-  
-
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
@@ -1994,8 +1767,8 @@ Astonish Sunrise  500px原图页面8.8mm  ƒ/8 5s  ISO 1002018 5/3 4:43一周前
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Chaolin Han">
-      <meta itemprop="description" content="Our business is life itself.">
-      <meta itemprop="image" content="/myblog.github.io/images/avatar.gif">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/myblog.github.io/images/icn.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -2009,20 +1782,11 @@ Astonish Sunrise  500px原图页面8.8mm  ƒ/8 5s  ISO 1002018 5/3 4:43一周前
         
           <h1 class="post-title" itemprop="name headline">
                 
-                
-                <a href="/myblog.github.io/myblog.github.io/Thought-stays-upon-the-Penang-Hill/" class="post-title-link" itemprop="https://github.com/ChaosRinkHan/myblog.github.io/index.html">Thought stays upon the Penang Hill</a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/myblog.github.io/Thought-stays-upon-the-Penang-Hill/" itemprop="url">Thought stays upon the Penang Hill</a></h1>
         
 
         <div class="post-meta">
           <span class="post-time">
-
-            
-            
-            
-
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -2030,30 +1794,13 @@ Astonish Sunrise  500px原图页面8.8mm  ƒ/8 5s  ISO 1002018 5/3 4:43一周前
               
                 <span class="post-meta-item-text">Posted on</span>
               
-
-              
-                
-              
-
-              <time title="Created: 2018-04-27 22:30:33" itemprop="dateCreated datePublished" datetime="2018-04-27T22:30:33+01:00">2018-04-27</time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-27T22:30:33+01:00">
+                2018-04-27
+              </time>
             
 
             
-              
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-11-11 18:04:38" itemprop="dateModified" datetime="2018-11-11T18:04:38+00:00">2018-11-11</time>
-              
             
           </span>
 
@@ -2068,6 +1815,25 @@ Astonish Sunrise  500px原图页面8.8mm  ƒ/8 5s  ISO 1002018 5/3 4:43一周前
 
           
 
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  247
+                </span>
+              
+
+              
+
+              
+            </div>
           
 
           
@@ -2088,29 +1854,21 @@ Astonish Sunrise  500px原图页面8.8mm  ƒ/8 5s  ISO 1002018 5/3 4:43一周前
         
           <h3 id="无题"><a href="#无题" class="headerlink" title="无题"></a>无题</h3>
           <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/myblog.github.io/Thought-stays-upon-the-Penang-Hill/" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-         
+          <div class="post-button text-center">
+            <a class="btn" href="/myblog.github.io/Thought-stays-upon-the-Penang-Hill/" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
           <!--/noindex-->
         
       
     </div>
-
-    
-
     
     
     
 
     
 
-    
-       
-    
     
 
     
@@ -2143,8 +1901,6 @@ Astonish Sunrise  500px原图页面8.8mm  ƒ/8 5s  ISO 1002018 5/3 4:43一周前
   
   
 
-  
-
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
@@ -2154,8 +1910,8 @@ Astonish Sunrise  500px原图页面8.8mm  ƒ/8 5s  ISO 1002018 5/3 4:43一周前
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Chaolin Han">
-      <meta itemprop="description" content="Our business is life itself.">
-      <meta itemprop="image" content="/myblog.github.io/images/avatar.gif">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/myblog.github.io/images/icn.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -2169,20 +1925,11 @@ Astonish Sunrise  500px原图页面8.8mm  ƒ/8 5s  ISO 1002018 5/3 4:43一周前
         
           <h1 class="post-title" itemprop="name headline">
                 
-                
-                <a href="/myblog.github.io/myblog.github.io/槟城——南洋遗产/" class="post-title-link" itemprop="https://github.com/ChaosRinkHan/myblog.github.io/index.html">槟城——南洋遗产</a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/myblog.github.io/槟城——南洋遗产/" itemprop="url">槟城——南洋遗产</a></h1>
         
 
         <div class="post-meta">
           <span class="post-time">
-
-            
-            
-            
-
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -2190,30 +1937,13 @@ Astonish Sunrise  500px原图页面8.8mm  ƒ/8 5s  ISO 1002018 5/3 4:43一周前
               
                 <span class="post-meta-item-text">Posted on</span>
               
-
-              
-                
-              
-
-              <time title="Created: 2018-04-26 21:54:19" itemprop="dateCreated datePublished" datetime="2018-04-26T21:54:19+01:00">2018-04-26</time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-26T21:54:19+01:00">
+                2018-04-26
+              </time>
             
 
             
-              
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-11-11 19:54:10" itemprop="dateModified" datetime="2018-11-11T19:54:10+00:00">2018-11-11</time>
-              
             
           </span>
 
@@ -2228,6 +1958,25 @@ Astonish Sunrise  500px原图页面8.8mm  ƒ/8 5s  ISO 1002018 5/3 4:43一周前
 
           
 
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  1,733
+                </span>
+              
+
+              
+
+              
+            </div>
           
 
           
@@ -2249,29 +1998,21 @@ Astonish Sunrise  500px原图页面8.8mm  ƒ/8 5s  ISO 1002018 5/3 4:43一周前
           <h4 id="Day-1"><a href="#Day-1" class="headerlink" title="Day 1"></a>Day 1</h4><p>第一天根据天气和时间来看只有下午晚上可以去玩一下，就安排了极乐寺和升旗山两个地方。晚上逛一逛就休息了。</p>
 <p><img src="https://i.imgur.com/gA9JYB1.jpg" alt="img">
           <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/myblog.github.io/槟城——南洋遗产/" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-         
+          <div class="post-button text-center">
+            <a class="btn" href="/myblog.github.io/槟城——南洋遗产/" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
           <!--/noindex-->
         
       
     </div>
-
-    
-
     
     
     
 
     
 
-    
-       
-    
     
 
     
@@ -2304,8 +2045,6 @@ Astonish Sunrise  500px原图页面8.8mm  ƒ/8 5s  ISO 1002018 5/3 4:43一周前
   
   
 
-  
-
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
@@ -2315,8 +2054,8 @@ Astonish Sunrise  500px原图页面8.8mm  ƒ/8 5s  ISO 1002018 5/3 4:43一周前
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Chaolin Han">
-      <meta itemprop="description" content="Our business is life itself.">
-      <meta itemprop="image" content="/myblog.github.io/images/avatar.gif">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/myblog.github.io/images/icn.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -2330,20 +2069,11 @@ Astonish Sunrise  500px原图页面8.8mm  ƒ/8 5s  ISO 1002018 5/3 4:43一周前
         
           <h1 class="post-title" itemprop="name headline">
                 
-                
-                <a href="/myblog.github.io/myblog.github.io/大马之行/" class="post-title-link" itemprop="https://github.com/ChaosRinkHan/myblog.github.io/index.html">大马之行</a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/myblog.github.io/大马之行/" itemprop="url">大马之行</a></h1>
         
 
         <div class="post-meta">
           <span class="post-time">
-
-            
-            
-            
-
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -2351,30 +2081,13 @@ Astonish Sunrise  500px原图页面8.8mm  ƒ/8 5s  ISO 1002018 5/3 4:43一周前
               
                 <span class="post-meta-item-text">Posted on</span>
               
-
-              
-                
-              
-
-              <time title="Created: 2018-04-25 16:22:55" itemprop="dateCreated datePublished" datetime="2018-04-25T16:22:55+01:00">2018-04-25</time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-25T16:22:55+01:00">
+                2018-04-25
+              </time>
             
 
             
-              
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-11-11 20:42:01" itemprop="dateModified" datetime="2018-11-11T20:42:01+00:00">2018-11-11</time>
-              
             
           </span>
 
@@ -2389,6 +2102,25 @@ Astonish Sunrise  500px原图页面8.8mm  ƒ/8 5s  ISO 1002018 5/3 4:43一周前
 
           
 
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  698
+                </span>
+              
+
+              
+
+              
+            </div>
           
 
           
@@ -2410,29 +2142,21 @@ Astonish Sunrise  500px原图页面8.8mm  ƒ/8 5s  ISO 1002018 5/3 4:43一周前
           <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>去马来西亚玩了四天，主要是体验人文。前两天槟城，后两天吉隆坡。  时逢马来西亚大选，也看到街上密集的选战旗帜了。</p>
 <p><img src="https://i.imgur.com/F28yIRi.jpg" alt="842qK.jpg"></p>
           <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/myblog.github.io/大马之行/" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-         
+          <div class="post-button text-center">
+            <a class="btn" href="/myblog.github.io/大马之行/" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
           <!--/noindex-->
         
       
     </div>
-
-    
-
     
     
     
 
     
 
-    
-       
-    
     
 
     
@@ -2465,8 +2189,6 @@ Astonish Sunrise  500px原图页面8.8mm  ƒ/8 5s  ISO 1002018 5/3 4:43一周前
   
   
 
-  
-
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
@@ -2476,8 +2198,8 @@ Astonish Sunrise  500px原图页面8.8mm  ƒ/8 5s  ISO 1002018 5/3 4:43一周前
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Chaolin Han">
-      <meta itemprop="description" content="Our business is life itself.">
-      <meta itemprop="image" content="/myblog.github.io/images/avatar.gif">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/myblog.github.io/images/icn.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -2491,20 +2213,11 @@ Astonish Sunrise  500px原图页面8.8mm  ƒ/8 5s  ISO 1002018 5/3 4:43一周前
         
           <h1 class="post-title" itemprop="name headline">
                 
-                
-                <a href="/myblog.github.io/myblog.github.io/Hexo-博文简单美化/" class="post-title-link" itemprop="https://github.com/ChaosRinkHan/myblog.github.io/index.html">Hexo 博文简单美化</a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/myblog.github.io/Hexo-博文简单美化/" itemprop="url">Hexo 博文简单美化</a></h1>
         
 
         <div class="post-meta">
           <span class="post-time">
-
-            
-            
-            
-
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -2512,30 +2225,13 @@ Astonish Sunrise  500px原图页面8.8mm  ƒ/8 5s  ISO 1002018 5/3 4:43一周前
               
                 <span class="post-meta-item-text">Posted on</span>
               
-
-              
-                
-              
-
-              <time title="Created: 2018-04-19 10:49:26" itemprop="dateCreated datePublished" datetime="2018-04-19T10:49:26+01:00">2018-04-19</time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-19T10:49:26+01:00">
+                2018-04-19
+              </time>
             
 
             
-              
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-04-25 08:39:54" itemprop="dateModified" datetime="2018-04-25T08:39:54+01:00">2018-04-25</time>
-              
             
           </span>
 
@@ -2550,6 +2246,25 @@ Astonish Sunrise  500px原图页面8.8mm  ƒ/8 5s  ISO 1002018 5/3 4:43一周前
 
           
 
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  259
+                </span>
+              
+
+              
+
+              
+            </div>
           
 
           
@@ -2572,29 +2287,21 @@ Astonish Sunrise  500px原图页面8.8mm  ƒ/8 5s  ISO 1002018 5/3 4:43一周前
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">// 颜色块-黄</span><br><span class="line"><span class="selector-tag">span</span><span class="selector-id">#inline-yellow</span> &#123;</span><br><span class="line"><span class="attribute">display</span>:inline;</span><br><span class="line"><span class="attribute">padding</span>:.<span class="number">2em</span> .<span class="number">6em</span> .<span class="number">3em</span>;</span><br><span class="line"><span class="attribute">font-size</span>:<span class="number">80%</span>;</span><br><span class="line"><span class="attribute">font-weight</span>:bold;</span><br><span class="line"><span class="attribute">line-height</span>:<span class="number">1</span>;</span><br><span class="line"><span class="attribute">color</span>:<span class="number">#fff</span>;</span><br><span class="line"><span class="attribute">text-align</span>:center;</span><br><span class="line"><span class="attribute">white-space</span>:nowrap;</span><br><span class="line"><span class="attribute">vertical-align</span>:baseline;</span><br><span class="line"><span class="attribute">border-radius</span>:<span class="number">0</span>;</span><br><span class="line"><span class="attribute">background-color</span>: <span class="number">#f0ad4e</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>想添加自定义颜色，修改最后的backgroud-color即可。</p>
           <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/myblog.github.io/Hexo-博文简单美化/" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-         
+          <div class="post-button text-center">
+            <a class="btn" href="/myblog.github.io/Hexo-博文简单美化/" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
           <!--/noindex-->
         
       
     </div>
-
-    
-
     
     
     
 
     
 
-    
-       
-    
     
 
     
@@ -2627,8 +2334,6 @@ Astonish Sunrise  500px原图页面8.8mm  ƒ/8 5s  ISO 1002018 5/3 4:43一周前
   
   
 
-  
-
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
@@ -2638,8 +2343,8 @@ Astonish Sunrise  500px原图页面8.8mm  ƒ/8 5s  ISO 1002018 5/3 4:43一周前
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Chaolin Han">
-      <meta itemprop="description" content="Our business is life itself.">
-      <meta itemprop="image" content="/myblog.github.io/images/avatar.gif">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/myblog.github.io/images/icn.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -2653,20 +2358,11 @@ Astonish Sunrise  500px原图页面8.8mm  ƒ/8 5s  ISO 1002018 5/3 4:43一周前
         
           <h1 class="post-title" itemprop="name headline">
                 
-                
-                <a href="/myblog.github.io/myblog.github.io/Trip-to-Mlaysia/" class="post-title-link" itemprop="https://github.com/ChaosRinkHan/myblog.github.io/index.html">Trip to Malaysia</a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/myblog.github.io/Trip-to-Mlaysia/" itemprop="url">Trip to Malaysia</a></h1>
         
 
         <div class="post-meta">
           <span class="post-time">
-
-            
-            
-            
-
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -2674,30 +2370,13 @@ Astonish Sunrise  500px原图页面8.8mm  ƒ/8 5s  ISO 1002018 5/3 4:43一周前
               
                 <span class="post-meta-item-text">Posted on</span>
               
-
-              
-                
-              
-
-              <time title="Created: 2018-04-18 22:21:30" itemprop="dateCreated datePublished" datetime="2018-04-18T22:21:30+01:00">2018-04-18</time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-18T22:21:30+01:00">
+                2018-04-18
+              </time>
             
 
             
-              
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-11-11 17:48:21" itemprop="dateModified" datetime="2018-11-11T17:48:21+00:00">2018-11-11</time>
-              
             
           </span>
 
@@ -2712,6 +2391,25 @@ Astonish Sunrise  500px原图页面8.8mm  ƒ/8 5s  ISO 1002018 5/3 4:43一周前
 
           
 
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  398
+                </span>
+              
+
+              
+
+              
+            </div>
           
 
           
@@ -2736,29 +2434,21 @@ Astonish Sunrise  500px原图页面8.8mm  ƒ/8 5s  ISO 1002018 5/3 4:43一周前
 </li>
 </ul>
           <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/myblog.github.io/Trip-to-Mlaysia/" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-         
+          <div class="post-button text-center">
+            <a class="btn" href="/myblog.github.io/Trip-to-Mlaysia/" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
           <!--/noindex-->
         
       
     </div>
-
-    
-
     
     
     
 
     
 
-    
-       
-    
     
 
     
@@ -2787,12 +2477,15 @@ Astonish Sunrise  500px原图页面8.8mm  ƒ/8 5s  ISO 1002018 5/3 4:43一周前
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/myblog.github.io/page/2/">2</a><a class="extend next" rel="next" href="/myblog.github.io/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/myblog.github.io/page/2/">2</a><a class="extend next" rel="next" href="/myblog.github.io/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
 
           </div>
+          
+
+
           
 
         </div>
@@ -2820,132 +2513,85 @@ Astonish Sunrise  500px原图页面8.8mm  ƒ/8 5s  ISO 1002018 5/3 4:43一周前
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image"
-                src="/myblog.github.io/images/avatar.gif"
+                src="/myblog.github.io/images/icn.jpg"
                 alt="Chaolin Han" />
             
               <p class="site-author-name" itemprop="name">Chaolin Han</p>
               <p class="site-description motion-element" itemprop="description">Our business is life itself.</p>
           </div>
 
-          
-            <nav class="site-state motion-element">
-              
-                <div class="site-state-item site-state-posts">
-                
-                  <a href="/myblog.github.io/archives/">
-                
-                    <span class="site-state-item-count">20</span>
-                    <span class="site-state-item-name">posts</span>
-                  </a>
-                </div>
-              
+          <nav class="site-state motion-element">
 
+            
+              <div class="site-state-item site-state-posts">
               
+                <a href="/myblog.github.io/archives/">
+              
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
 
+            
+
+            
               
-                
-                
-                <div class="site-state-item site-state-tags">
-                  <a href="/myblog.github.io/tags/index.html">
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">14</span>
-                    <span class="site-state-item-name">tags</span>
-                  </a>
-                </div>
               
-            </nav>
-          
+              <div class="site-state-item site-state-tags">
+                <a href="/myblog.github.io/tags/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
 
           
 
           
             <div class="links-of-author motion-element">
-              
-                <span class="links-of-author-item">
-                  
-                  
-                  
-                    
-                  
-                  <a href="https://github.com/ChaosRinkHan" title="GitHub &rarr; https://github.com/ChaosRinkHan"><i class="fa fa-fw fa-github"></i></a>
-                </span>
-              
-                <span class="links-of-author-item">
-                  
-                  
-                  
-                    
-                  
-                  <a href="/myblog.github.io/chaosrinkhan@gmail.com" title="E-Mail &rarr; chaosrinkhan@gmail.com"><i class="fa fa-fw fa-envelope"></i></a>
-                </span>
-              
-                <span class="links-of-author-item">
-                  
-                  
-                  
-                    
-                  
-                  <a href="https://plus.google.com/chaosrinkhan" title="Google &rarr; https://plus.google.com/chaosrinkhan" rel="noopener" target="_blank"><i class="fa fa-fw fa-google-plus"></i></a>
-                </span>
-              
-                <span class="links-of-author-item">
-                  
-                  
-                  
-                    
-                  
-                  <a href="https://twitter.com/C_R__Han" title="Twitter &rarr; https://twitter.com/C_R__Han" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i></a>
-                </span>
-              
-                <span class="links-of-author-item">
-                  
-                  
-                  
-                    
-                  
-                  <a href="https://www.instagram.com/cl_han" title="Instagram &rarr; https://www.instagram.com/cl_han" rel="noopener" target="_blank"><i class="fa fa-fw fa-instagram"></i></a>
-                </span>
-              
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/ChaosRinkHan" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="chaosrinkhan@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://plus.google.com/chaosrinkhan" target="_blank" title="Google">
+                      
+                        <i class="fa fa-fw fa-google-plus"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/C_R__Han" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.instagram.com/cl_han" target="_blank" title="Instagram">
+                      
+                        <i class="fa fa-fw fa-instagram"></i></a>
+                  </span>
+                
             </div>
           
 
           
-
-          
           
 
           
-            
           
+
           
 
         </div>
@@ -2965,19 +2611,30 @@ Astonish Sunrise  500px原图页面8.8mm  ƒ/8 5s  ISO 1002018 5/3 4:43一周前
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
-  <span class="with-love" id="animate">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Chaolin Han</span>
 
   
-
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">14.9k</span>
   
 </div>
 
 
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.7.1</div>
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
 
 
 
@@ -2985,13 +2642,12 @@ Astonish Sunrise  500px原图页面8.8mm  ƒ/8 5s  ISO 1002018 5/3 4:43一周前
 
 
 
-  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v6.5.0</div>
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
 
 
 
 
         
-
 
 
 
@@ -3011,10 +2667,7 @@ Astonish Sunrise  500px原图页面8.8mm  ƒ/8 5s  ISO 1002018 5/3 4:43一周前
     
 
     
-	
-    
 
-    
   </div>
 
   
@@ -3033,11 +2686,7 @@ Astonish Sunrise  500px原图页面8.8mm  ƒ/8 5s  ISO 1002018 5/3 4:43一周前
 
 
 
-
-
-
-
-
+  
 
 
 
@@ -3057,6 +2706,16 @@ Astonish Sunrise  500px原图页面8.8mm  ƒ/8 5s  ISO 1002018 5/3 4:43一周前
 
   
   
+    <script type="text/javascript" src="/myblog.github.io/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/myblog.github.io/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
     <script type="text/javascript" src="/myblog.github.io/lib/velocity/velocity.min.js?v=1.2.1"></script>
   
 
@@ -3065,33 +2724,56 @@ Astonish Sunrise  500px原图页面8.8mm  ƒ/8 5s  ISO 1002018 5/3 4:43一周前
     <script type="text/javascript" src="/myblog.github.io/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
   
 
-
-  
-
-
-  <script type="text/javascript" src="/myblog.github.io/js/src/utils.js?v=6.5.0"></script>
-
-  <script type="text/javascript" src="/myblog.github.io/js/src/motion.js?v=6.5.0"></script>
-
-
-
   
   
-
+    <script type="text/javascript" src="/myblog.github.io/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
   
-
-  
-
-
-  <script type="text/javascript" src="/myblog.github.io/js/src/bootstrap.js?v=6.5.0"></script>
-
 
 
   
 
 
+  <script type="text/javascript" src="/myblog.github.io/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/myblog.github.io/js/src/motion.js?v=5.1.4"></script>
+
+
 
   
+  
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/myblog.github.io/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
 
 
 
@@ -3153,8 +2835,6 @@ Astonish Sunrise  500px原图页面8.8mm  ƒ/8 5s  ISO 1002018 5/3 4:43一周前
         .css('overflow', 'hidden');
       $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
 
-      
-
       $.ajax({
         url: path,
         dataType: isXml ? "xml" : "json",
@@ -3188,7 +2868,6 @@ Astonish Sunrise  500px原图页面8.8mm  ƒ/8 5s  ISO 1002018 5/3 4:43一周前
                 var title = data.title.trim();
                 var titleInLowerCase = title.toLowerCase();
                 var content = data.content.trim().replace(/<[^>]+>/g,"");
-                
                 var contentInLowerCase = content.toLowerCase();
                 var articleUrl = decodeURIComponent(data.url);
                 var indexOfTitle = [];
@@ -3435,23 +3114,19 @@ Astonish Sunrise  500px原图页面8.8mm  ƒ/8 5s  ISO 1002018 5/3 4:43一周前
   
 
   
-
-  
-
-  
   
 
   
 
   
+  <script type="text/javascript" src="/myblog.github.io/js/src/js.cookie.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/myblog.github.io/js/src/scroll-cookie.js?v=5.1.4"></script>
 
-  
-
-  
-
-  
 
   
 
 </body>
 </html>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/myblog.github.io/js/src/love.js"></script>

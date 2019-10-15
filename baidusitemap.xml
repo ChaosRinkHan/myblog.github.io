@@ -4,6 +4,25 @@
 
     
   <url>
+    <loc>https://github.com/ChaosRinkHan/myblog.github.io/myblog.github.io/thoughtsaboutf1p2/</loc>
+    <lastmod>2019-10-15T22:23:59.959Z</lastmod>
+    <data>
+        <display>
+        <title>茫茫，Formula 1 (三)</title>
+        <pubTime>2019-10-15T21:53:30.000Z</pubTime>
+        
+        <tag>Cars</tag>
+         
+        <tag>Thoughts</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://github.com/ChaosRinkHan/myblog.github.io/myblog.github.io/cyberpunk-china-md/</loc>
     <lastmod>2019-09-29T23:11:57.012Z</lastmod>
     <data>
@@ -353,9 +372,9 @@
         <title>机器学习 李宏毅 HW</title>
         <pubTime>2018-08-20T16:01:56.000Z</pubTime>
         
-        <tag>Python</tag>
-         
         <tag>机器学习</tag>
+         
+        <tag>Python</tag>
          
          
            

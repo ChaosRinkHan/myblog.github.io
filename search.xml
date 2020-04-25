@@ -13,7 +13,7 @@
       </tags>
   </entry>
   <entry>
-    <title>COVID_PREDICTION</title>
+    <title>COVID-19 Prediction</title>
     <url>/myblog.github.io/COVID-PREDICTION/</url>
     <content><![CDATA[<p>做了一个简单的ARIMA预测，和一大堆R语言的绘图。ggplot属实浪费生命。</p>
 <p><a href="https://hrbinbin.github.io/Covid19predict/" target="_blank" rel="noopener">https://hrbinbin.github.io/Covid19predict/</a></p>

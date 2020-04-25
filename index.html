@@ -1,107 +1,26 @@
 <!DOCTYPE html>
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-<html class="theme-next mist use-motion" lang="">
-<head><meta name="generator" content="Hexo 3.8.0">
+<html lang="">
+<head>
   <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.8.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/myblog.github.io/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/myblog.github.io/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/myblog.github.io/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/myblog.github.io/images/logo.svg" color="#222">
 
+<link rel="stylesheet" href="/myblog.github.io/css/main.css">
 
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/myblog.github.io/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/myblog.github.io/lib/pace/pace-theme-minimal.min.css">
+  <script src="/myblog.github.io/lib/pace/pace.min.js"></script>
 
-
-  
-  
-    
-    
-  <script src="/myblog.github.io/lib/pace/pace.min.js?v=1.0.2"></script>
-  <link rel="stylesheet" href="/myblog.github.io/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<link rel="stylesheet" href="/myblog.github.io/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
-
-<link rel="stylesheet" href="/myblog.github.io/css/main.css?v=7.0.0">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/myblog.github.io/images/apple-touch-icon-next.png?v=7.0.0">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/myblog.github.io/images/favicon-32x32-next.png?v=7.0.0">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/myblog.github.io/images/favicon-16x16-next.png?v=7.0.0">
-
-
-  <link rel="mask-icon" href="/myblog.github.io/images/logo.svg?v=7.0.0" color="#222">
-
-
-
-
-
-
-
-<script id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/myblog.github.io/',
-    scheme: 'Mist',
-    version: '7.0.0',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
-    fancybox: false,
-    fastclick: false,
-    lazyload: false,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-  
-
-
-
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"github.com","root":"/myblog.github.io/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","width":280,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
 
   <meta name="description" content="Our business is life itself.">
 <meta property="og:type" content="website">
@@ -114,18 +33,16 @@
 <meta name="twitter:title" content="EXECUTER">
 <meta name="twitter:description" content="Our business is life itself.">
 
+<link rel="canonical" href="https://github.com/ChaosRinkHan/myblog.github.io/">
 
 
-
-
-
-  <link rel="canonical" href="https://github.com/ChaosRinkHan/myblog.github.io/">
-
-
-
-<script id="page.configurations">
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'default'
   };
 </script>
 
@@ -137,15 +54,8 @@
 
 
 
-
-
-
-
-
-
   <noscript>
   <style>
-  .use-motion .motion-element,
   .use-motion .brand,
   .use-motion .menu-item,
   .sidebar-inner,
@@ -154,9 +64,8 @@
   .use-motion .comments,
   .use-motion .post-header,
   .use-motion .post-body,
-  .use-motion .collection-title { opacity: initial; }
+  .use-motion .collection-header { opacity: initial; }
 
-  .use-motion .logo,
   .use-motion .site-title,
   .use-motion .site-subtitle {
     opacity: initial;
@@ -170,268 +79,147 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="default">
-
-  
-  
-    
-  
-
-  <div class="container sidebar-position-left 
-  page-home">
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/myblog.github.io/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">EXECUTER</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
     </div>
-    
-    
   </div>
 
-  <div class="site-nav-toggle">
-    <button aria-label="Toggle navigation bar">
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
+  <div class="site-meta">
+
+    <a href="/myblog.github.io/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">EXECUTER</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
   </div>
 </div>
+
 
 
 
 <nav class="site-nav">
-  
-    <ul id="menu" class="menu">
-      
-        
-        
-        
-          
-          <li class="menu-item menu-item-home">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
 
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/myblog.github.io/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+    <a href="/myblog.github.io/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
 
   </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-about">
+        <li class="menu-item menu-item-about">
 
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/myblog.github.io/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-address-card"></i> <br>About</a>
+    <a href="/myblog.github.io/about/" rel="section"><i class="address-card fa-fw"></i>About</a>
 
   </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-tags">
+        <li class="menu-item menu-item-tags">
 
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/myblog.github.io/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+    <a href="/myblog.github.io/tags/" rel="section"><i class="tags fa-fw"></i>Tags</a>
 
   </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-archives">
+        <li class="menu-item menu-item-archives">
 
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/myblog.github.io/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+    <a href="/myblog.github.io/archives/" rel="section"><i class="archive fa-fw"></i>Archives</a>
 
   </li>
-
-      
-      
-        <li class="menu-item menu-item-search">
-          
-            <a href="javascript:;" class="popup-trigger">
-          
-            
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>Search</a>
-        </li>
-      
-    </ul>
-  
-
-  
-    
-
-  
-
-  
-    <div class="site-search">
-      
-  <div class="popup search-popup local-search-popup">
-  <div class="local-search-header clearfix">
-    <span class="search-icon">
-      <i class="fa fa-search"></i>
-    </span>
-    <span class="popup-btn-close">
-      <i class="fa fa-times-circle"></i>
-    </span>
-    <div class="local-search-input-wrapper">
-      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
-    </div>
-  </div>
-  <div id="local-search-result"></div>
-</div>
-
-
-
-    </div>
-  
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
 </nav>
 
 
 
-  
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" placeholder="Searching..." spellcheck="false" type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
 
-
+    </div>
+  </div>
 
 </div>
     </header>
 
     
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
 
 
-    <main id="main" class="main">
+    <main class="main">
       <div class="main-inner">
         <div class="content-wrap">
           
-          <div id="content" class="content">
+
+          <div class="content index posts-expand">
             
-  <section id="posts" class="posts-expand">
-    
       
-
-  
-
   
   
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://github.com/ChaosRinkHan/myblog.github.io/myblog.github.io/stupiddesign/">
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="default">
+    <link itemprop="mainEntityOfPage" href="https://github.com/ChaosRinkHan/myblog.github.io/stupiddesign/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/myblog.github.io/images/icn.jpg">
       <meta itemprop="name" content="Chaolin Han">
       <meta itemprop="description" content="Our business is life itself.">
-      <meta itemprop="image" content="/myblog.github.io/images/icn.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="EXECUTER">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/myblog.github.io/stupiddesign/" class="post-title-link" itemprop="url">Stupid Design</a>
-              
-            
-          </h1>
-        
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/myblog.github.io/stupiddesign/" class="post-title-link" itemprop="url">Stupid Design</a>
+        </h2>
 
         <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
+                <i class="far fa-calendar"></i>
               </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
+              <span class="post-meta-item-text">Posted on</span>
               
 
               <time title="Created: 2020-01-28 22:00:51 / Modified: 22:47:12" itemprop="dateCreated datePublished" datetime="2020-01-28T22:00:51+00:00">2020-01-28</time>
-            
-
-            
-              
-
-              
-            
-          </span>
+            </span>
 
           
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
+  
+  
 
         </div>
       </header>
-    
 
     
     
@@ -439,168 +227,91 @@
     <div class="post-body" itemprop="articleBody">
 
       
-      
+          <h1 id="1"><a href="#1" class="headerlink" title="1"></a>1</h1><p>EPCC的灯总是忽明忽暗。顶上装的是照明+氛围灯，刚开学的时候都是好好的，一个时间节点后就总是忽明忽暗。</p>
+<p>上学期。我和Mario聊完一个毕设课题就回到工位，这时灯又开始明暗不定。</p>
+<blockquote>
+<p>  Why is it?</p>
+<p>  Mark: 这是一套很复杂的自适应灯光系统，会参考室外的光照和室内的情况来调节亮度，但现在它明显没有工作。</p>
+<p>  Mario: It’s broken.</p>
+<p>  Mark: It’s not broken. It’s just not woking properly.</p>
+<p>  Mario: That’s called ‘broken’</p>
+</blockquote>
+<p>到现在它也没有被修好。</p>
+<h1 id="2"><a href="#2" class="headerlink" title="2"></a>2</h1><p>这学期。和Mark开完毕设的会，从会议室出来。会议室的椅子是个转椅但是没有轮子，这导致椅子在地毯上很难移开给Mark让路。</p>
+<blockquote>
+<p>  Mark: Stupid design—table has wheels but chairs don’t.</p>
+<p>  我：Why is it?</p>
+<p>  Mark: Who Knows?  （指着工位区域的椅子）Reasonable design: chairs have wheels but tables don’t. （指着会议室的椅子摇手指）Stupid design.</p>
+</blockquote>
+<h1 id="3"><a href="#3" class="headerlink" title="3"></a>3</h1><p>今天在宿舍看到在施工，要换上更加经济节能的照明。换了两个月终于换到第七楼了。</p>
+<p><img src="https://i.imgur.com/Zq2zbSd.png" alt="image-20200128222729891"></p>
+<p>之前无数次被施工的声音吵醒，原因是这个智能照明的一个IOT终端就要放在我门口的天花板上，为此天花板被拆了几次。还装上了具有科技感的指示灯（之前还以为是路由器）。</p>
+<p>今天终于舾装了──走廊上安装上了红外线传感器。终于有点像智能设备的样了。</p>
+<blockquote>
+<p>  我们的走廊没人的时候永远是前半段灯全亮，后半段灯不亮。</p>
+<p>  从没有灯光的地方走到传感器跟前，终于得到响应它亮了，然而我已经从走廊门离开了。就差给它挥手了。</p>
+<p>  电梯间的灯就是黑的，就剩传感器发出代表着科技感的蓝光。</p>
+<p>  可能这就是sustainable的人工智障吧。</p>
+</blockquote>
 
-      
-        
-          
-            <p>
-              1EPCC的灯总是忽明忽暗。顶上装的是照明+氛围灯，刚开学的时候都是好好的，一个时间节点后就总是忽明忽暗。
-上学期。我和Mario聊完一个毕设课题就回到工位，这时灯又开始明暗不定。
-
-  Why is it?
-  Mark: 这是一套很复杂的自适应灯光系统，会参考室外的光照和室内的情况来调节亮度，但
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/myblog.github.io/stupiddesign/" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
       
     </div>
 
     
-
     
     
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
+      </footer>
   </article>
+  
+  
+  
 
-
-    
       
-
-  
-
   
   
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://github.com/ChaosRinkHan/myblog.github.io/myblog.github.io/down/">
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="default">
+    <link itemprop="mainEntityOfPage" href="https://github.com/ChaosRinkHan/myblog.github.io/down/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/myblog.github.io/images/icn.jpg">
       <meta itemprop="name" content="Chaolin Han">
       <meta itemprop="description" content="Our business is life itself.">
-      <meta itemprop="image" content="/myblog.github.io/images/icn.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="EXECUTER">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/myblog.github.io/down/" class="post-title-link" itemprop="url">Down</a>
-              
-            
-          </h1>
-        
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/myblog.github.io/down/" class="post-title-link" itemprop="url">Down</a>
+        </h2>
 
         <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
+                <i class="far fa-calendar"></i>
               </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
+              <span class="post-meta-item-text">Posted on</span>
 
               <time title="Created: 2019-12-12 23:21:51" itemprop="dateCreated datePublished" datetime="2019-12-12T23:21:51+00:00">2019-12-12</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
+            </span>
+              <span class="post-meta-item">
                 <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
+                  <i class="far fa-calendar-check"></i>
                 </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
+                <span class="post-meta-item-text">Edited on</span>
                 <time title="Modified: 2019-12-13 00:04:34" itemprop="dateModified" datetime="2019-12-13T00:04:34+00:00">2019-12-13</time>
-              
-            
-          </span>
+              </span>
 
           
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
+  
+  
 
         </div>
       </header>
-    
 
     
     
@@ -608,157 +319,81 @@
     <div class="post-body" itemprop="articleBody">
 
       
-      
+          <blockquote>
+<p>  世界在下沉，VICE在狂欢</p>
+</blockquote>
+<p>今天才发现vice中国已经关闭，而且已经关了两个多月了。高质量读者越来越少了，高质量内容也越来越少。</p>
+<p>这几天睡不着一直在想反智主义。看到一个很有趣的笑话，宣扬反智主义本身就是一种反智主义。</p>
+<p>能看的杂志越来越少，订阅的RSS也一个个灰掉了。新的媒体的冲击太大了。新的媒体传播的东西却太没有价值了。</p>
+<p>想只看我喜欢的就好，可是各个平台终究会被低质量快节奏占据的趋势越来越明显。</p>
+<p>一直很想找有深度的新闻，除了<a href="https://theinitium.com/" target="_blank" rel="noopener">端</a>以外我也没有找到什么合适的，往往很多都是看一段时间就拉黑了（比如纽约时报）。</p>
+<p>我们现在这个社会环境还适合高质量内容生产吗，还会有人靠订阅博客，收听播客来接受自己真正青睐，真正启发自己启发生活的人吗？在这个环境之下，圈子会不会越来越小众？</p>
+<p>一直在收听<a href="https://fanpaiyingping.com/" target="_blank" rel="noopener">反派影评</a>的播客，每次看到那惨淡的播放量就寒心。也会有越来越多充满激情的人寒心吧，这么几年了真正能邀请到的还是那一波人，还没有被潮流冲走忘记初心的人。在赛车评论圈里面最受欢迎的解说永远是自己开着纯声音解说的金老师和邱老师，然而这几年我也看着这个圈子慢慢收窄。懂的自然懂，留住的永远是核心。</p>
+<h3 id="浪费"><a href="#浪费" class="headerlink" title="浪费"></a>浪费</h3><p>我之前也把大量时间花在碎片阅读上面，后来偶然间我发现了一点阅读障碍的迹象让我有点恐慌。我之后认真看了几本严肃文学，发现总是会被打扰会分心──很难有时间在认真阅读的时候，控制自己不去看手机，尽管没人给你发消息。</p>
+<h3 id="严肃"><a href="#严肃" class="headerlink" title="严肃"></a>严肃</h3><p>在思考，还会有反思社会现状的有深度的思维被发表出来吗──现在可能鲁迅这样的人会被审查，而接近他的层面的人会被众人同化吧。我超级期待能有一本书剖析社会现象而不被规则所限制，给出发人深省的观点或是打动人的故事。这种东西的反智主义体现就是如今的各大公众号文章，特别是追社会热点和电影评论的──对不起我看不起你们。</p>
+<p>与其看这种麻痹思维的文章不如就关注人民日报和新华社。至少它们文章中的每个字都充满着正气。</p>
+<hr>
+<p>我想以后RSS列表里面灰掉的源会越来越多。</p>
+<blockquote>
+<p>  VICE想要把叛逆和与众不同的文化带到中国来，它能吸引到多少年轻人一起“狂欢”？</p>
+</blockquote>
+<p>这是第一财经周刊在vice刚刚进入中国时的<a href="https://www.yicai.com/news/4052325.html" target="_blank" rel="noopener">报道</a>。可惜它死于新的传播潮流的兴起而不是水土不服。</p>
+<p>字媒已经不是趋势，很多传统或者爱好也再难找到圈子──甚至死于没有圈子：现在的蝴蝶刀教学视频还是六七年前的低清视频，还在维护贴吧的还是以前那群深爱的人，首页的帖子永远是三分钟热度的萌新。</p>
+<p>世界在下沉，狂欢的人也散了。</p>
+<p><img src="https://i.imgur.com/1cSYFI3.png" alt="image-20191213000142331"></p>
 
-      
-        
-          
-            <p>
-              
-  世界在下沉，VICE在狂欢
-
-今天才发现vice中国已经关闭，而且已经关了两个多月了。高质量读者越来越少了，高质量内容也越来越少。
-这几天睡不着一直在想反智主义。看到一个很有趣的笑话，宣扬反智主义本身就是一种反智主义。
-能看的杂志越来越少，订阅的RSS也一个个灰掉了。新的媒体的冲击太大了。新的
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/myblog.github.io/down/" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
       
     </div>
 
     
-
     
     
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
+      </footer>
   </article>
+  
+  
+  
 
-
-    
       
-
-  
-
   
   
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://github.com/ChaosRinkHan/myblog.github.io/myblog.github.io/thoughtsaboutf1p2/">
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="default">
+    <link itemprop="mainEntityOfPage" href="https://github.com/ChaosRinkHan/myblog.github.io/thoughtsaboutf1p2/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/myblog.github.io/images/icn.jpg">
       <meta itemprop="name" content="Chaolin Han">
       <meta itemprop="description" content="Our business is life itself.">
-      <meta itemprop="image" content="/myblog.github.io/images/icn.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="EXECUTER">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/myblog.github.io/thoughtsaboutf1p2/" class="post-title-link" itemprop="url">茫茫，Formula 1 (三)</a>
-              
-            
-          </h1>
-        
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/myblog.github.io/thoughtsaboutf1p2/" class="post-title-link" itemprop="url">茫茫，Formula 1 (三)</a>
+        </h2>
 
         <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
+                <i class="far fa-calendar"></i>
               </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
+              <span class="post-meta-item-text">Posted on</span>
               
 
               <time title="Created: 2019-10-15 22:53:30 / Modified: 23:23:59" itemprop="dateCreated datePublished" datetime="2019-10-15T22:53:30+01:00">2019-10-15</time>
-            
-
-            
-              
-
-              
-            
-          </span>
+            </span>
 
           
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
+  
+  
 
         </div>
       </header>
-    
 
     
     
@@ -766,168 +401,80 @@
     <div class="post-body" itemprop="articleBody">
 
       
-      
+          <p><img src="https://i.imgur.com/EiX1r79.jpg" alt="21571176658_.pic"></p>
+<p>梅奔六连贯，这么多年绝对的统治地位走到了最高峰。</p>
+<p>梅奔也有没落的时候，也有落空的时候，那时候没能给复出的舒马赫一台好车。</p>
+<p>金钱是万能的，只要有钱，想拿多少个车队年度冠军都可以，当然是要在不作死的情况下。这么六年要是问我，这么一家独大的F1好看吗，车的差距超过了人的差距那么这项运动还会有活力吗？</p>
+<p>我的答案是肯定的，毕竟十几年前我也是看着布朗GP垮掉，红牛火星车一骑绝尘过来的。垄断是F1的常态，风水轮流转，这半个轮盘是转到了奔驰身上。</p>
+<p>尽管外界关于奔驰退出F1的谣言传的人人都知道了，Toto还是要假装什么都没有发生。奔驰投资赛车目的性其实非常强，从各种广告就能看出来。培养了这么十年的技术团队也不可能说解散就解散的，直接转移到FE下不光能在混乱的赛制和秩序中树立一个最强的竞争者形象，还能配合奔驰最近在新能源市场上的造势。</p>
+<p><img src="https://i.imgur.com/5wVF5wf.jpg" alt="31571176659_.pic"></p>
+<p>F1太烧钱了，奔驰就没有盈利过。奔驰也烧不动了。</p>
+<p>明年谁会统治，我很不负责任地会讲法拉利。但是这不是看趋势看车手状态就能决定的事情，毕竟规则决定一切，研发经费决定排位。</p>
+<p>做了这么多年的法拉利车迷，我想法拉利再不拿冠军真的就太丢脸了。这么多年法拉利真的让粉丝很没面子，纯粹的tifosi可能已经不存在了。希望有朝一日我法红军再起，跃马方格旗挥遍整个赛场。</p>
+<p><img src="https://i.imgur.com/o86mfMr.jpg" alt="41571176662_.pic"></p>
+<p>最早喜欢巴顿，他现在结了婚在带娃，还写了个自传。然后是机长韦伯，他现在在享受生活当博主。后来就是头哥，他现在在准备达喀尔拉力赛，希望有朝一日真的能完成赛车界的大满贯！现在是勒克莱尔，年轻人真的太厉害了，明日之星，喜欢他的面对镜头腼腆和围场中的最高水平表现。</p>
+<p>明年我不敢肯定是不是变局的一年，但是今年开始地球组车队已经开始换血了，明年随着规则变化和引擎变化必然会有更精彩的剧情出现，梅赛德斯奔驰不知道还能不能守住冠军的位置。</p>
+<p>愿新时代的F1精神更加健康。</p>
+<p><strong>Danke Niki.</strong></p>
 
-      
-        
-          
-            <p>
-              
-梅奔六连贯，这么多年绝对的统治地位走到了最高峰。
-梅奔也有没落的时候，也有落空的时候，那时候没能给复出的舒马赫一台好车。
-金钱是万能的，只要有钱，想拿多少个车队年度冠军都可以，当然是要在不作死的情况下。这么六年要是问我，这么一家独大的F1好看吗，车的差距超过了人的差距那么这项运动还会有活力吗？
-我
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/myblog.github.io/thoughtsaboutf1p2/" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
       
     </div>
 
     
-
     
     
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
+      </footer>
   </article>
+  
+  
+  
 
-
-    
       
-
-  
-
   
   
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://github.com/ChaosRinkHan/myblog.github.io/myblog.github.io/cyberpunk-china-md/">
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="default">
+    <link itemprop="mainEntityOfPage" href="https://github.com/ChaosRinkHan/myblog.github.io/cyberpunk-china-md/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/myblog.github.io/images/icn.jpg">
       <meta itemprop="name" content="Chaolin Han">
       <meta itemprop="description" content="Our business is life itself.">
-      <meta itemprop="image" content="/myblog.github.io/images/icn.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="EXECUTER">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/myblog.github.io/cyberpunk-china-md/" class="post-title-link" itemprop="url">赛博 朋克 中国</a>
-              
-            
-          </h1>
-        
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/myblog.github.io/cyberpunk-china-md/" class="post-title-link" itemprop="url">赛博 朋克 中国</a>
+        </h2>
 
         <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
+                <i class="far fa-calendar"></i>
               </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
+              <span class="post-meta-item-text">Posted on</span>
 
               <time title="Created: 2019-09-29 23:02:07" itemprop="dateCreated datePublished" datetime="2019-09-29T23:02:07+01:00">2019-09-29</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
+            </span>
+              <span class="post-meta-item">
                 <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
+                  <i class="far fa-calendar-check"></i>
                 </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
+                <span class="post-meta-item-text">Edited on</span>
                 <time title="Modified: 2019-09-30 00:11:57" itemprop="dateModified" datetime="2019-09-30T00:11:57+01:00">2019-09-30</time>
-              
-            
-          </span>
+              </span>
 
           
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
+  
+  
 
         </div>
       </header>
-    
 
     
     
@@ -935,166 +482,101 @@
     <div class="post-body" itemprop="articleBody">
 
       
-      
+          <p><img src="https://i.imgur.com/D6diXfy.jpg" alt="e83de66f-9cec-4207-8ee3-d5a7a7ad189d"></p>
+<h2 id="Cyberpunk"><a href="#Cyberpunk" class="headerlink" title="Cyberpunk"></a>Cyberpunk</h2><p>筛了下最近两年国内的照片，重新选片调色，加上暑假拍的几组赛博朋克风格调色的图片，整理了一组赛博朋克风格合集。我喜欢赛博朋克，也喜欢的中国。</p>
+<p>赛博朋克风格色调很好调，但要营造恰当的氛围感却很难。本组调色只调整了曲线，色调，色调分离，以及最基本的纯色蒙版。各位大佬手术刀精确修图和烟雾缭绕霓虹闪烁的氛围是我之后学习的目标。</p>
+<h3 id="01-DAILY"><a href="#01-DAILY" class="headerlink" title="01 DAILY"></a>01 DAILY</h3><p><img src="https://i.imgur.com/hgElziz.jpg" alt="DSA08500c"></p>
+<p><img src="https://i.imgur.com/rZRMgR5.jpg" alt="DSA08857c"></p>
+<p>外滩。灯光，夜景，街景，最适合做风格的照片。</p>
+<p><img src="https://i.imgur.com/wu8QgNe.jpg" alt="DSC03645"></p>
+<p>海边小路。路边摊的灯光，交通。</p>
+<p><img src="https://i.imgur.com/qBLp9LE.jpg" alt="DSC00386"></p>
+<p>图书馆。明暗对比，科技风调的不是很好。</p>
+<h3 id="02-METROPOLIS"><a href="#02-METROPOLIS" class="headerlink" title="02 METROPOLIS"></a>02 METROPOLIS</h3><p><img src="https://i.imgur.com/UPdjT5G.jpg" alt="DSA08873"></p>
+<p>日出前朝霞袭来的外滩，夜间的灯光还没有熄灭。眼睛看到的是剪影中的充满未来感的灯光，而相机长曝光记录下来最多的是破晓前的蓝色紫色，尽管肉眼还是一片漆黑。</p>
+<p><img src="https://i.imgur.com/l8uuaAd.jpg" alt="dsa08953"></p>
+<p>充满洋红色的江边。</p>
+<p><img src="https://i.imgur.com/30SwgMX.jpg" alt="DSA08456"></p>
+<p>苏州河，与远处的陆家嘴。超有意境的机位，可惜没有日出去拍的机会了。</p>
+<p><img src="https://i.imgur.com/jLOg29z.jpg" alt="DSA09980 copy 2"></p>
+<p>南京，西桥望向紫峰大厦。街边的居民楼和后面的摩天大楼。经典打卡机位，缺一个雨天的倒影。</p>
+<p><img src="https://i.imgur.com/bggGBOh.jpg" alt="dsa08749"></p>
+<p><img src="https://i.imgur.com/9sULxtG.jpg" alt="dsa08765"></p>
+<p>一个人行天桥上的机位。可惜调了很久，都得不到想要的色彩。之后准备做颜色叠加。过去和现代的额对比十分强烈，初次看到这样的景观会让人觉得真的挺荒唐的。</p>
+<p><img src="https://i.imgur.com/56WFd9d.jpg" alt="DSA08827_stack"></p>
+<p>三座摩天大楼。想做明度，可惜太难扣了…</p>
+<p><img src="https://i.imgur.com/J0Db2HU.jpg" alt="dsa08758"></p>
+<p>隧道，车轨，星芒。</p>
+<p><img src="https://i.imgur.com/FhfDo20.jpg" alt="dsc03014"></p>
+<p>苏州。雨天。可惜没有三脚架当时，手持拍摄。</p>
+<h3 id="03-INDUSTRY"><a href="#03-INDUSTRY" class="headerlink" title="03 INDUSTRY"></a>03 INDUSTRY</h3><p><img src="https://i.imgur.com/Y8FjHB9.jpg" alt="DSA09480"></p>
+<p>冷却塔。原片冷暖对比十分强烈。</p>
+<p><img src="https://i.imgur.com/lVPrvVF.jpg" alt=""></p>
+<p>当代艺术馆屋顶的装饰。</p>
+<p><img src="https://i.imgur.com/QdyxqZb.jpg" alt=""></p>
+<p>落日下海边的剪影。光影对比太弱的照片很难调赛博朋克色调，白天的照片调色就更难了。日间的机械废土和荒诞对比风格模仿了很久实在学不来。</p>
+<h3 id="04-NANJING-CITY"><a href="#04-NANJING-CITY" class="headerlink" title="04 NANJING CITY"></a>04 NANJING CITY</h3><p><img src="https://i.imgur.com/lpqzADT.jpg" alt=""></p>
+<p>这是一张几乎没有调色的照片，肉眼看起来就是这么的不可思议，暴雨后的薄雾透着城市的灯光，远处的城区也若隐若现。这是所有照片里面最赛博朋克的一张。我太喜欢它了</p>
+<p>所有图片均为版权图片。</p>
 
-      
-        
-          
-            <p>
-              
-Cyberpunk筛了下最近两年国内的照片，重新选片调色，加上暑假拍的几组赛博朋克风格调色的图片，整理了一组赛博朋克风格合集。我喜欢赛博朋克，也喜欢的中国。
-赛博朋克风格色调很好调，但要营造恰当的氛围感却很难。本组调色只调整了曲线，色调，色调分离，以及最基本的纯色蒙版。各位大佬手术刀精确修图和烟雾
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/myblog.github.io/cyberpunk-china-md/" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
       
     </div>
 
     
-
     
     
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
+      </footer>
   </article>
+  
+  
+  
 
-
-    
       
-
-  
-
   
   
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://github.com/ChaosRinkHan/myblog.github.io/myblog.github.io/ontheedge-md/">
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="default">
+    <link itemprop="mainEntityOfPage" href="https://github.com/ChaosRinkHan/myblog.github.io/ontheedge-md/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/myblog.github.io/images/icn.jpg">
       <meta itemprop="name" content="Chaolin Han">
       <meta itemprop="description" content="Our business is life itself.">
-      <meta itemprop="image" content="/myblog.github.io/images/icn.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="EXECUTER">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/myblog.github.io/ontheedge-md/" class="post-title-link" itemprop="url">写在本科毕业之际</a>
-              
-            
-          </h1>
-        
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/myblog.github.io/ontheedge-md/" class="post-title-link" itemprop="url">写在本科毕业之际</a>
+        </h2>
 
         <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
+                <i class="far fa-calendar"></i>
               </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
+              <span class="post-meta-item-text">Posted on</span>
 
               <time title="Created: 2019-06-30 01:50:15" itemprop="dateCreated datePublished" datetime="2019-06-30T01:50:15+01:00">2019-06-30</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
+            </span>
+              <span class="post-meta-item">
                 <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
+                  <i class="far fa-calendar-check"></i>
                 </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
+                <span class="post-meta-item-text">Edited on</span>
                 <time title="Modified: 2019-06-29 19:52:09" itemprop="dateModified" datetime="2019-06-29T19:52:09+01:00">2019-06-29</time>
-              
-            
-          </span>
+              </span>
 
           
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
+  
+  
 
         </div>
       </header>
-    
 
     
     
@@ -1102,169 +584,83 @@ Cyberpunk筛了下最近两年国内的照片，重新选片调色，加上暑�
     <div class="post-body" itemprop="articleBody">
 
       
-      
+          <h4 id="On-the-edge"><a href="#On-the-edge" class="headerlink" title="On the edge"></a>On the edge</h4><p>其实初中或是高中毕业，我都没有类似的感受。毕竟城市就只有那么大，大家不管去了哪儿都还能见到，聚也能聚起来吧。</p>
+<p>大学里面大家来自四面八方，也走向了四面八方。</p>
+<p>$&gt;-&lt;$</p>
+<p>大家的时间线，也就在这四年有一点重合吧。</p>
+<h4 id="舍，离"><a href="#舍，离" class="headerlink" title="舍，离"></a>舍，离</h4><p>很舍不得大学里面认识了的人。</p>
+<p>做了很多事情也就认识了不少人。总共接触时间也就几十分钟的人也有让我印象深刻的，更不用说平时每天接触的了。</p>
+<p>怀念很多东西，但我不想用什么排比来煽情。最怀念的还是那些真挚的情感，朴实的快乐。</p>
+<p>除了这四年，还有机会能够给我们，来连续不断打10多个小时游戏，或是说走就走去看日出吗？</p>
+<p><img src="https://i.imgur.com/Jn8BSA6.jpg" alt="Screenshot_20190630-020930_WeChat"></p>
+<h4 id="断"><a href="#断" class="headerlink" title="断"></a>断</h4><p>这迷茫的四年也留下了一些遗憾和失望。</p>
+<p>我翻到了四年前的我写给现在的我的信。那时候字写的没有现在好，也没有什么有意义的话语和深刻的话，但是从那不成熟的笔迹中我看到了当时的坚定和当时的初心。<strong>初心啊。</strong></p>
+<blockquote>
+<p>Salute to the faithful youths.</p>
+</blockquote>
+<p><img src="https://i.imgur.com/diWF03B.jpg" alt="20190630_022731"></p>
+<p>我曾幻想过也曾计划过要在大学里面做的事，后来实现的没有多少，我想象的大学和大学生活和实际情况也相差甚远。可本就该是这样，不然还要努力干什么。</p>
+<h4 id="Last"><a href="#Last" class="headerlink" title="Last"></a>Last</h4><p>很幸运认识了大家。愿大家也<strong>珍重</strong>这份情感，记住这段长而难忘的经历，不时翻翻手机相册，看看曾经疯狂过的青春。</p>
+<p>祝大家鹏程万里，趁着年轻，为自己的目标奋斗吧。</p>
 
-      
-        
-          
-            <p>
-              On the edge其实初中或是高中毕业，我都没有类似的感受。毕竟城市就只有那么大，大家不管去了哪儿都还能见到，聚也能聚起来吧。
-大学里面大家来自四面八方，也走向了四面八方。
-$&gt;-&lt;$
-大家的时间线，也就在这四年有一点重合吧。
-舍，离很舍不得大学里面认识了的人。
-做了很多事情也就认识
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/myblog.github.io/ontheedge-md/" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
       
     </div>
 
     
-
     
     
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
+      </footer>
   </article>
+  
+  
+  
 
-
-    
       
-
-  
-
   
   
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://github.com/ChaosRinkHan/myblog.github.io/myblog.github.io/pdeproject-md/">
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="default">
+    <link itemprop="mainEntityOfPage" href="https://github.com/ChaosRinkHan/myblog.github.io/pdeproject-md/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/myblog.github.io/images/icn.jpg">
       <meta itemprop="name" content="Chaolin Han">
       <meta itemprop="description" content="Our business is life itself.">
-      <meta itemprop="image" content="/myblog.github.io/images/icn.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="EXECUTER">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/myblog.github.io/pdeproject-md/" class="post-title-link" itemprop="url">Spruce budworm population behaviour</a>
-              
-            
-          </h1>
-        
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/myblog.github.io/pdeproject-md/" class="post-title-link" itemprop="url">Spruce budworm population behaviour</a>
+        </h2>
 
         <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
+                <i class="far fa-calendar"></i>
               </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
+              <span class="post-meta-item-text">Posted on</span>
 
               <time title="Created: 2019-06-16 18:39:17" itemprop="dateCreated datePublished" datetime="2019-06-16T18:39:17+01:00">2019-06-16</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
+            </span>
+              <span class="post-meta-item">
                 <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
+                  <i class="far fa-calendar-check"></i>
                 </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
+                <span class="post-meta-item-text">Edited on</span>
                 <time title="Modified: 2019-06-29 18:52:56" itemprop="dateModified" datetime="2019-06-29T18:52:56+01:00">2019-06-29</time>
-              
-            
-          </span>
+              </span>
 
           
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
+  
+  
 
         </div>
       </header>
-    
 
     
     
@@ -1272,156 +668,164 @@ $&gt;-&lt;$
     <div class="post-body" itemprop="articleBody">
 
       
-      
+          <blockquote>
+<p>This is a research project done by me and submitted as a part of an assignment.</p>
+<p>Reference usage only.</p>
+</blockquote>
+<h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>Spruce budworm’s population dynamics are observed and recorded in recent decades, and the mathematical model describing the population of the budworm is fitted and its features are highly related to budworm’s real-life population behaviours and thus have great biological significance in forest protection and pest prevention.</p>
+<p>A homogeneous budworm model is studied in the first section. It gives the bifurcations and conditions for the stability. The periodic transfer between two population levels and time evolution path are studied.</p>
+<p>With diffusion considered, the spatial model in one dimension is given with varies conditions and their corresponding situation for the budworms. Biological waves are also studied.</p>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Spruce budworms’ behaviour represents one classic biological model in the diverse ecosystem, in which the populations of species are usually described by differential equation. The spruce budworm is studied as it destroys forest and break ecosystem balance.</p>
+<p>In this mathematical model, with birds’ and other creatures’ predation considered, the partial differential equation described a population dynamic with interesting behaviours, which have realistic significance and explains what have been observed in real-life forest1. The number of budworms can be steady at different levels, which correspond to the steady states of the equations.</p>
+<p><img src="https://i.imgur.com/wx6suVv.png" alt=""></p>
+<p>The number of spruce budworms remains at a low level (known as refuge level) for most of time, but it would see an outbreak and reach at a higher level (outbreak level) with catastrophic effects on forest. This periodic transfer between the two levels are motivated by the external changes e.g. living environment, and as a result, the carrying capacity varies with the spruce budworm population. Once the environment could afford a larger population, the refuge level becomes unstable and grows to an outbreak level, at which the budworms’ activities destroy forest (figure 1) and in return, turn down the environment capacity, thus the system cannot support such number of budworms and the population would drop to the relative less-harmful refuge level.</p>
+<p>This game between the budworms and forest also involves spatial diffusion. As the budworms are distributed among the forest, a dynamic density distribution is observed, where the diffusion of population concentration and biological waves are shown.</p>
+<p>The dynamics rises awareness of protecting the forest and pest control with the aim to avoid outbreak level. The dynamics and behaviours of budworm population can be described with differential equations, and PDE behaviours correspond to different population states, thus studying on the mathematical model would help us in predicting the forward trend of the budworms and apply pest prevention in advance.</p>
+<h2 id="Homogeneous-budworm-model"><a href="#Homogeneous-budworm-model" class="headerlink" title="Homogeneous budworm model"></a>Homogeneous budworm model</h2><p>The population of the homogeneous spruce budworm can be modelled as </p>
+<p>$d\ u(t)/dt=ru(1-u/q)-u^2/(1+u^2\ )=f(u)$</p>
+<p>It is a variant of the continuous logistic population model with the predation term $u^2 /(1+u^2 )$ and model parameters r and q. r is the low-density growth rate; p is the environment carrying capacity. The predation term $u^2/\left(1+u^2\right)$ in the case is due to predatory birds which cause molality of the population. The term is formulated as $u^2/\left(1+u^2\right)$ to represent a fast-growing predation for u in low levels followed by slow growing for u in high levels. The predation is slowed down due to large population of budworms, as birds cannot eat any more when reaching their feed limit. For this ordinary differential equation, mathematical biology methods are implemented to analyse the behaviour of the system and the biological significance.</p>
+<h3 id="Steady-states-and-their-stability"><a href="#Steady-states-and-their-stability" class="headerlink" title="Steady states and their stability"></a>Steady states and their stability</h3><p>The steady states $u^\ast$ can be obtained by solving</p>
+<p>$ru^\ast\left(1-\frac{u^\ast}{q}\right)-\frac{u^{\ast2}}{1+u^{\ast2}}=0$</p>
+<p>$\Longrightarrow u_1^\ast=0;or\ \frac{u^\ast}{1+u^{\ast2}}=r\left(1-\frac{u}{q}\right)$</p>
+<p>The second case comes with a cubic equation, which could have zero, one two or three roots depending on the parameters. The analytic solution is too complex to present here. These steady states can be demonstrated from the graph below.</p>
+<p>The stability can either be determine from the graph by tangent lines or the sign of $f^\prime\left(u\right)$.</p>
+<ul>
+<li>Case 1: denote the roots of $f\left(u\right)=0$ as $x_0,\ x_1,\ x_2,\ x_3$ (ascending order)​. The second and forth steady states $x_1$ and $x_3$ are stable, i.e. $f\left(x_1\right)&lt;0,\ f\left(x_3\right)&lt;0$. $x_0$ and $x_2$ are unstable. </li>
+</ul>
+<ul>
+<li>Case 2: denote the roots of $f\left(u\right)=0$ as $x_0,\ x_1 (ascending order)$. $x_0$ is unstable; $x_1$ is stable.</li>
+<li>Case 3: denote the roots of $f\left(u\right)=0$ as $x_0,\ x_1,\ x_2$ (ascending order). $x_0$ is unstable; $x_2$ is stable. This case is representing bifurcation point, or saddle node. If the initial point is placed at x_1,then the population would stay at this point unchanged as time grows; if the initial point is a little away from x_1, i.e. $x_1+\delta$ or $x_1-\delta$ where $\delta$ small, then the population would not stable at $x_1$ but grow and stable at $x_2$. Further discussion is in the section Time evolution of the population. There is another case comes with two non-trivial steady states, which is discussed in the later section.</li>
+<li>Case 4: denote the roots of $f\left(u\right)=0$ as $x_0,\ x_1$ (ascending order). $x_0$ is unstable; $x_1$ is stable.</li>
+</ul>
+<p><img src="https://i.imgur.com/Cv9dQjS.png" alt=""></p>
+<p><img src="https://i.imgur.com/vhhNSWC.png" alt=""></p>
+<p>The time evolution of these four cases is discussed in later section, with different staring points considered.</p>
+<h3 id="Bifurcations-and-tangency-condition"><a href="#Bifurcations-and-tangency-condition" class="headerlink" title="Bifurcations and tangency condition"></a>Bifurcations and tangency condition</h3><p>Case 3 is a state between case 1 (three non-trivial steady states) and case 4 (one non-trivial steady states). While one of the parameters r, q is fixed and the other varies, there is a changing point where the number of non-trivial steady states reduce to 1 from 3, or increase to 3 from 1.</p>
+<p>Suppose q is set to 10 and r changes, the plot of $f\left(u\right)$ is shown below.</p>
+<p><img src="https://i.imgur.com/0DBlioQ.png" alt=""></p>
+<p>As dashed line indicates, there are two cases where part of the curve is tangent to the x-axis. When r increase from 0.340 to 0.660, the changes of the number of non-trivial steady states is</p>
+<p>$$1\rightarrow_{(r=0.385)}3\rightarrow_{r=(0.565)}1$$</p>
+<p>i.e. one steady state $x_1\longrightarrow$ tangent condition ($x_2$ appears and divided into two points) $\longrightarrow$ three steady states $x_1,\ x_2,\ x_3 \longrightarrow$ tangent condition ($x_1,\ x_2$ coalesce into one point and disappear) \longrightarrow one steady states $x_3$.</p>
+<p>The tangent condition is given as $(u^\ast&gt;0,\ r&gt;0)$</p>
+<p>$$f(u<em>)=0 AND f’(u</em>)=0$$</p>
+<p>For q=10, we can find numerical solutions</p>
+<p><img src="https://i.imgur.com/wgzQOHH.png" alt=""></p>
+<p>The r values agrees with the plot above.<br>Generally, the tangent condition can be expressed by $r\left(x\right)$ and $q(x)$ by eliminating x:</p>
+<p><img src="https://i.imgur.com/UVat9VD.png" alt=""></p>
+<p>The parametric plot of r against q is shown below (figure 9): </p>
+<p>The coordinate plane is divided into two regions: Ⅰand Ⅱ (figure 10). Accord to this plot, the number of non-trivial steady states can be determined, i.e. the cusp condition:<br>If parameter r, q are fixed and $\left(q,\ r\right)$ lies in the region Ⅰ, then the model has only one non-trivial steady state; if $\left(q,\ r\right)$ lies in the region Ⅱ, then the model has three non-trivial steady states.</p>
+<p><img src="https://i.imgur.com/3YiSVI9.png" alt=""></p>
+<p>This condition also meets the example above, where q=10 and r increases from 0.340 to 0.660. Point $\left(10,\ r\right)$ lies in Ⅰ when r small, then in Ⅱ when r grows and finally in Ⅰ again, which agrees with the changes of the number of non-trivial steady states.</p>
+<h3 id="Time-evolution-of-the-population"><a href="#Time-evolution-of-the-population" class="headerlink" title="Time evolution of the population"></a>Time evolution of the population</h3><p>The time evolution or population trend can be visualized by the vector field on the x-axis. This evolution trend is validated in a programme.</p>
+<ul>
+<li>Case 1: $x_1$ is refuge level, $x_3$ is the outbreak level. Different starting point will end up at different level. If initial point is at 0 or $x_2$, the population would stay unchanged (figure 11).</li>
+<li>Case 2: there is only refuge level at $x_1$ (figure 12). </li>
+<li>Case 3: this case represents two tangent conditions. The first one would see an outbreak level, while the second one would see a refuge level (figure 13).</li>
+<li>Case 4: there is only outbreak level at $x_1$ (figure 14).</li>
+</ul>
+<p>This cusp condition can be simplified, when one of the parameters is fixed. E.g. if r is fixed, then the behavior of the population is only determined by q. The exact solution for u and q of the differential equation can be extremely complex, but two critical values of q are in the solution, i.e. $q_{c1}$ and $q_{c2}$, corresponding to the boundary of the cusp line. $q&lt;q_{c1}$ corresponds to case 2, $q&gt;q_{c2}$ corresponds to case 4 and $q_{c1}&lt;q&lt;q_{c2}$ corresponds to case 1.</p>
+<p><img src="https://i.imgur.com/forouJf.png" alt=""></p>
+<h3 id="Evolution-path"><a href="#Evolution-path" class="headerlink" title="Evolution path"></a><strong>Evolution path</strong></h3><p>The budworm population can reach refuge level or outbreak level as time passes. In real-life, the budworm population can be catastrophic when at an equilibria of outbreak level, as the budworm may destroy the forest and break local ecological balance. It may happen that started in case 4, budworm population reaches outbreak level and result in carrying capacity q dropping to a level where only refuge level exists (i.e. case 2). Then the population will drop to the refuge level. Consequently, population in refuge level helps forest recover and q rises, followed by the same oscillations. In this case a hysteresis loop is obvious, where the path from outbreak level to refuge level and the return are not the same. </p>
+<p>To simulating this, the q is set to be a function on time:</p>
+<p>$$q=q_0+Q\sin(\omega t)$$</p>
+<p>in this example, $q_0=9$,$\ Q=3$,$\omega=0.01$, and r=0.56 stays constant. Under this setting, $q_{max}=12$ with only outbreak level, $q_{min}=6$ with only refuge level. The dynamics of the system is shown in figure 15, where a hysteresis loop is visible.</p>
+<p>The oscillation between outbreak and refuge mainly results from time-dependent q: it determines a jump between the two equilibria. The hysteresis tells that while forest destroyed, it is slow for species like budworm to develop firstly; also forest broken would cause instantly negative affect such that population would drop all the way to refuge level, where forest starts to recover.</p>
+<p><img src="https://i.imgur.com/mKWqZej.png" alt=""></p>
+<h2 id="Diffusion-model"><a href="#Diffusion-model" class="headerlink" title="Diffusion model"></a>Diffusion model</h2><p>Let $R$ be the spatial coordinates of a reaction-diffusion species (in this case, the spruce budworm), the general spatial evolution of the species can be described as </p>
+<p>$$\frac{\partial u\left({R},t\right)}{\partial t}=ru\left(1-\frac{u}{q}\right)-\frac{u^2}{1+u^2}+D\nabla^2u({R},t)$$</p>
+<p>where the term f(u) explains the population dynamics, $D\nabla^2u({R},t)$ explained the spatial diffusion and D denotes the diffusion constant that marks the diffusion “speed” or “efficiency” in the space $R$.</p>
+<h3 id="Spatial-behaviour-and-bifurcations"><a href="#Spatial-behaviour-and-bifurcations" class="headerlink" title="Spatial behaviour and bifurcations"></a>Spatial behaviour and bifurcations</h3><p>In one dimension (on a line $X$), the partial differential equation can be written as </p>
+<p>$$\frac{\partial u}{\partial t}=ru\left(1-\frac{u}{q}\right)-\frac{u^2}{1+u^2}+D\frac{\partial^2u}{\partial x^2}$$</p>
+<p>Under fixed boundary condition $(u\left(0,t\right)=u\left(l,t\right)=C$, $C$ constant), propose $u\left(x\right)=\sin(\pi x)$, then let $\frac{\partial u}{\partial t}=0$, we can find ($l$ is the length of the space ${X}$)</p>
+<p>$$f\left(u\right)=\frac{D\pi^2u}{l^2}$$</p>
+<p>Plot the curve of f(u) and line $\frac{D\pi^2u}{l^2}$ together, the intersections correspond to the root of the above equation:</p>
+<p><img src="https://i.imgur.com/BmVyV7T.png" alt=""></p>
+<p>The number of intersections can be 1, 2, or 3, and these cases have similar behaviour as discussed in the model without diffusion. In the model without diffusion the evolution is determined by the roots, i.e. the intersections of the curve f(u) and x-axis, but in diffusion model the evolution is determined by the intersections of the curve f(u) and line  $D\pi^2u/l^2$. Similarly, there are also tangency condition and the bifurcations depending on it. The evolution treads also agree with the computer simulation of the partial differential equation, whose results are present later to demonstrate the bifurcation.</p>
+<p>In the model without diffusion, the tangency condition is where part of the curve is tangent to the x-axis while in diffusion model, part of the curve is tangent to the line $D\pi^2u/l^2$:</p>
+<p><img src="https://i.imgur.com/YFaE1Zd.png" alt=""></p>
+<p>While parameters q and D are fixed, the numerical solution can be found as pairs of $u^\ast$ and $r_c$. There are two non-trivial critical r values: $r_{c1}$ and $r_{c2}$, where $\ r_{c1}&lt;r_{c2}$.</p>
+<p>The bifurcation depending on r can be described as: </p>
+<ul>
+<li>if $r&lt;r_{c1}$, then the population would stable at a refuge level regardless of the initial distribution $u_0\left(x\right)$;</li>
+<li>if $r_{c1}&lt;r&lt;r_{c2}$, then the population would stable at a refuge level for small $u_o(x)$, and at outbreak level for large $u_o(x)$. The dividing point of $u_o(x)$ is determined by the unstable root of the solution (the blue point in picture 16). This case is illustrated in figure 18.</li>
+<li>if $r&gt;r_{c2}$, then the population would stable at an outbreak level regardless of the initial distribution $u_0\left(x\right)$.</li>
+</ul>
+<p><img src="https://i.imgur.com/p6utRUP.png" alt=""></p>
+<p><img src="https://i.imgur.com/HQxoKkE.png" alt=""></p>
+<h3 id="Wave"><a href="#Wave" class="headerlink" title="Wave"></a>Wave</h3><p>A diffusion wave could be observed when the initial distribution is properly placed in the space ${X}$. To study the movement of the wave, for each spatial state, denote the maxima as M, then the mid-point $x_{mid}$ depending on the height of the curve could be found on the wave front (figure 19).</p>
+<p>The position of the $x_{mid}$ varies on time and could be used to represent the development of the wave front, i.e. measuring its velocity.</p>
+<p><img src="https://i.imgur.com/wPTwszo.png" alt=""></p>
+<h3 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h3><p>In these examples, $D=3,q=10,r=0.5,l=40$.</p>
+<p>Example 1: the budworms are localised uniformly in the first half of the space, with initial values $u_0=8$ for $0\le x\le50$. Computer simulations give that the wave front moves nearly at a steady speed. </p>
+<p><img src="https://i.imgur.com/KZw3xzQ.png" alt=""></p>
+<p>Example 2: the budworms are localised in a single point where $u_0=10,000$. The plot of wave front shows that high density in one point would see a rapid drop of population unstable wave developing speed. </p>
+<p><img src="https://i.imgur.com/Skx1aDA.png" alt=""></p>
+<h2 id="Conclusions-and-outlook"><a href="#Conclusions-and-outlook" class="headerlink" title="Conclusions and outlook"></a>Conclusions and outlook</h2><p>Bifurcations and complex conditions arise when adding an extra term to the basic logic model. The equation for spruce budworm model has a special curve shape thus it has up to 3 solutions in certain condition. The complexity is shown in the evolution path when changing parameters.</p>
+<p>The spatial behaviour is also model as an extension of the equation with diffusion term added, in this case the relationship between the line $y=D\pi^2u/l^2$ and the curve determines the spatial behaviours.<br>These models are helpful in predicting the forward movement of the budworm population, with parameters given.</p>
+<p>However, the model cannot represent exactly the real-life dynamics and consider all the factors that influence the budworm. Also, the assumptions in the diffusion model that $u\left(x\right)\approx\sin(\pi x)$ is not the exact solution form, as the theoretical numerical solutions and conditions are not meet the computer simulation model which represents the exact situation of the equation.</p>
+<p>Diffusions in higher dimensions have been studied with more complicated PDE method^4. The possible improvement of the model includes using the explicit environment system, or making corrections using real-life observations (e.g. adding another term to the equation to describe the system more specifically).</p>
+<blockquote>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a><strong>Reference</strong></h2><p>[1]     Powell, Jerry A., ed. <em>Biosystematic studies of conifer-feeding Choristoneura (Lepidoptera: Tortricidae) in the western United States</em>. Vol. 115. Univ of California Press, 1995.</p>
+<p>[2]     Morris, R. F. (1963). The dynamics of epidemic spruce budworm populations. <em>The Memoirs of the Entomological Society of Canada</em>, <em>95</em>(S31), 1-12.</p>
+<p>[3]     R. G. Van Driesche et al, <em>Forest Pest Insects in North America: a Photographic Guide</em>, <a href="https://www.forestpests.org/vd/index.html" target="_blank" rel="noopener">https://www.forestpests.org/vd/index.html</a></p>
+<p>[4]     Singh, M., Easton, A., Cui, G., &amp; Kozlova, I. (1998). NUMERICAL STUDY OF THE TWO‐DIMENSIONAL SPRUCE BUDWORM REACTION‐DIFFUSION EQUATION WITH DENSITY DEPENDENT DIFFUSION. Natural Resource Modeling, 11(2), 143-154.</p>
+</blockquote>
+<h2 id="Appendix"><a href="#Appendix" class="headerlink" title="Appendix"></a>Appendix</h2><h3 id="Python-Code"><a href="#Python-Code" class="headerlink" title="Python Code"></a>Python Code</h3><h4 id="homogenous-model"><a href="#homogenous-model" class="headerlink" title="homogenous model"></a>homogenous model</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Population Dynamics, time evolution</span></span><br><span class="line"><span class="comment"># homogenous model</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> scipy.integrate <span class="keyword">import</span> ode</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="keyword">from</span> numpy <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">x_list = []</span><br><span class="line">y_list = []</span><br><span class="line"></span><br><span class="line"><span class="comment"># initial values: u0 and t0</span></span><br><span class="line">y0, t0 = <span class="number">0.5</span>, <span class="number">0</span></span><br><span class="line">q_ini = <span class="number">9</span>   <span class="comment"># initial values: q0</span></span><br><span class="line">q = q_ini</span><br><span class="line">q_list=[]</span><br><span class="line"></span><br><span class="line"><span class="comment"># integration:</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span><span class="params">(t, y)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0.56</span>*y*(<span class="number">1</span>-y/q)-y**<span class="number">2</span>/(<span class="number">1</span>+y**<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">r = ode(f)</span><br><span class="line">r.set_initial_value(y0, t0)</span><br><span class="line"></span><br><span class="line">t1 = <span class="number">3000</span></span><br><span class="line">dt = <span class="number">0.1</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> r.successful() <span class="keyword">and</span> r.t &lt; t1:</span><br><span class="line">    <span class="comment"># print(r.t+dt, r.integrate(r.t+dt))</span></span><br><span class="line">    x_list.append(r.t+dt)</span><br><span class="line">    y_list.append(r.integrate(r.t+dt)[<span class="number">0</span>])</span><br><span class="line">    q = q_ini+<span class="number">3</span>*math.sin(<span class="number">0.01</span>*(r.t+dt))</span><br><span class="line">    q_list.append(q)</span><br><span class="line"></span><br><span class="line"><span class="comment"># plot:</span></span><br><span class="line">plt.plot(x_list, y_list,label= <span class="string">"population dynamics"</span>)</span><br><span class="line"></span><br><span class="line">plt.plot(range(<span class="number">3010</span>),[<span class="number">9.84581</span>]*<span class="number">3010</span>,linestyle= <span class="string">"--"</span>, label= <span class="string">r"outbreak level (for $q_&#123;max&#125;$)"</span>)</span><br><span class="line">plt.plot(range(<span class="number">3010</span>),[<span class="number">0.789337</span>]*<span class="number">3010</span>,linestyle= <span class="string">"--"</span>, label= <span class="string">r"refuge level (for $q_&#123;min&#125;$)"</span>)</span><br><span class="line">plt.plot(x_list,q_list,linestyle=<span class="string">":"</span>,label= <span class="string">r"$q=9+3\sin (0.01t)$"</span>)</span><br><span class="line">plt.legend(loc=<span class="string">"lower center"</span>,bbox_to_anchor=(<span class="number">0.5</span>, <span class="number">-0.15</span>), ncol=<span class="number">4</span>)</span><br><span class="line">plt.title(<span class="string">"Population Dynamics"</span>)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<h4 id="diffusion-model-time-evolution"><a href="#diffusion-model-time-evolution" class="headerlink" title="diffusion model, time evolution"></a>diffusion model, time evolution</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># diffusion model, time evolution</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="comment"># parameters:</span></span><br><span class="line">D = <span class="number">3</span></span><br><span class="line">k = <span class="number">10</span></span><br><span class="line">r = <span class="number">0.01</span></span><br><span class="line">l = <span class="number">40.</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># integration setup:</span></span><br><span class="line">N, M = <span class="number">100</span>, <span class="number">100000</span></span><br><span class="line">dX, dT = l/N, <span class="number">0.001</span></span><br><span class="line"></span><br><span class="line">B, E = r*dT, D*dT/(dX*dX)</span><br><span class="line"></span><br><span class="line">u = np.zeros((<span class="number">100</span>, M))</span><br><span class="line">u_t = np.zeros(M)</span><br><span class="line"></span><br><span class="line"><span class="comment"># define initial distribution</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">100</span>):</span><br><span class="line">    u[i][<span class="number">0</span>] = <span class="number">5</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># fixed BC:</span></span><br><span class="line"><span class="keyword">for</span> t <span class="keyword">in</span> range(<span class="number">1</span>, M):</span><br><span class="line">    <span class="comment">#u[0][t] = u[0][0]</span></span><br><span class="line">    <span class="comment">#u[N-1][t] = u[N-1][0]</span></span><br><span class="line">    u[<span class="number">0</span>][t] = <span class="number">0.</span></span><br><span class="line">    u[N<span class="number">-1</span>][t] = <span class="number">0.</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#print(u)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> t <span class="keyword">in</span> range(<span class="number">1</span>, M):</span><br><span class="line">    u_t[t]=<span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">1</span>, N<span class="number">-1</span>):</span><br><span class="line">        u[x][t] = u[x][t<span class="number">-1</span>]+B*u[x][t<span class="number">-1</span>]*(<span class="number">1</span>-u[x][t<span class="number">-1</span>]/k)+E*(u[x+<span class="number">1</span>][t<span class="number">-1</span>]<span class="number">-2</span>*u[x][t<span class="number">-1</span>]+u[x<span class="number">-1</span>][t<span class="number">-1</span>])</span><br><span class="line">        u_t[t]+=u[x][t]</span><br><span class="line">    <span class="comment"># zero-flux BC:</span></span><br><span class="line">    <span class="comment">#u[0][t]=u[1][t]</span></span><br><span class="line">    <span class="comment">#u[N-1][t]=u[N-2][t]</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># plot spatial patterns vs time:</span></span><br><span class="line">plt.figure(<span class="number">10</span>, figsize=(<span class="number">11</span>, <span class="number">7</span>))</span><br><span class="line"><span class="keyword">for</span> t <span class="keyword">in</span> range(<span class="number">20</span>, M, <span class="number">10000</span>):</span><br><span class="line">    plt.plot(range(<span class="number">100</span>), u[:, t], label = <span class="string">"%d"</span> %t)</span><br><span class="line">    <span class="comment">#plt.savefig("cp5/%d.png" %t)</span></span><br><span class="line"><span class="comment">#plt.legend(loc="best")</span></span><br><span class="line">plt.ylim(<span class="number">0</span>,<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># plot total population vs time:</span></span><br><span class="line">plt.figure()</span><br><span class="line">plt.plot(range(<span class="number">2</span>,M),u_t[<span class="number">2</span>:])</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<h4 id="diffusion-model-wave-front"><a href="#diffusion-model-wave-front" class="headerlink" title="diffusion model, wave front"></a>diffusion model, wave front</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># diffusion model, wave front</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="comment"># parameters:</span></span><br><span class="line">D = <span class="number">3.</span></span><br><span class="line">k = <span class="number">10.</span></span><br><span class="line">r = <span class="number">0.5</span></span><br><span class="line">l = <span class="number">40.</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># integration setup:</span></span><br><span class="line">N, M = <span class="number">100</span>, <span class="number">60000</span></span><br><span class="line">dX, dT = l/N, <span class="number">0.001</span></span><br><span class="line"></span><br><span class="line">B, E = r*dT, D*dT/(dX*dX)</span><br><span class="line"></span><br><span class="line">u = np.zeros((<span class="number">100</span>, M))</span><br><span class="line">u_t = np.zeros(M)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># define initial distributions:</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">50</span>): <span class="comment"># distributed in the first half</span></span><br><span class="line">    u[i][<span class="number">0</span>] = <span class="number">8</span></span><br><span class="line"><span class="comment">#u[5][0]=10000      # distributed in a single point</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># fixed BC:</span></span><br><span class="line"><span class="keyword">for</span> t <span class="keyword">in</span> range(<span class="number">1</span>, M):</span><br><span class="line">    <span class="comment">#u[0][t] = u[0][0]</span></span><br><span class="line">    <span class="comment">#u[N-1][t] = u[N-1][0]</span></span><br><span class="line">    u[<span class="number">0</span>][t] = <span class="number">0.</span></span><br><span class="line">    u[N<span class="number">-1</span>][t] = <span class="number">0.</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#print(u)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> t <span class="keyword">in</span> range(<span class="number">1</span>, M):</span><br><span class="line">    u_t[t]=<span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">1</span>, N<span class="number">-1</span>):</span><br><span class="line">        u[x][t] = u[x][t<span class="number">-1</span>]+B*u[x][t<span class="number">-1</span>]*(<span class="number">1</span>-u[x][t<span class="number">-1</span>]/k)-\</span><br><span class="line">                  dT*(u[x][t<span class="number">-1</span>]*u[x][t<span class="number">-1</span>]/(<span class="number">1</span>+u[x][t<span class="number">-1</span>]*u[x][t<span class="number">-1</span>]))+\</span><br><span class="line">                  E*(u[x+<span class="number">1</span>][t<span class="number">-1</span>]<span class="number">-2</span>*u[x][t<span class="number">-1</span>]+u[x<span class="number">-1</span>][t<span class="number">-1</span>])</span><br><span class="line">        u_t[t]+=u[x][t]</span><br><span class="line">    <span class="comment"># zero-flux BC:</span></span><br><span class="line">    <span class="comment">#u[0][t]=u[1][t]</span></span><br><span class="line">    <span class="comment">#u[N-1][t]=u[N-2][t]</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># plot spatial patterns vs time:</span></span><br><span class="line">plt.figure(<span class="number">10</span>, figsize=(<span class="number">11</span>, <span class="number">7</span>))</span><br><span class="line"><span class="keyword">for</span> t <span class="keyword">in</span> range(<span class="number">20</span>, M, <span class="number">5000</span>):</span><br><span class="line">    plt.plot(range(<span class="number">100</span>), u[:, t], label = <span class="string">"%d"</span> %t)</span><br><span class="line">    <span class="comment">#plt.savefig("cp5/%d.png" %t)</span></span><br><span class="line"><span class="comment">#plt.legend(loc="best")</span></span><br><span class="line">plt.title(<span class="string">"r = "</span> + str(r) + <span class="string">"   u0 = "</span> + str(u[<span class="number">0</span>][<span class="number">0</span>]))</span><br><span class="line">plt.ylim(<span class="number">0</span>,<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># plot total population vs time:</span></span><br><span class="line">plt.figure()</span><br><span class="line">plt.plot(range(<span class="number">2</span>,M),u_t[<span class="number">2</span>:])</span><br><span class="line">plt.title(<span class="string">"r = "</span> + str(r) + <span class="string">"   u0 = "</span> + str(u[<span class="number">0</span>][<span class="number">0</span>]))</span><br><span class="line"></span><br><span class="line"><span class="comment">#plt.show()</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># mid-point setup:</span></span><br><span class="line">midPt = []</span><br><span class="line">maxXList = []</span><br><span class="line"><span class="comment"># calculate mid-point:</span></span><br><span class="line"><span class="keyword">for</span> t <span class="keyword">in</span> range(<span class="number">1</span>, M):</span><br><span class="line">    midPtY = u[:, t].max()/<span class="number">2</span></span><br><span class="line">    maxX = u[:, t].argmax()</span><br><span class="line">    maxXList.append(maxX)</span><br><span class="line">    newU = abs(u[maxX:, t]-midPtY)</span><br><span class="line">    misPtX = newU.argmin()+maxX</span><br><span class="line">    midPt.append(misPtX)</span><br><span class="line"></span><br><span class="line"><span class="comment">#print(midPt[0:100])</span></span><br><span class="line"><span class="comment">#print(maxXList[0:100])</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># plot mid-point:</span></span><br><span class="line">plt.figure()</span><br><span class="line">plt.plot(range(<span class="number">1</span>,M),midPt)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
 
-      
-        
-          
-            <p>
-              
-This is a research project done by me and submitted as a part of an assignment.
-Reference usage only.
-
-AbstractSpruce budworm’s population dynamics a
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/myblog.github.io/pdeproject-md/" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
       
     </div>
 
     
-
     
     
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
+      </footer>
   </article>
+  
+  
+  
 
-
-    
       
-
-  
-
   
   
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://github.com/ChaosRinkHan/myblog.github.io/myblog.github.io/alongthewinter/">
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="default">
+    <link itemprop="mainEntityOfPage" href="https://github.com/ChaosRinkHan/myblog.github.io/alongthewinter/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/myblog.github.io/images/icn.jpg">
       <meta itemprop="name" content="Chaolin Han">
       <meta itemprop="description" content="Our business is life itself.">
-      <meta itemprop="image" content="/myblog.github.io/images/icn.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="EXECUTER">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/myblog.github.io/alongthewinter/" class="post-title-link" itemprop="url">Along the winter</a>
-              
-            
-          </h1>
-        
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/myblog.github.io/alongthewinter/" class="post-title-link" itemprop="url">Along the winter</a>
+        </h2>
 
         <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
+                <i class="far fa-calendar"></i>
               </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
+              <span class="post-meta-item-text">Posted on</span>
               
 
               <time title="Created: 2019-03-24 00:06:57 / Modified: 00:13:13" itemprop="dateCreated datePublished" datetime="2019-03-24T00:06:57+00:00">2019-03-24</time>
-            
-
-            
-              
-
-              
-            
-          </span>
+            </span>
 
           
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
+  
+  
 
         </div>
       </header>
-    
 
     
     
@@ -1429,169 +833,89 @@ AbstractSpruce budworm’s population dynamics a
     <div class="post-body" itemprop="articleBody">
 
       
-      
+          <h1 id="个人选片和出片"><a href="#个人选片和出片" class="headerlink" title="个人选片和出片"></a>个人选片和出片</h1><p>最近经常思考，我要拍什么东西？</p>
+<p>我拍过大片。银河，车轨。</p>
+<p>可是我还是更喜欢街头。更喜欢小品一样的格局，更喜欢不经意的对比。</p>
+<p>这些是这个冬天前后，我最满意的几张照片。没有一张是大片。</p>
+<p>最近在看<a href="https://www.magnumphotos.com" target="_blank" rel="noopener">马格南</a>。我想我想拍的不是记录也不是绚丽的光影吧。</p>
+<p>有时候符合大众审美，讨喜眼球的往往是一种类型；当谈到当代摄影、街头摄影、人文时，这些相片可能一点都不好看。它们的价值在于内涵，在于能柔和思想和现实，用现代的摄影方法呈现出来。</p>
+<p>我最近也在选镜头。最希望的是35mm的定焦手动镜头。希望之后能够从35mm出发吧。</p>
+<p>这就是我的思路。它们可能之前都没发过，但是这是我个人<strong>这么两三千张照片中</strong>最喜欢的。</p>
+<h1 id="电桩"><a href="#电桩" class="headerlink" title="电桩"></a>电桩</h1><p><img src="https://i.imgur.com/UwuDLMP.jpg" alt="DSC06583"></p>
+<p><img src="https://i.imgur.com/RejLUNG.jpg" alt="DSC08318"><br>向四周延伸的电线。蔚蓝的天下面有多少张网呢。</p>
+<h1 id="光"><a href="#光" class="headerlink" title="光"></a>光</h1><p><img src="https://i.imgur.com/OIAYFIS.jpg" alt="DSC06810"></p>
+<p>逆光日落，红砖迎着余晖。</p>
+<p><img src="https://i.imgur.com/rS42MbK.jpg" alt="DSC07008"></p>
+<p>色彩和边界</p>
+<p><img src="https://i.imgur.com/v8L9svN.jpg" alt="DSC07052"></p>
+<p>蓝调时间港口的灯光。</p>
+<p><img src="https://i.imgur.com/7AE4Nxn.jpg" alt="DSC07954"></p>
+<p>站在浮标上面的海鸥(?)。即使是正午的太阳也是大幅度斜射。细波纹的湖面上还能看到明暗相见的光影。</p>
+<h1 id="夜"><a href="#夜" class="headerlink" title="夜"></a>夜</h1><p><img src="https://i.imgur.com/zFkQANj.jpg" alt="DSC07835 1"></p>
+<h1 id="建筑"><a href="#建筑" class="headerlink" title="建筑"></a>建筑</h1><p><img src="https://i.imgur.com/CfRGE8H.jpg" alt="DSC07980"></p>
+<p>这样好看的蓝色的净空可遇不可求。我最喜欢的构图。每次看到它我都会想起《布达佩斯大饭店》。</p>
+<p>我最想拍的形式，最投入的题材。</p>
+<p><img src="https://i.imgur.com/lcKuA2m.jpg" alt="DSC08267"></p>
+<h1 id="Still-Things"><a href="#Still-Things" class="headerlink" title="Still Things"></a>Still Things</h1><p><img src="https://i.imgur.com/6IgsfXZ.jpg" alt="DSC08082"></p>
 
-      
-        
-          
-            <p>
-              个人选片和出片最近经常思考，我要拍什么东西？
-我拍过大片。银河，车轨。
-可是我还是更喜欢街头。更喜欢小品一样的格局，更喜欢不经意的对比。
-这些是这个冬天前后，我最满意的几张照片。没有一张是大片。
-最近在看马格南。我想我想拍的不是记录也不是绚丽的光影吧。
-有时候符合大众审美，讨喜眼球的往往是一种类型；
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/myblog.github.io/alongthewinter/" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
       
     </div>
 
     
-
     
     
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
+      </footer>
   </article>
+  
+  
+  
 
-
-    
       
-
-  
-
   
   
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://github.com/ChaosRinkHan/myblog.github.io/myblog.github.io/aboutfonts/">
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="default">
+    <link itemprop="mainEntityOfPage" href="https://github.com/ChaosRinkHan/myblog.github.io/aboutfonts/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/myblog.github.io/images/icn.jpg">
       <meta itemprop="name" content="Chaolin Han">
       <meta itemprop="description" content="Our business is life itself.">
-      <meta itemprop="image" content="/myblog.github.io/images/icn.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="EXECUTER">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/myblog.github.io/aboutfonts/" class="post-title-link" itemprop="url">杂──关于字体</a>
-              
-            
-          </h1>
-        
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/myblog.github.io/aboutfonts/" class="post-title-link" itemprop="url">杂──关于字体</a>
+        </h2>
 
         <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
+                <i class="far fa-calendar"></i>
               </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
+              <span class="post-meta-item-text">Posted on</span>
 
               <time title="Created: 2019-03-12 23:20:59" itemprop="dateCreated datePublished" datetime="2019-03-12T23:20:59+00:00">2019-03-12</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
+            </span>
+              <span class="post-meta-item">
                 <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
+                  <i class="far fa-calendar-check"></i>
                 </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
+                <span class="post-meta-item-text">Edited on</span>
                 <time title="Modified: 2019-03-13 00:41:55" itemprop="dateModified" datetime="2019-03-13T00:41:55+00:00">2019-03-13</time>
-              
-            
-          </span>
+              </span>
 
           
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
+  
+  
 
         </div>
       </header>
-    
 
     
     
@@ -1599,324 +923,84 @@ AbstractSpruce budworm’s population dynamics a
     <div class="post-body" itemprop="articleBody">
 
       
-      
+          <blockquote>
+<p>最近写论文写邮件，还是想起了很多和字体有关的东西。</p>
+</blockquote>
+<h2 id="很多字体不免费，谨慎使用"><a href="#很多字体不免费，谨慎使用" class="headerlink" title="很多字体不免费，谨慎使用"></a>很多字体不免费，谨慎使用</h2><blockquote>
+<p>2018年8月27日，一名网络创作者<a href="https://zh.wikipedia.org/wiki/Joeman" target="_blank" rel="noopener">Joeman</a>发布影片表示，威锋数位向多名网络创作者（有打开广告营利的Youtuber）收取一年商用字体授权费。该影片指出，威锋向网络创作者收取微软内置字体（新细明体、标楷体）之商用授权费，而引发字体授权争议。 对此字体授权争议，威锋数位于9月10日发布声明澄清，表示从未主动向任何营利或非营利单位收取微软内置字体的授权费，未来亦不会收取微软内置字体的授权费用，无论商用或非商用。<a href="https://www.dynacw.com.tw/news/news_detail.aspx?s=39&amp;r=1" target="_blank" rel="noopener">华康字体授权声明</a></p>
+</blockquote>
+<p>这也是我开始了解字体（字形）<strong>授权</strong>的起因。我一直关注Joeman，当时同时也爆出好几个youtuber遭遇这事，就越来越引起人们的注意了。同时在去年年末，我也在B站上面看到一些因为字体授权而产生争端的事情。</p>
+<p>微软的数款自带字体（内建字形）都<strong>不是</strong>无版权的，例如很著名的<strong>华康、方正、汉仪</strong>。在很多商业情况和绝大多数非营利作品中使用它们都有不同的规定，贸然使用需要付费的字体未被发现只是侥幸而已。特别是修图做海报，电商宣传图之类的事情：</p>
+<p><a href="https://zhuanlan.zhihu.com/p/28712652" target="_blank" rel="noopener">那些年，收到的方正字体侵权律师函</a></p>
+<p>当时Joeman爆出争端的就是新細明體。我之前在玩手机主题的时候就对这简洁优雅的字体很有好感。YouTube上面大部分封面印字都使用的是这款字体。我最喜欢的<strong>冬青</strong>也是需要授权才能使用的。</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/MingLiu.svg/2880px-MingLiu.svg.png" alt="MingLiu.svg"></p>
+<p><img src="https://i.imgur.com/xh2Zb9o.png" alt="image-20190312234809453"></p>
+<h2 id="字体设计"><a href="#字体设计" class="headerlink" title="字体设计"></a>字体设计</h2><p>字体设计也非一日之寒，特别是中国汉字字体设计。中国汉字需要结合形、意，以及艺术美感、书法渊源、造字法等进行设计，同时需要考虑大量的字形问题，例如横竖撇捺的粗细、长度，字形衬线和匀称，以及最重要的，在印刷品和屏幕上的显示效果。设计中文字体需要大师的功底和艺术家的创造力，设计出具有表现张力和能展现中文力度与美感的字体更是如此。</p>
+<p>Google Product Sans和三星的新产品字体SamungOne都是十分好看的非开放西文字体。好看的字体会让人多看几眼，停留在它创造出来的设计感之中。</p>
+<p><img src="https://i.imgur.com/aT6akWl.png" alt="image-20190312235735831"></p>
+<p><img src="https://i.imgur.com/cProFeU.png" alt="image-20190312235920596"></p>
+<p>Google Produce Sans的设计──<a href="https://design.google/library/evolving-google-identity/" target="_blank" rel="noopener">Google品牌更新过程</a></p>
+<p><img src="https://i.imgur.com/xyQwLcs.png" alt="image-20190313001700669"></p>
+<p><a href="http://design.samsung.com/global/contents/samsungone/" target="_blank" rel="noopener">SamsungOne</a></p>
+<p>各位有闲心可以把手机的系统语言换为繁体中文，感受一下明细体。从设计上来讲明细体遵从书法和演化中的很多规则，个人认为更加赏心悦目。</p>
+<h2 id="免费字体"><a href="#免费字体" class="headerlink" title="免费字体"></a>免费字体</h2><p>好看的免费字体其实非常多。Google和Adobe家有很多。</p>
+<p><a href="https://36kr.com/p/213783.html" target="_blank" rel="noopener">Adobe与Google共同推出的开源中日韩文字体</a></p>
+<p><a href="https://www.zhihu.com/question/19889152" target="_blank" rel="noopener">哪些中文字体可免费用于商业用途？</a></p>
+<p><a href="https://www.zhihu.com/question/19594120" target="_blank" rel="noopener">好看且免费的 Web Font 有哪些推荐？</a></p>
+<p>字体也是有版权的。希望大家以后都不要走到坑里吧。</p>
 
-      
-        
-          
-            <p>
-              
-最近写论文写邮件，还是想起了很多和字体有关的东西。
-
-很多字体不免费，谨慎使用
-2018年8月27日，一名网络创作者Joeman发布影片表示，威锋数位向多名网络创作者（有打开广告营利的Youtuber）收取一年商用字体授权费。该影片指出，威锋向网络创作者收取微软内置字体（新细明体、标楷体）之商用授
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/myblog.github.io/aboutfonts/" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
       
     </div>
 
     
-
     
     
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
+      </footer>
   </article>
+  
+  
+  
 
-
-    
       
-
-  
-
   
   
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://github.com/ChaosRinkHan/myblog.github.io/myblog.github.io/poweredto7_hopefully/">
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="default">
+    <link itemprop="mainEntityOfPage" href="https://github.com/ChaosRinkHan/myblog.github.io/powered-to-7-0/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/myblog.github.io/images/icn.jpg">
       <meta itemprop="name" content="Chaolin Han">
       <meta itemprop="description" content="Our business is life itself.">
-      <meta itemprop="image" content="/myblog.github.io/images/icn.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="EXECUTER">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/myblog.github.io/poweredto7_hopefully/" class="post-title-link" itemprop="url">Powered to 7.0 — Finally and Hopefully</a>
-              
-            
-          </h1>
-        
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/myblog.github.io/powered-to-7-0/" class="post-title-link" itemprop="url">Powered to 7.0</a>
+        </h2>
 
         <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
+                <i class="far fa-calendar"></i>
               </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-03-01 01:49:30" itemprop="dateCreated datePublished" datetime="2019-03-01T01:49:30+00:00">2019-03-01</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-03-12 23:24:06" itemprop="dateModified" datetime="2019-03-12T23:24:06+00:00">2019-03-12</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>
-              好久没写博客了。终于顺利升级了，还升级到7.0了
-考雅思压力真的大，考不好就回家喝稀饭了。
-上次考雅思准备太久压力堆积，发挥不好，这次已经从主观上放松和看淡了（后天考试，今天还在没事一样地写博客）。
-最近还遇到了了很多扎心的事情，都在这个时间段内，真的感觉重压之下喘息费力，特别是前两周。我用三星健康
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/myblog.github.io/poweredto7_hopefully/" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://github.com/ChaosRinkHan/myblog.github.io/myblog.github.io/powered-to-7-0/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Chaolin Han">
-      <meta itemprop="description" content="Our business is life itself.">
-      <meta itemprop="image" content="/myblog.github.io/images/icn.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="EXECUTER">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/myblog.github.io/powered-to-7-0/" class="post-title-link" itemprop="url">Powered to 7.0</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
+              <span class="post-meta-item-text">Posted on</span>
               
 
               <time title="Created: 2019-03-01 01:49:30 / Modified: 02:23:49" itemprop="dateCreated datePublished" datetime="2019-03-01T01:49:30+00:00">2019-03-01</time>
-            
-
-            
-              
-
-              
-            
-          </span>
+            </span>
 
           
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
+  
+  
 
         </div>
       </header>
-    
 
     
     
@@ -1924,167 +1008,162 @@ AbstractSpruce budworm’s population dynamics a
     <div class="post-body" itemprop="articleBody">
 
       
-      
+          <p><strong>Next主题</strong>升级到7.0了。之前一从5.1.x升级失败，现在一步到位，powered to 7.0.</p>
+<h2 id="Hack-Guide"><a href="#Hack-Guide" class="headerlink" title="Hack Guide"></a>Hack Guide</h2><p>6.0之后，主仓库已从 <a href="https://github.com/iissnan/hexo-theme-next">iissnan 名下</a> 迁移至 <a href="https://github.com/theme-next">theme-next</a> 组织，参考<a href="https://github.com/theme-next/hexo-theme-next/blob/master/docs/zh-CN/README.md">这里</a>。</p>
+<p><a href="https://github.com/theme-next/hexo-theme-next/blob/master/docs/zh-CN/UPDATE-FROM-5.1.X.md">官方升级教程</a></p>
+<p>已经越来越完善，越来越成熟，各种bug基本已经被解决掉，包括曾经困扰我多日的子路径重复问题。同时代码也越来注重独立性，js和第三方插件也越来越规范，用起来的确是十分方便。</p>
+<h2 id="Configuration"><a href="#Configuration" class="headerlink" title="Configuration"></a>Configuration</h2><p>将7.0克隆到目录后，主要对比新旧版本的config.yml文件进行配置；同时注意将之前的自定义样式对应导入新主题目录下：</p>
+<blockquote>
+<ol>
+<li><code>config.yml</code> 或 <code>next.yml</code>（如果你使用了<a href="https://github.com/theme-next/hexo-theme-next/blob/master/docs/zh-CN/DATA-FILES.md">数据文件</a>）。</li>
+<li>自定义的 CSS 配置，它们应在 <code>next/source/css/_custom/*</code> 和 <code>next/source/css/_variables/*</code> 中。</li>
+<li>自定义的排布配置，它们应在 <code>next/layout/_custom/*</code> 中。</li>
+<li>任何其它可能的附加自定义内容；为了定位它们，你可以通过某些工具在仓库间比较。</li>
+</ol>
+</blockquote>
+<p>这里推荐Atom对比工具Split Diff：对比修改十分方便，同步滚动，修改内容后亦是实时对比：</p>
+<p><img src="https://i.imgur.com/u4iqrFt.png" alt="Screenshot 2019-03-01 at 01.09.14"></p>
+<h2 id="Add-Ons"><a href="#Add-Ons" class="headerlink" title="Add-Ons"></a>Add-Ons</h2><p>许多第三方工具也变得更加易用，包括评论系统和字数/访客统计系统。这次我使用了valine的<strong>无后端评论系统</strong>，大家可以<strong>直接评论而不需要登录、填写个人信息</strong>（样式见下方测试）。</p>
+<hr>
 
-      
-        
-          
-            <p>
-              Next主题升级到7.0了。之前一从5.1.x升级失败，现在一步到位，powered to 7.0.
-Hack Guide6.0之后，主仓库已从 iissnan 名下 迁移至 theme-next 组织，参考这里。
-官方升级教程
-已经越来越完善，越来越成熟，各种bug基本已经被解决掉，包括曾经困扰我
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/myblog.github.io/powered-to-7-0/" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
       
     </div>
 
     
-
     
     
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
+      </footer>
   </article>
+  
+  
+  
 
-
-    
       
-
-  
-
   
   
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://github.com/ChaosRinkHan/myblog.github.io/myblog.github.io/za01/">
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="default">
+    <link itemprop="mainEntityOfPage" href="https://github.com/ChaosRinkHan/myblog.github.io/poweredto7_hopefully/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/myblog.github.io/images/icn.jpg">
       <meta itemprop="name" content="Chaolin Han">
       <meta itemprop="description" content="Our business is life itself.">
-      <meta itemprop="image" content="/myblog.github.io/images/icn.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="EXECUTER">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/myblog.github.io/za01/" class="post-title-link" itemprop="url">Seeing inside</a>
-              
-            
-          </h1>
-        
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/myblog.github.io/poweredto7_hopefully/" class="post-title-link" itemprop="url">Powered to 7.0 — Finally and Hopefully</a>
+        </h2>
 
         <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
+                <i class="far fa-calendar"></i>
               </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
+              <span class="post-meta-item-text">Posted on</span>
 
-              
-                
-              
+              <time title="Created: 2019-03-01 01:49:30" itemprop="dateCreated datePublished" datetime="2019-03-01T01:49:30+00:00">2019-03-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-03-12 23:24:06" itemprop="dateModified" datetime="2019-03-12T23:24:06+00:00">2019-03-12</time>
+              </span>
+
+          
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>好久没写博客了。终于顺利升级了，<a href="https://chaosrinkhan.github.io/myblog.github.io/powered-to-7-0/" target="_blank" rel="noopener">还升级到7.0了</a></p>
+<p>考雅思压力真的大，考不好就回家喝稀饭了。</p>
+<p>上次考雅思准备太久压力堆积，发挥不好，这次已经从主观上放松和看淡了（后天考试，今天还在没事一样地写博客）。</p>
+<p>最近还遇到了了很多扎心的事情，都在这个时间段内，真的感觉重压之下喘息费力，特别是前两周。我用三星健康测试得到的压力已经爆表了。</p>
+<p>我最近在看佛教的一些东西，听了点佛经，也抄了点佛经。宗教的问题可以开一篇单独聊聊的。其实不是信不信的问题，也不是思辨科学看待就能置身度外来了解的状态。有时候什么都不去想反而认真看一看真的能让重负之下的神经得以舒张。</p>
+<p>How to regain my power, 这似乎一直都是我这么多年忽视的问题。突然一想，我也竟然因为雅思这么紧张。当年我怕过什么？有什么是不能忍受和解决的呢？</p>
+<p>从十年前开始就植根于我心中的图腾和信条竟然快被我在这走向自我舒适的生活中忘记了。我想大学的时候就快忘了吧。现在突然发现，我活得太软弱了。人都活得太软弱了。</p>
+<p>突然想起，是因为看到奥斯卡最佳纪录长篇颁给了<a href="https://movie.douban.com/subject/30167509/" target="_blank" rel="noopener">《徒手攀岩》</a>。用肉身攀上绝壁，每一个指尖都承载这你生命的几分之一。我在想他们思考着什么，他们有什么样的精神境界，又有如何异于常人的决心和毅力？</p>
+<p>特别是当我看到2018年，有数位职业攀岩者沿着他的线路攀爬但不幸坠亡的消息的时候。</p>
+<p><strong>How to fear nothing at all?</strong></p>
+<blockquote>
+<p><strong>OZUNU:</strong></p>
+<p><strong>Weakness compels strength.</strong><br><strong>Betrayal begets blood.</strong></p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="default">
+    <link itemprop="mainEntityOfPage" href="https://github.com/ChaosRinkHan/myblog.github.io/za01/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/myblog.github.io/images/icn.jpg">
+      <meta itemprop="name" content="Chaolin Han">
+      <meta itemprop="description" content="Our business is life itself.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="EXECUTER">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/myblog.github.io/za01/" class="post-title-link" itemprop="url">Seeing inside</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
 
               <time title="Created: 2019-01-05 00:00:25" itemprop="dateCreated datePublished" datetime="2019-01-05T00:00:25+00:00">2019-01-05</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
+            </span>
+              <span class="post-meta-item">
                 <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
+                  <i class="far fa-calendar-check"></i>
                 </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
+                <span class="post-meta-item-text">Edited on</span>
                 <time title="Modified: 2019-09-29 01:53:23" itemprop="dateModified" datetime="2019-09-29T01:53:23+01:00">2019-09-29</time>
-              
-            
-          </span>
+              </span>
 
           
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
+  
+  
 
         </div>
       </header>
-    
 
     
     
@@ -2092,160 +1171,73 @@ Hack Guide6.0之后，主仓库已从 iissnan 名下 迁移至 theme-next 组织
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
           The article has been encrypted, please enter your password to view.<br>
           <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/myblog.github.io/za01/" rel="contents">
+            <div class="post-button">
+              <a class="btn" href="/myblog.github.io/za01/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
-          
           <!--/noindex-->
         
       
     </div>
 
     
-
     
     
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
+      </footer>
   </article>
+  
+  
+  
 
-
-    
       
-
-  
-
   
   
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://github.com/ChaosRinkHan/myblog.github.io/myblog.github.io/photocollection2018/">
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="default">
+    <link itemprop="mainEntityOfPage" href="https://github.com/ChaosRinkHan/myblog.github.io/photocollection2018/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/myblog.github.io/images/icn.jpg">
       <meta itemprop="name" content="Chaolin Han">
       <meta itemprop="description" content="Our business is life itself.">
-      <meta itemprop="image" content="/myblog.github.io/images/icn.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="EXECUTER">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/myblog.github.io/photocollection2018/" class="post-title-link" itemprop="url">Collection of 2018</a>
-              
-            
-          </h1>
-        
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/myblog.github.io/photocollection2018/" class="post-title-link" itemprop="url">Collection of 2018</a>
+        </h2>
 
         <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
+                <i class="far fa-calendar"></i>
               </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
+              <span class="post-meta-item-text">Posted on</span>
 
               <time title="Created: 2018-12-30 23:08:10" itemprop="dateCreated datePublished" datetime="2018-12-30T23:08:10+00:00">2018-12-30</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
+            </span>
+              <span class="post-meta-item">
                 <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
+                  <i class="far fa-calendar-check"></i>
                 </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
+                <span class="post-meta-item-text">Edited on</span>
                 <time title="Modified: 2018-12-31 01:33:11" itemprop="dateModified" datetime="2018-12-31T01:33:11+00:00">2018-12-31</time>
-              
-            
-          </span>
+              </span>
 
           
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
+  
+  
 
         </div>
       </header>
-    
 
     
     
@@ -2253,196 +1245,127 @@ Hack Guide6.0之后，主仓库已从 iissnan 名下 迁移至 theme-next 组织
     <div class="post-body" itemprop="articleBody">
 
       
-      
+          <p><img src="https://i.imgur.com/6QJ1z1d.jpg" alt="DSC00935"></p>
+<p>2018/3/10    @奉贤海湾</p>
+<blockquote>
+<p>图中的人不是我</p>
+</blockquote>
+<hr>
+<p><img src="https://i.imgur.com/dFxfiuG.jpg" alt="DSC01650"></p>
+<p>2018/4/21    @槟城</p>
+<blockquote>
+<p>升旗山俯瞰槟城</p>
+</blockquote>
+<hr>
+<p><img src="https://i.imgur.com/5vXY7XY.jpg" alt="DSC02462_1"></p>
+<p>2018/5/2    @奉贤海湾</p>
+<blockquote>
+<p>日出</p>
+</blockquote>
+<hr>
+<p><img src="https://i.imgur.com/EVIycyW.jpg" alt="DSC02787"></p>
+<p>2018/5/19    @苏州</p>
+<blockquote>
+<p>园林</p>
+</blockquote>
+<hr>
+<p><img src="https://i.imgur.com/PTXY3Mk.jpg" alt="DSC03546_1"></p>
+<p>2018/6/3    @宏村</p>
+<blockquote>
+<p>夜景</p>
+</blockquote>
+<hr>
+<p><img src="https://i.imgur.com/Pj2uJoF.jpg" alt="XLF_0445"></p>
+<p>2018/6/18    @学校</p>
+<blockquote>
+<p>夜景</p>
+</blockquote>
+<hr>
+<p><img src="https://i.imgur.com/GB0GA3w.jpg" alt="DSC04469"></p>
+<p>2018/8/8    @深山</p>
+<blockquote>
+<p>银河</p>
+</blockquote>
+<hr>
+<p><img src="https://i.imgur.com/o3AB05N.jpg" alt="DSC05925"></p>
+<p>2018/8/31    @家</p>
+<blockquote>
+<p>Dusk</p>
+</blockquote>
+<hr>
+<p><img src="https://i.imgur.com/CFZSzmY.jpg" alt="DSC06423"></p>
+<p>2018/9/29    @海边</p>
+<hr>
+<p><img src="https://i.imgur.com/TqrU2zn.jpg" alt="DSC06866"></p>
+<p>2018/11/23    @圣诞市场</p>
+<hr>
+<p><img src="https://i.imgur.com/2eGlRAP.jpg" alt="DSC07018"></p>
+<p>2018/12/16    @Titanic Belfast</p>
+<blockquote>
+<p>简单的几何学</p>
+</blockquote>
+<hr>
+<p><img src="https://i.imgur.com/mTfMADm.jpg" alt="DSC07259"></p>
+<p>2018/12/19    @伦敦</p>
 
-      
-        
-          
-            <p>
-              
-2018/3/10    @奉贤海湾
-
-图中的人不是我
-
-
-
-2018/4/21    @槟城
-
-升旗山俯瞰槟城
-
-
-
-2018/5/2    @奉贤海湾
-
-日出
-
-
-
-2018/5/19    @苏州
-
-园林
-
-
-
-2018/6/3    @宏村
-
-夜景
-
-
-
-2018/6/18    @学校
-
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/myblog.github.io/photocollection2018/" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
       
     </div>
 
     
-
     
     
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
+      </footer>
   </article>
+  
+  
+  
 
-
-    
       
-
-  
-
   
   
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://github.com/ChaosRinkHan/myblog.github.io/myblog.github.io/atriptolondon/">
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="default">
+    <link itemprop="mainEntityOfPage" href="https://github.com/ChaosRinkHan/myblog.github.io/atriptolondon/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/myblog.github.io/images/icn.jpg">
       <meta itemprop="name" content="Chaolin Han">
       <meta itemprop="description" content="Our business is life itself.">
-      <meta itemprop="image" content="/myblog.github.io/images/icn.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="EXECUTER">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/myblog.github.io/atriptolondon/" class="post-title-link" itemprop="url">Photos of London</a>
-              
-            
-          </h1>
-        
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/myblog.github.io/atriptolondon/" class="post-title-link" itemprop="url">Photos of London</a>
+        </h2>
 
         <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
+                <i class="far fa-calendar"></i>
               </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
+              <span class="post-meta-item-text">Posted on</span>
 
               <time title="Created: 2018-12-24 16:22:55" itemprop="dateCreated datePublished" datetime="2018-12-24T16:22:55+00:00">2018-12-24</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
+            </span>
+              <span class="post-meta-item">
                 <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
+                  <i class="far fa-calendar-check"></i>
                 </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
+                <span class="post-meta-item-text">Edited on</span>
                 <time title="Modified: 2018-12-30 23:46:16" itemprop="dateModified" datetime="2018-12-30T23:46:16+00:00">2018-12-30</time>
-              
-            
-          </span>
+              </span>
 
           
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
+  
+  
 
         </div>
       </header>
-    
 
     
     
@@ -2450,10 +1373,6 @@ Hack Guide6.0之后，主仓库已从 iissnan 名下 迁移至 theme-next 组织
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
           <ol>
 <li>King’s Cross</li>
 </ol>
@@ -2464,142 +1383,65 @@ Hack Guide6.0之后，主仓库已从 iissnan 名下 迁移至 theme-next 组织
 <p>只进行了简单调色</p>
 </blockquote>
           <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/myblog.github.io/atriptolondon/" rel="contents">
+            <div class="post-button">
+              <a class="btn" href="/myblog.github.io/atriptolondon/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
-          
           <!--/noindex-->
         
       
     </div>
 
     
-
     
     
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
+      </footer>
   </article>
+  
+  
+  
 
-
-    
       
-
-  
-
   
   
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://github.com/ChaosRinkHan/myblog.github.io/myblog.github.io/thoughtsaboutf1/">
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="default">
+    <link itemprop="mainEntityOfPage" href="https://github.com/ChaosRinkHan/myblog.github.io/thoughtsaboutf1/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/myblog.github.io/images/icn.jpg">
       <meta itemprop="name" content="Chaolin Han">
       <meta itemprop="description" content="Our business is life itself.">
-      <meta itemprop="image" content="/myblog.github.io/images/icn.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="EXECUTER">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/myblog.github.io/thoughtsaboutf1/" class="post-title-link" itemprop="url">茫茫，Formula 1 (二)</a>
-              
-            
-          </h1>
-        
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/myblog.github.io/thoughtsaboutf1/" class="post-title-link" itemprop="url">茫茫，Formula 1 (二)</a>
+        </h2>
 
         <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
+                <i class="far fa-calendar"></i>
               </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
+              <span class="post-meta-item-text">Posted on</span>
               
 
               <time title="Created: 2018-11-26 21:25:10 / Modified: 21:58:12" itemprop="dateCreated datePublished" datetime="2018-11-26T21:25:10+00:00">2018-11-26</time>
-            
-
-            
-              
-
-              
-            
-          </span>
+            </span>
 
           
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
+  
+  
 
         </div>
       </header>
-    
 
     
     
@@ -2607,168 +1449,79 @@ Hack Guide6.0之后，主仓库已从 iissnan 名下 迁移至 theme-next 组织
     <div class="post-body" itemprop="articleBody">
 
       
-      
+          <p><a href="//user.qzone.qq.com/784631015/blog/1385866062">前文地址</a> (茫茫， Formular 1)</p>
+<h2 id="引"><a href="#引" class="headerlink" title="引"></a>引</h2><p>前一次写F1相关话题的时候是在13年。当时看了红牛内斗有感而发，加上最喜欢的车手韦伯机长退役。现在五年过去了，14年开始混动时代来临，谁都想不到这五年全部被银箭垄断了。</p>
+<p>五年前机械轰鸣更加纯粹，银箭还叫梅赛德斯AMG。</p>
+<blockquote>
+<p>梅赛德斯-奔驰（或是叫梅赛德斯AMG？），同迈凯轮一样，在一二线车队间游走。简森巴顿、汉密尔顿、罗斯伯格、佩雷兹都很有潜力，但都被压制了。送走舒马赫，梅赛德斯的积分说明了它的稳定。</p>
+<p>神莲也分家了——路特斯还是莲花？车手无疑是神莲的优势，而且其“硬件”也不错。其长期保持的一二线间的位置更有利于向领奖台冲击——我还是挺支持神莲的。</p>
+<p>威廉姆斯无疑是一个悲剧。教授时代的威廉姆斯车队风光无限屡登宝座无人能拦。如今虎落平阳，只有偶尔在事故画面和最后几圈被套圈的让车镜头中看到威廉姆斯了——这样坚持一定很辛苦。</p>
+<p>其他的诸如索伯、印度力量、红牛二队也没什么了。不得不说日系主力本田退出F1，小林可梦伟的离开是让人伤心的——街车漂移之都的企业家也无心经营F1了，虽明年本田将以发动机提供商回归。</p>
+</blockquote>
+<h2 id="车队"><a href="#车队" class="headerlink" title="车队"></a>车队</h2><p>这五年虽说梅奔统治了，但是车队水平和阵容还是变化非常大的。梅奔的崛起离不开高研发投入，可能梅奔突然了要搞研发了(舒马赫，巴顿在的时候在混脸熟吗)。</p>
+<p>不得不说历史总是惊人的相似。前面红牛统治的时候，维特尔和韦伯队内斗白热化，韦伯被迫退出了。现在梅奔统治前三年间罗斯伯格的实力已经能和汉密尔顿拼年度冠军的时候，罗斯伯格激流勇退当了名宿。在车队里面，一号车手和二号车手的区分永远是焦点问题。汉密尔顿就此等来了最强wingman博塔斯。</p>
+<p>路特斯车队亏钱跑了，威廉姆斯车队一直在地球组的二三线挣扎。索伯发挥不稳定(主要是车手原因)，小红牛已经变成青训队了。还有个解散后换了老板的赛点力量(印度力量)还能稳定地拿分，很大程度上也因为有传奇人物佩大师和稳定小将奥康。迈凯轮就比较悲哀了，啥都盼望不上，头哥开了会儿养老车就走了。</p>
+<p>雷诺有还算一个成功的回归，车手也是特别有特点的中游车手。雷诺的引擎今年可是伤透了红牛的心，明年又有什么新的争纷就坐等了。</p>
+<p>奥康和范都恩没有席位</p>
 
-      
-        
-          
-            <p>
-              前文地址 (茫茫， Formular 1)
-引前一次写F1相关话题的时候是在13年。当时看了红牛内斗有感而发，加上最喜欢的车手韦伯机长退役。现在五年过去了，14年开始混动时代来临，谁都想不到这五年全部被银箭垄断了。
-五年前机械轰鸣更加纯粹，银箭还叫梅赛德斯AMG。
-
-梅赛德斯-奔驰（或是叫梅赛德斯A
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/myblog.github.io/thoughtsaboutf1/" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
       
     </div>
 
     
-
     
     
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
+      </footer>
   </article>
+  
+  
+  
 
-
-    
       
-
-  
-
   
   
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://github.com/ChaosRinkHan/myblog.github.io/myblog.github.io/theshelloftech/">
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="default">
+    <link itemprop="mainEntityOfPage" href="https://github.com/ChaosRinkHan/myblog.github.io/theshelloftech/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/myblog.github.io/images/icn.jpg">
       <meta itemprop="name" content="Chaolin Han">
       <meta itemprop="description" content="Our business is life itself.">
-      <meta itemprop="image" content="/myblog.github.io/images/icn.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="EXECUTER">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/myblog.github.io/theshelloftech/" class="post-title-link" itemprop="url">科技以换壳为本</a>
-              
-            
-          </h1>
-        
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/myblog.github.io/theshelloftech/" class="post-title-link" itemprop="url">科技以换壳为本</a>
+        </h2>
 
         <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
+                <i class="far fa-calendar"></i>
               </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
+              <span class="post-meta-item-text">Posted on</span>
 
               <time title="Created: 2018-10-30 21:16:16" itemprop="dateCreated datePublished" datetime="2018-10-30T21:16:16+00:00">2018-10-30</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
+            </span>
+              <span class="post-meta-item">
                 <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
+                  <i class="far fa-calendar-check"></i>
                 </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
+                <span class="post-meta-item-text">Edited on</span>
                 <time title="Modified: 2018-11-11 15:33:26" itemprop="dateModified" datetime="2018-11-11T15:33:26+00:00">2018-11-11</time>
-              
-            
-          </span>
+              </span>
 
           
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
+  
+  
 
         </div>
       </header>
-    
 
     
     
@@ -2776,10 +1529,6 @@ Hack Guide6.0之后，主仓库已从 iissnan 名下 迁移至 theme-next 组织
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
           <blockquote>
 <p>科技以换壳为本。</p>
 </blockquote>
@@ -2788,54 +1537,27 @@ Hack Guide6.0之后，主仓库已从 iissnan 名下 迁移至 theme-next 组织
 <p>对十年前，现在的技术先进很多倍。但是很少有发布会，<strong>能让我们真正“哇”出来的</strong>，甚至是苹果自己和谷歌的发布会。我们需要的的确是更强大更好用的产品，但是十年前，十五年前，它就是这样了。所以它们发展到极致也就是那样。</p>
 <p>真正能让人“哇”出来的，是那些打破界限，打破思维定式的创新，而不是<strong>隐藏刘海这些误入歧途的创新</strong>。</p>
           <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/myblog.github.io/theshelloftech/" rel="contents">
+            <div class="post-button">
+              <a class="btn" href="/myblog.github.io/theshelloftech/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
-          
           <!--/noindex-->
         
       
     </div>
 
     
-
     
     
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
+      </footer>
   </article>
+  
+  
+  
 
-
-    
-  </section>
 
   
   <nav class="pagination">
@@ -2847,236 +1569,148 @@ Hack Guide6.0之后，主仓库已从 iissnan 名下 迁移至 theme-next 组织
           </div>
           
 
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
         </div>
-        
           
   
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
   </div>
 
-  <aside id="sidebar" class="sidebar">
+  <aside class="sidebar">
     <div class="sidebar-inner">
 
-      
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
 
-      
-
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-            
-              <img class="site-author-image" itemprop="image" src="/myblog.github.io/images/icn.jpg" alt="Chaolin Han">
-            
-              <p class="site-author-name" itemprop="name">Chaolin Han</p>
-              <p class="site-description motion-element" itemprop="description">Our business is life itself.</p>
-          </div>
-
-          
-            <nav class="site-state motion-element">
-              
-                <div class="site-state-item site-state-posts">
-                
-                  <a href="/myblog.github.io/archives/">
-                
-                    <span class="site-state-item-count">34</span>
-                    <span class="site-state-item-name">posts</span>
-                  </a>
-                </div>
-              
-
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-tags">
-                  <a href="/myblog.github.io/tags/index.html">
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">15</span>
-                    <span class="site-state-item-name">tags</span>
-                  </a>
-                </div>
-              
-            </nav>
-          
-
-          
-
-          
-            <div class="links-of-author motion-element">
-              
-                <span class="links-of-author-item">
-                  
-                  
-                  
-                    
-                  
-                  <a href="https://github.com/ChaosRinkHan" title="GitHub &rarr; https://github.com/ChaosRinkHan"><i class="fa fa-fw fa-github"></i></a>
-                </span>
-              
-                <span class="links-of-author-item">
-                  
-                  
-                  
-                    
-                  
-                  <a href="/myblog.github.io/chaolinhan@gmail.com" title="E-Mail &rarr; chaolinhan@gmail.com"><i class="fa fa-fw fa-envelope"></i></a>
-                </span>
-              
-                <span class="links-of-author-item">
-                  
-                  
-                  
-                    
-                  
-                  <a href="https://plus.google.com/chaosrinkhan" title="Google &rarr; https://plus.google.com/chaosrinkhan" rel="noopener" target="_blank"><i class="fa fa-fw fa-google-plus"></i></a>
-                </span>
-              
-                <span class="links-of-author-item">
-                  
-                  
-                  
-                    
-                  
-                  <a href="https://twitter.com/C_R__Han" title="Twitter &rarr; https://twitter.com/C_R__Han" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i></a>
-                </span>
-              
-                <span class="links-of-author-item">
-                  
-                  
-                  
-                    
-                  
-                  <a href="https://www.instagram.com/cl_han" title="Instagram &rarr; https://www.instagram.com/cl_han" rel="noopener" target="_blank"><i class="fa fa-fw fa-instagram"></i></a>
-                </span>
-              
-            </div>
-          
-
-          
-             <div class="cc-license motion-element" itemprop="license">
-              
-              
-                
-              
-              
-              
-              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/myblog.github.io/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
-             </div>
-          
-
-          
-          
-
-          
-            
-          
-          
-
-        </div>
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
       </div>
+      <!--/noindex-->
 
-      
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Chaolin Han" src="/myblog.github.io/images/icn.jpg">
+  <p class="site-author-name" itemprop="name">Chaolin Han</p>
+  <div class="site-description" itemprop="description">Our business is life itself.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/myblog.github.io/archives/">
+        
+          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/myblog.github.io/tags/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/ChaosRinkHan" title="GitHub → https://github.com/ChaosRinkHan"><i class="github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/myblog.github.io/chaolinhan@gmail.com" title="E-Mail → chaolinhan@gmail.com"><i class="envelope fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://plus.google.com/chaosrinkhan" title="Google → https://plus.google.com/chaosrinkhan" rel="noopener" target="_blank"><i class="google-plus fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/C_R__Han" title="Twitter → https://twitter.com/C_R__Han" rel="noopener" target="_blank"><i class="twitter fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.instagram.com/cl_han" title="Instagram → https://www.instagram.com/cl_han" rel="noopener" target="_blank"><i class="instagram fa-fw"></i></a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/myblog.github.io/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
 
-      
+
+
+      </div>
 
     </div>
   </aside>
-  
+  <div id="sidebar-dimmer"></div>
 
 
-        
       </div>
     </main>
 
-    <footer id="footer" class="footer">
+    <footer class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
-  <span class="with-love" id="animate">
-    <i class="fa fa-user"></i>
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-bolt"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Chaolin Han</span>
-
-  
-
-  
 </div>
-
-
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
-
-
-
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.0.0</div>
-
-
-
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a>
+  </div>
 
         
 <div class="busuanzi-count">
   <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-  
-    <span class="post-meta-item-icon">
-      <i class="fa fa-user"></i>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
     </span>
-    <span class="site-uv" title="Total Visitors">
-      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
-    </span>
-  
-
-  
     <span class="post-meta-divider">|</span>
-  
-
-  
-    <span class="post-meta-item-icon">
-      <i class="fa fa-eye"></i>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
     </span>
-    <span class="site-pv" title="Total Views">
-      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
-    </span>
-  
 </div>
 
 
@@ -3086,566 +1720,126 @@ Hack Guide6.0之后，主仓库已从 iissnan 名下 迁移至 theme-next 组织
 
 
 
-
-        
       </div>
     </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
-    
-
-    
-
-    
   </div>
 
   
+  <script src="/myblog.github.io/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+  <script src="/myblog.github.io/lib/velocity/velocity.min.js"></script>
+  <script src="/myblog.github.io/lib/velocity/velocity.ui.min.js"></script>
+<script src="/myblog.github.io/js/utils.js"></script><script src="/myblog.github.io/js/motion.js"></script>
+<script src="/myblog.github.io/js/schemes/muse.js"></script>
+<script src="/myblog.github.io/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+  <script src="/myblog.github.io/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
 
 <script>
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
   }
 </script>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  <script src="/myblog.github.io/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script src="/myblog.github.io/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script src="/myblog.github.io/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
+    
 
   
 
-
-  <script src="/myblog.github.io/js/src/utils.js?v=7.0.0"></script>
-
-  <script src="/myblog.github.io/js/src/motion.js?v=7.0.0"></script>
-
-
-
-  
-  
-
-
-  <script src="/myblog.github.io/js/src/schemes/muse.js?v=7.0.0"></script>
-
-
-
-
-  
-
-  
-
-
-  <script src="/myblog.github.io/js/src/bootstrap.js?v=7.0.0"></script>
-
-
-  
-  
-  
-
-<script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
-
-
-
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
 
 <script>
-  var GUEST = ['nick', 'mail', 'link'];
-  var guest = 'nick,mail,link';
-  guest = guest.split(',').filter(function(item) {
-    return GUEST.indexOf(item) > -1;
-  });
-  new Valine({
-    el: '#comments',
-    verify: false,
-    notify: true,
-    appId: '5dql56FUIB3HYuJdS8FpyeVP-gzGzoHsz',
-    appKey: '6dn3IHWnKiBu9UXTxCuy6xJs',
-    placeholder: 'Comment...',
-    avatar: 'mm',
-    meta: guest,
-    pageSize: '10' || 10,
-    visitor: false
-  });
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : true,
+      appId      : '5dql56FUIB3HYuJdS8FpyeVP-gzGzoHsz',
+      appKey     : '6dn3IHWnKiBu9UXTxCuy6xJs',
+      placeholder: "Comment here, anonymously. 支持匿名回复，昵称和邮箱可以留空",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
 </script>
-
-
-
-
-
-  
-  <script>
-    // Popup Window;
-    var isfetched = false;
-    var isXml = true;
-    // Search DB path;
-    var search_path = "search.xml";
-    if (search_path.length === 0) {
-      search_path = "search.xml";
-    } else if (/json$/i.test(search_path)) {
-      isXml = false;
-    }
-    var path = "/myblog.github.io/" + search_path;
-    // monitor main search box;
-
-    var onPopupClose = function (e) {
-      $('.popup').hide();
-      $('#local-search-input').val('');
-      $('.search-result-list').remove();
-      $('#no-result').remove();
-      $(".local-search-pop-overlay").remove();
-      $('body').css('overflow', '');
-    }
-
-    function proceedsearch() {
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
-        .css('overflow', 'hidden');
-      $('.search-popup-overlay').click(onPopupClose);
-      $('.popup').toggle();
-      var $localSearchInput = $('#local-search-input');
-      $localSearchInput.attr("autocapitalize", "none");
-      $localSearchInput.attr("autocorrect", "off");
-      $localSearchInput.focus();
-    }
-
-    // search function;
-    var searchFunc = function(path, search_id, content_id) {
-      'use strict';
-
-      // start loading animation
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
-          '<div id="search-loading-icon">' +
-          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
-          '</div>' +
-          '</div>')
-        .css('overflow', 'hidden');
-      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
-
-      
-
-      $.ajax({
-        url: path,
-        dataType: isXml ? "xml" : "json",
-        async: true,
-        success: function(res) {
-          // get the contents from search data
-          isfetched = true;
-          $('.popup').detach().appendTo('.header-inner');
-          var datas = isXml ? $("entry", res).map(function() {
-            return {
-              title: $("title", this).text(),
-              content: $("content",this).text(),
-              url: $("url" , this).text()
-            };
-          }).get() : res;
-          var input = document.getElementById(search_id);
-          var resultContent = document.getElementById(content_id);
-          var inputEventFunction = function() {
-            var searchText = input.value.trim().toLowerCase();
-            var keywords = searchText.split(/[\s\-]+/);
-            if (keywords.length > 1) {
-              keywords.push(searchText);
-            }
-            var resultItems = [];
-            if (searchText.length > 0) {
-              // perform local searching
-              datas.forEach(function(data) {
-                var isMatch = false;
-                var hitCount = 0;
-                var searchTextCount = 0;
-                var title = data.title.trim();
-                var titleInLowerCase = title.toLowerCase();
-                var content = data.content.trim().replace(/<[^>]+>/g,"");
-                
-                var contentInLowerCase = content.toLowerCase();
-                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
-                var indexOfTitle = [];
-                var indexOfContent = [];
-                // only match articles with not empty titles
-                if(title != '') {
-                  keywords.forEach(function(keyword) {
-                    function getIndexByWord(word, text, caseSensitive) {
-                      var wordLen = word.length;
-                      if (wordLen === 0) {
-                        return [];
-                      }
-                      var startPosition = 0, position = [], index = [];
-                      if (!caseSensitive) {
-                        text = text.toLowerCase();
-                        word = word.toLowerCase();
-                      }
-                      while ((position = text.indexOf(word, startPosition)) > -1) {
-                        index.push({position: position, word: word});
-                        startPosition = position + wordLen;
-                      }
-                      return index;
-                    }
-
-                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
-                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
-                  });
-                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
-                    isMatch = true;
-                    hitCount = indexOfTitle.length + indexOfContent.length;
-                  }
-                }
-
-                // show search results
-
-                if (isMatch) {
-                  // sort index by position of keyword
-
-                  [indexOfTitle, indexOfContent].forEach(function (index) {
-                    index.sort(function (itemLeft, itemRight) {
-                      if (itemRight.position !== itemLeft.position) {
-                        return itemRight.position - itemLeft.position;
-                      } else {
-                        return itemLeft.word.length - itemRight.word.length;
-                      }
-                    });
-                  });
-
-                  // merge hits into slices
-
-                  function mergeIntoSlice(text, start, end, index) {
-                    var item = index[index.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    var hits = [];
-                    var searchTextCountInSlice = 0;
-                    while (position + word.length <= end && index.length != 0) {
-                      if (word === searchText) {
-                        searchTextCountInSlice++;
-                      }
-                      hits.push({position: position, length: word.length});
-                      var wordEnd = position + word.length;
-
-                      // move to next position of hit
-
-                      index.pop();
-                      while (index.length != 0) {
-                        item = index[index.length - 1];
-                        position = item.position;
-                        word = item.word;
-                        if (wordEnd > position) {
-                          index.pop();
-                        } else {
-                          break;
-                        }
-                      }
-                    }
-                    searchTextCount += searchTextCountInSlice;
-                    return {
-                      hits: hits,
-                      start: start,
-                      end: end,
-                      searchTextCount: searchTextCountInSlice
-                    };
-                  }
-
-                  var slicesOfTitle = [];
-                  if (indexOfTitle.length != 0) {
-                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
-                  }
-
-                  var slicesOfContent = [];
-                  while (indexOfContent.length != 0) {
-                    var item = indexOfContent[indexOfContent.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    // cut out 100 characters
-                    var start = position - 20;
-                    var end = position + 80;
-                    if(start < 0){
-                      start = 0;
-                    }
-                    if (end < position + word.length) {
-                      end = position + word.length;
-                    }
-                    if(end > content.length){
-                      end = content.length;
-                    }
-                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
-                  }
-
-                  // sort slices in content by search text's count and hits' count
-
-                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
-                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
-                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
-                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
-                      return sliceRight.hits.length - sliceLeft.hits.length;
-                    } else {
-                      return sliceLeft.start - sliceRight.start;
-                    }
-                  });
-
-                  // select top N slices in content
-
-                  var upperBound = parseInt('1');
-                  if (upperBound >= 0) {
-                    slicesOfContent = slicesOfContent.slice(0, upperBound);
-                  }
-
-                  // highlight title and content
-
-                  function highlightKeyword(text, slice) {
-                    var result = '';
-                    var prevEnd = slice.start;
-                    slice.hits.forEach(function (hit) {
-                      result += text.substring(prevEnd, hit.position);
-                      var end = hit.position + hit.length;
-                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
-                      prevEnd = end;
-                    });
-                    result += text.substring(prevEnd, slice.end);
-                    return result;
-                  }
-
-                  var resultItem = '';
-
-                  if (slicesOfTitle.length != 0) {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
-                  } else {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
-                  }
-
-                  slicesOfContent.forEach(function (slice) {
-                    resultItem += "<a href='" + articleUrl + "'>" +
-                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
-                      "...</p>" + "</a>";
-                  });
-
-                  resultItem += "</li>";
-                  resultItems.push({
-                    item: resultItem,
-                    searchTextCount: searchTextCount,
-                    hitCount: hitCount,
-                    id: resultItems.length
-                  });
-                }
-              })
-            };
-            if (keywords.length === 1 && keywords[0] === "") {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
-            } else if (resultItems.length === 0) {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
-            } else {
-              resultItems.sort(function (resultLeft, resultRight) {
-                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
-                  return resultRight.searchTextCount - resultLeft.searchTextCount;
-                } else if (resultLeft.hitCount !== resultRight.hitCount) {
-                  return resultRight.hitCount - resultLeft.hitCount;
-                } else {
-                  return resultRight.id - resultLeft.id;
-                }
-              });
-              var searchResultList = '<ul class=\"search-result-list\">';
-              resultItems.forEach(function (result) {
-                searchResultList += result.item;
-              })
-              searchResultList += "</ul>";
-              resultContent.innerHTML = searchResultList;
-            }
-          }
-
-          if ('auto' === 'auto') {
-            input.addEventListener('input', inputEventFunction);
-          } else {
-            $('.search-icon').click(inputEventFunction);
-            input.addEventListener('keypress', function (event) {
-              if (event.keyCode === 13) {
-                inputEventFunction();
-              }
-            });
-          }
-
-          // remove loading animation
-          $(".local-search-pop-overlay").remove();
-          $('body').css('overflow', '');
-
-          proceedsearch();
-        }
-      });
-    }
-
-    // handle and trigger popup window;
-    $('.popup-trigger').click(function(e) {
-      e.stopPropagation();
-      if (isfetched === false) {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-      } else {
-        proceedsearch();
-      };
-    });
-
-    $('.popup-btn-close').click(onPopupClose);
-    $('.popup').click(function(e){
-      e.stopPropagation();
-    });
-    $(document).on('keyup', function (event) {
-      var shouldDismissSearchPopup = event.which === 27 &&
-        $('.search-popup').is(':visible');
-      if (shouldDismissSearchPopup) {
-        onPopupClose();
-      }
-    });
-  </script>
-
-
-
-
-
-  
-
-  
-
-  
-  
-
-  
-  
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-        
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-  
-
-  
-    
-      <script type="text/x-mathjax-config">
-  
-
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
-      processEscapes: true,
-      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    },
-    TeX: {
-      
-      equationNumbers: {
-        autoNumber: 'AMS'
-      }
-    }
-  });
-  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
-    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
-      if (data.display) {
-        var next = data.script.nextSibling;
-        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
-        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
-      }
-    });
-  });
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-      for (i = 0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';
-      }
-  });
-</script>
-<script src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-<style>
-.MathJax_Display {
-  overflow-x: scroll;
-  overflow-y: hidden;
-}
-</style>
-
-    
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
 
 </body>
 </html>

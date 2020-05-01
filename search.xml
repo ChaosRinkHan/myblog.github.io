@@ -1,6 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>COVID-19 Prediction</title>
+    <url>/myblog.github.io/COVID-PREDICTION/</url>
+    <content><![CDATA[<p>做了一个简单的ARIMA预测，和一大堆R语言的绘图。ggplot属实浪费生命。</p>
+<p><a href="https://hrbinbin.github.io/Covid19predict/" target="_blank" rel="noopener">https://hrbinbin.github.io/Covid19predict/</a></p>
+<p>正文在<a href="https://chaosrinkhan.github.io/myblog.github.io/COVID-R/" target="_blank" rel="noopener">这里</a>。</p>
+<p><img src="https://i.imgur.com/DtQDgwr.png" alt="image-20200425234510325"></p>
+]]></content>
+      <tags>
+        <tag>Python</tag>
+        <tag>R</tag>
+        <tag>Data Analysis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>疫情数据的可视化和ARIMA预测</title>
+    <url>/myblog.github.io/COVID-R/</url>
+    <content><![CDATA[<p>简单记录下这些微小的工作。</p>
+<p>GitHub Pages: <a href="https://hrbinbin.github.io/Covid19predict/" target="_blank" rel="noopener">https://hrbinbin.github.io/Covid19predict/</a></p>
+<h1 id="初衷"><a href="#初衷" class="headerlink" title="初衷"></a>初衷</h1><ul>
+<li><p>探索一下，机器学习能否做到</p>
+<ul>
+<li>超越检测手段、统计方式的不确定性，对真实情况进行fit</li>
+<li>没见过下降趋势的时候预测下降趋势。这一点的范畴其实在deep reinforcement learning里面研究挺多，可惜本场景是否适用还未知</li>
+</ul>
+</li>
+<li><p>目标是拐点或者趋势</p>
+</li>
+</ul>
+<h2 id="现阶段"><a href="#现阶段" class="headerlink" title="现阶段"></a>现阶段</h2><ul>
+<li>英国首相今天宣布<a href="https://www.bbc.com/news/amp/uk-52493500" target="_blank" rel="noopener">疫情高峰已经过去</a>，不过从可视化结果来看，确实是“过去”了，但这好转速度也太慢了</li>
+<li>既然拐点过了，那么情况和数据肯定是越来越好的</li>
+</ul>
+<a id="more"></a>
+<ul>
+<li>还有没有继续做，做什么<ul>
+<li>在日程上的有CNN for time-series和LSTM RNN</li>
+<li>总确诊人数肯定是S型曲线。现存确诊这个数据对英国来讲就是没有，比较治愈数目就没怎么更新</li>
+<li>现阶段预测现存确诊的意义大于预测总确诊的意义；预测的总确诊只能用来展示拐点情况了</li>
+<li>有很大的冲动想把这个项目archive了，因为没有现存确诊的每日数据和历史数据。就留个可视化</li>
+</ul>
+</li>
+</ul>
+<h1 id="数据源-json2csv-R"><a href="#数据源-json2csv-R" class="headerlink" title="数据源 json2csv.R"></a>数据源 <code>json2csv.R</code></h1><ol>
+<li>Jeff的API：<a href="https://github.com/isjeffcom/coronvirusFigureUK。用于获取英国历史数据。">https://github.com/isjeffcom/coronvirusFigureUK。用于获取英国历史数据。</a></li>
+<li>JHU的全球数据仓库：<a href="https://github.com/CSSEGISandData/COVID-19。用于获取欧洲三国数据。">https://github.com/CSSEGISandData/COVID-19。用于获取欧洲三国数据。</a></li>
+<li>韩国数据也源于JHU，中国大陆数据采用卫健委的数据。英国之外的数据均用于对比英国。</li>
+</ol>
+<p>代码没什么好讲的，全部输出csv。</p>
+<h1 id="现状可视化"><a href="#现状可视化" class="headerlink" title="现状可视化"></a>现状可视化</h1><p>一个很重要的点就是用普通的line plot（y轴：确诊人数，x轴：时间）很难对比或者看出一个国家情况的好坏。用对数数轴（log-y /w log-x）也凸显不出来显著差距。这里采用的是minutephysics的视频中提到的方法：<a href="https://youtu.be/54XLXg4fYsc" target="_blank" rel="noopener">How To Tell If We’re Beating COVID-19</a>。我也在寻找更优的数据展示方式，有知道的也欢迎告诉我。</p>
+<p>这个可视化采用y轴每日新增，x轴总确诊来做图，全对数数轴。上面的是视频已经很到展示了它的效果。下面的图片也说明了欧洲三国领先英国的一个抗疫局势。<a href="https://hrbinbin.github.io/Covid19predict/trendFigures.html" target="_blank" rel="noopener">更多对比</a></p>
+<p><img src="https://raw.githubusercontent.com/HRbinbin/Covid19predict/master/plot/UKlogTrend.png" alt=""></p>
+<p>所有可视化都通过ggplot2完成。确实很麻烦很费时间（特别是legend），但在目前我看来做可视化已经是最优方案了。</p>
+<p>对数数轴：</p>
+<figure class="highlight r"><table><tr><td class="code"><pre><span class="line">scale_x_log10(limits = c(<span class="number">55</span>,<span class="number">316123</span>), breaks = trans_breaks(<span class="string">"log10"</span>, <span class="keyword">function</span>(x) <span class="number">10</span>^x), labels = trans_format(<span class="string">"log10"</span>, math_format(<span class="number">10</span>^.x)))+</span><br><span class="line"> scale_y_log10(limits = c(<span class="number">30</span>,<span class="number">31612</span>),breaks = trans_breaks(<span class="string">"log10"</span>, <span class="keyword">function</span>(x) <span class="number">10</span>^x), labels = trans_format(<span class="string">"log10"</span>, math_format(<span class="number">10</span>^.x)))</span><br></pre></td></tr></table></figure>
+<h1 id="ARIMA"><a href="#ARIMA" class="headerlink" title="ARIMA"></a>ARIMA</h1><p>非季节ARIMA就三个参数 (p, d, q)。p是AR（自回归）的阶数，描述时间序列的lag，d是差分的阶数，这个阶数下的时间序列应该具有平稳（stationary）的趋势。q是滑动平均的阶数，与滑动窗口大小有关。</p>
+<ul>
+<li>d在本情况下是不会超过3的，通过画一下差分后的数据序列就能看出来。最大化Heteroscedasticity的d可能就是2了。</li>
+<li>p和q就让它自动去寻找吧</li>
+</ul>
+<p>后期版本，自动寻优的ARIMA模型：</p>
+<figure class="highlight r"><table><tr><td class="code"><pre><span class="line">UK.autoARIMA = auto.arima(dfUK$confirmed, </span><br><span class="line">                          max.p = <span class="number">21</span>, max.q = <span class="number">21</span>, start.q = <span class="number">1</span>, max.d = <span class="number">4</span>, max.order = <span class="number">42</span>, </span><br><span class="line">                          seasonal = <span class="literal">F</span>,stepwise = <span class="literal">F</span>, </span><br><span class="line">                          <span class="comment">#parallel = T, num.cores = 8, </span></span><br><span class="line">                          approximation = <span class="literal">T</span>,trace = <span class="literal">T</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="code"><pre><span class="line">tsdiag(UK.autoARIMA)</span><br></pre></td></tr></table></figure>
+<p>这里默认的寻参目标是AIC，可选的目标还有AICc，BIC和likelihood。我并不知道哪个寻参目标更好，所以就用了默认的。</p>
+<p>正常情况为了一个更精确的结果，还是应该关闭<code>approximation</code>，打开并行，这样的结果更好，还可以避免q很大的时候，AIC计算直接蹦到Inf的问题。当然如上一段，换个寻参目标可以解决这个问题。</p>
+<p>早期版本中，我手动grid search寻参，结果p和q都落在10+的范围，寻参时间也很长。一个可视化三维或者更高维的grid search结果的方法是：</p>
+<ul>
+<li><p>假设变量a寻参范围为d1，变量b为d2，变量c为d3</p>
+</li>
+<li><p>y轴为寻参目标（这里是AIC），x轴为</p>
+<p><code>c+b*(d3+1)+a*(b*d2+d3+1)</code></p>
+</li>
+<li><p>这里的1可以换成别的正常数来增大间距</p>
+</li>
+</ul>
+<p>关于参数理解：<a href="https://alkaline-ml.com/pmdarima/tips_and_tricks.html#understand-p-d-and-q" target="_blank" rel="noopener">Understand <code>p</code>, <code>d</code>, and <code>q</code></a></p>
+<p>现阶段的自动寻参结果表明，p是肯定落在10以上的区间的，以likelihood为指标甚至会趋向于更复杂的模型；q对模型的影响难以简单描述，还是认真搜一下比较好。</p>
+<p>接下来就是构造data frame无脑作图了。AIC可视化出来可能很难理解，这里就做了residual也就是error的可视化。</p>
+<p>不得不说显而易见的的，这样的时移统计模型的误差可以做到非常小：我预测了这么多天，没有一天的误差超过1%，一般和当天公布的总确诊数字相差都不会超过1000人</p>
+<p>这就让我回到了<a href="#初衷">初衷</a>里面讲的，它都这么精确了，那么它达到我们的目标了吗？做更精确的CNN、RNN模型意义大吗？对我们的生活或是决策参考意义大吗？</p>
+<p>所以我准备再思考一下这个问题，或许明天写个1D-CNN试试看。DNN能吸收更多的特征，但对这种统计手段/统计方法会很大影响结果的场景，直接预测确诊意义确实不是很大。</p>
+<p>最早的目标是学习相似国家的数据，然后transfer learning到英国上面。现在想想，可能transfer完就预测一个确诊人数着实没啥用。试试才知道，说不定等几天过去它就变成一个纯可视化的项目了。</p>
+<p>目前最有价值的也就是如下两图了（GitHub的图床，每日更新）</p>
+<h2 id="英国趋势"><a href="#英国趋势" class="headerlink" title="英国趋势"></a>英国趋势</h2><p>1 May：确实不大像拐点的样子，尽管首相已经这么承认了。这个拐点是真的平缓，表明英国在收容这一块上做的很艰难。</p>
+<p><img src="https://raw.githubusercontent.com/HRbinbin/Covid19predict/master/prediction/UKlogTrend.png" alt=""></p>
+<h2 id="每日新增预测"><a href="#每日新增预测" class="headerlink" title="每日新增预测"></a>每日新增预测</h2><p>MA阶数q在快速寻优和高阶AR下趋向于选择小的值。更精确的自动寻优结果之后会更新。</p>
+<p><img src="https://raw.githubusercontent.com/HRbinbin/Covid19predict/master/prediction/DailyBar.png" alt=""></p>
+]]></content>
+      <tags>
+        <tag>Python</tag>
+        <tag>R</tag>
+        <tag>Data Analysis</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>关于赛车</title>
     <url>/myblog.github.io/About-Racing-Cars/</url>
     <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>FIA旗下最大的三个汽车运动赛事：<code>F1</code>，<code>WEC</code>，<code>WRC</code>。国际摩联旗下还有著名的<code>moto GP</code>。<br>我今年开始看的汽车运动赛事越来越多。也是对汽车运动越来越有兴趣。<br>在看的有F1，F2，WEC，看得少的有moto GP，<code>戴那通</code>，<code>纳斯卡</code>。  </p>
@@ -10,20 +104,6 @@
       <tags>
         <tag>Cars</tag>
         <tag>Thoughts</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>COVID-19 Prediction</title>
-    <url>/myblog.github.io/COVID-PREDICTION/</url>
-    <content><![CDATA[<p>做了一个简单的ARIMA预测，和一大堆R语言的绘图。ggplot属实浪费生命。</p>
-<p><a href="https://hrbinbin.github.io/Covid19predict/" target="_blank" rel="noopener">https://hrbinbin.github.io/Covid19predict/</a></p>
-<p>正文在这里。</p>
-<p><img src="https://i.imgur.com/DtQDgwr.png" alt="image-20200425234510325"></p>
-]]></content>
-      <tags>
-        <tag>Python</tag>
-        <tag>R</tag>
-        <tag>Data Analysis</tag>
       </tags>
   </entry>
   <entry>
@@ -39,7 +119,7 @@
 <div id="decryptionError" style="display: none;">Incorrect Password!</div>
 <div id="noContentError" style="display: none;">No content to display!</div>
 <div id="encrypt-blog" style="display:none">
-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
+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
 </div>
 <script src="/myblog.github.io/lib/crypto-js.js"></script><script src="/myblog.github.io/lib/blog-encrypt.js"></script><link href="/myblog.github.io/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
       <tags>
@@ -47,26 +127,41 @@ U2FsdGVkX1/Nh6DjtKq+r5JIynfYCrnAXkIvgpXHlHf5DjkAQnOJLLXttwwyuBNRGwf8uVpQGZtRuqEa
       </tags>
   </entry>
   <entry>
-    <title>机器学习 李宏毅 HW</title>
-    <url>/myblog.github.io/MLHW/</url>
-    <content><![CDATA[<h3 id="HW0"><a href="#HW0" class="headerlink" title="HW0"></a>HW0</h3> <a id="more"></a>
-<h4 id="Q1"><a href="#Q1" class="headerlink" title="Q1"></a>Q1</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">f = open(<span class="string">'data.txt'</span>)</span><br><span class="line">readline=f.readlines()</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> readline:</span><br><span class="line">    line = line.replace(<span class="string">','</span>, <span class="string">' '</span>)</span><br><span class="line">    line = line.replace(<span class="string">'.'</span>, <span class="string">' '</span>)</span><br><span class="line">    line = line.strip()</span><br><span class="line">    allWord = line.split(<span class="string">' '</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">##print(line)</span></span><br><span class="line">wordCount = []</span><br><span class="line">wordDict = &#123;&#125;.fromkeys(allWord)</span><br><span class="line">wordList = list(wordDict.keys())</span><br><span class="line"></span><br><span class="line">cnt = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> wordList:</span><br><span class="line">    wordDict[i] = allWord.count(i)</span><br><span class="line">    print(i + <span class="string">' '</span> + str(cnt) + <span class="string">' '</span> + str(wordDict[i]))</span><br><span class="line">    cnt = cnt+<span class="number">1</span></span><br><span class="line"><span class="comment">##print(wordDict)</span></span><br></pre></td></tr></table></figure>
-<h5 id="Sample-input-data-txt"><a href="#Sample-input-data-txt" class="headerlink" title="Sample input: data.txt"></a>Sample input: data.txt</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">data.txt:</span><br><span class="line">A small sample of texts from Project Gutenberg appears in the corpus collection. However, you may be interested in analyzing other texts from Project Gutenberg. You can browse the catalog of 25,000 free online books at xxx, and obtain a URL to an ASCII text file. Although 90% of the texts in Project Gutenberg are in English, it includes material in over 50 other languages.</span><br></pre></td></tr></table></figure>
-<h5 id="Sample-output"><a href="#Sample-output" class="headerlink" title="Sample output"></a>Sample output</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">A 0 1</span><br><span class="line">small 1 1</span><br><span class="line">sample 2 1</span><br><span class="line">of 3 3</span><br><span class="line">texts 4 3</span><br><span class="line">from 5 2</span><br><span class="line">Project 6 3</span><br><span class="line">Gutenberg 7 3</span><br><span class="line">appears 8 1</span><br><span class="line">in 9 5</span><br><span class="line">the 10 3</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-<p>打开文件后读取所有的字符，用 <code>replace</code> 去除符号后用<code>split</code>将字符串分割成list</p>
-<p>然后用<a href="https://blog.csdn.net/together_cz/article/details/76201975" target="_blank" rel="noopener">字典方法</a>去重。在<code>wordList</code>中记录单词和出现次数（key为单词，value为出现次数）</p>
-<p>最后输出</p>
-<hr>
-<h4 id="Q2-图片淡化"><a href="#Q2-图片淡化" class="headerlink" title="Q2 图片淡化"></a>Q2 图片淡化</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"></span><br><span class="line">oriImg = Image.open(<span class="string">"westbrook.jpg"</span>)</span><br><span class="line">pixel = oriImg.load()</span><br><span class="line"><span class="comment">##print(oriImg.size)</span></span><br><span class="line"><span class="comment">##(a, b) = oriImg.size</span></span><br><span class="line">print((a, b))</span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> range(oriImg.size[<span class="number">0</span>]):</span><br><span class="line">    <span class="keyword">for</span> y <span class="keyword">in</span> range(oriImg.size[<span class="number">1</span>]):</span><br><span class="line">        <span class="comment">##print(x, y)</span></span><br><span class="line">        (r ,g, b) = pixel[x, y]</span><br><span class="line">        <span class="comment">#print((r, g, b))</span></span><br><span class="line">        <span class="comment">##print((int(r/2), int(g/2), int(b/2)))</span></span><br><span class="line">        oriImg.putpixel((x, y), (int(r/<span class="number">2</span>), int(g/<span class="number">2</span>), int(b/<span class="number">2</span>)))</span><br><span class="line">        <span class="comment">##oriImg.putpixel((x, y), (100,100,100))</span></span><br><span class="line"></span><br><span class="line">oriImg.save(<span class="string">"new.jpg"</span>)</span><br></pre></td></tr></table></figure>
-<p>原图片：</p>
-<p><img src="https://i.imgur.com/JLD89lD.jpg" alt=""></p>
-<p>减淡后：</p>
-<p><img src="https://i.imgur.com/Q0Ivmin.jpg" alt=""></p>
-<p>遍历图片，<code>putpixel</code>即可。</p>
+    <title>Hexo 博文简单美化</title>
+    <url>/myblog.github.io/Hexo-%E5%8D%9A%E6%96%87%E7%AE%80%E5%8D%95%E7%BE%8E%E5%8C%96/</url>
+    <content><![CDATA[<h4 id="文字背景色块"><a href="#文字背景色块" class="headerlink" title="文字背景色块"></a>文字背景色块</h4><h5 id="添加"><a href="#添加" class="headerlink" title="添加"></a>添加</h5><p>打开<code>themes/next/source/css/_custom</code> 下的 <code>custom.styl</code> 文件,添加自定属性样式</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">// 颜色块-黄</span><br><span class="line"><span class="selector-tag">span</span><span class="selector-id">#inline-yellow</span> &#123;</span><br><span class="line"><span class="attribute">display</span>:inline;</span><br><span class="line"><span class="attribute">padding</span>:.<span class="number">2em</span> .<span class="number">6em</span> .<span class="number">3em</span>;</span><br><span class="line"><span class="attribute">font-size</span>:<span class="number">80%</span>;</span><br><span class="line"><span class="attribute">font-weight</span>:bold;</span><br><span class="line"><span class="attribute">line-height</span>:<span class="number">1</span>;</span><br><span class="line"><span class="attribute">color</span>:<span class="number">#fff</span>;</span><br><span class="line"><span class="attribute">text-align</span>:center;</span><br><span class="line"><span class="attribute">white-space</span>:nowrap;</span><br><span class="line"><span class="attribute">vertical-align</span>:baseline;</span><br><span class="line"><span class="attribute">border-radius</span>:<span class="number">0</span>;</span><br><span class="line"><span class="attribute">background-color</span>: <span class="number">#f0ad4e</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>想添加自定义颜色，修改最后的backgroud-color即可。</p>
+ <a id="more"></a>
+<h5 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h5><p>在md正文中如下格式：</p>
+<p><code>&lt;span id=&quot;inline-blue&quot;&gt; Text here &lt;/span&gt;</code></p>
+<p>就可使用了。</p>
+<p>效果：</p>
+<p><span id="inline-blue"> Text </span> <span id="inline-red"> Text </span>  <span id="inline-yellow"> Text </span> <span id="inline-purple"> Text </span> </p>
+<h4 id="使用FA图标"><a href="#使用FA图标" class="headerlink" title="使用FA图标"></a>使用<a href="https://fontawesome.com/icons" target="_blank" rel="noopener">FA图标</a></h4><p>在md正文中使用</p>
+<p><code>&lt;i class=&quot;fa fa-subway&quot;&gt;&lt;/i&gt;</code></p>
+<p>来调用FA图标。第二个fa后单词改为需要的图标名称即可。</p>
+<p>改变大小：经过测试，有用的包括</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"fa fa-camera-retro fa-lg"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"fa fa-camera-retro fa-2x"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"fa fa-camera-retro fa-3x"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"fa fa-camera-retro fa-5x"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h5 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h5><p><i class="fa fa-subway"></i><br><i class="fa fa-camera-retro fa-lg"></i><br><i class="fa fa-camera-retro fa-2x"></i><br><i class="fa fa-camera-retro fa-3x"></i><br><i class="fa fa-camera-retro fa-5x"></i></p>
+<h4 id="Bootstrap-Callout"><a href="#Bootstrap-Callout" class="headerlink" title="Bootstrap Callout"></a>Bootstrap Callout</h4><figure class="highlight html"><table><tr><td class="code"><pre><span class="line">&#123;% note primary %&#125;primary&#123;% endnote %&#125;</span><br><span class="line">&#123;% note success %&#125;success&#123;% endnote %&#125;</span><br><span class="line">&#123;% note info %&#125;info&#123;% endnote %&#125;</span><br><span class="line">&#123;% note warning %&#125;warning&#123;% endnote %&#125;</span><br><span class="line">&#123;% note danger %&#125;danger&#123;% endnote %&#125;</span><br></pre></td></tr></table></figure>
+<p>效果：</p>
+<p><del><div class="note primary">
+            <p>primary</p>
+          </div>
+<div class="note success">
+            <p>success</p>
+          </div><br><div class="note info">
+            <p>info</p>
+          </div>
+<div class="note warning">
+            <p>warning</p>
+          </div><br><div class="note danger">
+            <p>danger</p>
+          </div></del></p>
 ]]></content>
       <tags>
-        <tag>Python</tag>
-        <tag>机器学习</tag>
+        <tag>Hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -142,23 +237,6 @@ U2FsdGVkX1/Nh6DjtKq+r5JIynfYCrnAXkIvgpXHlHf5DjkAQnOJLLXttwwyuBNRGwf8uVpQGZtRuqEa
       </tags>
   </entry>
   <entry>
-    <title>PyQt5 多窗口连接</title>
-    <url>/myblog.github.io/PyQt5%20%E5%A4%9A%E7%AA%97%E5%8F%A3%E8%BF%9E%E6%8E%A5/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>之前做过pyqt的一个简单界面，在一个窗口（MainWindow）中实现一些操作；之前嫌麻烦没有去做多窗口和它们的切换功能。最近研究了下窗口的调用和切换。<br>pyqt4和5有很多不同，在参考别人案例的时候走了很多弯路，最后在pyqt5下实现了简洁的多窗口切换为大家参考。</p>
- <a id="more"></a>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>多窗口的切换和显示连接到按钮的信号上再进行show（）就行，格式上有别于pyqt4。<br><strong>一个逻辑比较清晰的解决方案是，使用一个主程序，在其中实例化各个窗口，然后定义它们的显示逻辑即是按钮的槽函数。</strong><br>格式上稍有不对就会报错，也是让我重新审视了一下python类和继承的语法= =<br>同时窗口的类型也和pyqt4有所不同，pyqt5下QWidgets为主，与4中QDialog显示方式也有所不同。<br>具体方式见代码。</p>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><h2 id="主程序——实例化各个窗口"><a href="#主程序——实例化各个窗口" class="headerlink" title="主程序——实例化各个窗口"></a>主程序——实例化各个窗口</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> PyQt5 <span class="keyword">import</span> QtCore, QtGui, QtWidgets</span><br><span class="line"><span class="keyword">from</span> test <span class="keyword">import</span> Ui_Dialog</span><br><span class="line"><span class="keyword">from</span> Login <span class="keyword">import</span> Ui_MainWindow_Login</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Ui_Dialog</span><span class="params">(QtWidgets.QWidget,Ui_Dialog)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        super(Ui_Dialog,self).__init__()</span><br><span class="line">        self.setupUi(self)</span><br><span class="line">	<span class="comment">#定义登出按钮的功能</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">logoutEvent</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.hide()           <span class="comment">#隐藏此窗口</span></span><br><span class="line">        self.log = loginWindow() </span><br><span class="line">        self.log.show()       <span class="comment">#显示登录窗口</span></span><br><span class="line">                              <span class="comment">#必须加上self</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">loginWindow</span><span class="params">(QtWidgets.QMainWindow,Ui_MainWindow_Login)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        super(loginWindow,self).__init__()</span><br><span class="line">        self.setupUi(self)</span><br><span class="line">	<span class="comment">#定义登录按钮的功能</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">loginEvent</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.hide()</span><br><span class="line">        self.dia = Ui_Dialog()</span><br><span class="line">        self.dia.show()</span><br><span class="line">        <span class="comment">#self.dia.exec_()</span></span><br><span class="line">        <span class="comment">#pyqt5下show()方法有所改变，不再使用exec_()方法。</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#运行窗口Login</span></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    <span class="keyword">import</span> sys</span><br><span class="line">    app=QtWidgets.QApplication(sys.argv)</span><br><span class="line">    login_show=loginWindow()</span><br><span class="line">    login_show.show()</span><br><span class="line">    sys.exit(app.exec_())</span><br></pre></td></tr></table></figure>
-<h2 id="多窗口"><a href="#多窗口" class="headerlink" title="多窗口"></a>多窗口</h2><p>需要用到的多个窗口可以用Designer直接生成，主窗口实例化。在其中定义好信号连接即可</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> PyQt5 <span class="keyword">import</span> QtCore, QtGui, QtWidgets</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Ui_MainWindow_Login</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">setupUi</span><span class="params">(self, MainWindow_Login)</span>:</span></span><br><span class="line">        <span class="comment">#略</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">retranslateUi</span><span class="params">(self, MainWindow_Login)</span>:</span></span><br><span class="line">		<span class="comment">#略</span></span><br><span class="line">		</span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    <span class="keyword">import</span> sys</span><br><span class="line">    app=QtWidgets.QApplication(sys.argv)</span><br><span class="line">    widget = QtWidgets.QMainWindow()</span><br><span class="line">    login = Ui_MainWindow_Login()</span><br><span class="line">    login.setupUi(widget)</span><br><span class="line">    widget.show()</span><br><span class="line">    sys.exit(app.exec_())</span><br></pre></td></tr></table></figure>
-<h1 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h1><p><img src="http://img.blog.csdn.net/20171222223034659?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvRVhFQ1VURVJf/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br>点击登陆：<br><img src="http://img.blog.csdn.net/20171222223112535?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvRVhFQ1VURVJf/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br>退出登录则返回到第一个窗口。</p>
-<h1 id="切换"><a href="#切换" class="headerlink" title="切换"></a>切换</h1><p>理解好这个实例后，添加更多窗口都是线性复杂度的操作，在Designer中设计好窗口，直接转码后就可在主程序中实例化该窗口并设计它们的显示逻辑。</p>
-]]></content>
-      <tags>
-        <tag>Python</tag>
-        <tag>PyQt</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>My first post</title>
     <url>/myblog.github.io/My-first-post/</url>
     <content><![CDATA[<p>Hello World!</p>
@@ -185,6 +263,46 @@ U2FsdGVkX1/Nh6DjtKq+r5JIynfYCrnAXkIvgpXHlHf5DjkAQnOJLLXttwwyuBNRGwf8uVpQGZtRuqEa
       </tags>
   </entry>
   <entry>
+    <title>机器学习 李宏毅 HW</title>
+    <url>/myblog.github.io/MLHW/</url>
+    <content><![CDATA[<h3 id="HW0"><a href="#HW0" class="headerlink" title="HW0"></a>HW0</h3> <a id="more"></a>
+<h4 id="Q1"><a href="#Q1" class="headerlink" title="Q1"></a>Q1</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">f = open(<span class="string">'data.txt'</span>)</span><br><span class="line">readline=f.readlines()</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> readline:</span><br><span class="line">    line = line.replace(<span class="string">','</span>, <span class="string">' '</span>)</span><br><span class="line">    line = line.replace(<span class="string">'.'</span>, <span class="string">' '</span>)</span><br><span class="line">    line = line.strip()</span><br><span class="line">    allWord = line.split(<span class="string">' '</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">##print(line)</span></span><br><span class="line">wordCount = []</span><br><span class="line">wordDict = &#123;&#125;.fromkeys(allWord)</span><br><span class="line">wordList = list(wordDict.keys())</span><br><span class="line"></span><br><span class="line">cnt = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> wordList:</span><br><span class="line">    wordDict[i] = allWord.count(i)</span><br><span class="line">    print(i + <span class="string">' '</span> + str(cnt) + <span class="string">' '</span> + str(wordDict[i]))</span><br><span class="line">    cnt = cnt+<span class="number">1</span></span><br><span class="line"><span class="comment">##print(wordDict)</span></span><br></pre></td></tr></table></figure>
+<h5 id="Sample-input-data-txt"><a href="#Sample-input-data-txt" class="headerlink" title="Sample input: data.txt"></a>Sample input: data.txt</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">data.txt:</span><br><span class="line">A small sample of texts from Project Gutenberg appears in the corpus collection. However, you may be interested in analyzing other texts from Project Gutenberg. You can browse the catalog of 25,000 free online books at xxx, and obtain a URL to an ASCII text file. Although 90% of the texts in Project Gutenberg are in English, it includes material in over 50 other languages.</span><br></pre></td></tr></table></figure>
+<h5 id="Sample-output"><a href="#Sample-output" class="headerlink" title="Sample output"></a>Sample output</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">A 0 1</span><br><span class="line">small 1 1</span><br><span class="line">sample 2 1</span><br><span class="line">of 3 3</span><br><span class="line">texts 4 3</span><br><span class="line">from 5 2</span><br><span class="line">Project 6 3</span><br><span class="line">Gutenberg 7 3</span><br><span class="line">appears 8 1</span><br><span class="line">in 9 5</span><br><span class="line">the 10 3</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>打开文件后读取所有的字符，用 <code>replace</code> 去除符号后用<code>split</code>将字符串分割成list</p>
+<p>然后用<a href="https://blog.csdn.net/together_cz/article/details/76201975" target="_blank" rel="noopener">字典方法</a>去重。在<code>wordList</code>中记录单词和出现次数（key为单词，value为出现次数）</p>
+<p>最后输出</p>
+<hr>
+<h4 id="Q2-图片淡化"><a href="#Q2-图片淡化" class="headerlink" title="Q2 图片淡化"></a>Q2 图片淡化</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"></span><br><span class="line">oriImg = Image.open(<span class="string">"westbrook.jpg"</span>)</span><br><span class="line">pixel = oriImg.load()</span><br><span class="line"><span class="comment">##print(oriImg.size)</span></span><br><span class="line"><span class="comment">##(a, b) = oriImg.size</span></span><br><span class="line">print((a, b))</span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> range(oriImg.size[<span class="number">0</span>]):</span><br><span class="line">    <span class="keyword">for</span> y <span class="keyword">in</span> range(oriImg.size[<span class="number">1</span>]):</span><br><span class="line">        <span class="comment">##print(x, y)</span></span><br><span class="line">        (r ,g, b) = pixel[x, y]</span><br><span class="line">        <span class="comment">#print((r, g, b))</span></span><br><span class="line">        <span class="comment">##print((int(r/2), int(g/2), int(b/2)))</span></span><br><span class="line">        oriImg.putpixel((x, y), (int(r/<span class="number">2</span>), int(g/<span class="number">2</span>), int(b/<span class="number">2</span>)))</span><br><span class="line">        <span class="comment">##oriImg.putpixel((x, y), (100,100,100))</span></span><br><span class="line"></span><br><span class="line">oriImg.save(<span class="string">"new.jpg"</span>)</span><br></pre></td></tr></table></figure>
+<p>原图片：</p>
+<p><img src="https://i.imgur.com/JLD89lD.jpg" alt=""></p>
+<p>减淡后：</p>
+<p><img src="https://i.imgur.com/Q0Ivmin.jpg" alt=""></p>
+<p>遍历图片，<code>putpixel</code>即可。</p>
+]]></content>
+      <tags>
+        <tag>Python</tag>
+        <tag>机器学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>PyQt5 多窗口连接</title>
+    <url>/myblog.github.io/PyQt5%20%E5%A4%9A%E7%AA%97%E5%8F%A3%E8%BF%9E%E6%8E%A5/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>之前做过pyqt的一个简单界面，在一个窗口（MainWindow）中实现一些操作；之前嫌麻烦没有去做多窗口和它们的切换功能。最近研究了下窗口的调用和切换。<br>pyqt4和5有很多不同，在参考别人案例的时候走了很多弯路，最后在pyqt5下实现了简洁的多窗口切换为大家参考。</p>
+ <a id="more"></a>
+<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>多窗口的切换和显示连接到按钮的信号上再进行show（）就行，格式上有别于pyqt4。<br><strong>一个逻辑比较清晰的解决方案是，使用一个主程序，在其中实例化各个窗口，然后定义它们的显示逻辑即是按钮的槽函数。</strong><br>格式上稍有不对就会报错，也是让我重新审视了一下python类和继承的语法= =<br>同时窗口的类型也和pyqt4有所不同，pyqt5下QWidgets为主，与4中QDialog显示方式也有所不同。<br>具体方式见代码。</p>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><h2 id="主程序——实例化各个窗口"><a href="#主程序——实例化各个窗口" class="headerlink" title="主程序——实例化各个窗口"></a>主程序——实例化各个窗口</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> PyQt5 <span class="keyword">import</span> QtCore, QtGui, QtWidgets</span><br><span class="line"><span class="keyword">from</span> test <span class="keyword">import</span> Ui_Dialog</span><br><span class="line"><span class="keyword">from</span> Login <span class="keyword">import</span> Ui_MainWindow_Login</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Ui_Dialog</span><span class="params">(QtWidgets.QWidget,Ui_Dialog)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        super(Ui_Dialog,self).__init__()</span><br><span class="line">        self.setupUi(self)</span><br><span class="line">	<span class="comment">#定义登出按钮的功能</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">logoutEvent</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.hide()           <span class="comment">#隐藏此窗口</span></span><br><span class="line">        self.log = loginWindow() </span><br><span class="line">        self.log.show()       <span class="comment">#显示登录窗口</span></span><br><span class="line">                              <span class="comment">#必须加上self</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">loginWindow</span><span class="params">(QtWidgets.QMainWindow,Ui_MainWindow_Login)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        super(loginWindow,self).__init__()</span><br><span class="line">        self.setupUi(self)</span><br><span class="line">	<span class="comment">#定义登录按钮的功能</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">loginEvent</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.hide()</span><br><span class="line">        self.dia = Ui_Dialog()</span><br><span class="line">        self.dia.show()</span><br><span class="line">        <span class="comment">#self.dia.exec_()</span></span><br><span class="line">        <span class="comment">#pyqt5下show()方法有所改变，不再使用exec_()方法。</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#运行窗口Login</span></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    <span class="keyword">import</span> sys</span><br><span class="line">    app=QtWidgets.QApplication(sys.argv)</span><br><span class="line">    login_show=loginWindow()</span><br><span class="line">    login_show.show()</span><br><span class="line">    sys.exit(app.exec_())</span><br></pre></td></tr></table></figure>
+<h2 id="多窗口"><a href="#多窗口" class="headerlink" title="多窗口"></a>多窗口</h2><p>需要用到的多个窗口可以用Designer直接生成，主窗口实例化。在其中定义好信号连接即可</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> PyQt5 <span class="keyword">import</span> QtCore, QtGui, QtWidgets</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Ui_MainWindow_Login</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">setupUi</span><span class="params">(self, MainWindow_Login)</span>:</span></span><br><span class="line">        <span class="comment">#略</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">retranslateUi</span><span class="params">(self, MainWindow_Login)</span>:</span></span><br><span class="line">		<span class="comment">#略</span></span><br><span class="line">		</span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    <span class="keyword">import</span> sys</span><br><span class="line">    app=QtWidgets.QApplication(sys.argv)</span><br><span class="line">    widget = QtWidgets.QMainWindow()</span><br><span class="line">    login = Ui_MainWindow_Login()</span><br><span class="line">    login.setupUi(widget)</span><br><span class="line">    widget.show()</span><br><span class="line">    sys.exit(app.exec_())</span><br></pre></td></tr></table></figure>
+<h1 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h1><p><img src="http://img.blog.csdn.net/20171222223034659?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvRVhFQ1VURVJf/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br>点击登陆：<br><img src="http://img.blog.csdn.net/20171222223112535?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvRVhFQ1VURVJf/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br>退出登录则返回到第一个窗口。</p>
+<h1 id="切换"><a href="#切换" class="headerlink" title="切换"></a>切换</h1><p>理解好这个实例后，添加更多窗口都是线性复杂度的操作，在Designer中设计好窗口，直接转码后就可在主程序中实例化该窗口并设计它们的显示逻辑。</p>
+]]></content>
+      <tags>
+        <tag>Python</tag>
+        <tag>PyQt</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Thought stays upon the Penang Hill</title>
     <url>/myblog.github.io/Thought-stays-upon-the-Penang-Hill/</url>
     <content><![CDATA[<div id="hbe-security">
@@ -197,7 +315,7 @@ U2FsdGVkX1/Nh6DjtKq+r5JIynfYCrnAXkIvgpXHlHf5DjkAQnOJLLXttwwyuBNRGwf8uVpQGZtRuqEa
 <div id="decryptionError" style="display: none;">Incorrect Password!</div>
 <div id="noContentError" style="display: none;">No content to display!</div>
 <div id="encrypt-blog" style="display:none">
-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
+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
 </div>
 <script src="/myblog.github.io/lib/crypto-js.js"></script><script src="/myblog.github.io/lib/blog-encrypt.js"></script><link href="/myblog.github.io/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
       <tags>
@@ -239,6 +357,74 @@ U2FsdGVkX19PT91OZ85itn8Se+zI8Igwns/WxBbakszfk6eVVrvE6icXHUWLZfnbbuqaOcigpSWGLlBA
 ]]></content>
       <tags>
         <tag>Trip</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Along the winter</title>
+    <url>/myblog.github.io/alongthewinter/</url>
+    <content><![CDATA[<h1 id="个人选片和出片"><a href="#个人选片和出片" class="headerlink" title="个人选片和出片"></a>个人选片和出片</h1><p>最近经常思考，我要拍什么东西？</p>
+<p>我拍过大片。银河，车轨。</p>
+<p>可是我还是更喜欢街头。更喜欢小品一样的格局，更喜欢不经意的对比。</p>
+<p>这些是这个冬天前后，我最满意的几张照片。没有一张是大片。</p>
+<p>最近在看<a href="https://www.magnumphotos.com" target="_blank" rel="noopener">马格南</a>。我想我想拍的不是记录也不是绚丽的光影吧。</p>
+<p>有时候符合大众审美，讨喜眼球的往往是一种类型；当谈到当代摄影、街头摄影、人文时，这些相片可能一点都不好看。它们的价值在于内涵，在于能柔和思想和现实，用现代的摄影方法呈现出来。</p>
+<p>我最近也在选镜头。最希望的是35mm的定焦手动镜头。希望之后能够从35mm出发吧。</p>
+<p>这就是我的思路。它们可能之前都没发过，但是这是我个人<strong>这么两三千张照片中</strong>最喜欢的。</p>
+ <a id="more"></a>
+<h1 id="电桩"><a href="#电桩" class="headerlink" title="电桩"></a>电桩</h1><p><img src="https://i.imgur.com/UwuDLMP.jpg" alt="DSC06583"></p>
+<p><img src="https://i.imgur.com/RejLUNG.jpg" alt="DSC08318"><br>向四周延伸的电线。蔚蓝的天下面有多少张网呢。</p>
+<h1 id="光"><a href="#光" class="headerlink" title="光"></a>光</h1><p><img src="https://i.imgur.com/OIAYFIS.jpg" alt="DSC06810"></p>
+<p>逆光日落，红砖迎着余晖。</p>
+<p><img src="https://i.imgur.com/rS42MbK.jpg" alt="DSC07008"></p>
+<p>色彩和边界</p>
+<p><img src="https://i.imgur.com/v8L9svN.jpg" alt="DSC07052"></p>
+<p>蓝调时间港口的灯光。</p>
+<p><img src="https://i.imgur.com/7AE4Nxn.jpg" alt="DSC07954"></p>
+<p>站在浮标上面的海鸥(?)。即使是正午的太阳也是大幅度斜射。细波纹的湖面上还能看到明暗相见的光影。</p>
+<h1 id="夜"><a href="#夜" class="headerlink" title="夜"></a>夜</h1><p><img src="https://i.imgur.com/zFkQANj.jpg" alt="DSC07835 1"></p>
+<h1 id="建筑"><a href="#建筑" class="headerlink" title="建筑"></a>建筑</h1><p><img src="https://i.imgur.com/CfRGE8H.jpg" alt="DSC07980"></p>
+<p>这样好看的蓝色的净空可遇不可求。我最喜欢的构图。每次看到它我都会想起《布达佩斯大饭店》。</p>
+<p>我最想拍的形式，最投入的题材。</p>
+<p><img src="https://i.imgur.com/lcKuA2m.jpg" alt="DSC08267"></p>
+<h1 id="Still-Things"><a href="#Still-Things" class="headerlink" title="Still Things"></a>Still Things</h1><p><img src="https://i.imgur.com/6IgsfXZ.jpg" alt="DSC08082"></p>
+]]></content>
+      <tags>
+        <tag>Trip</tag>
+        <tag>Photograph</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>杂──关于字体</title>
+    <url>/myblog.github.io/aboutfonts/</url>
+    <content><![CDATA[<blockquote>
+<p>最近写论文写邮件，还是想起了很多和字体有关的东西。</p>
+</blockquote>
+<h2 id="很多字体不免费，谨慎使用"><a href="#很多字体不免费，谨慎使用" class="headerlink" title="很多字体不免费，谨慎使用"></a>很多字体不免费，谨慎使用</h2><blockquote>
+<p>2018年8月27日，一名网络创作者<a href="https://zh.wikipedia.org/wiki/Joeman" target="_blank" rel="noopener">Joeman</a>发布影片表示，威锋数位向多名网络创作者（有打开广告营利的Youtuber）收取一年商用字体授权费。该影片指出，威锋向网络创作者收取微软内置字体（新细明体、标楷体）之商用授权费，而引发字体授权争议。 对此字体授权争议，威锋数位于9月10日发布声明澄清，表示从未主动向任何营利或非营利单位收取微软内置字体的授权费，未来亦不会收取微软内置字体的授权费用，无论商用或非商用。<a href="https://www.dynacw.com.tw/news/news_detail.aspx?s=39&amp;r=1" target="_blank" rel="noopener">华康字体授权声明</a></p>
+</blockquote>
+<p>这也是我开始了解字体（字形）<strong>授权</strong>的起因。我一直关注Joeman，当时同时也爆出好几个youtuber遭遇这事，就越来越引起人们的注意了。同时在去年年末，我也在B站上面看到一些因为字体授权而产生争端的事情。</p>
+ <a id="more"></a>
+<p>微软的数款自带字体（内建字形）都<strong>不是</strong>无版权的，例如很著名的<strong>华康、方正、汉仪</strong>。在很多商业情况和绝大多数非营利作品中使用它们都有不同的规定，贸然使用需要付费的字体未被发现只是侥幸而已。特别是修图做海报，电商宣传图之类的事情：</p>
+<p><a href="https://zhuanlan.zhihu.com/p/28712652" target="_blank" rel="noopener">那些年，收到的方正字体侵权律师函</a></p>
+<p>当时Joeman爆出争端的就是新細明體。我之前在玩手机主题的时候就对这简洁优雅的字体很有好感。YouTube上面大部分封面印字都使用的是这款字体。我最喜欢的<strong>冬青</strong>也是需要授权才能使用的。</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/MingLiu.svg/2880px-MingLiu.svg.png" alt="MingLiu.svg"></p>
+<p><img src="https://i.imgur.com/xh2Zb9o.png" alt="image-20190312234809453"></p>
+<h2 id="字体设计"><a href="#字体设计" class="headerlink" title="字体设计"></a>字体设计</h2><p>字体设计也非一日之寒，特别是中国汉字字体设计。中国汉字需要结合形、意，以及艺术美感、书法渊源、造字法等进行设计，同时需要考虑大量的字形问题，例如横竖撇捺的粗细、长度，字形衬线和匀称，以及最重要的，在印刷品和屏幕上的显示效果。设计中文字体需要大师的功底和艺术家的创造力，设计出具有表现张力和能展现中文力度与美感的字体更是如此。</p>
+<p>Google Product Sans和三星的新产品字体SamungOne都是十分好看的非开放西文字体。好看的字体会让人多看几眼，停留在它创造出来的设计感之中。</p>
+<p><img src="https://i.imgur.com/aT6akWl.png" alt="image-20190312235735831"></p>
+<p><img src="https://i.imgur.com/cProFeU.png" alt="image-20190312235920596"></p>
+<p>Google Produce Sans的设计──<a href="https://design.google/library/evolving-google-identity/" target="_blank" rel="noopener">Google品牌更新过程</a></p>
+<p><img src="https://i.imgur.com/xyQwLcs.png" alt="image-20190313001700669"></p>
+<p><a href="http://design.samsung.com/global/contents/samsungone/" target="_blank" rel="noopener">SamsungOne</a></p>
+<p>各位有闲心可以把手机的系统语言换为繁体中文，感受一下明细体。从设计上来讲明细体遵从书法和演化中的很多规则，个人认为更加赏心悦目。</p>
+<h2 id="免费字体"><a href="#免费字体" class="headerlink" title="免费字体"></a>免费字体</h2><p>好看的免费字体其实非常多。Google和Adobe家有很多。</p>
+<p><a href="https://36kr.com/p/213783.html" target="_blank" rel="noopener">Adobe与Google共同推出的开源中日韩文字体</a></p>
+<p><a href="https://www.zhihu.com/question/19889152" target="_blank" rel="noopener">哪些中文字体可免费用于商业用途？</a></p>
+<p><a href="https://www.zhihu.com/question/19594120" target="_blank" rel="noopener">好看且免费的 Web Font 有哪些推荐？</a></p>
+<p>字体也是有版权的。希望大家以后都不要走到坑里吧。</p>
+]]></content>
+      <tags>
+        <tag>Thoughts</tag>
       </tags>
   </entry>
   <entry>
@@ -318,112 +504,6 @@ U2FsdGVkX19PT91OZ85itn8Se+zI8Igwns/WxBbakszfk6eVVrvE6icXHUWLZfnbbuqaOcigpSWGLlBA
       </tags>
   </entry>
   <entry>
-    <title>Hexo 博文简单美化</title>
-    <url>/myblog.github.io/Hexo-%E5%8D%9A%E6%96%87%E7%AE%80%E5%8D%95%E7%BE%8E%E5%8C%96/</url>
-    <content><![CDATA[<h4 id="文字背景色块"><a href="#文字背景色块" class="headerlink" title="文字背景色块"></a>文字背景色块</h4><h5 id="添加"><a href="#添加" class="headerlink" title="添加"></a>添加</h5><p>打开<code>themes/next/source/css/_custom</code> 下的 <code>custom.styl</code> 文件,添加自定属性样式</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">// 颜色块-黄</span><br><span class="line"><span class="selector-tag">span</span><span class="selector-id">#inline-yellow</span> &#123;</span><br><span class="line"><span class="attribute">display</span>:inline;</span><br><span class="line"><span class="attribute">padding</span>:.<span class="number">2em</span> .<span class="number">6em</span> .<span class="number">3em</span>;</span><br><span class="line"><span class="attribute">font-size</span>:<span class="number">80%</span>;</span><br><span class="line"><span class="attribute">font-weight</span>:bold;</span><br><span class="line"><span class="attribute">line-height</span>:<span class="number">1</span>;</span><br><span class="line"><span class="attribute">color</span>:<span class="number">#fff</span>;</span><br><span class="line"><span class="attribute">text-align</span>:center;</span><br><span class="line"><span class="attribute">white-space</span>:nowrap;</span><br><span class="line"><span class="attribute">vertical-align</span>:baseline;</span><br><span class="line"><span class="attribute">border-radius</span>:<span class="number">0</span>;</span><br><span class="line"><span class="attribute">background-color</span>: <span class="number">#f0ad4e</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>想添加自定义颜色，修改最后的backgroud-color即可。</p>
- <a id="more"></a>
-<h5 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h5><p>在md正文中如下格式：</p>
-<p><code>&lt;span id=&quot;inline-blue&quot;&gt; Text here &lt;/span&gt;</code></p>
-<p>就可使用了。</p>
-<p>效果：</p>
-<p><span id="inline-blue"> Text </span> <span id="inline-red"> Text </span>  <span id="inline-yellow"> Text </span> <span id="inline-purple"> Text </span> </p>
-<h4 id="使用FA图标"><a href="#使用FA图标" class="headerlink" title="使用FA图标"></a>使用<a href="https://fontawesome.com/icons" target="_blank" rel="noopener">FA图标</a></h4><p>在md正文中使用</p>
-<p><code>&lt;i class=&quot;fa fa-subway&quot;&gt;&lt;/i&gt;</code></p>
-<p>来调用FA图标。第二个fa后单词改为需要的图标名称即可。</p>
-<p>改变大小：经过测试，有用的包括</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"fa fa-camera-retro fa-lg"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"fa fa-camera-retro fa-2x"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"fa fa-camera-retro fa-3x"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"fa fa-camera-retro fa-5x"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h5 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h5><p><i class="fa fa-subway"></i><br><i class="fa fa-camera-retro fa-lg"></i><br><i class="fa fa-camera-retro fa-2x"></i><br><i class="fa fa-camera-retro fa-3x"></i><br><i class="fa fa-camera-retro fa-5x"></i></p>
-<h4 id="Bootstrap-Callout"><a href="#Bootstrap-Callout" class="headerlink" title="Bootstrap Callout"></a>Bootstrap Callout</h4><figure class="highlight html"><table><tr><td class="code"><pre><span class="line">&#123;% note primary %&#125;primary&#123;% endnote %&#125;</span><br><span class="line">&#123;% note success %&#125;success&#123;% endnote %&#125;</span><br><span class="line">&#123;% note info %&#125;info&#123;% endnote %&#125;</span><br><span class="line">&#123;% note warning %&#125;warning&#123;% endnote %&#125;</span><br><span class="line">&#123;% note danger %&#125;danger&#123;% endnote %&#125;</span><br></pre></td></tr></table></figure>
-<p>效果：</p>
-<p><del><div class="note primary">
-            <p>primary</p>
-          </div>
-<div class="note success">
-            <p>success</p>
-          </div><br><div class="note info">
-            <p>info</p>
-          </div>
-<div class="note warning">
-            <p>warning</p>
-          </div><br><div class="note danger">
-            <p>danger</p>
-          </div></del></p>
-]]></content>
-      <tags>
-        <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>杂──关于字体</title>
-    <url>/myblog.github.io/aboutfonts/</url>
-    <content><![CDATA[<blockquote>
-<p>最近写论文写邮件，还是想起了很多和字体有关的东西。</p>
-</blockquote>
-<h2 id="很多字体不免费，谨慎使用"><a href="#很多字体不免费，谨慎使用" class="headerlink" title="很多字体不免费，谨慎使用"></a>很多字体不免费，谨慎使用</h2><blockquote>
-<p>2018年8月27日，一名网络创作者<a href="https://zh.wikipedia.org/wiki/Joeman" target="_blank" rel="noopener">Joeman</a>发布影片表示，威锋数位向多名网络创作者（有打开广告营利的Youtuber）收取一年商用字体授权费。该影片指出，威锋向网络创作者收取微软内置字体（新细明体、标楷体）之商用授权费，而引发字体授权争议。 对此字体授权争议，威锋数位于9月10日发布声明澄清，表示从未主动向任何营利或非营利单位收取微软内置字体的授权费，未来亦不会收取微软内置字体的授权费用，无论商用或非商用。<a href="https://www.dynacw.com.tw/news/news_detail.aspx?s=39&amp;r=1" target="_blank" rel="noopener">华康字体授权声明</a></p>
-</blockquote>
-<p>这也是我开始了解字体（字形）<strong>授权</strong>的起因。我一直关注Joeman，当时同时也爆出好几个youtuber遭遇这事，就越来越引起人们的注意了。同时在去年年末，我也在B站上面看到一些因为字体授权而产生争端的事情。</p>
- <a id="more"></a>
-<p>微软的数款自带字体（内建字形）都<strong>不是</strong>无版权的，例如很著名的<strong>华康、方正、汉仪</strong>。在很多商业情况和绝大多数非营利作品中使用它们都有不同的规定，贸然使用需要付费的字体未被发现只是侥幸而已。特别是修图做海报，电商宣传图之类的事情：</p>
-<p><a href="https://zhuanlan.zhihu.com/p/28712652" target="_blank" rel="noopener">那些年，收到的方正字体侵权律师函</a></p>
-<p>当时Joeman爆出争端的就是新細明體。我之前在玩手机主题的时候就对这简洁优雅的字体很有好感。YouTube上面大部分封面印字都使用的是这款字体。我最喜欢的<strong>冬青</strong>也是需要授权才能使用的。</p>
-<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/MingLiu.svg/2880px-MingLiu.svg.png" alt="MingLiu.svg"></p>
-<p><img src="https://i.imgur.com/xh2Zb9o.png" alt="image-20190312234809453"></p>
-<h2 id="字体设计"><a href="#字体设计" class="headerlink" title="字体设计"></a>字体设计</h2><p>字体设计也非一日之寒，特别是中国汉字字体设计。中国汉字需要结合形、意，以及艺术美感、书法渊源、造字法等进行设计，同时需要考虑大量的字形问题，例如横竖撇捺的粗细、长度，字形衬线和匀称，以及最重要的，在印刷品和屏幕上的显示效果。设计中文字体需要大师的功底和艺术家的创造力，设计出具有表现张力和能展现中文力度与美感的字体更是如此。</p>
-<p>Google Product Sans和三星的新产品字体SamungOne都是十分好看的非开放西文字体。好看的字体会让人多看几眼，停留在它创造出来的设计感之中。</p>
-<p><img src="https://i.imgur.com/aT6akWl.png" alt="image-20190312235735831"></p>
-<p><img src="https://i.imgur.com/cProFeU.png" alt="image-20190312235920596"></p>
-<p>Google Produce Sans的设计──<a href="https://design.google/library/evolving-google-identity/" target="_blank" rel="noopener">Google品牌更新过程</a></p>
-<p><img src="https://i.imgur.com/xyQwLcs.png" alt="image-20190313001700669"></p>
-<p><a href="http://design.samsung.com/global/contents/samsungone/" target="_blank" rel="noopener">SamsungOne</a></p>
-<p>各位有闲心可以把手机的系统语言换为繁体中文，感受一下明细体。从设计上来讲明细体遵从书法和演化中的很多规则，个人认为更加赏心悦目。</p>
-<h2 id="免费字体"><a href="#免费字体" class="headerlink" title="免费字体"></a>免费字体</h2><p>好看的免费字体其实非常多。Google和Adobe家有很多。</p>
-<p><a href="https://36kr.com/p/213783.html" target="_blank" rel="noopener">Adobe与Google共同推出的开源中日韩文字体</a></p>
-<p><a href="https://www.zhihu.com/question/19889152" target="_blank" rel="noopener">哪些中文字体可免费用于商业用途？</a></p>
-<p><a href="https://www.zhihu.com/question/19594120" target="_blank" rel="noopener">好看且免费的 Web Font 有哪些推荐？</a></p>
-<p>字体也是有版权的。希望大家以后都不要走到坑里吧。</p>
-]]></content>
-      <tags>
-        <tag>Thoughts</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Along the winter</title>
-    <url>/myblog.github.io/alongthewinter/</url>
-    <content><![CDATA[<h1 id="个人选片和出片"><a href="#个人选片和出片" class="headerlink" title="个人选片和出片"></a>个人选片和出片</h1><p>最近经常思考，我要拍什么东西？</p>
-<p>我拍过大片。银河，车轨。</p>
-<p>可是我还是更喜欢街头。更喜欢小品一样的格局，更喜欢不经意的对比。</p>
-<p>这些是这个冬天前后，我最满意的几张照片。没有一张是大片。</p>
-<p>最近在看<a href="https://www.magnumphotos.com" target="_blank" rel="noopener">马格南</a>。我想我想拍的不是记录也不是绚丽的光影吧。</p>
-<p>有时候符合大众审美，讨喜眼球的往往是一种类型；当谈到当代摄影、街头摄影、人文时，这些相片可能一点都不好看。它们的价值在于内涵，在于能柔和思想和现实，用现代的摄影方法呈现出来。</p>
-<p>我最近也在选镜头。最希望的是35mm的定焦手动镜头。希望之后能够从35mm出发吧。</p>
-<p>这就是我的思路。它们可能之前都没发过，但是这是我个人<strong>这么两三千张照片中</strong>最喜欢的。</p>
- <a id="more"></a>
-<h1 id="电桩"><a href="#电桩" class="headerlink" title="电桩"></a>电桩</h1><p><img src="https://i.imgur.com/UwuDLMP.jpg" alt="DSC06583"></p>
-<p><img src="https://i.imgur.com/RejLUNG.jpg" alt="DSC08318"><br>向四周延伸的电线。蔚蓝的天下面有多少张网呢。</p>
-<h1 id="光"><a href="#光" class="headerlink" title="光"></a>光</h1><p><img src="https://i.imgur.com/OIAYFIS.jpg" alt="DSC06810"></p>
-<p>逆光日落，红砖迎着余晖。</p>
-<p><img src="https://i.imgur.com/rS42MbK.jpg" alt="DSC07008"></p>
-<p>色彩和边界</p>
-<p><img src="https://i.imgur.com/v8L9svN.jpg" alt="DSC07052"></p>
-<p>蓝调时间港口的灯光。</p>
-<p><img src="https://i.imgur.com/7AE4Nxn.jpg" alt="DSC07954"></p>
-<p>站在浮标上面的海鸥(?)。即使是正午的太阳也是大幅度斜射。细波纹的湖面上还能看到明暗相见的光影。</p>
-<h1 id="夜"><a href="#夜" class="headerlink" title="夜"></a>夜</h1><p><img src="https://i.imgur.com/zFkQANj.jpg" alt="DSC07835 1"></p>
-<h1 id="建筑"><a href="#建筑" class="headerlink" title="建筑"></a>建筑</h1><p><img src="https://i.imgur.com/CfRGE8H.jpg" alt="DSC07980"></p>
-<p>这样好看的蓝色的净空可遇不可求。我最喜欢的构图。每次看到它我都会想起《布达佩斯大饭店》。</p>
-<p>我最想拍的形式，最投入的题材。</p>
-<p><img src="https://i.imgur.com/lcKuA2m.jpg" alt="DSC08267"></p>
-<h1 id="Still-Things"><a href="#Still-Things" class="headerlink" title="Still Things"></a>Still Things</h1><p><img src="https://i.imgur.com/6IgsfXZ.jpg" alt="DSC08082"></p>
-]]></content>
-      <tags>
-        <tag>Trip</tag>
-        <tag>Photograph</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>cx_Freeze发布Python程序的一些经验</title>
     <url>/myblog.github.io/cx_Freeze%E5%8F%91%E5%B8%83Python%E7%A8%8B%E5%BA%8F%E7%9A%84%E4%B8%80%E4%BA%9B%E7%BB%8F%E9%AA%8C/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="﻿前言"></a>﻿前言</h1><p>最近用Python写了一个化工方面的辅助计算软件，使用PyQt实现界面，同时用了很多库来实现作图和科学计算、求解等功能。使用界面与逻辑分离的方法，画好UI再编码具体功能。这次规模比第一次写的PyQt+SQL的单一界面复杂很多，在打包发布时遇到的问题也是非常多，一方面代码量非常大，另一方面涉及到的库非常多。</p>
@@ -452,6 +532,79 @@ U2FsdGVkX19PT91OZ85itn8Se+zI8Igwns/WxBbakszfk6eVVrvE6icXHUWLZfnbbuqaOcigpSWGLlBA
       </tags>
   </entry>
   <entry>
+    <title>赛博 朋克 中国</title>
+    <url>/myblog.github.io/cyberpunk-china-md/</url>
+    <content><![CDATA[<p><img src="https://i.imgur.com/D6diXfy.jpg" alt="e83de66f-9cec-4207-8ee3-d5a7a7ad189d"></p>
+<h2 id="Cyberpunk"><a href="#Cyberpunk" class="headerlink" title="Cyberpunk"></a>Cyberpunk</h2><p>筛了下最近两年国内的照片，重新选片调色，加上暑假拍的几组赛博朋克风格调色的图片，整理了一组赛博朋克风格合集。我喜欢赛博朋克，也喜欢的中国。</p>
+ <a id="more"></a>
+<p>赛博朋克风格色调很好调，但要营造恰当的氛围感却很难。本组调色只调整了曲线，色调，色调分离，以及最基本的纯色蒙版。各位大佬手术刀精确修图和烟雾缭绕霓虹闪烁的氛围是我之后学习的目标。</p>
+<h3 id="01-DAILY"><a href="#01-DAILY" class="headerlink" title="01 DAILY"></a>01 DAILY</h3><p><img src="https://i.imgur.com/hgElziz.jpg" alt="DSA08500c"></p>
+<p><img src="https://i.imgur.com/rZRMgR5.jpg" alt="DSA08857c"></p>
+<p>外滩。灯光，夜景，街景，最适合做风格的照片。</p>
+<p><img src="https://i.imgur.com/wu8QgNe.jpg" alt="DSC03645"></p>
+<p>海边小路。路边摊的灯光，交通。</p>
+<p><img src="https://i.imgur.com/qBLp9LE.jpg" alt="DSC00386"></p>
+<p>图书馆。明暗对比，科技风调的不是很好。</p>
+<h3 id="02-METROPOLIS"><a href="#02-METROPOLIS" class="headerlink" title="02 METROPOLIS"></a>02 METROPOLIS</h3><p><img src="https://i.imgur.com/UPdjT5G.jpg" alt="DSA08873"></p>
+<p>日出前朝霞袭来的外滩，夜间的灯光还没有熄灭。眼睛看到的是剪影中的充满未来感的灯光，而相机长曝光记录下来最多的是破晓前的蓝色紫色，尽管肉眼还是一片漆黑。</p>
+<p><img src="https://i.imgur.com/l8uuaAd.jpg" alt="dsa08953"></p>
+<p>充满洋红色的江边。</p>
+<p><img src="https://i.imgur.com/30SwgMX.jpg" alt="DSA08456"></p>
+<p>苏州河，与远处的陆家嘴。超有意境的机位，可惜没有日出去拍的机会了。</p>
+<p><img src="https://i.imgur.com/jLOg29z.jpg" alt="DSA09980 copy 2"></p>
+<p>南京，西桥望向紫峰大厦。街边的居民楼和后面的摩天大楼。经典打卡机位，缺一个雨天的倒影。</p>
+<p><img src="https://i.imgur.com/bggGBOh.jpg" alt="dsa08749"></p>
+<p><img src="https://i.imgur.com/9sULxtG.jpg" alt="dsa08765"></p>
+<p>一个人行天桥上的机位。可惜调了很久，都得不到想要的色彩。之后准备做颜色叠加。过去和现代的额对比十分强烈，初次看到这样的景观会让人觉得真的挺荒唐的。</p>
+<p><img src="https://i.imgur.com/56WFd9d.jpg" alt="DSA08827_stack"></p>
+<p>三座摩天大楼。想做明度，可惜太难扣了…</p>
+<p><img src="https://i.imgur.com/J0Db2HU.jpg" alt="dsa08758"></p>
+<p>隧道，车轨，星芒。</p>
+<p><img src="https://i.imgur.com/FhfDo20.jpg" alt="dsc03014"></p>
+<p>苏州。雨天。可惜没有三脚架当时，手持拍摄。</p>
+<h3 id="03-INDUSTRY"><a href="#03-INDUSTRY" class="headerlink" title="03 INDUSTRY"></a>03 INDUSTRY</h3><p><img src="https://i.imgur.com/Y8FjHB9.jpg" alt="DSA09480"></p>
+<p>冷却塔。原片冷暖对比十分强烈。</p>
+<p><img src="https://i.imgur.com/lVPrvVF.jpg" alt=""></p>
+<p>当代艺术馆屋顶的装饰。</p>
+<p><img src="https://i.imgur.com/QdyxqZb.jpg" alt=""></p>
+<p>落日下海边的剪影。光影对比太弱的照片很难调赛博朋克色调，白天的照片调色就更难了。日间的机械废土和荒诞对比风格模仿了很久实在学不来。</p>
+<h3 id="04-NANJING-CITY"><a href="#04-NANJING-CITY" class="headerlink" title="04 NANJING CITY"></a>04 NANJING CITY</h3><p><img src="https://i.imgur.com/lpqzADT.jpg" alt=""></p>
+<p>这是一张几乎没有调色的照片，肉眼看起来就是这么的不可思议，暴雨后的薄雾透着城市的灯光，远处的城区也若隐若现。这是所有照片里面最赛博朋克的一张。我太喜欢它了</p>
+<p>所有图片均为版权图片。</p>
+]]></content>
+      <tags>
+        <tag>Trip</tag>
+        <tag>Photograph</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>写在本科毕业之际</title>
+    <url>/myblog.github.io/ontheedge-md/</url>
+    <content><![CDATA[<h4 id="On-the-edge"><a href="#On-the-edge" class="headerlink" title="On the edge"></a>On the edge</h4><p>其实初中或是高中毕业，我都没有类似的感受。毕竟城市就只有那么大，大家不管去了哪儿都还能见到，聚也能聚起来吧。</p>
+<p>大学里面大家来自四面八方，也走向了四面八方。</p>
+<p>$&gt;-&lt;$</p>
+<p>大家的时间线，也就在这四年有一点重合吧。</p>
+<h4 id="舍，离"><a href="#舍，离" class="headerlink" title="舍，离"></a>舍，离</h4><p>很舍不得大学里面认识了的人。</p>
+<p>做了很多事情也就认识了不少人。总共接触时间也就几十分钟的人也有让我印象深刻的，更不用说平时每天接触的了。</p>
+<p>怀念很多东西，但我不想用什么排比来煽情。最怀念的还是那些真挚的情感，朴实的快乐。</p>
+<p>除了这四年，还有机会能够给我们，来连续不断打10多个小时游戏，或是说走就走去看日出吗？</p>
+ <a id="more"></a>
+<p><img src="https://i.imgur.com/Jn8BSA6.jpg" alt="Screenshot_20190630-020930_WeChat"></p>
+<h4 id="断"><a href="#断" class="headerlink" title="断"></a>断</h4><p>这迷茫的四年也留下了一些遗憾和失望。</p>
+<p>我翻到了四年前的我写给现在的我的信。那时候字写的没有现在好，也没有什么有意义的话语和深刻的话，但是从那不成熟的笔迹中我看到了当时的坚定和当时的初心。<strong>初心啊。</strong></p>
+<blockquote>
+<p>Salute to the faithful youths.</p>
+</blockquote>
+<p><img src="https://i.imgur.com/diWF03B.jpg" alt="20190630_022731"></p>
+<p>我曾幻想过也曾计划过要在大学里面做的事，后来实现的没有多少，我想象的大学和大学生活和实际情况也相差甚远。可本就该是这样，不然还要努力干什么。</p>
+<h4 id="Last"><a href="#Last" class="headerlink" title="Last"></a>Last</h4><p>很幸运认识了大家。愿大家也<strong>珍重</strong>这份情感，记住这段长而难忘的经历，不时翻翻手机相册，看看曾经疯狂过的青春。</p>
+<p>祝大家鹏程万里，趁着年轻，为自己的目标奋斗吧。</p>
+]]></content>
+      <tags>
+        <tag>Thoughts</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Down</title>
     <url>/myblog.github.io/down/</url>
     <content><![CDATA[<blockquote>
@@ -477,33 +630,6 @@ U2FsdGVkX19PT91OZ85itn8Se+zI8Igwns/WxBbakszfk6eVVrvE6icXHUWLZfnbbuqaOcigpSWGLlBA
 <p>字媒已经不是趋势，很多传统或者爱好也再难找到圈子──甚至死于没有圈子：现在的蝴蝶刀教学视频还是六七年前的低清视频，还在维护贴吧的还是以前那群深爱的人，首页的帖子永远是三分钟热度的萌新。</p>
 <p>世界在下沉，狂欢的人也散了。</p>
 <p><img src="https://i.imgur.com/1cSYFI3.png" alt="image-20191213000142331"></p>
-]]></content>
-      <tags>
-        <tag>Thoughts</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>写在本科毕业之际</title>
-    <url>/myblog.github.io/ontheedge-md/</url>
-    <content><![CDATA[<h4 id="On-the-edge"><a href="#On-the-edge" class="headerlink" title="On the edge"></a>On the edge</h4><p>其实初中或是高中毕业，我都没有类似的感受。毕竟城市就只有那么大，大家不管去了哪儿都还能见到，聚也能聚起来吧。</p>
-<p>大学里面大家来自四面八方，也走向了四面八方。</p>
-<p>$&gt;-&lt;$</p>
-<p>大家的时间线，也就在这四年有一点重合吧。</p>
-<h4 id="舍，离"><a href="#舍，离" class="headerlink" title="舍，离"></a>舍，离</h4><p>很舍不得大学里面认识了的人。</p>
-<p>做了很多事情也就认识了不少人。总共接触时间也就几十分钟的人也有让我印象深刻的，更不用说平时每天接触的了。</p>
-<p>怀念很多东西，但我不想用什么排比来煽情。最怀念的还是那些真挚的情感，朴实的快乐。</p>
-<p>除了这四年，还有机会能够给我们，来连续不断打10多个小时游戏，或是说走就走去看日出吗？</p>
- <a id="more"></a>
-<p><img src="https://i.imgur.com/Jn8BSA6.jpg" alt="Screenshot_20190630-020930_WeChat"></p>
-<h4 id="断"><a href="#断" class="headerlink" title="断"></a>断</h4><p>这迷茫的四年也留下了一些遗憾和失望。</p>
-<p>我翻到了四年前的我写给现在的我的信。那时候字写的没有现在好，也没有什么有意义的话语和深刻的话，但是从那不成熟的笔迹中我看到了当时的坚定和当时的初心。<strong>初心啊。</strong></p>
-<blockquote>
-<p>Salute to the faithful youths.</p>
-</blockquote>
-<p><img src="https://i.imgur.com/diWF03B.jpg" alt="20190630_022731"></p>
-<p>我曾幻想过也曾计划过要在大学里面做的事，后来实现的没有多少，我想象的大学和大学生活和实际情况也相差甚远。可本就该是这样，不然还要努力干什么。</p>
-<h4 id="Last"><a href="#Last" class="headerlink" title="Last"></a>Last</h4><p>很幸运认识了大家。愿大家也<strong>珍重</strong>这份情感，记住这段长而难忘的经历，不时翻翻手机相册，看看曾经疯狂过的青春。</p>
-<p>祝大家鹏程万里，趁着年轻，为自己的目标奋斗吧。</p>
 ]]></content>
       <tags>
         <tag>Thoughts</tag>
@@ -579,6 +705,32 @@ U2FsdGVkX19PT91OZ85itn8Se+zI8Igwns/WxBbakszfk6eVVrvE6icXHUWLZfnbbuqaOcigpSWGLlBA
       <tags>
         <tag>Trip</tag>
         <tag>Photograph</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Powered to 7.0</title>
+    <url>/myblog.github.io/powered-to-7-0/</url>
+    <content><![CDATA[<p><strong>Next主题</strong>升级到7.0了。之前一从5.1.x升级失败，现在一步到位，powered to 7.0.</p>
+<h2 id="Hack-Guide"><a href="#Hack-Guide" class="headerlink" title="Hack Guide"></a>Hack Guide</h2><p>6.0之后，主仓库已从 <a href="https://github.com/iissnan/hexo-theme-next">iissnan 名下</a> 迁移至 <a href="https://github.com/theme-next">theme-next</a> 组织，参考<a href="https://github.com/theme-next/hexo-theme-next/blob/master/docs/zh-CN/README.md">这里</a>。</p>
+<p><a href="https://github.com/theme-next/hexo-theme-next/blob/master/docs/zh-CN/UPDATE-FROM-5.1.X.md">官方升级教程</a></p>
+<p>已经越来越完善，越来越成熟，各种bug基本已经被解决掉，包括曾经困扰我多日的子路径重复问题。同时代码也越来注重独立性，js和第三方插件也越来越规范，用起来的确是十分方便。</p>
+ <a id="more"></a>
+<h2 id="Configuration"><a href="#Configuration" class="headerlink" title="Configuration"></a>Configuration</h2><p>将7.0克隆到目录后，主要对比新旧版本的config.yml文件进行配置；同时注意将之前的自定义样式对应导入新主题目录下：</p>
+<blockquote>
+<ol>
+<li><code>config.yml</code> 或 <code>next.yml</code>（如果你使用了<a href="https://github.com/theme-next/hexo-theme-next/blob/master/docs/zh-CN/DATA-FILES.md">数据文件</a>）。</li>
+<li>自定义的 CSS 配置，它们应在 <code>next/source/css/_custom/*</code> 和 <code>next/source/css/_variables/*</code> 中。</li>
+<li>自定义的排布配置，它们应在 <code>next/layout/_custom/*</code> 中。</li>
+<li>任何其它可能的附加自定义内容；为了定位它们，你可以通过某些工具在仓库间比较。</li>
+</ol>
+</blockquote>
+<p>这里推荐Atom对比工具Split Diff：对比修改十分方便，同步滚动，修改内容后亦是实时对比：</p>
+<p><img src="https://i.imgur.com/u4iqrFt.png" alt="Screenshot 2019-03-01 at 01.09.14"></p>
+<h2 id="Add-Ons"><a href="#Add-Ons" class="headerlink" title="Add-Ons"></a>Add-Ons</h2><p>许多第三方工具也变得更加易用，包括评论系统和字数/访客统计系统。这次我使用了valine的<strong>无后端评论系统</strong>，大家可以<strong>直接评论而不需要登录、填写个人信息</strong>（样式见下方测试）。</p>
+<hr>
+]]></content>
+      <tags>
+        <tag>Hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -718,52 +870,6 @@ U2FsdGVkX19PT91OZ85itn8Se+zI8Igwns/WxBbakszfk6eVVrvE6icXHUWLZfnbbuqaOcigpSWGLlBA
       </tags>
   </entry>
   <entry>
-    <title>赛博 朋克 中国</title>
-    <url>/myblog.github.io/cyberpunk-china-md/</url>
-    <content><![CDATA[<p><img src="https://i.imgur.com/D6diXfy.jpg" alt="e83de66f-9cec-4207-8ee3-d5a7a7ad189d"></p>
-<h2 id="Cyberpunk"><a href="#Cyberpunk" class="headerlink" title="Cyberpunk"></a>Cyberpunk</h2><p>筛了下最近两年国内的照片，重新选片调色，加上暑假拍的几组赛博朋克风格调色的图片，整理了一组赛博朋克风格合集。我喜欢赛博朋克，也喜欢的中国。</p>
- <a id="more"></a>
-<p>赛博朋克风格色调很好调，但要营造恰当的氛围感却很难。本组调色只调整了曲线，色调，色调分离，以及最基本的纯色蒙版。各位大佬手术刀精确修图和烟雾缭绕霓虹闪烁的氛围是我之后学习的目标。</p>
-<h3 id="01-DAILY"><a href="#01-DAILY" class="headerlink" title="01 DAILY"></a>01 DAILY</h3><p><img src="https://i.imgur.com/hgElziz.jpg" alt="DSA08500c"></p>
-<p><img src="https://i.imgur.com/rZRMgR5.jpg" alt="DSA08857c"></p>
-<p>外滩。灯光，夜景，街景，最适合做风格的照片。</p>
-<p><img src="https://i.imgur.com/wu8QgNe.jpg" alt="DSC03645"></p>
-<p>海边小路。路边摊的灯光，交通。</p>
-<p><img src="https://i.imgur.com/qBLp9LE.jpg" alt="DSC00386"></p>
-<p>图书馆。明暗对比，科技风调的不是很好。</p>
-<h3 id="02-METROPOLIS"><a href="#02-METROPOLIS" class="headerlink" title="02 METROPOLIS"></a>02 METROPOLIS</h3><p><img src="https://i.imgur.com/UPdjT5G.jpg" alt="DSA08873"></p>
-<p>日出前朝霞袭来的外滩，夜间的灯光还没有熄灭。眼睛看到的是剪影中的充满未来感的灯光，而相机长曝光记录下来最多的是破晓前的蓝色紫色，尽管肉眼还是一片漆黑。</p>
-<p><img src="https://i.imgur.com/l8uuaAd.jpg" alt="dsa08953"></p>
-<p>充满洋红色的江边。</p>
-<p><img src="https://i.imgur.com/30SwgMX.jpg" alt="DSA08456"></p>
-<p>苏州河，与远处的陆家嘴。超有意境的机位，可惜没有日出去拍的机会了。</p>
-<p><img src="https://i.imgur.com/jLOg29z.jpg" alt="DSA09980 copy 2"></p>
-<p>南京，西桥望向紫峰大厦。街边的居民楼和后面的摩天大楼。经典打卡机位，缺一个雨天的倒影。</p>
-<p><img src="https://i.imgur.com/bggGBOh.jpg" alt="dsa08749"></p>
-<p><img src="https://i.imgur.com/9sULxtG.jpg" alt="dsa08765"></p>
-<p>一个人行天桥上的机位。可惜调了很久，都得不到想要的色彩。之后准备做颜色叠加。过去和现代的额对比十分强烈，初次看到这样的景观会让人觉得真的挺荒唐的。</p>
-<p><img src="https://i.imgur.com/56WFd9d.jpg" alt="DSA08827_stack"></p>
-<p>三座摩天大楼。想做明度，可惜太难扣了…</p>
-<p><img src="https://i.imgur.com/J0Db2HU.jpg" alt="dsa08758"></p>
-<p>隧道，车轨，星芒。</p>
-<p><img src="https://i.imgur.com/FhfDo20.jpg" alt="dsc03014"></p>
-<p>苏州。雨天。可惜没有三脚架当时，手持拍摄。</p>
-<h3 id="03-INDUSTRY"><a href="#03-INDUSTRY" class="headerlink" title="03 INDUSTRY"></a>03 INDUSTRY</h3><p><img src="https://i.imgur.com/Y8FjHB9.jpg" alt="DSA09480"></p>
-<p>冷却塔。原片冷暖对比十分强烈。</p>
-<p><img src="https://i.imgur.com/lVPrvVF.jpg" alt=""></p>
-<p>当代艺术馆屋顶的装饰。</p>
-<p><img src="https://i.imgur.com/QdyxqZb.jpg" alt=""></p>
-<p>落日下海边的剪影。光影对比太弱的照片很难调赛博朋克色调，白天的照片调色就更难了。日间的机械废土和荒诞对比风格模仿了很久实在学不来。</p>
-<h3 id="04-NANJING-CITY"><a href="#04-NANJING-CITY" class="headerlink" title="04 NANJING CITY"></a>04 NANJING CITY</h3><p><img src="https://i.imgur.com/lpqzADT.jpg" alt=""></p>
-<p>这是一张几乎没有调色的照片，肉眼看起来就是这么的不可思议，暴雨后的薄雾透着城市的灯光，远处的城区也若隐若现。这是所有照片里面最赛博朋克的一张。我太喜欢它了</p>
-<p>所有图片均为版权图片。</p>
-]]></content>
-      <tags>
-        <tag>Trip</tag>
-        <tag>Photograph</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Stupid Design</title>
     <url>/myblog.github.io/stupiddesign/</url>
     <content><![CDATA[<h1 id="1"><a href="#1" class="headerlink" title="1"></a>1</h1><p>EPCC的灯总是忽明忽暗。顶上装的是照明+氛围灯，刚开学的时候都是好好的，一个时间节点后就总是忽明忽暗。</p>
@@ -792,6 +898,29 @@ U2FsdGVkX19PT91OZ85itn8Se+zI8Igwns/WxBbakszfk6eVVrvE6icXHUWLZfnbbuqaOcigpSWGLlBA
 <p>  从没有灯光的地方走到传感器跟前，终于得到响应它亮了，然而我已经从走廊门离开了。就差给它挥手了。</p>
 <p>  电梯间的灯就是黑的，就剩传感器发出代表着科技感的蓝光。</p>
 <p>  可能这就是sustainable的人工智障吧。</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>Thoughts</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Powered to 7.0 — Finally and Hopefully</title>
+    <url>/myblog.github.io/poweredto7_hopefully/</url>
+    <content><![CDATA[<p>好久没写博客了。终于顺利升级了，<a href="https://chaosrinkhan.github.io/myblog.github.io/powered-to-7-0/" target="_blank" rel="noopener">还升级到7.0了</a></p>
+<p>考雅思压力真的大，考不好就回家喝稀饭了。</p>
+<p>上次考雅思准备太久压力堆积，发挥不好，这次已经从主观上放松和看淡了（后天考试，今天还在没事一样地写博客）。</p>
+<p>最近还遇到了了很多扎心的事情，都在这个时间段内，真的感觉重压之下喘息费力，特别是前两周。我用三星健康测试得到的压力已经爆表了。</p>
+ <a id="more"></a>
+<p>我最近在看佛教的一些东西，听了点佛经，也抄了点佛经。宗教的问题可以开一篇单独聊聊的。其实不是信不信的问题，也不是思辨科学看待就能置身度外来了解的状态。有时候什么都不去想反而认真看一看真的能让重负之下的神经得以舒张。</p>
+<p>How to regain my power, 这似乎一直都是我这么多年忽视的问题。突然一想，我也竟然因为雅思这么紧张。当年我怕过什么？有什么是不能忍受和解决的呢？</p>
+<p>从十年前开始就植根于我心中的图腾和信条竟然快被我在这走向自我舒适的生活中忘记了。我想大学的时候就快忘了吧。现在突然发现，我活得太软弱了。人都活得太软弱了。</p>
+<p>突然想起，是因为看到奥斯卡最佳纪录长篇颁给了<a href="https://movie.douban.com/subject/30167509/" target="_blank" rel="noopener">《徒手攀岩》</a>。用肉身攀上绝壁，每一个指尖都承载这你生命的几分之一。我在想他们思考着什么，他们有什么样的精神境界，又有如何异于常人的决心和毅力？</p>
+<p>特别是当我看到2018年，有数位职业攀岩者沿着他的线路攀爬但不幸坠亡的消息的时候。</p>
+<p><strong>How to fear nothing at all?</strong></p>
+<blockquote>
+<p><strong>OZUNU:</strong></p>
+<p><strong>Weakness compels strength.</strong><br><strong>Betrayal begets blood.</strong></p>
 </blockquote>
 ]]></content>
       <tags>
@@ -846,32 +975,6 @@ U2FsdGVkX19PT91OZ85itn8Se+zI8Igwns/WxBbakszfk6eVVrvE6icXHUWLZfnbbuqaOcigpSWGLlBA
       </tags>
   </entry>
   <entry>
-    <title>Powered to 7.0</title>
-    <url>/myblog.github.io/powered-to-7-0/</url>
-    <content><![CDATA[<p><strong>Next主题</strong>升级到7.0了。之前一从5.1.x升级失败，现在一步到位，powered to 7.0.</p>
-<h2 id="Hack-Guide"><a href="#Hack-Guide" class="headerlink" title="Hack Guide"></a>Hack Guide</h2><p>6.0之后，主仓库已从 <a href="https://github.com/iissnan/hexo-theme-next">iissnan 名下</a> 迁移至 <a href="https://github.com/theme-next">theme-next</a> 组织，参考<a href="https://github.com/theme-next/hexo-theme-next/blob/master/docs/zh-CN/README.md">这里</a>。</p>
-<p><a href="https://github.com/theme-next/hexo-theme-next/blob/master/docs/zh-CN/UPDATE-FROM-5.1.X.md">官方升级教程</a></p>
-<p>已经越来越完善，越来越成熟，各种bug基本已经被解决掉，包括曾经困扰我多日的子路径重复问题。同时代码也越来注重独立性，js和第三方插件也越来越规范，用起来的确是十分方便。</p>
- <a id="more"></a>
-<h2 id="Configuration"><a href="#Configuration" class="headerlink" title="Configuration"></a>Configuration</h2><p>将7.0克隆到目录后，主要对比新旧版本的config.yml文件进行配置；同时注意将之前的自定义样式对应导入新主题目录下：</p>
-<blockquote>
-<ol>
-<li><code>config.yml</code> 或 <code>next.yml</code>（如果你使用了<a href="https://github.com/theme-next/hexo-theme-next/blob/master/docs/zh-CN/DATA-FILES.md">数据文件</a>）。</li>
-<li>自定义的 CSS 配置，它们应在 <code>next/source/css/_custom/*</code> 和 <code>next/source/css/_variables/*</code> 中。</li>
-<li>自定义的排布配置，它们应在 <code>next/layout/_custom/*</code> 中。</li>
-<li>任何其它可能的附加自定义内容；为了定位它们，你可以通过某些工具在仓库间比较。</li>
-</ol>
-</blockquote>
-<p>这里推荐Atom对比工具Split Diff：对比修改十分方便，同步滚动，修改内容后亦是实时对比：</p>
-<p><img src="https://i.imgur.com/u4iqrFt.png" alt="Screenshot 2019-03-01 at 01.09.14"></p>
-<h2 id="Add-Ons"><a href="#Add-Ons" class="headerlink" title="Add-Ons"></a>Add-Ons</h2><p>许多第三方工具也变得更加易用，包括评论系统和字数/访客统计系统。这次我使用了valine的<strong>无后端评论系统</strong>，大家可以<strong>直接评论而不需要登录、填写个人信息</strong>（样式见下方测试）。</p>
-<hr>
-]]></content>
-      <tags>
-        <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>茫茫，Formula 1 (二)</title>
     <url>/myblog.github.io/thoughtsaboutf1/</url>
     <content><![CDATA[<p><a href="//user.qzone.qq.com/784631015/blog/1385866062" target="_blank" rel="noopener">前文地址</a> (茫茫， Formular 1)</p>
@@ -921,6 +1024,44 @@ U2FsdGVkX19PT91OZ85itn8Se+zI8Igwns/WxBbakszfk6eVVrvE6icXHUWLZfnbbuqaOcigpSWGLlBA
       </tags>
   </entry>
   <entry>
+    <title>Seeing inside</title>
+    <url>/myblog.github.io/za01/</url>
+    <content><![CDATA[<div id="hbe-security">
+  <div class="hbe-input-container">
+  <input type="password" class="hbe-form-control" id="pass" placeholder="Please enter the password to read the blog." />
+    <label for="pass">Please enter the password to read the blog.</label>
+    <div class="bottom-line"></div>
+  </div>
+</div>
+<div id="decryptionError" style="display: none;">Incorrect Password!</div>
+<div id="noContentError" style="display: none;">No content to display!</div>
+<div id="encrypt-blog" style="display:none">
+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
+</div>
+<script src="/myblog.github.io/lib/crypto-js.js"></script><script src="/myblog.github.io/lib/blog-encrypt.js"></script><link href="/myblog.github.io/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
+      <tags>
+        <tag>Thoughts</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>一周图片——May 13 2018</title>
+    <url>/myblog.github.io/%E4%B8%80%E5%91%A8%E5%9B%BE%E7%89%87%E2%80%94%E2%80%94May-13-2018/</url>
+    <content><![CDATA[<ol>
+<li><strong>Astonish Sunrise</strong>  <a href="https://500px.com/photo/256915925/astonishing-sunrise-by-chaolin-han?ctx_page=1&amp;from=user&amp;user_id=24161927" target="_blank" rel="noopener">500px原图页面</a><br><img src="https://i.imgur.com/g02Ty97.jpg" alt=""><br><code>8.8mm  ƒ/8 5s  ISO 100</code><br><code>2018 5/3 4:43</code><br>一周前破晓时分在海湾拍的。这是延时摄影中的一帧，<a href="https://www.bilibili.com/video/av22924070/" target="_blank" rel="noopener">完整延时视频</a>。<br>人眼感觉其实比这个加强了饱和度和对比度的照片更震撼。人眼宽容度是真的强。从地平线到头顶，是烟红-紫-粉-橙-黄-蓝-黑的渐变。<a id="more"></a>
+</li>
+</ol>
+<p>F8下左侧的路灯出乎意料的拍出了<strong>星芒</strong>。海边正在布置防浪，还有个挖掘机停着。</p>
+<ol start="2">
+<li><strong> Snow &amp; Lights</strong>  <a href="https://500px.com/photo/257166651/snow-lights-by-chaolin-han?ctx_page=1&amp;from=user&amp;user_id=24161927" target="_blank" rel="noopener">500px原图页面</a><br><img src="https://i.imgur.com/iR29eDs.jpg" alt=""><br><code>8.82mm ƒ/3.2 1/4s  ISO 1250</code><br><code>2018 1/25 17:49</code><br>冬天在学校，遇到下暴雪去拍的。闪光灯拍出来的雪点非常亮而且不透明。当时拍了一个<a href="https://www.youtube.com/watch?v=11a0fM9cCDg&amp;t=4shttps://www.youtube.com/watch?v=11a0fM9cCDg&amp;t=4s" target="_blank" rel="noopener">vlog</a>(需要科学上网)</li>
+<li><strong>Campus Night</strong>  <a href="https://500px.com/photo/257471717/campus-night-by-chaolin-han?ctx_page=1&amp;from=user&amp;user_id=24161927" target="_blank" rel="noopener">500px原图页面</a><br><img src="http://p7qhfeth9.bkt.clouddn.com/DSC01426.jpg" alt=""><br><code>8.8mm  ƒ/4 20s ISO 250</code><br><code>2018 4/17 0:40</code><br>隔着镜湖，图书馆20s长曝。<br><img src="http://p7qhfeth9.bkt.clouddn.com/DSC00386.jpg" alt=""><br><code>26mm f/2.8 1/3200s ISO 6400</code><br><code>2018 1/24 21:07</code><br>还没熄灯的图书馆</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>Trip</tag>
+        <tag>Photograph</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>写在年末——聚合类应用趋势</title>
     <url>/myblog.github.io/%E5%86%99%E5%9C%A8%E5%B9%B4%E6%9C%AB%E2%80%94%E2%80%94%E8%81%9A%E5%90%88%E7%B1%BB%E5%BA%94%E7%94%A8%E8%B6%8B%E5%8A%BF/</url>
     <content><![CDATA[<p>﻿</p>
@@ -952,44 +1093,165 @@ U2FsdGVkX19PT91OZ85itn8Se+zI8Igwns/WxBbakszfk6eVVrvE6icXHUWLZfnbbuqaOcigpSWGLlBA
       </tags>
   </entry>
   <entry>
-    <title>一周图片——May 13 2018</title>
-    <url>/myblog.github.io/%E4%B8%80%E5%91%A8%E5%9B%BE%E7%89%87%E2%80%94%E2%80%94May-13-2018/</url>
-    <content><![CDATA[<ol>
-<li><strong>Astonish Sunrise</strong>  <a href="https://500px.com/photo/256915925/astonishing-sunrise-by-chaolin-han?ctx_page=1&amp;from=user&amp;user_id=24161927" target="_blank" rel="noopener">500px原图页面</a><br><img src="https://i.imgur.com/g02Ty97.jpg" alt=""><br><code>8.8mm  ƒ/8 5s  ISO 100</code><br><code>2018 5/3 4:43</code><br>一周前破晓时分在海湾拍的。这是延时摄影中的一帧，<a href="https://www.bilibili.com/video/av22924070/" target="_blank" rel="noopener">完整延时视频</a>。<br>人眼感觉其实比这个加强了饱和度和对比度的照片更震撼。人眼宽容度是真的强。从地平线到头顶，是烟红-紫-粉-橙-黄-蓝-黑的渐变。<a id="more"></a>
-</li>
-</ol>
-<p>F8下左侧的路灯出乎意料的拍出了<strong>星芒</strong>。海边正在布置防浪，还有个挖掘机停着。</p>
-<ol start="2">
-<li><strong> Snow &amp; Lights</strong>  <a href="https://500px.com/photo/257166651/snow-lights-by-chaolin-han?ctx_page=1&amp;from=user&amp;user_id=24161927" target="_blank" rel="noopener">500px原图页面</a><br><img src="https://i.imgur.com/iR29eDs.jpg" alt=""><br><code>8.82mm ƒ/3.2 1/4s  ISO 1250</code><br><code>2018 1/25 17:49</code><br>冬天在学校，遇到下暴雪去拍的。闪光灯拍出来的雪点非常亮而且不透明。当时拍了一个<a href="https://www.youtube.com/watch?v=11a0fM9cCDg&amp;t=4shttps://www.youtube.com/watch?v=11a0fM9cCDg&amp;t=4s" target="_blank" rel="noopener">vlog</a>(需要科学上网)</li>
-<li><strong>Campus Night</strong>  <a href="https://500px.com/photo/257471717/campus-night-by-chaolin-han?ctx_page=1&amp;from=user&amp;user_id=24161927" target="_blank" rel="noopener">500px原图页面</a><br><img src="http://p7qhfeth9.bkt.clouddn.com/DSC01426.jpg" alt=""><br><code>8.8mm  ƒ/4 20s ISO 250</code><br><code>2018 4/17 0:40</code><br>隔着镜湖，图书馆20s长曝。<br><img src="http://p7qhfeth9.bkt.clouddn.com/DSC00386.jpg" alt=""><br><code>26mm f/2.8 1/3200s ISO 6400</code><br><code>2018 1/24 21:07</code><br>还没熄灯的图书馆</li>
-</ol>
-]]></content>
-      <tags>
-        <tag>Trip</tag>
-        <tag>Photograph</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Powered to 7.0 — Finally and Hopefully</title>
-    <url>/myblog.github.io/poweredto7_hopefully/</url>
-    <content><![CDATA[<p>好久没写博客了。终于顺利升级了，<a href="https://chaosrinkhan.github.io/myblog.github.io/powered-to-7-0/" target="_blank" rel="noopener">还升级到7.0了</a></p>
-<p>考雅思压力真的大，考不好就回家喝稀饭了。</p>
-<p>上次考雅思准备太久压力堆积，发挥不好，这次已经从主观上放松和看淡了（后天考试，今天还在没事一样地写博客）。</p>
-<p>最近还遇到了了很多扎心的事情，都在这个时间段内，真的感觉重压之下喘息费力，特别是前两周。我用三星健康测试得到的压力已经爆表了。</p>
+    <title>大马之行</title>
+    <url>/myblog.github.io/%E5%A4%A7%E9%A9%AC%E4%B9%8B%E8%A1%8C/</url>
+    <content><![CDATA[<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>去马来西亚玩了四天，主要是体验人文。前两天槟城，后两天吉隆坡。  时逢马来西亚大选，也看到街上密集的选战旗帜了。</p>
+<p><img src="https://i.imgur.com/F28yIRi.jpg" alt="842qK.jpg"></p>
  <a id="more"></a>
-<p>我最近在看佛教的一些东西，听了点佛经，也抄了点佛经。宗教的问题可以开一篇单独聊聊的。其实不是信不信的问题，也不是思辨科学看待就能置身度外来了解的状态。有时候什么都不去想反而认真看一看真的能让重负之下的神经得以舒张。</p>
-<p>How to regain my power, 这似乎一直都是我这么多年忽视的问题。突然一想，我也竟然因为雅思这么紧张。当年我怕过什么？有什么是不能忍受和解决的呢？</p>
-<p>从十年前开始就植根于我心中的图腾和信条竟然快被我在这走向自我舒适的生活中忘记了。我想大学的时候就快忘了吧。现在突然发现，我活得太软弱了。人都活得太软弱了。</p>
-<p>突然想起，是因为看到奥斯卡最佳纪录长篇颁给了<a href="https://movie.douban.com/subject/30167509/" target="_blank" rel="noopener">《徒手攀岩》</a>。用肉身攀上绝壁，每一个指尖都承载这你生命的几分之一。我在想他们思考着什么，他们有什么样的精神境界，又有如何异于常人的决心和毅力？</p>
-<p>特别是当我看到2018年，有数位职业攀岩者沿着他的线路攀爬但不幸坠亡的消息的时候。</p>
-<p><strong>How to fear nothing at all?</strong></p>
-<blockquote>
-<p><strong>OZUNU:</strong></p>
-<p><strong>Weakness compels strength.</strong><br><strong>Betrayal begets blood.</strong></p>
+<h4 id="为什么会想去马来西亚呢"><a href="#为什么会想去马来西亚呢" class="headerlink" title="为什么会想去马来西亚呢"></a>为什么会想去马来西亚呢</h4><blockquote>
+<p>大概是因为<strong>便宜</strong>吧  </p>
+</blockquote>
+<h4 id="马来西亚好玩吗"><a href="#马来西亚好玩吗" class="headerlink" title="马来西亚好玩吗"></a>马来西亚好玩吗</h4><blockquote>
+<p>对第一次出国的我来说，马来西亚是体验异国人文的高性价比选择，所以我觉得很值得一去<br>马来西亚是一个<span id="inline-green">伊斯兰国家 </span>  。我在此之前对清真很反感，觉得到一个90％都是伊斯兰教徒的国家可能会有点失望的。<br>结果确是很惊喜。  </p>
+</blockquote>
+<p> <img src="https://i.imgur.com/J9s4JwS.jpg" alt="84gCn.md.jpg"></p>
+<iframe src="//player.bilibili.com/player.html?aid=22784971&cid=37836443&page=1" scrolling="no" border="0" frameborder="yes" framespacing="0" allowfullscreen="true"> </iframe>
+
+<h4 id="对马来西亚的印象"><a href="#对马来西亚的印象" class="headerlink" title="对马来西亚的印象"></a>对马来西亚的印象</h4><blockquote>
+<p><strong>包容和多元</strong><br>之前觉得，包容和多元可以形容上海。去过大马之后，才发现上海和马来西亚相比，根本不能叫多元。<br>这里有各种肤色的人在街头攒动，各种口音和语言交织在一起，各种风俗文化共存，却很少有冲突。<br>拿槟城举例，乔治市遗产区老街有英殖民时期的建筑和教堂，也有清真寺在晚上诵经，街上各种各样老店不少打着中文招牌；有小印度和印度寺庙，也有海边的姓氏桥，它们是很早以前中国渔民下南洋定居的地方，还有更早的<a href="https://baike.baidu.com/item/%E5%B3%87%E5%B3%87%E5%A8%98%E6%83%B9" target="_blank" rel="noopener">娘惹</a>文化，小吃和博物馆。<br>至于吉隆坡，更是如此了。这里不再是泥泞的河口，而是国际化的大城市。街上不只有亚洲面孔，其他大洲的面孔也非常多。随着各种民族定居，它们的文化传统也流了下来，在吉隆坡继续传承着。吉隆坡的华人街<span id="inline-red"> 茨厂街 </span>旁边有佳美清真寺，有印度教神庙，也有关公庙。<br>它们不冲突，也不极端。</p>
+</blockquote>
+<p><img src="https://i.imgur.com/UijRtLq.jpg" alt=""></p>
+<h4 id="印象最深的"><a href="#印象最深的" class="headerlink" title="印象最深的"></a>印象最深的</h4><blockquote>
+<p>这里的女性大部分带头巾，我还见到过只露出眼睛的那种。可能看到一个妹纸会去想要是她们不带头巾会不会很漂亮，会不会有很飘逸的头发。<br>但是她们并不封建，或者说并不是那种传统意义上的封建。似乎任何职业都有他们的身影。有女警察，售货员，酒店前台小姐姐，等等。头巾并不会给你任何负面的印象，反而会慢慢习惯。<br>虽然头巾限制了她们在头发上的发挥，但爱美和追求时尚仍然可行。 各种化妆品都有售卖，广告上的模特也戴着头巾。虽然上半身保留着传统，但是鲜艳前沿的鞋子和袜子展示着她们对时尚的理解。</p>
 </blockquote>
 ]]></content>
       <tags>
+        <tag>Trip</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>屏幕杂谈</title>
+    <url>/myblog.github.io/%E5%B1%8F%E5%B9%95%E6%9D%82%E8%B0%88/</url>
+    <content><![CDATA[<blockquote>
+<p>8102年了，供应链的控制能力还是决定厂商核心产品的因素。</p>
+</blockquote>
+<p>之前的发刘海屏都还不敢吹嘘咋样咋样，华为p20这次发布会上把隐藏刘海当作一个“特性”还要拿出来讲…<br>我接触的人大多数都不喜欢刘海吧。不管是审美上还是功能上。iOS刘海没什么，虽然那么多UI元素被压缩在角落瑟瑟发抖，但是苹果是龙头，叫你适配你就必须适配，不然就下架app。安卓就不一样，各家自己做ROM，但是国际大厂都没有采用刘海屏，也没用魔改ROM来适配。    </p>
+ <a id="more"></a>
+<p>所以今年就很神奇了。<strong>国产机旗舰发基本全部是刘海+下巴。</strong> 我觉得你留下巴不如把额头也留出来吧，强迫症看着舒服点，顺便也不用去想摄像头和传感器听筒放在哪里了。<br>这怪谁呢，我觉得怪iPhone X出来之后那些急于模仿的厂商，定制了屏幕，后来之后的厂商都没有号召力叫供应商去重新下模。mix 2s和坚果R1这些只有下巴都用的早就有的IPS，IPS做不了无下巴，而且边缘做不了处理。别的刘海用的OLED真的属于瞎眼+跟风了，看p20你们真的觉得美吗？我觉得还不如有额头的版本漂亮。<br>要想拿到无下巴的iPhone X那样的OLED刘海屏我觉得今年可能不行，至少Q3之前不行。第一，三星不同意，第二，三星也没产能来做这么多屏幕，第三像JDI和LG这些准一流的厂要做可能也要时间，更重要的是要钱。我觉得可能OPPO都拿不到。<br>但是还有HTC的SLCD这些邪教，做出来看u12效果了。<br>真正的全面屏其实并不是手机公司能决定的，而是屏幕的研发进度决定的。 <strong>刚刚泄漏的Android P 截图显示，Pixel 3可能采用真正的全面屏，无刘海无下巴。</strong> 我觉得这才叫全面屏吧。htc团队做出来的pixel 2屏占比本来就不低，不知道Google会用哪家的黑科技。<br>苹果这个刘海设计估计会形成系列了，有解读三星的最新广告片暗示iPhone SE2采用的是4寸刘海。<br><strong>其实高冷一点的厂商根本不在乎什么鬼玩意刘海屏，处在浪尖的东西都不考虑的，我们不缺钱。</strong></p>
+]]></content>
+      <tags>
         <tag>Thoughts</tag>
+        <tag>Phone</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>整理和收纳</title>
+    <url>/myblog.github.io/%E6%95%B4%E7%90%86%E5%92%8C%E6%94%B6%E7%BA%B3/</url>
+    <content><![CDATA[<div id="hbe-security">
+  <div class="hbe-input-container">
+  <input type="password" class="hbe-form-control" id="pass" placeholder="Please enter the password to read the blog." />
+    <label for="pass">Please enter the password to read the blog.</label>
+    <div class="bottom-line"></div>
+  </div>
+</div>
+<div id="decryptionError" style="display: none;">Incorrect Password!</div>
+<div id="noContentError" style="display: none;">No content to display!</div>
+<div id="encrypt-blog" style="display:none">
+U2FsdGVkX1/P0elYLykMO5TsStqZ+8nw4WpvroirTMkszbGK3HXZNQzufTvcNKR/rmPJcHubZBIE9s63fc5yhlaCqX29A0W7rEDz/3xd4Yv9rmoC2HMPeqRozDy7K5LJomoqF5+mQ2CWOEpX65hMfjPUcidYpoUyQ/15kdhOBy+cWoKDHC1GIznYSAmNJ0to03/FvA6A8wy0DDU1uctzY4iPWa/XgunvCOtBroHoNYA7CYXuqB4xZzO4Sgl88mm3IatDeeF2lSUpq7r4yiT6LM8GWvmv3TITeSHZTEG2Kyl2dCV02d3lPNTlOXYbtnwxCgqMMZFhRuOjZJXuKTZzmrU4f/ALI7zbqDStBqv1KGtf6IcZLXU1r7wGI3XFVvy/HMwVH/BkD3mhfPKANjBjfOfx3DU+Q1wfRdsKoRK5K4TsJKhffBnu104Q04lZCWXLEwofRIINrIOn4YaS+NOtrFzoFRhjvbPyF9k3NUkj7Frvcwd5M3XmV9GX7FIwSbiN9pO//vB9cqKeDkearYjZ7iCYPkLy5eqSWvgu5EPNs70+V0nXYlYcItUYmd1JnS8BB5FkCie3ewxeJo92tnzBjGw92rD8vaRB0JaIX559jYRAzf8zMHWWe2WpH3S19AQiiukd7RT4k2eFipJeW6VRfMPkVYLsu5WwDCzcWieoCZ0xS9duTuAWDvn0TuPBUpNuC4sAr8SZJMKX8vshMbWPms6HLAtrLQPiA/KNy016GlEPgHx5m1NEyDz2cMAYAnJPPi7VqboIrmLwIpG45O8ezadVcGiCaHtjF8frnwRMQH4OMWSV5ZxqCH1+iahlT5IFEOpzeI8CEo5N/hAOJPTvyFGvllj6yneh7ZKFUlBGtvKk6wawB8RdCXo3NiEDGkjhbPFOYlb0CrLNjT2d1AqhATXdaSM7nfaLcKUnrNBrX97sk14YpSRI3pctMa4l+DqSTmh3isq57bu2DSyS93QWjua7Wrm6A52cUHn7amUtVCQD8vERuN7R/f1l6ShI5WFS8Iz26tEdRn2VP9MSlR79cESuU+qydteR+pTwnkKG548PnoOGUQIeLMpd6THKkhoyTQ9Oj7rYTj3o5A7W78QfscK14czMfku39vTm9s34JLcOXLibpHA7vN+wIv5RExGydpYcdSioyg+Hk+k8Xn+Jl9Pc4ntuf+yWuClmefQSLrE=
+</div>
+<script src="/myblog.github.io/lib/crypto-js.js"></script><script src="/myblog.github.io/lib/blog-encrypt.js"></script><link href="/myblog.github.io/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
+      <tags>
+        <tag>Geek</tag>
+        <tag>Google</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>吉隆坡——大都会</title>
+    <url>/myblog.github.io/%E5%90%89%E9%9A%86%E5%9D%A1%E2%80%94%E2%80%94%E9%83%BD%E4%BC%9A%E4%B8%8E%E5%AE%97%E6%95%99/</url>
+    <content><![CDATA[<p>两天之前在雪邦的吉隆坡机场直接转机去了槟城，现在回到了马来西亚的都会。<br>现代化和传统、宗教在这里似乎并不矛盾。同槟城一样，它的包容性也同样让人印象深刻。</p>
+ <a id="more"></a>
+<h4 id="Day-1"><a href="#Day-1" class="headerlink" title="Day 1"></a>Day 1</h4><p>上午坐<code>AEROLINE</code>的<span id = "inline-yellow">豪华大巴</span>从槟城到吉隆坡，差不多是是市区到市区，节约了往返机场的时间（毕竟雪邦机场距离吉隆坡市区 50km+）。</p>
+<p> 这个豪华大巴虽然要四个小时多，但是坐上去还是非常舒适的，大概是飞机公务舱的水平，车上还有娱乐系统。全程高速。</p>
+<p><img src="https://i.imgur.com/ngGT1aW.jpg" alt="195736.jpg"></p>
+<p>到达的地方距离<code>KLCC</code>（双子塔）非常近了。去双子塔旁边的购物中心<code>Avenue K</code>换了点现金，又吃了家推荐的日本拉面，从（<del>长沙</del>）东京空运而来。</p>
+<p><img src="https://i.imgur.com/ByoiDFY.jpg" alt=""></p>
+<p><img src="https://i.imgur.com/xcPOxKx.jpg" alt=""></p>
+<p><img src="https://i.imgur.com/NCil0FE.jpg" alt="430"></p>
+<p>购物广场门口的430</p>
+<p><img src="https://i.imgur.com/7FR9yyQ.jpg" alt=""></p>
+<p>打车沿途看到的<code>KLCC</code></p>
+<p><img src="https://i.imgur.com/YLZmHS8.jpg" alt=""></p>
+<p>从酒店顶层能看到市区和KLCC</p>
+<p><img src="https://i.imgur.com/dnGK6MR.jpg" alt=""></p>
+<p>有趣的阀门</p>
+<p>休息了会儿就去今天的景点了。</p>
+<h5 id="茨厂街周边"><a href="#茨厂街周边" class="headerlink" title="茨厂街周边"></a>茨厂街周边</h5><p><img src="https://i.imgur.com/CtEekCR.jpg" alt=""><br>街道。摩托车总是会挤到前面</p>
+<p>刚走不远就遇到了雷暴，在一个银行门口站了一个小时才走</p>
+<p><img src="https://i.imgur.com/S2GsZWE.jpg" alt=""></p>
+<p>市区内<span id = "inline-blue">KJL</span>轻轨挺方便，<code>KLCC</code>和<code>茨厂街</code>附近都能到。</p>
+<p><img src="https://i.imgur.com/WhhlcEE.jpg" alt=""></p>
+<p><img src="https://i.imgur.com/lECCydd.jpg" alt=""></p>
+<p><span id = "inline-green">马里安曼印度庙</span> 脱鞋才能进入，地还没干就放弃了。</p>
+<p><img src="https://i.imgur.com/bDJsHNZ.jpg" alt=""></p>
+<p><img src="https://i.imgur.com/XeBYtH2.jpg" alt=""></p>
+<p>茨厂街附近的 <strong>日落</strong>  </p>
+<p><img src="https://i.imgur.com/GBqho3Q.jpg" alt=""><br>茨厂街。名义上是<span id = "inline-red">唐人街</span>，实际上卖的全是仿制名牌和各种小吃。这里可以买点纪念品。</p>
+<blockquote>
+<p>茨厂街周边转完就能感受到这个国家的 <strong>多元</strong> 了。下轻轨能看到清真寺和河岸上的pop涂鸦，走不远有印度庙，有唐人街还有寺庙。<br>查了下，60年代的骚乱过后马来西亚的各族都友好相处。正逢大选，我也看到了各个族的党派。这里不会出现了因为一个种族人口太少而被边缘化和排斥的情况，因为这里主要人口本生就是马来族、华族和印度族组成的，任何人种都能在这里享受到公正的对待。<br>一条街上可能就有好几种风格的建筑，有好几种肤色的人居住在这里。<br>这在中国是见不到的。</p>
+</blockquote>
+<h5 id="KLCC"><a href="#KLCC" class="headerlink" title="KLCC"></a>KLCC</h5><p>坐轻轨到KLCC，赶到了九点的音乐喷泉表演，持续了十分钟左右。这个音乐喷泉不算大，甚至比不上国内一些二线城市的喷泉。</p>
+<p><img src="https://i.imgur.com/Gyv8S5a.jpg" alt=""></p>
+<p><img src="https://i.imgur.com/2ModpsQ.jpg" alt=""></p>
+<p><img src="https://i.imgur.com/E7pxl0J.jpg" alt=""></p>
+<p><code>KLCC</code> 在很多人心中这就是吉隆坡的象征吧。拍照时，恰好月亮在塔中间。<br>可能很多人只以为这就是现代的摩天大楼，然而：</p>
+<blockquote>
+<p>这座美轮美奂的特出建筑物的建筑理念是由<span id = "inline-green"><strong>伊斯兰 5 大支柱思想所激发而来的</strong></span> 。它是吉隆坡市政中心 KLCC 范围内，最经典的一座超现代的建筑物。<br>整栋大楼的格局采用<span id = "inline-green"><strong>传统回教建筑常见的几何造型</strong></span> ，包含了四方形和圆形。<br>吉隆坡国油双峰塔是马来西亚石油公司的综合办公大楼，也是游客从云端俯视吉隆坡的好地方。双峰塔的设计风格体现了吉隆坡这座城市年轻、中庸、现代化的城市个性，突出了标志性景观设计的独特性理念。</p>
+</blockquote>
+<p><img src="https://i.imgur.com/LrQ8IVO.jpg" alt=""></p>
+<p>附近的<strong>skyscrapers</strong></p>
+<p><img src="https://i.imgur.com/Egs2Mb7.jpg" alt=""></p>
+<p>双子塔貌似是马石油的，附近广告也非常多。这是在下地铁时拍的，拍糊了却很有感觉。<br><a href="https://www.zhihu.com/question/268426632/answer/379130602" target="_blank" rel="noopener">有哪些拍虚了但竟然很好看的照片？</a></p>
+<p><img src="https://i.imgur.com/9GNLnNj.jpg" alt=""></p>
+<p><img src="https://i.imgur.com/T8l1vCU.jpg" alt=""><br>回程天桥拍了点夜景</p>
+<h4 id="Day-2"><a href="#Day-2" class="headerlink" title="Day 2"></a>Day 2</h4><h5 id="国家清真寺-amp-老火车站"><a href="#国家清真寺-amp-老火车站" class="headerlink" title="国家清真寺 &amp; 老火车站"></a>国家清真寺 &amp; 老火车站</h5><h6 id="国家清真寺"><a href="#国家清真寺" class="headerlink" title="国家清真寺"></a>国家清真寺</h6><p>这是个吉隆坡必打卡的景点。游客侧门进，有免费提供袍子。</p>
+<p><img src="https://i.imgur.com/zm1oz8M.jpg" alt=""></p>
+<blockquote>
+<p>百度：<br>伊斯兰教是马来西亚的国教，清真寺遍布全国，吉隆坡市中心的国家清真寺，占地5.5公顷，于1965年建成，这是一组包括祈祷大厅、大尖塔、陵墓和办公大楼的建筑群，其造型和装饰与麦加的三大清真寺相仿，气势恢弘，是伊斯兰建筑艺术的杰出代表<br>半个世纪神圣的矗立却渗透了这个国家百年的历史，也融合了现代与传统，是伊斯兰建筑的代表，以现代方式去阐述传统的伊斯兰璀璨的文化艺术，新颖而奇妙</p>
+</blockquote>
+<p>个人来讲，最大的感觉就是这座建筑非常的现代化，和想象之中古老的清真寺大不相同。然而刚刚查询到居然1965年就落成了，放到今天也能感受到它 <strong>超越时代的建筑风格的张力</strong>。</p>
+<p><img src="https://i.imgur.com/gIGOQ5C.jpg" alt=""></p>
+<p><img src="https://i.imgur.com/Cgdd8z9.jpg" alt=""></p>
+<p><img src="https://i.imgur.com/U5fSNlh.jpg" alt=""></p>
+<p><img src="https://i.imgur.com/t442Doc.jpg" alt=""></p>
+<p>能窥到<code>吉隆坡塔</code></p>
+<h6 id="老火车站"><a href="#老火车站" class="headerlink" title="老火车站"></a>老火车站</h6><blockquote>
+<p>吉隆坡火车站建于1910年，于1986年时进行过一次大整修，目前是KTM电动火车的车站，为旅客提供最为现代化的设施和旅客服务。<br>吉隆坡火车站就像一座幽静的城堡，是世界上独一无二的仿真清真寺火车站，被誉为世界最美的火车站，吉隆坡火车站与国家清真寺相邻，受摩尔建筑风格的影响，带有浓郁的历史色彩。火车站融合了<strong>维多利亚宫殿格局</strong>及<strong>摩尔拱柱圆顶风格</strong>，有如文艺文艺复兴时代的别墅一般。这座有些念头的火车站，站外有参天大树围绕，站内是呗穑穹顶的回旋楼梯，几何形状的柱廊，给人似曾相识的感觉，一时间仿佛走进了伊斯兰的纯粹世界，无论从哪个角度看都有一种视觉上的冲击感。</p>
+</blockquote>
+<p><img src="https://i.imgur.com/gEHoobI.jpg" alt=""><br>据说屋顶张合的伞状突起代表了马来西亚的气候</p>
+<p><img src="https://i.imgur.com/IOyj2lh.jpg" alt=""></p>
+<h5 id="独立广场周边"><a href="#独立广场周边" class="headerlink" title="独立广场周边"></a>独立广场周边</h5><p><img src="https://i.imgur.com/lX4Mop0.jpg" alt=""><br>城市长廊，门票不贵，值得一去。里面有沿革介绍，建筑模型，打卡拍照的地方，还有很炫的城市灯光秀。</p>
+<p><img src="https://i.imgur.com/nTXU0B5.jpg" alt=""></p>
+<p><img src="https://i.imgur.com/xxdyvPU.jpg" alt=""><br>里面的建筑模型和艺术作品</p>
+<p><img src="https://i.imgur.com/q9BKEKu.jpg" alt=""><br>灯光秀的大展台。灯光秀我录了视频，照片展现不了。</p>
+<p>这个展馆的二楼表达了一个观念：吉隆坡的 <strong>skyscraper计划</strong>。从这个规划模型来看，吉隆坡确实很喜欢摩天大楼。将来这里摩天大楼将连成一片，密度之高。</p>
+<p>中途会酒店退房顺便去吃了推荐的<code>万利肉骨茶</code>。很有盐味，作为一个四川人吃得开。几十年老店，秘方中药材汤底。</p>
+<p><img src="https://i.imgur.com/Rp20Drx.jpg" alt=""></p>
+<p><img src="https://i.imgur.com/73b7Fi9.jpg" alt=""></p>
+<p>回到独立广场继续逛</p>
+<p><img src="https://i.imgur.com/Fukd2LK.jpg" alt=""></p>
+<p><img src="https://i.imgur.com/Q3Zjemr.jpg" alt=""></p>
+<blockquote>
+<p>1957年8月30日午夜，英国国旗在此降下，马来西亚国旗首次升起。广场的南端有一个95米高的旗杆，在世界上最高的旗杆之一。此后，每年8月31日的国庆游行在此举行。</p>
+</blockquote>
+<p>广场上人观光的人不算多。草坪是挺大的，就是维护差了点劲。</p>
+<h6 id="苏丹阿都沙末大厦"><a href="#苏丹阿都沙末大厦" class="headerlink" title="苏丹阿都沙末大厦"></a>苏丹阿都沙末大厦</h6><p><img src="https://i.imgur.com/HF7YX8K.jpg" alt=""></p>
+<blockquote>
+<p>苏丹阿卜杜勒·沙马德大厦俯瞰独立广场，是由英国建造的最显著的地标之一。设计灵感来自印度的莫卧儿建筑，完成于1897年，雪兰莪州秘书处设此，后来改为最高法院。荒废多年后，现在为遗产，文化和艺术部所在地。</p>
+</blockquote>
+<p><img src="https://i.imgur.com/wVOI1XL.jpg" alt=""></p>
+<p><img src="https://i.imgur.com/Is2Rg3K.jpg" alt=""></p>
+<h5 id="嘉美克清真寺"><a href="#嘉美克清真寺" class="headerlink" title="嘉美克清真寺"></a>嘉美克清真寺</h5><p>最后一个景点了。这里男士进入需要穿一个裙子一样的东西，女士需要租罩袍。<br><strong>这里真的很漂亮</strong>，很适合拍照，虽然很小，非教徒能逛的地方很少。异域风情+热带植物+宗教装饰</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNbRwgy1fx4s5bbkmej31kw11ze5d.jpg" alt=""></p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNbRwgy1fx4shoym3oj31kw15bwxi.jpg" alt=""></p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNbRwgy1fx4shv45uqj31kw11x4qp.jpg" alt=""></p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNbRwgy1fx4si2gewuj31kw11x1kx.jpg" alt=""></p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNbRwgy1fx4sid48fzj31kw16okho.jpg" alt=""></p>
+<h4 id="溜了"><a href="#溜了" class="headerlink" title="溜了"></a>溜了</h4><p>迎着日落，坐上了去国际机场的大巴</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNbRwgy1fx4sih5k5sj31kw16o18n.jpg" alt=""></p>
+<p>这次全程自己规划的四天旅行也完了。有些东西只有出国了才能体验到，<strong>就像马来西亚的风情和它的多元</strong>。<br><strong>这里值得来第二次。</strong></p>
+]]></content>
+      <tags>
+        <tag>Trip</tag>
       </tags>
   </entry>
   <entry>
@@ -1045,54 +1307,6 @@ U2FsdGVkX19PT91OZ85itn8Se+zI8Igwns/WxBbakszfk6eVVrvE6icXHUWLZfnbbuqaOcigpSWGLlBA
         <tag>Python</tag>
         <tag>PyQt</tag>
         <tag>Database</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>大马之行</title>
-    <url>/myblog.github.io/%E5%A4%A7%E9%A9%AC%E4%B9%8B%E8%A1%8C/</url>
-    <content><![CDATA[<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>去马来西亚玩了四天，主要是体验人文。前两天槟城，后两天吉隆坡。  时逢马来西亚大选，也看到街上密集的选战旗帜了。</p>
-<p><img src="https://i.imgur.com/F28yIRi.jpg" alt="842qK.jpg"></p>
- <a id="more"></a>
-<h4 id="为什么会想去马来西亚呢"><a href="#为什么会想去马来西亚呢" class="headerlink" title="为什么会想去马来西亚呢"></a>为什么会想去马来西亚呢</h4><blockquote>
-<p>大概是因为<strong>便宜</strong>吧  </p>
-</blockquote>
-<h4 id="马来西亚好玩吗"><a href="#马来西亚好玩吗" class="headerlink" title="马来西亚好玩吗"></a>马来西亚好玩吗</h4><blockquote>
-<p>对第一次出国的我来说，马来西亚是体验异国人文的高性价比选择，所以我觉得很值得一去<br>马来西亚是一个<span id="inline-green">伊斯兰国家 </span>  。我在此之前对清真很反感，觉得到一个90％都是伊斯兰教徒的国家可能会有点失望的。<br>结果确是很惊喜。  </p>
-</blockquote>
-<p> <img src="https://i.imgur.com/J9s4JwS.jpg" alt="84gCn.md.jpg"></p>
-<iframe src="//player.bilibili.com/player.html?aid=22784971&cid=37836443&page=1" scrolling="no" border="0" frameborder="yes" framespacing="0" allowfullscreen="true"> </iframe>
-
-<h4 id="对马来西亚的印象"><a href="#对马来西亚的印象" class="headerlink" title="对马来西亚的印象"></a>对马来西亚的印象</h4><blockquote>
-<p><strong>包容和多元</strong><br>之前觉得，包容和多元可以形容上海。去过大马之后，才发现上海和马来西亚相比，根本不能叫多元。<br>这里有各种肤色的人在街头攒动，各种口音和语言交织在一起，各种风俗文化共存，却很少有冲突。<br>拿槟城举例，乔治市遗产区老街有英殖民时期的建筑和教堂，也有清真寺在晚上诵经，街上各种各样老店不少打着中文招牌；有小印度和印度寺庙，也有海边的姓氏桥，它们是很早以前中国渔民下南洋定居的地方，还有更早的<a href="https://baike.baidu.com/item/%E5%B3%87%E5%B3%87%E5%A8%98%E6%83%B9" target="_blank" rel="noopener">娘惹</a>文化，小吃和博物馆。<br>至于吉隆坡，更是如此了。这里不再是泥泞的河口，而是国际化的大城市。街上不只有亚洲面孔，其他大洲的面孔也非常多。随着各种民族定居，它们的文化传统也流了下来，在吉隆坡继续传承着。吉隆坡的华人街<span id="inline-red"> 茨厂街 </span>旁边有佳美清真寺，有印度教神庙，也有关公庙。<br>它们不冲突，也不极端。</p>
-</blockquote>
-<p><img src="https://i.imgur.com/UijRtLq.jpg" alt=""></p>
-<h4 id="印象最深的"><a href="#印象最深的" class="headerlink" title="印象最深的"></a>印象最深的</h4><blockquote>
-<p>这里的女性大部分带头巾，我还见到过只露出眼睛的那种。可能看到一个妹纸会去想要是她们不带头巾会不会很漂亮，会不会有很飘逸的头发。<br>但是她们并不封建，或者说并不是那种传统意义上的封建。似乎任何职业都有他们的身影。有女警察，售货员，酒店前台小姐姐，等等。头巾并不会给你任何负面的印象，反而会慢慢习惯。<br>虽然头巾限制了她们在头发上的发挥，但爱美和追求时尚仍然可行。 各种化妆品都有售卖，广告上的模特也戴着头巾。虽然上半身保留着传统，但是鲜艳前沿的鞋子和袜子展示着她们对时尚的理解。</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>Trip</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>整理和收纳</title>
-    <url>/myblog.github.io/%E6%95%B4%E7%90%86%E5%92%8C%E6%94%B6%E7%BA%B3/</url>
-    <content><![CDATA[<div id="hbe-security">
-  <div class="hbe-input-container">
-  <input type="password" class="hbe-form-control" id="pass" placeholder="Please enter the password to read the blog." />
-    <label for="pass">Please enter the password to read the blog.</label>
-    <div class="bottom-line"></div>
-  </div>
-</div>
-<div id="decryptionError" style="display: none;">Incorrect Password!</div>
-<div id="noContentError" style="display: none;">No content to display!</div>
-<div id="encrypt-blog" style="display:none">
-U2FsdGVkX1+plB/zRMBcMO3/G+21MWkbDMGOZKQB/p7Q/HucJ/P82dk+8XiSKzteCblqyEvMCUXtt+dFcuK74xWtnrZHpAgfMvZAISO17y5ORH3cpobog1fvPfIVveRdq8J3yg8xo6r2UcLSIjepd4EUhPR+mJpCPWGE/K8qGSN7d7JPSW9Go/+vcDZDUwSqXtUvYaPNHCnqmIO8OSV4l9mlq8gXQNRBmwoSXefMisnb5SiRSSL7YnjSzFGNHV31h04QrfgeV0qga7pqlFangSKDq51VvMgqrJF7eIf/75eTUJXnyO7RzgomxWZtBYT0qcM4ir0W1DDLkcc/jsSwl1lgt+KzIWiBT4klLKnY4Ql1wH/3brwpliIaLbAd5anmZ59iKGt7INsLyeWMVm8TrBv7inW0EYbFaHEAUSsn7u2ju4jymyKDRLsafzQ+FHuY1g440GMa67na2hHixbtTde69d8hdib7Agu5tIyjx1HVJl4d7Km81IfEoxDzRN+c/7mtuiv3mEOUZaCPf0Km81foxhvP4LcwY7RDNnKftciZvBqGl7RxhG2lfbo6vT558uCj8VSoVVfdEr5IbuyfYC9JVUdX3C6SDCmu7XMEW9KWNSkggS+GXindlaGjmuc2+olgYu9Az8WhXwLsm2EGpYW5Mls7sLVvsFIotaJ66+YehmvuG31OLVVtSYl2M3zk+8YjD4Qj6IWCsKdYCigWiEft0PpHVTOTGs66+swr4zbRqTNAZFuz44wBf7BDAMyS/joIpzyn2CwbSyP7apVJdpScGwes+ZS5JEd6m4bnts5wdd6noUBiGplk6Wndq6QdSm7JVYIZr04Wd1DoEozeM7PX8UfgRrm0FR3L0bYevjExrIkmBb24Ppxt+fDOCUfNSfuRNFtrCOBI7gH4CIawvy1MNQJD/pZ2cJtmcuoH4TqPQS15yuprLVjHPaEJHofgB1rWutRY9Hg7ywZyBhY4xdzfNjUlpd3l6+ZoOo5y8VyYnTnP5pnYYqp5CfhSBg1DBzu8LJ615i3wj9/sVGaLJtiZT8bJ3gvYTeAIHamb2vV9XKGNkpMHU+5hEAg6IVrP1icCYX8As2LiuQenpGSAfLKprPjcWE0FBTwKFTSnpMg7z4oTeRnqaNthO9+teVHimYGcyL/v0PnlxZ+jlxpWvscecau35dwXBTs0s3hqqGV4=
-</div>
-<script src="/myblog.github.io/lib/crypto-js.js"></script><script src="/myblog.github.io/lib/blog-encrypt.js"></script><link href="/myblog.github.io/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
-      <tags>
-        <tag>Geek</tag>
-        <tag>Google</tag>
       </tags>
   </entry>
   <entry>
@@ -1217,217 +1431,6 @@ U2FsdGVkX1+plB/zRMBcMO3/G+21MWkbDMGOZKQB/p7Q/HucJ/P82dk+8XiSKzteCblqyEvMCUXtt+dF
 ]]></content>
       <tags>
         <tag>Trip</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>吉隆坡——大都会</title>
-    <url>/myblog.github.io/%E5%90%89%E9%9A%86%E5%9D%A1%E2%80%94%E2%80%94%E9%83%BD%E4%BC%9A%E4%B8%8E%E5%AE%97%E6%95%99/</url>
-    <content><![CDATA[<p>两天之前在雪邦的吉隆坡机场直接转机去了槟城，现在回到了马来西亚的都会。<br>现代化和传统、宗教在这里似乎并不矛盾。同槟城一样，它的包容性也同样让人印象深刻。</p>
- <a id="more"></a>
-<h4 id="Day-1"><a href="#Day-1" class="headerlink" title="Day 1"></a>Day 1</h4><p>上午坐<code>AEROLINE</code>的<span id = "inline-yellow">豪华大巴</span>从槟城到吉隆坡，差不多是是市区到市区，节约了往返机场的时间（毕竟雪邦机场距离吉隆坡市区 50km+）。</p>
-<p> 这个豪华大巴虽然要四个小时多，但是坐上去还是非常舒适的，大概是飞机公务舱的水平，车上还有娱乐系统。全程高速。</p>
-<p><img src="https://i.imgur.com/ngGT1aW.jpg" alt="195736.jpg"></p>
-<p>到达的地方距离<code>KLCC</code>（双子塔）非常近了。去双子塔旁边的购物中心<code>Avenue K</code>换了点现金，又吃了家推荐的日本拉面，从（<del>长沙</del>）东京空运而来。</p>
-<p><img src="https://i.imgur.com/ByoiDFY.jpg" alt=""></p>
-<p><img src="https://i.imgur.com/xcPOxKx.jpg" alt=""></p>
-<p><img src="https://i.imgur.com/NCil0FE.jpg" alt="430"></p>
-<p>购物广场门口的430</p>
-<p><img src="https://i.imgur.com/7FR9yyQ.jpg" alt=""></p>
-<p>打车沿途看到的<code>KLCC</code></p>
-<p><img src="https://i.imgur.com/YLZmHS8.jpg" alt=""></p>
-<p>从酒店顶层能看到市区和KLCC</p>
-<p><img src="https://i.imgur.com/dnGK6MR.jpg" alt=""></p>
-<p>有趣的阀门</p>
-<p>休息了会儿就去今天的景点了。</p>
-<h5 id="茨厂街周边"><a href="#茨厂街周边" class="headerlink" title="茨厂街周边"></a>茨厂街周边</h5><p><img src="https://i.imgur.com/CtEekCR.jpg" alt=""><br>街道。摩托车总是会挤到前面</p>
-<p>刚走不远就遇到了雷暴，在一个银行门口站了一个小时才走</p>
-<p><img src="https://i.imgur.com/S2GsZWE.jpg" alt=""></p>
-<p>市区内<span id = "inline-blue">KJL</span>轻轨挺方便，<code>KLCC</code>和<code>茨厂街</code>附近都能到。</p>
-<p><img src="https://i.imgur.com/WhhlcEE.jpg" alt=""></p>
-<p><img src="https://i.imgur.com/lECCydd.jpg" alt=""></p>
-<p><span id = "inline-green">马里安曼印度庙</span> 脱鞋才能进入，地还没干就放弃了。</p>
-<p><img src="https://i.imgur.com/bDJsHNZ.jpg" alt=""></p>
-<p><img src="https://i.imgur.com/XeBYtH2.jpg" alt=""></p>
-<p>茨厂街附近的 <strong>日落</strong>  </p>
-<p><img src="https://i.imgur.com/GBqho3Q.jpg" alt=""><br>茨厂街。名义上是<span id = "inline-red">唐人街</span>，实际上卖的全是仿制名牌和各种小吃。这里可以买点纪念品。</p>
-<blockquote>
-<p>茨厂街周边转完就能感受到这个国家的 <strong>多元</strong> 了。下轻轨能看到清真寺和河岸上的pop涂鸦，走不远有印度庙，有唐人街还有寺庙。<br>查了下，60年代的骚乱过后马来西亚的各族都友好相处。正逢大选，我也看到了各个族的党派。这里不会出现了因为一个种族人口太少而被边缘化和排斥的情况，因为这里主要人口本生就是马来族、华族和印度族组成的，任何人种都能在这里享受到公正的对待。<br>一条街上可能就有好几种风格的建筑，有好几种肤色的人居住在这里。<br>这在中国是见不到的。</p>
-</blockquote>
-<h5 id="KLCC"><a href="#KLCC" class="headerlink" title="KLCC"></a>KLCC</h5><p>坐轻轨到KLCC，赶到了九点的音乐喷泉表演，持续了十分钟左右。这个音乐喷泉不算大，甚至比不上国内一些二线城市的喷泉。</p>
-<p><img src="https://i.imgur.com/Gyv8S5a.jpg" alt=""></p>
-<p><img src="https://i.imgur.com/2ModpsQ.jpg" alt=""></p>
-<p><img src="https://i.imgur.com/E7pxl0J.jpg" alt=""></p>
-<p><code>KLCC</code> 在很多人心中这就是吉隆坡的象征吧。拍照时，恰好月亮在塔中间。<br>可能很多人只以为这就是现代的摩天大楼，然而：</p>
-<blockquote>
-<p>这座美轮美奂的特出建筑物的建筑理念是由<span id = "inline-green"><strong>伊斯兰 5 大支柱思想所激发而来的</strong></span> 。它是吉隆坡市政中心 KLCC 范围内，最经典的一座超现代的建筑物。<br>整栋大楼的格局采用<span id = "inline-green"><strong>传统回教建筑常见的几何造型</strong></span> ，包含了四方形和圆形。<br>吉隆坡国油双峰塔是马来西亚石油公司的综合办公大楼，也是游客从云端俯视吉隆坡的好地方。双峰塔的设计风格体现了吉隆坡这座城市年轻、中庸、现代化的城市个性，突出了标志性景观设计的独特性理念。</p>
-</blockquote>
-<p><img src="https://i.imgur.com/LrQ8IVO.jpg" alt=""></p>
-<p>附近的<strong>skyscrapers</strong></p>
-<p><img src="https://i.imgur.com/Egs2Mb7.jpg" alt=""></p>
-<p>双子塔貌似是马石油的，附近广告也非常多。这是在下地铁时拍的，拍糊了却很有感觉。<br><a href="https://www.zhihu.com/question/268426632/answer/379130602" target="_blank" rel="noopener">有哪些拍虚了但竟然很好看的照片？</a></p>
-<p><img src="https://i.imgur.com/9GNLnNj.jpg" alt=""></p>
-<p><img src="https://i.imgur.com/T8l1vCU.jpg" alt=""><br>回程天桥拍了点夜景</p>
-<h4 id="Day-2"><a href="#Day-2" class="headerlink" title="Day 2"></a>Day 2</h4><h5 id="国家清真寺-amp-老火车站"><a href="#国家清真寺-amp-老火车站" class="headerlink" title="国家清真寺 &amp; 老火车站"></a>国家清真寺 &amp; 老火车站</h5><h6 id="国家清真寺"><a href="#国家清真寺" class="headerlink" title="国家清真寺"></a>国家清真寺</h6><p>这是个吉隆坡必打卡的景点。游客侧门进，有免费提供袍子。</p>
-<p><img src="https://i.imgur.com/zm1oz8M.jpg" alt=""></p>
-<blockquote>
-<p>百度：<br>伊斯兰教是马来西亚的国教，清真寺遍布全国，吉隆坡市中心的国家清真寺，占地5.5公顷，于1965年建成，这是一组包括祈祷大厅、大尖塔、陵墓和办公大楼的建筑群，其造型和装饰与麦加的三大清真寺相仿，气势恢弘，是伊斯兰建筑艺术的杰出代表<br>半个世纪神圣的矗立却渗透了这个国家百年的历史，也融合了现代与传统，是伊斯兰建筑的代表，以现代方式去阐述传统的伊斯兰璀璨的文化艺术，新颖而奇妙</p>
-</blockquote>
-<p>个人来讲，最大的感觉就是这座建筑非常的现代化，和想象之中古老的清真寺大不相同。然而刚刚查询到居然1965年就落成了，放到今天也能感受到它 <strong>超越时代的建筑风格的张力</strong>。</p>
-<p><img src="https://i.imgur.com/gIGOQ5C.jpg" alt=""></p>
-<p><img src="https://i.imgur.com/Cgdd8z9.jpg" alt=""></p>
-<p><img src="https://i.imgur.com/U5fSNlh.jpg" alt=""></p>
-<p><img src="https://i.imgur.com/t442Doc.jpg" alt=""></p>
-<p>能窥到<code>吉隆坡塔</code></p>
-<h6 id="老火车站"><a href="#老火车站" class="headerlink" title="老火车站"></a>老火车站</h6><blockquote>
-<p>吉隆坡火车站建于1910年，于1986年时进行过一次大整修，目前是KTM电动火车的车站，为旅客提供最为现代化的设施和旅客服务。<br>吉隆坡火车站就像一座幽静的城堡，是世界上独一无二的仿真清真寺火车站，被誉为世界最美的火车站，吉隆坡火车站与国家清真寺相邻，受摩尔建筑风格的影响，带有浓郁的历史色彩。火车站融合了<strong>维多利亚宫殿格局</strong>及<strong>摩尔拱柱圆顶风格</strong>，有如文艺文艺复兴时代的别墅一般。这座有些念头的火车站，站外有参天大树围绕，站内是呗穑穹顶的回旋楼梯，几何形状的柱廊，给人似曾相识的感觉，一时间仿佛走进了伊斯兰的纯粹世界，无论从哪个角度看都有一种视觉上的冲击感。</p>
-</blockquote>
-<p><img src="https://i.imgur.com/gEHoobI.jpg" alt=""><br>据说屋顶张合的伞状突起代表了马来西亚的气候</p>
-<p><img src="https://i.imgur.com/IOyj2lh.jpg" alt=""></p>
-<h5 id="独立广场周边"><a href="#独立广场周边" class="headerlink" title="独立广场周边"></a>独立广场周边</h5><p><img src="https://i.imgur.com/lX4Mop0.jpg" alt=""><br>城市长廊，门票不贵，值得一去。里面有沿革介绍，建筑模型，打卡拍照的地方，还有很炫的城市灯光秀。</p>
-<p><img src="https://i.imgur.com/nTXU0B5.jpg" alt=""></p>
-<p><img src="https://i.imgur.com/xxdyvPU.jpg" alt=""><br>里面的建筑模型和艺术作品</p>
-<p><img src="https://i.imgur.com/q9BKEKu.jpg" alt=""><br>灯光秀的大展台。灯光秀我录了视频，照片展现不了。</p>
-<p>这个展馆的二楼表达了一个观念：吉隆坡的 <strong>skyscraper计划</strong>。从这个规划模型来看，吉隆坡确实很喜欢摩天大楼。将来这里摩天大楼将连成一片，密度之高。</p>
-<p>中途会酒店退房顺便去吃了推荐的<code>万利肉骨茶</code>。很有盐味，作为一个四川人吃得开。几十年老店，秘方中药材汤底。</p>
-<p><img src="https://i.imgur.com/Rp20Drx.jpg" alt=""></p>
-<p><img src="https://i.imgur.com/73b7Fi9.jpg" alt=""></p>
-<p>回到独立广场继续逛</p>
-<p><img src="https://i.imgur.com/Fukd2LK.jpg" alt=""></p>
-<p><img src="https://i.imgur.com/Q3Zjemr.jpg" alt=""></p>
-<blockquote>
-<p>1957年8月30日午夜，英国国旗在此降下，马来西亚国旗首次升起。广场的南端有一个95米高的旗杆，在世界上最高的旗杆之一。此后，每年8月31日的国庆游行在此举行。</p>
-</blockquote>
-<p>广场上人观光的人不算多。草坪是挺大的，就是维护差了点劲。</p>
-<h6 id="苏丹阿都沙末大厦"><a href="#苏丹阿都沙末大厦" class="headerlink" title="苏丹阿都沙末大厦"></a>苏丹阿都沙末大厦</h6><p><img src="https://i.imgur.com/HF7YX8K.jpg" alt=""></p>
-<blockquote>
-<p>苏丹阿卜杜勒·沙马德大厦俯瞰独立广场，是由英国建造的最显著的地标之一。设计灵感来自印度的莫卧儿建筑，完成于1897年，雪兰莪州秘书处设此，后来改为最高法院。荒废多年后，现在为遗产，文化和艺术部所在地。</p>
-</blockquote>
-<p><img src="https://i.imgur.com/wVOI1XL.jpg" alt=""></p>
-<p><img src="https://i.imgur.com/Is2Rg3K.jpg" alt=""></p>
-<h5 id="嘉美克清真寺"><a href="#嘉美克清真寺" class="headerlink" title="嘉美克清真寺"></a>嘉美克清真寺</h5><p>最后一个景点了。这里男士进入需要穿一个裙子一样的东西，女士需要租罩袍。<br><strong>这里真的很漂亮</strong>，很适合拍照，虽然很小，非教徒能逛的地方很少。异域风情+热带植物+宗教装饰</p>
-<p><img src="https://ws2.sinaimg.cn/large/006tNbRwgy1fx4s5bbkmej31kw11ze5d.jpg" alt=""></p>
-<p><img src="https://ws2.sinaimg.cn/large/006tNbRwgy1fx4shoym3oj31kw15bwxi.jpg" alt=""></p>
-<p><img src="https://ws4.sinaimg.cn/large/006tNbRwgy1fx4shv45uqj31kw11x4qp.jpg" alt=""></p>
-<p><img src="https://ws3.sinaimg.cn/large/006tNbRwgy1fx4si2gewuj31kw11x1kx.jpg" alt=""></p>
-<p><img src="https://ws3.sinaimg.cn/large/006tNbRwgy1fx4sid48fzj31kw16okho.jpg" alt=""></p>
-<h4 id="溜了"><a href="#溜了" class="headerlink" title="溜了"></a>溜了</h4><p>迎着日落，坐上了去国际机场的大巴</p>
-<p><img src="https://ws4.sinaimg.cn/large/006tNbRwgy1fx4sih5k5sj31kw16o18n.jpg" alt=""></p>
-<p>这次全程自己规划的四天旅行也完了。有些东西只有出国了才能体验到，<strong>就像马来西亚的风情和它的多元</strong>。<br><strong>这里值得来第二次。</strong></p>
-]]></content>
-      <tags>
-        <tag>Trip</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Seeing inside</title>
-    <url>/myblog.github.io/za01/</url>
-    <content><![CDATA[<div id="hbe-security">
-  <div class="hbe-input-container">
-  <input type="password" class="hbe-form-control" id="pass" placeholder="Please enter the password to read the blog." />
-    <label for="pass">Please enter the password to read the blog.</label>
-    <div class="bottom-line"></div>
-  </div>
-</div>
-<div id="decryptionError" style="display: none;">Incorrect Password!</div>
-<div id="noContentError" style="display: none;">No content to display!</div>
-<div id="encrypt-blog" style="display:none">
-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
-</div>
-<script src="/myblog.github.io/lib/crypto-js.js"></script><script src="/myblog.github.io/lib/blog-encrypt.js"></script><link href="/myblog.github.io/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
-      <tags>
-        <tag>Thoughts</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>屏幕杂谈</title>
-    <url>/myblog.github.io/%E5%B1%8F%E5%B9%95%E6%9D%82%E8%B0%88/</url>
-    <content><![CDATA[<blockquote>
-<p>8102年了，供应链的控制能力还是决定厂商核心产品的因素。</p>
-</blockquote>
-<p>之前的发刘海屏都还不敢吹嘘咋样咋样，华为p20这次发布会上把隐藏刘海当作一个“特性”还要拿出来讲…<br>我接触的人大多数都不喜欢刘海吧。不管是审美上还是功能上。iOS刘海没什么，虽然那么多UI元素被压缩在角落瑟瑟发抖，但是苹果是龙头，叫你适配你就必须适配，不然就下架app。安卓就不一样，各家自己做ROM，但是国际大厂都没有采用刘海屏，也没用魔改ROM来适配。    </p>
- <a id="more"></a>
-<p>所以今年就很神奇了。<strong>国产机旗舰发基本全部是刘海+下巴。</strong> 我觉得你留下巴不如把额头也留出来吧，强迫症看着舒服点，顺便也不用去想摄像头和传感器听筒放在哪里了。<br>这怪谁呢，我觉得怪iPhone X出来之后那些急于模仿的厂商，定制了屏幕，后来之后的厂商都没有号召力叫供应商去重新下模。mix 2s和坚果R1这些只有下巴都用的早就有的IPS，IPS做不了无下巴，而且边缘做不了处理。别的刘海用的OLED真的属于瞎眼+跟风了，看p20你们真的觉得美吗？我觉得还不如有额头的版本漂亮。<br>要想拿到无下巴的iPhone X那样的OLED刘海屏我觉得今年可能不行，至少Q3之前不行。第一，三星不同意，第二，三星也没产能来做这么多屏幕，第三像JDI和LG这些准一流的厂要做可能也要时间，更重要的是要钱。我觉得可能OPPO都拿不到。<br>但是还有HTC的SLCD这些邪教，做出来看u12效果了。<br>真正的全面屏其实并不是手机公司能决定的，而是屏幕的研发进度决定的。 <strong>刚刚泄漏的Android P 截图显示，Pixel 3可能采用真正的全面屏，无刘海无下巴。</strong> 我觉得这才叫全面屏吧。htc团队做出来的pixel 2屏占比本来就不低，不知道Google会用哪家的黑科技。<br>苹果这个刘海设计估计会形成系列了，有解读三星的最新广告片暗示iPhone SE2采用的是4寸刘海。<br><strong>其实高冷一点的厂商根本不在乎什么鬼玩意刘海屏，处在浪尖的东西都不考虑的，我们不缺钱。</strong></p>
-]]></content>
-      <tags>
-        <tag>Thoughts</tag>
-        <tag>Phone</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>疫情数据的可视化和ARIMA预测</title>
-    <url>/myblog.github.io/COVID-R/</url>
-    <content><![CDATA[<p>简单记录下这些微小的工作。</p>
-<p>GitHub Pages: <a href="https://hrbinbin.github.io/Covid19predict/" target="_blank" rel="noopener">https://hrbinbin.github.io/Covid19predict/</a></p>
-<h1 id="初衷"><a href="#初衷" class="headerlink" title="初衷"></a>初衷</h1><ul>
-<li><p>探索一下，机器学习能否做到</p>
-<ul>
-<li>超越检测手段、统计方式的不确定性，对真实情况进行fit</li>
-<li>没见过下降趋势的时候预测下降趋势。这一点的范畴其实在deep reinforcement learning里面研究挺多，可惜本场景是否适用还未知</li>
-</ul>
-</li>
-<li><p>目标是拐点或者趋势</p>
-</li>
-</ul>
-<h2 id="现阶段"><a href="#现阶段" class="headerlink" title="现阶段"></a>现阶段</h2><ul>
-<li>英国首相今天宣布<a href="https://www.bbc.com/news/amp/uk-52493500" target="_blank" rel="noopener">疫情高峰已经过去</a>，不过从可视化结果来看，确实是“过去”了，但这好转速度也太慢了</li>
-<li>既然拐点过了，那么情况和数据肯定是越来越好的</li>
-<li>还有没有继续做，做什么<ul>
-<li>在日程上的有CNN for time-series和LSTM RNN</li>
-<li>总确诊人数肯定是S型曲线。现存确诊这个数据对英国来讲就是没有，比较治愈数目就没怎么更新</li>
-<li>现阶段预测现存确诊的意义大于预测总确诊的意义；预测的总确诊只能用来展示拐点情况了</li>
-<li>有很大的冲动想把这个项目archive了，因为没有现存确诊的每日数据和历史数据。就留个可视化</li>
-</ul>
-</li>
-</ul>
-<h1 id="数据源-json2csv-R"><a href="#数据源-json2csv-R" class="headerlink" title="数据源 json2csv.R"></a>数据源 <code>json2csv.R</code></h1><ol>
-<li>Jeff的API：<a href="https://github.com/isjeffcom/coronvirusFigureUK。用于获取英国历史数据。">https://github.com/isjeffcom/coronvirusFigureUK。用于获取英国历史数据。</a></li>
-<li>JHU的全球数据仓库：<a href="https://github.com/CSSEGISandData/COVID-19。用于获取欧洲三国数据。">https://github.com/CSSEGISandData/COVID-19。用于获取欧洲三国数据。</a></li>
-<li>韩国数据也源于JHU，中国大陆数据采用卫健委的数据。英国之外的数据均用于对比英国。</li>
-</ol>
-<p>代码没什么好讲的，全部输出csv。</p>
-<h1 id="现状可视化"><a href="#现状可视化" class="headerlink" title="现状可视化"></a>现状可视化</h1><p>一个很重要的点就是用普通的line plot（y轴：确诊人数，x轴：时间）很难对比或者看出一个国家情况的好坏。用对数数轴（log-y /w log-x）也凸显不出来显著差距。这里采用的是minutephysics的视频中提到的方法：<a href="https://youtu.be/54XLXg4fYsc" target="_blank" rel="noopener">How To Tell If We’re Beating COVID-19</a>。我也在寻找更优的数据展示方式，有知道的也欢迎告诉我。</p>
-<p>这个可视化采用y轴每日新增，x轴总确诊来做图，全对数数轴。上面的是视频已经很到展示了它的效果。下面的图片也说明了欧洲三国领先英国的一个抗疫局势。<a href="https://hrbinbin.github.io/Covid19predict/trendFigures.html" target="_blank" rel="noopener">更多对比</a></p>
-<p><img src="https://raw.githubusercontent.com/HRbinbin/Covid19predict/master/plot/UKlogTrend.png" alt=""></p>
-<p>所有可视化都通过ggplot2完成。确实很麻烦很费时间（特别是legend），但在目前我看来做可视化已经是最优方案了。</p>
-<p>对数数轴：</p>
-<figure class="highlight r"><table><tr><td class="code"><pre><span class="line">scale_x_log10(limits = c(<span class="number">55</span>,<span class="number">316123</span>), breaks = trans_breaks(<span class="string">"log10"</span>, <span class="keyword">function</span>(x) <span class="number">10</span>^x), labels = trans_format(<span class="string">"log10"</span>, math_format(<span class="number">10</span>^.x)))+</span><br><span class="line"> scale_y_log10(limits = c(<span class="number">30</span>,<span class="number">31612</span>),breaks = trans_breaks(<span class="string">"log10"</span>, <span class="keyword">function</span>(x) <span class="number">10</span>^x), labels = trans_format(<span class="string">"log10"</span>, math_format(<span class="number">10</span>^.x)))</span><br></pre></td></tr></table></figure>
-<h1 id="ARIMA"><a href="#ARIMA" class="headerlink" title="ARIMA"></a>ARIMA</h1><p>非季节ARIMA就三个参数 (p, d, q)。p是AR（自回归）的阶数，描述时间序列的lag，d是差分的阶数，这个阶数下的时间序列应该具有平稳（stationary）的趋势。q是滑动平均的阶数，与滑动窗口大小有关。</p>
-<ul>
-<li>d在本情况下是不会超过3的，通过画一下差分后的数据序列就能看出来。最大化Heteroscedasticity的d可能就是2了。</li>
-<li>p和q就让它自动去寻找吧</li>
-</ul>
-<p>后期版本，自动寻优的ARIMA模型：</p>
-<figure class="highlight r"><table><tr><td class="code"><pre><span class="line">UK.autoARIMA = auto.arima(dfUK$confirmed, </span><br><span class="line">                          max.p = <span class="number">21</span>, max.q = <span class="number">21</span>, start.q = <span class="number">1</span>, max.d = <span class="number">4</span>, max.order = <span class="number">42</span>, </span><br><span class="line">                          seasonal = <span class="literal">F</span>,stepwise = <span class="literal">F</span>, </span><br><span class="line">                          <span class="comment">#parallel = T, num.cores = 8, </span></span><br><span class="line">                          approximation = <span class="literal">T</span>,trace = <span class="literal">T</span>)</span><br></pre></td></tr></table></figure>
-<figure class="highlight r"><table><tr><td class="code"><pre><span class="line">tsdiag(UK.autoARIMA)</span><br></pre></td></tr></table></figure>
-<p>这里默认的寻参目标是AIC，可选的目标还有AICc，BIC和likelihood。我并不知道哪个寻参目标更好，所以就用了默认的。</p>
-<p>正常情况为了一个更精确的结果，还是应该关闭<code>approximation</code>，打开并行，这样的结果更好，还可以避免q很大的时候，AIC计算直接蹦到Inf的问题。当然如上一段，换个寻参目标可以解决这个问题。</p>
-<p>早期版本中，我手动grid search寻参，结果p和q都落在10+的范围，寻参时间也很长。一个可视化三维或者更高维的grid search结果的方法是：</p>
-<ul>
-<li><p>假设变量a寻参范围为d1，变量b为d2，变量c为d3</p>
-</li>
-<li><p>y轴为寻参目标（这里是AIC），x轴为</p>
-<p><code>c+b*(d3+1)+a*(b*d2+d3+1)</code></p>
-</li>
-<li><p>这里的1可以换成别的正常数来增大间距</p>
-</li>
-</ul>
-<p>关于参数理解：<a href="https://alkaline-ml.com/pmdarima/tips_and_tricks.html#understand-p-d-and-q" target="_blank" rel="noopener">Understand <code>p</code>, <code>d</code>, and <code>q</code></a></p>
-<p>现阶段的自动寻参结果表明，p是肯定落在10以上的区间的，以likelihood为指标甚至会趋向于更复杂的模型；q对模型的影响难以简单描述，还是认真搜一下比较好。</p>
-<p>接下来就是构造data frame无脑作图了。AIC可视化出来可能很难理解，这里就做了residual也就是error的可视化。</p>
-<p>不得不说显而易见的的，这样的时移统计模型的误差可以做到非常小：我预测了这么多天，没有一天的误差超过1%，一般和当天公布的总确诊数字相差都不会超过1000人</p>
-<p>这就让我回到了<a href="#初衷">初衷</a>里面讲的，它都这么精确了，那么它达到我们的目标了吗？做更精确的CNN、RNN模型意义大吗？对我们的生活或是决策参考意义大吗？</p>
-<p>所以我准备再思考一下这个问题，或许明天写个1D-CNN试试看。DNN能吸收更多的特征，但对这种统计手段/统计方法会很大影响结果的场景，直接预测确诊意义确实不是很大。</p>
-<p>最早的目标是学习相似国家的数据，然后transfer learning到英国上面。现在想想，可能transfer完就预测一个确诊人数着实没啥用。试试才知道，说不定等几天过去它就变成一个纯可视化的项目了。</p>
-<p>目前最有价值的也就是如下两图了（GitHub的图床，每日更新）</p>
-<h2 id="英国趋势"><a href="#英国趋势" class="headerlink" title="英国趋势"></a>英国趋势</h2><p>1 May：确实不大像拐点的样子，尽管首相已经这么承认了。这个拐点是真的平缓，表明英国在收容这一块上做的很艰难。</p>
-<p><img src="https://raw.githubusercontent.com/HRbinbin/Covid19predict/master/prediction/UKlogTrend.png" alt=""></p>
-<h2 id="每日新增预测"><a href="#每日新增预测" class="headerlink" title="每日新增预测"></a>每日新增预测</h2><p>MA阶数q在快速寻优和高阶AR下趋向于选择小的值。更精确的自动寻优结果之后会更新。</p>
-<p><img src="https://raw.githubusercontent.com/HRbinbin/Covid19predict/master/prediction/DailyBar.png" alt=""></p>
-]]></content>
-      <tags>
-        <tag>Python</tag>
-        <tag>R</tag>
-        <tag>Data Analysis</tag>
       </tags>
   </entry>
 </search>

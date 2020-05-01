@@ -27,6 +27,88 @@
       </tags>
   </entry>
   <entry>
+    <title>疫情数据的可视化和ARIMA预测</title>
+    <url>/myblog.github.io/COVID-R/</url>
+    <content><![CDATA[<p>简单记录下这些微小的工作。</p>
+<p>GitHub Pages</p>
+<p><a href="https://hrbinbin.github.io/Covid19predict/" target="_blank" rel="noopener">https://hrbinbin.github.io/Covid19predict/</a></p>
+<h1 id="初衷"><a href="#初衷" class="headerlink" title="初衷"></a>初衷</h1><ul>
+<li><p>探索一下，机器学习能否做到</p>
+<ul>
+<li>超越检测手段、统计方式的不确定性，对真实情况进行fit</li>
+<li>没见过下降趋势的时候预测下降趋势。这一点的范畴其实在deep reinforcement learning里面研究挺多，可惜本场景是否适用还未知</li>
+</ul>
+</li>
+<li><p>目标是拐点或者趋势</p>
+</li>
+</ul>
+<h2 id="现阶段"><a href="#现阶段" class="headerlink" title="现阶段"></a>现阶段</h2><ul>
+<li>英国首相今天宣布<a href="https://www.bbc.com/news/amp/uk-52493500" target="_blank" rel="noopener">疫情高峰已经过去</a>，不过从可视化结果来看，确实是“过去”了，但这好转速度也太慢了</li>
+<li>既然拐点过了，那么情况和数据肯定是越来越好的</li>
+</ul>
+<a id="more"></a>
+<ul>
+<li>还有没有继续做，做什么<ul>
+<li>在日程上的有CNN for time-series和LSTM RNN</li>
+<li>总确诊人数肯定是S型曲线。现存确诊这个数据对英国来讲就是没有，治愈数目、重症数目就没怎么更新</li>
+<li>现阶段预测现存确诊的意义大于预测总确诊的意义；预测的总确诊只能用来展示拐点情况了</li>
+<li>有很大的冲动想把这个项目archive了，因为没有现存确诊的每日数据和历史数据。就留个可视化</li>
+</ul>
+</li>
+</ul>
+<h1 id="数据源-json2csv-R"><a href="#数据源-json2csv-R" class="headerlink" title="数据源  json2csv.R"></a>数据源  <code>json2csv.R</code></h1><ol>
+<li><a href="https://github.com/isjeffcom/coronvirusFigureUK">Jeff的API</a>。用于获取英国历史数据。</li>
+<li><a href="https://github.com/CSSEGISandData/COVID-19">JHU的全球数据仓库</a>。用于获取欧洲三国数据。</li>
+<li>韩国数据也源于JHU，中国大陆数据采用卫健委的数据。英国之外的数据均用于对比英国。</li>
+</ol>
+<p>代码没什么好讲的，全部输出csv。</p>
+<h1 id="现状可视化-log-vis-R"><a href="#现状可视化-log-vis-R" class="headerlink" title="现状可视化 log_vis.R"></a>现状可视化 <code>log_vis.R</code></h1><p>一个很重要的点就是用普通的line plot（y轴：确诊人数，x轴：时间）很难对比或者看出一个国家情况的好坏。用对数数轴（log-y /w log-x）也凸显不出来显著差距。这里采用的是minutephysics的视频中提到的方法：<a href="https://youtu.be/54XLXg4fYsc" target="_blank" rel="noopener">How To Tell If We’re Beating COVID-19</a>。我也在寻找更优的数据展示方式，有知道的也欢迎告诉我。</p>
+<p>这个可视化采用y轴每日新增，x轴总确诊来作图，全对数数轴。上面的是视频已经很到位地展示了它的效果。下面的图片也说明了欧洲三国领先英国的一个抗疫局势。<a href="https://hrbinbin.github.io/Covid19predict/trendFigures.html" target="_blank" rel="noopener">更多对比</a></p>
+<p><img src="https://raw.githubusercontent.com/HRbinbin/Covid19predict/master/plot/UKlogTrend.png" alt=""></p>
+<p>所有可视化都通过<code>ggplot2</code>完成。确实很麻烦很费时间（特别是legend），但在目前我看来做可视化ggplot已经是最优方案了。</p>
+<p>对数数轴：</p>
+<figure class="highlight r"><table><tr><td class="code"><pre><span class="line">scale_x_log10(limits = c(<span class="number">55</span>,<span class="number">316123</span>), breaks = trans_breaks(<span class="string">"log10"</span>, <span class="keyword">function</span>(x) <span class="number">10</span>^x), labels = trans_format(<span class="string">"log10"</span>, math_format(<span class="number">10</span>^.x)))+</span><br><span class="line">scale_y_log10(limits = c(<span class="number">30</span>,<span class="number">31612</span>),breaks = trans_breaks(<span class="string">"log10"</span>, <span class="keyword">function</span>(x) <span class="number">10</span>^x), labels = trans_format(<span class="string">"log10"</span>, math_format(<span class="number">10</span>^.x)))</span><br></pre></td></tr></table></figure>
+<h1 id="ARIMA-movingAverage-R"><a href="#ARIMA-movingAverage-R" class="headerlink" title="ARIMA movingAverage.R"></a>ARIMA <code>movingAverage.R</code></h1><p>非季节ARIMA就三个参数 <code>(p, d, q)</code>。p是AR（自回归）的阶数，描述时间序列的lag，d是差分的阶数，这个阶数下的时间序列应该具有平稳（stationary）的趋势。q是MA（滑动平均）的阶数，与滑动窗口大小有关。</p>
+<ul>
+<li>d在本情况下是不会超过3的，通过画一下差分后的数据序列就能看出来。最大化heteroscedasticity的d可能就是2了。</li>
+<li>p和q就让它自动去寻找吧，根据实际情况设一下上下界限</li>
+<li>p和q会显著增加模型复杂度，因此存在AIC(p, q)法则。不过我没有考虑23333。</li>
+</ul>
+<p>后期版本，自动寻优的ARIMA模型：</p>
+<figure class="highlight r"><table><tr><td class="code"><pre><span class="line">UK.autoARIMA = auto.arima(dfUK$confirmed, </span><br><span class="line">                          max.p = <span class="number">21</span>, max.q = <span class="number">21</span>, </span><br><span class="line">                          max.d = <span class="number">4</span>, max.order = <span class="number">42</span>, </span><br><span class="line">                          seasonal = <span class="literal">F</span>,stepwise = <span class="literal">F</span>, </span><br><span class="line">                          <span class="comment">#parallel = T, num.cores = 8, </span></span><br><span class="line">                          approximation = <span class="literal">T</span>,trace = <span class="literal">T</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="code"><pre><span class="line">tsdiag(UK.autoARIMA)</span><br></pre></td></tr></table></figure>
+<p>这里默认的寻参目标是AIC，可选的目标还有AICc，BIC和likelihood。我并不知道哪个寻参目标更好，所以就用了默认的。</p>
+<p>正常情况为了一个更精确的结果，还是应该关闭<code>approximation</code>，打开并行，这样的结果更好，还可以避免q很大的时候，AIC计算直接蹦到Inf的问题。当然如上一段落，换个寻参目标可以解决这个问题。</p>
+<p>早期版本中，我手动grid search寻参，结果p和q都落在10+的范围，寻参时间也很长。一个可视化三维或者更高维的grid search结果的方法是：</p>
+<ul>
+<li><p>假设变量a寻参范围为d1，变量b为d2，变量c为d3</p>
+</li>
+<li><p>y轴为寻参目标（这里是AIC），x轴为</p>
+<p><code>c+b*(d3+1)+a*(b*d2+d3+1)</code></p>
+</li>
+<li><p>这里的1可以换成别的正常数来增大间距</p>
+</li>
+</ul>
+<p>关于参数理解：<a href="https://alkaline-ml.com/pmdarima/tips_and_tricks.html#understand-p-d-and-q" target="_blank" rel="noopener">Understand <code>p</code>, <code>d</code>, and <code>q</code></a></p>
+<p>现阶段的自动寻参结果表明，p是肯定落在10以上的区间的，以likelihood为指标甚至会趋向于最复杂的模型（p会落到寻参上界）；q对模型的影响难以简单描述，还是认真搜一下比较好。</p>
+<p>接下来就是构造data frame无脑作图了。AIC可视化出来可能很难理解，这里就做了residual的可视化。</p>
+<p>不得不说显而易见的，这样的时移统计模型的误差可以做到非常小：<strong>我预测了这么多天，没有一天的误差超过1%</strong>，一般和当天公布的总确诊数字相差都不会超过1000人</p>
+<p>这就让我回到了<a href="#初衷">初衷</a>里面讲的，它都这么精确了，那么它达到我们的目标了吗？做更精确的CNN、RNN模型意义大吗？对我们的生活或是决策参考意义大吗？</p>
+<p>所以我准备再思考一下这个问题，或许明天写个1D-CNN试试看。DNN能吸收更多的特征，但对这种统计手段/统计方法会很大影响结果的场景，直接预测确诊意义确实不是很大。</p>
+<p>最早的目标是学习相似国家的数据，然后transfer learning到英国上面。现在想想，可能transfer完就预测一个确诊人数着实没啥用。试试才知道，说不定等几天过去它就变成一个纯可视化的项目了。</p>
+<p>目前最有价值的也就是如下两图了（GitHub的图床，每日更新）</p>
+<h2 id="英国趋势"><a href="#英国趋势" class="headerlink" title="英国趋势"></a>英国趋势</h2><p>1 May：确实不大像拐点的样子，尽管首相已经这么承认了。这个拐点是真的平缓，表明英国在收容这一块上做的很艰难。</p>
+<p><img src="https://raw.githubusercontent.com/HRbinbin/Covid19predict/master/prediction/UKlogTrend.png" alt=""></p>
+<h2 id="每日新增预测"><a href="#每日新增预测" class="headerlink" title="每日新增预测"></a>每日新增预测</h2><p>MA阶数q在快速寻优和高阶AR下趋向于选择小的值。更精确的自动寻优结果之后会更新。</p>
+<p><img src="https://raw.githubusercontent.com/HRbinbin/Covid19predict/master/prediction/DailyBar.png" alt=""></p>
+]]></content>
+      <tags>
+        <tag>Python</tag>
+        <tag>R</tag>
+        <tag>Data Analysis</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hexo 博文简单美化</title>
     <url>/myblog.github.io/Hexo-%E5%8D%9A%E6%96%87%E7%AE%80%E5%8D%95%E7%BE%8E%E5%8C%96/</url>
     <content><![CDATA[<h4 id="文字背景色块"><a href="#文字背景色块" class="headerlink" title="文字背景色块"></a>文字背景色块</h4><h5 id="添加"><a href="#添加" class="headerlink" title="添加"></a>添加</h5><p>打开<code>themes/next/source/css/_custom</code> 下的 <code>custom.styl</code> 文件,添加自定属性样式</p>
@@ -65,87 +147,6 @@
       </tags>
   </entry>
   <entry>
-    <title>疫情数据的可视化和ARIMA预测</title>
-    <url>/myblog.github.io/COVID-R/</url>
-    <content><![CDATA[<p>简单记录下这些微小的工作。</p>
-<p>GitHub Pages</p>
-<p><a href="https://hrbinbin.github.io/Covid19predict/" target="_blank" rel="noopener">https://hrbinbin.github.io/Covid19predict/</a></p>
-<h1 id="初衷"><a href="#初衷" class="headerlink" title="初衷"></a>初衷</h1><ul>
-<li><p>探索一下，机器学习能否做到</p>
-<ul>
-<li>超越检测手段、统计方式的不确定性，对真实情况进行fit</li>
-<li>没见过下降趋势的时候预测下降趋势。这一点的范畴其实在deep reinforcement learning里面研究挺多，可惜本场景是否适用还未知</li>
-</ul>
-</li>
-<li><p>目标是拐点或者趋势</p>
-</li>
-</ul>
-<h2 id="现阶段"><a href="#现阶段" class="headerlink" title="现阶段"></a>现阶段</h2><ul>
-<li>英国首相今天宣布<a href="https://www.bbc.com/news/amp/uk-52493500" target="_blank" rel="noopener">疫情高峰已经过去</a>，不过从可视化结果来看，确实是“过去”了，但这好转速度也太慢了</li>
-<li>既然拐点过了，那么情况和数据肯定是越来越好的</li>
-</ul>
-<a id="more"></a>
-<ul>
-<li>还有没有继续做，做什么<ul>
-<li>在日程上的有CNN for time-series和LSTM RNN</li>
-<li>总确诊人数肯定是S型曲线。现存确诊这个数据对英国来讲就是没有，治愈数目、重症数目就没怎么更新</li>
-<li>现阶段预测现存确诊的意义大于预测总确诊的意义；预测的总确诊只能用来展示拐点情况了</li>
-<li>有很大的冲动想把这个项目archive了，因为没有现存确诊的每日数据和历史数据。就留个可视化</li>
-</ul>
-</li>
-</ul>
-<h1 id="数据源-json2csv-R"><a href="#数据源-json2csv-R" class="headerlink" title="数据源 json2csv.R"></a>数据源 <code>json2csv.R</code></h1><ol>
-<li><a href="https://github.com/isjeffcom/coronvirusFigureUK">Jeff的API</a>。用于获取英国历史数据。</li>
-<li><a href="https://github.com/CSSEGISandData/COVID-19">JHU的全球数据仓库</a>。用于获取欧洲三国数据。</li>
-<li>韩国数据也源于JHU，中国大陆数据采用卫健委的数据。英国之外的数据均用于对比英国。</li>
-</ol>
-<p>代码没什么好讲的，全部输出csv。</p>
-<h1 id="现状可视化"><a href="#现状可视化" class="headerlink" title="现状可视化"></a>现状可视化</h1><p>一个很重要的点就是用普通的line plot（y轴：确诊人数，x轴：时间）很难对比或者看出一个国家情况的好坏。用对数数轴（log-y /w log-x）也凸显不出来显著差距。这里采用的是minutephysics的视频中提到的方法：<a href="https://youtu.be/54XLXg4fYsc" target="_blank" rel="noopener">How To Tell If We’re Beating COVID-19</a>。我也在寻找更优的数据展示方式，有知道的也欢迎告诉我。</p>
-<p>这个可视化采用y轴每日新增，x轴总确诊来做图，全对数数轴。上面的是视频已经很到展示了它的效果。下面的图片也说明了欧洲三国领先英国的一个抗疫局势。<a href="https://hrbinbin.github.io/Covid19predict/trendFigures.html" target="_blank" rel="noopener">更多对比</a></p>
-<p><img src="https://raw.githubusercontent.com/HRbinbin/Covid19predict/master/plot/UKlogTrend.png" alt=""></p>
-<p>所有可视化都通过ggplot2完成。确实很麻烦很费时间（特别是legend），但在目前我看来做可视化已经是最优方案了。</p>
-<p>对数数轴：</p>
-<figure class="highlight r"><table><tr><td class="code"><pre><span class="line">scale_x_log10(limits = c(<span class="number">55</span>,<span class="number">316123</span>), breaks = trans_breaks(<span class="string">"log10"</span>, <span class="keyword">function</span>(x) <span class="number">10</span>^x), labels = trans_format(<span class="string">"log10"</span>, math_format(<span class="number">10</span>^.x)))+</span><br><span class="line"> scale_y_log10(limits = c(<span class="number">30</span>,<span class="number">31612</span>),breaks = trans_breaks(<span class="string">"log10"</span>, <span class="keyword">function</span>(x) <span class="number">10</span>^x), labels = trans_format(<span class="string">"log10"</span>, math_format(<span class="number">10</span>^.x)))</span><br></pre></td></tr></table></figure>
-<h1 id="ARIMA"><a href="#ARIMA" class="headerlink" title="ARIMA"></a>ARIMA</h1><p>非季节ARIMA就三个参数 (p, d, q)。p是AR（自回归）的阶数，描述时间序列的lag，d是差分的阶数，这个阶数下的时间序列应该具有平稳（stationary）的趋势。q是滑动平均的阶数，与滑动窗口大小有关。</p>
-<ul>
-<li>d在本情况下是不会超过3的，通过画一下差分后的数据序列就能看出来。最大化Heteroscedasticity的d可能就是2了。</li>
-<li>p和q就让它自动去寻找吧</li>
-</ul>
-<p>后期版本，自动寻优的ARIMA模型：</p>
-<figure class="highlight r"><table><tr><td class="code"><pre><span class="line">UK.autoARIMA = auto.arima(dfUK$confirmed, </span><br><span class="line">                          max.p = <span class="number">21</span>, max.q = <span class="number">21</span>, start.q = <span class="number">1</span>, max.d = <span class="number">4</span>, max.order = <span class="number">42</span>, </span><br><span class="line">                          seasonal = <span class="literal">F</span>,stepwise = <span class="literal">F</span>, </span><br><span class="line">                          <span class="comment">#parallel = T, num.cores = 8, </span></span><br><span class="line">                          approximation = <span class="literal">T</span>,trace = <span class="literal">T</span>)</span><br></pre></td></tr></table></figure>
-<figure class="highlight r"><table><tr><td class="code"><pre><span class="line">tsdiag(UK.autoARIMA)</span><br></pre></td></tr></table></figure>
-<p>这里默认的寻参目标是AIC，可选的目标还有AICc，BIC和likelihood。我并不知道哪个寻参目标更好，所以就用了默认的。</p>
-<p>正常情况为了一个更精确的结果，还是应该关闭<code>approximation</code>，打开并行，这样的结果更好，还可以避免q很大的时候，AIC计算直接蹦到Inf的问题。当然如上一段，换个寻参目标可以解决这个问题。</p>
-<p>早期版本中，我手动grid search寻参，结果p和q都落在10+的范围，寻参时间也很长。一个可视化三维或者更高维的grid search结果的方法是：</p>
-<ul>
-<li><p>假设变量a寻参范围为d1，变量b为d2，变量c为d3</p>
-</li>
-<li><p>y轴为寻参目标（这里是AIC），x轴为</p>
-<p><code>c+b*(d3+1)+a*(b*d2+d3+1)</code></p>
-</li>
-<li><p>这里的1可以换成别的正常数来增大间距</p>
-</li>
-</ul>
-<p>关于参数理解：<a href="https://alkaline-ml.com/pmdarima/tips_and_tricks.html#understand-p-d-and-q" target="_blank" rel="noopener">Understand <code>p</code>, <code>d</code>, and <code>q</code></a></p>
-<p>现阶段的自动寻参结果表明，p是肯定落在10以上的区间的，以likelihood为指标甚至会趋向于更复杂的模型；q对模型的影响难以简单描述，还是认真搜一下比较好。</p>
-<p>接下来就是构造data frame无脑作图了。AIC可视化出来可能很难理解，这里就做了residual也就是error的可视化。</p>
-<p>不得不说显而易见的的，这样的时移统计模型的误差可以做到非常小：我预测了这么多天，没有一天的误差超过1%，一般和当天公布的总确诊数字相差都不会超过1000人</p>
-<p>这就让我回到了<a href="#初衷">初衷</a>里面讲的，它都这么精确了，那么它达到我们的目标了吗？做更精确的CNN、RNN模型意义大吗？对我们的生活或是决策参考意义大吗？</p>
-<p>所以我准备再思考一下这个问题，或许明天写个1D-CNN试试看。DNN能吸收更多的特征，但对这种统计手段/统计方法会很大影响结果的场景，直接预测确诊意义确实不是很大。</p>
-<p>最早的目标是学习相似国家的数据，然后transfer learning到英国上面。现在想想，可能transfer完就预测一个确诊人数着实没啥用。试试才知道，说不定等几天过去它就变成一个纯可视化的项目了。</p>
-<p>目前最有价值的也就是如下两图了（GitHub的图床，每日更新）</p>
-<h2 id="英国趋势"><a href="#英国趋势" class="headerlink" title="英国趋势"></a>英国趋势</h2><p>1 May：确实不大像拐点的样子，尽管首相已经这么承认了。这个拐点是真的平缓，表明英国在收容这一块上做的很艰难。</p>
-<p><img src="https://raw.githubusercontent.com/HRbinbin/Covid19predict/master/prediction/UKlogTrend.png" alt=""></p>
-<h2 id="每日新增预测"><a href="#每日新增预测" class="headerlink" title="每日新增预测"></a>每日新增预测</h2><p>MA阶数q在快速寻优和高阶AR下趋向于选择小的值。更精确的自动寻优结果之后会更新。</p>
-<p><img src="https://raw.githubusercontent.com/HRbinbin/Covid19predict/master/prediction/DailyBar.png" alt=""></p>
-]]></content>
-      <tags>
-        <tag>Python</tag>
-        <tag>R</tag>
-        <tag>Data Analysis</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>JetBrains学生免费版申请指南</title>
     <url>/myblog.github.io/JetBrainsCount/</url>
     <content><![CDATA[<div id="hbe-security">
@@ -158,7 +159,7 @@
 <div id="decryptionError" style="display: none;">Incorrect Password!</div>
 <div id="noContentError" style="display: none;">No content to display!</div>
 <div id="encrypt-blog" style="display:none">
-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
+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
 </div>
 <script src="/myblog.github.io/lib/crypto-js.js"></script><script src="/myblog.github.io/lib/blog-encrypt.js"></script><link href="/myblog.github.io/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
       <tags>
@@ -316,12 +317,46 @@ U2FsdGVkX18tEOXzQQLb0y/XDFwtSaH1gKPbDjD9+o9Mq5vg3m5eZE8+HXimCnT6q7zDR0WJQd468F04
 <div id="decryptionError" style="display: none;">Incorrect Password!</div>
 <div id="noContentError" style="display: none;">No content to display!</div>
 <div id="encrypt-blog" style="display:none">
-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
+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
 </div>
 <script src="/myblog.github.io/lib/crypto-js.js"></script><script src="/myblog.github.io/lib/blog-encrypt.js"></script><link href="/myblog.github.io/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
       <tags>
         <tag>Thoughts</tag>
         <tag>Trip</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>杂──关于字体</title>
+    <url>/myblog.github.io/aboutfonts/</url>
+    <content><![CDATA[<blockquote>
+<p>最近写论文写邮件，还是想起了很多和字体有关的东西。</p>
+</blockquote>
+<h2 id="很多字体不免费，谨慎使用"><a href="#很多字体不免费，谨慎使用" class="headerlink" title="很多字体不免费，谨慎使用"></a>很多字体不免费，谨慎使用</h2><blockquote>
+<p>2018年8月27日，一名网络创作者<a href="https://zh.wikipedia.org/wiki/Joeman" target="_blank" rel="noopener">Joeman</a>发布影片表示，威锋数位向多名网络创作者（有打开广告营利的Youtuber）收取一年商用字体授权费。该影片指出，威锋向网络创作者收取微软内置字体（新细明体、标楷体）之商用授权费，而引发字体授权争议。 对此字体授权争议，威锋数位于9月10日发布声明澄清，表示从未主动向任何营利或非营利单位收取微软内置字体的授权费，未来亦不会收取微软内置字体的授权费用，无论商用或非商用。<a href="https://www.dynacw.com.tw/news/news_detail.aspx?s=39&amp;r=1" target="_blank" rel="noopener">华康字体授权声明</a></p>
+</blockquote>
+<p>这也是我开始了解字体（字形）<strong>授权</strong>的起因。我一直关注Joeman，当时同时也爆出好几个youtuber遭遇这事，就越来越引起人们的注意了。同时在去年年末，我也在B站上面看到一些因为字体授权而产生争端的事情。</p>
+ <a id="more"></a>
+<p>微软的数款自带字体（内建字形）都<strong>不是</strong>无版权的，例如很著名的<strong>华康、方正、汉仪</strong>。在很多商业情况和绝大多数非营利作品中使用它们都有不同的规定，贸然使用需要付费的字体未被发现只是侥幸而已。特别是修图做海报，电商宣传图之类的事情：</p>
+<p><a href="https://zhuanlan.zhihu.com/p/28712652" target="_blank" rel="noopener">那些年，收到的方正字体侵权律师函</a></p>
+<p>当时Joeman爆出争端的就是新細明體。我之前在玩手机主题的时候就对这简洁优雅的字体很有好感。YouTube上面大部分封面印字都使用的是这款字体。我最喜欢的<strong>冬青</strong>也是需要授权才能使用的。</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/MingLiu.svg/2880px-MingLiu.svg.png" alt="MingLiu.svg"></p>
+<p><img src="https://i.imgur.com/xh2Zb9o.png" alt="image-20190312234809453"></p>
+<h2 id="字体设计"><a href="#字体设计" class="headerlink" title="字体设计"></a>字体设计</h2><p>字体设计也非一日之寒，特别是中国汉字字体设计。中国汉字需要结合形、意，以及艺术美感、书法渊源、造字法等进行设计，同时需要考虑大量的字形问题，例如横竖撇捺的粗细、长度，字形衬线和匀称，以及最重要的，在印刷品和屏幕上的显示效果。设计中文字体需要大师的功底和艺术家的创造力，设计出具有表现张力和能展现中文力度与美感的字体更是如此。</p>
+<p>Google Product Sans和三星的新产品字体SamungOne都是十分好看的非开放西文字体。好看的字体会让人多看几眼，停留在它创造出来的设计感之中。</p>
+<p><img src="https://i.imgur.com/aT6akWl.png" alt="image-20190312235735831"></p>
+<p><img src="https://i.imgur.com/cProFeU.png" alt="image-20190312235920596"></p>
+<p>Google Produce Sans的设计──<a href="https://design.google/library/evolving-google-identity/" target="_blank" rel="noopener">Google品牌更新过程</a></p>
+<p><img src="https://i.imgur.com/xyQwLcs.png" alt="image-20190313001700669"></p>
+<p><a href="http://design.samsung.com/global/contents/samsungone/" target="_blank" rel="noopener">SamsungOne</a></p>
+<p>各位有闲心可以把手机的系统语言换为繁体中文，感受一下明细体。从设计上来讲明细体遵从书法和演化中的很多规则，个人认为更加赏心悦目。</p>
+<h2 id="免费字体"><a href="#免费字体" class="headerlink" title="免费字体"></a>免费字体</h2><p>好看的免费字体其实非常多。Google和Adobe家有很多。</p>
+<p><a href="https://36kr.com/p/213783.html" target="_blank" rel="noopener">Adobe与Google共同推出的开源中日韩文字体</a></p>
+<p><a href="https://www.zhihu.com/question/19889152" target="_blank" rel="noopener">哪些中文字体可免费用于商业用途？</a></p>
+<p><a href="https://www.zhihu.com/question/19594120" target="_blank" rel="noopener">好看且免费的 Web Font 有哪些推荐？</a></p>
+<p>字体也是有版权的。希望大家以后都不要走到坑里吧。</p>
+]]></content>
+      <tags>
+        <tag>Thoughts</tag>
       </tags>
   </entry>
   <entry>
@@ -361,40 +396,6 @@ U2FsdGVkX1/E923JnRpRyO4miOHqSOx8aRZyzxbR0g2sv4pHSAiW1/i1pIRfLeZC0IcacxVc2VBbZ7ST
       </tags>
   </entry>
   <entry>
-    <title>杂──关于字体</title>
-    <url>/myblog.github.io/aboutfonts/</url>
-    <content><![CDATA[<blockquote>
-<p>最近写论文写邮件，还是想起了很多和字体有关的东西。</p>
-</blockquote>
-<h2 id="很多字体不免费，谨慎使用"><a href="#很多字体不免费，谨慎使用" class="headerlink" title="很多字体不免费，谨慎使用"></a>很多字体不免费，谨慎使用</h2><blockquote>
-<p>2018年8月27日，一名网络创作者<a href="https://zh.wikipedia.org/wiki/Joeman" target="_blank" rel="noopener">Joeman</a>发布影片表示，威锋数位向多名网络创作者（有打开广告营利的Youtuber）收取一年商用字体授权费。该影片指出，威锋向网络创作者收取微软内置字体（新细明体、标楷体）之商用授权费，而引发字体授权争议。 对此字体授权争议，威锋数位于9月10日发布声明澄清，表示从未主动向任何营利或非营利单位收取微软内置字体的授权费，未来亦不会收取微软内置字体的授权费用，无论商用或非商用。<a href="https://www.dynacw.com.tw/news/news_detail.aspx?s=39&amp;r=1" target="_blank" rel="noopener">华康字体授权声明</a></p>
-</blockquote>
-<p>这也是我开始了解字体（字形）<strong>授权</strong>的起因。我一直关注Joeman，当时同时也爆出好几个youtuber遭遇这事，就越来越引起人们的注意了。同时在去年年末，我也在B站上面看到一些因为字体授权而产生争端的事情。</p>
- <a id="more"></a>
-<p>微软的数款自带字体（内建字形）都<strong>不是</strong>无版权的，例如很著名的<strong>华康、方正、汉仪</strong>。在很多商业情况和绝大多数非营利作品中使用它们都有不同的规定，贸然使用需要付费的字体未被发现只是侥幸而已。特别是修图做海报，电商宣传图之类的事情：</p>
-<p><a href="https://zhuanlan.zhihu.com/p/28712652" target="_blank" rel="noopener">那些年，收到的方正字体侵权律师函</a></p>
-<p>当时Joeman爆出争端的就是新細明體。我之前在玩手机主题的时候就对这简洁优雅的字体很有好感。YouTube上面大部分封面印字都使用的是这款字体。我最喜欢的<strong>冬青</strong>也是需要授权才能使用的。</p>
-<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/MingLiu.svg/2880px-MingLiu.svg.png" alt="MingLiu.svg"></p>
-<p><img src="https://i.imgur.com/xh2Zb9o.png" alt="image-20190312234809453"></p>
-<h2 id="字体设计"><a href="#字体设计" class="headerlink" title="字体设计"></a>字体设计</h2><p>字体设计也非一日之寒，特别是中国汉字字体设计。中国汉字需要结合形、意，以及艺术美感、书法渊源、造字法等进行设计，同时需要考虑大量的字形问题，例如横竖撇捺的粗细、长度，字形衬线和匀称，以及最重要的，在印刷品和屏幕上的显示效果。设计中文字体需要大师的功底和艺术家的创造力，设计出具有表现张力和能展现中文力度与美感的字体更是如此。</p>
-<p>Google Product Sans和三星的新产品字体SamungOne都是十分好看的非开放西文字体。好看的字体会让人多看几眼，停留在它创造出来的设计感之中。</p>
-<p><img src="https://i.imgur.com/aT6akWl.png" alt="image-20190312235735831"></p>
-<p><img src="https://i.imgur.com/cProFeU.png" alt="image-20190312235920596"></p>
-<p>Google Produce Sans的设计──<a href="https://design.google/library/evolving-google-identity/" target="_blank" rel="noopener">Google品牌更新过程</a></p>
-<p><img src="https://i.imgur.com/xyQwLcs.png" alt="image-20190313001700669"></p>
-<p><a href="http://design.samsung.com/global/contents/samsungone/" target="_blank" rel="noopener">SamsungOne</a></p>
-<p>各位有闲心可以把手机的系统语言换为繁体中文，感受一下明细体。从设计上来讲明细体遵从书法和演化中的很多规则，个人认为更加赏心悦目。</p>
-<h2 id="免费字体"><a href="#免费字体" class="headerlink" title="免费字体"></a>免费字体</h2><p>好看的免费字体其实非常多。Google和Adobe家有很多。</p>
-<p><a href="https://36kr.com/p/213783.html" target="_blank" rel="noopener">Adobe与Google共同推出的开源中日韩文字体</a></p>
-<p><a href="https://www.zhihu.com/question/19889152" target="_blank" rel="noopener">哪些中文字体可免费用于商业用途？</a></p>
-<p><a href="https://www.zhihu.com/question/19594120" target="_blank" rel="noopener">好看且免费的 Web Font 有哪些推荐？</a></p>
-<p>字体也是有版权的。希望大家以后都不要走到坑里吧。</p>
-]]></content>
-      <tags>
-        <tag>Thoughts</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Along the winter</title>
     <url>/myblog.github.io/alongthewinter/</url>
     <content><![CDATA[<h1 id="个人选片和出片"><a href="#个人选片和出片" class="headerlink" title="个人选片和出片"></a>个人选片和出片</h1><p>最近经常思考，我要拍什么东西？</p>
@@ -426,6 +427,34 @@ U2FsdGVkX1/E923JnRpRyO4miOHqSOx8aRZyzxbR0g2sv4pHSAiW1/i1pIRfLeZC0IcacxVc2VBbZ7ST
       <tags>
         <tag>Trip</tag>
         <tag>Photograph</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>cx_Freeze发布Python程序的一些经验</title>
+    <url>/myblog.github.io/cx_Freeze%E5%8F%91%E5%B8%83Python%E7%A8%8B%E5%BA%8F%E7%9A%84%E4%B8%80%E4%BA%9B%E7%BB%8F%E9%AA%8C/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="﻿前言"></a>﻿前言</h1><p>最近用Python写了一个化工方面的辅助计算软件，使用PyQt实现界面，同时用了很多库来实现作图和科学计算、求解等功能。使用界面与逻辑分离的方法，画好UI再编码具体功能。这次规模比第一次写的PyQt+SQL的单一界面复杂很多，在打包发布时遇到的问题也是非常多，一方面代码量非常大，另一方面涉及到的库非常多。</p>
+ <a id="more"></a>
+<h1 id="pyinstaller和cx-Freeze的对比"><a href="#pyinstaller和cx-Freeze的对比" class="headerlink" title="pyinstaller和cx_Freeze的对比"></a>pyinstaller和cx_Freeze的对比</h1><p>之前用pyinstaller打包，遇到的问题也就是decimal的问题，属于隐藏的库的没有导入，这次由于库太多，用pyinstaller打包的时候单个程序出来大概60M，而且打开极慢。同时根据报错来看，pyinstaller并非支持所有库，有的库无法打包发布，比如这次程序使用的scipy。<br>于是采用了cx_Freeze来打包。虽然理论上来讲是可以成功打包的，但是由于这个工具的简单性导致了一系列error。</p>
+<h1 id="matplotlib，numpy，scipy"><a href="#matplotlib，numpy，scipy" class="headerlink" title="matplotlib，numpy，scipy"></a>matplotlib，numpy，scipy</h1><p>matplotlib库在导入时会出现报错，这是因为它的作图依赖于tkinter，cx_Freeze打包不会将它直接包括；</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">os.environ[<span class="string">'TCL_LIBRARY'</span>] = <span class="string">'*\\Python36-32\\tcl\\tcl8.6'</span></span><br><span class="line">os.environ[<span class="string">'TK_LIBRARY'</span>] = <span class="string">'*\\Python36-32\\tcl\\tk8.6'</span></span><br><span class="line"><span class="comment"># *处为Python目录位置，反斜杠依然两个</span></span><br></pre></td></tr></table></figure>
+<hr>
+<p>numpy.core._methods无法找到的报错：options里面includes：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">'includes'</span>: [<span class="string">'numpy.core._methods'</span>]</span><br></pre></td></tr></table></figure>
+<hr>
+<p>程序中使用from … import … ，cx_Freeze打包可能出现库导入不完全的情况，即是看报错信息，没有什么module，在程序中import all或者在setup中include：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">'packages'</span>:[<span class="string">'scipy'</span>, <span class="string">'numpy'</span>, <span class="string">'matplotlib'</span>, <span class="string">'tkinter'</span>]</span><br></pre></td></tr></table></figure>
+<hr>
+<p>目前Python 3.6里面包括的tk导入会出现dll错误：ImportError: DLL load failed，这个和cx_Freeze自身有关，需要include：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">'include_files'</span>: [<span class="string">'*\\Python36-32\\DLLs\\tk86t.dll'</span>],</span><br><span class="line"><span class="comment"># *处为Python目录位置，反斜杠依然两个</span></span><br></pre></td></tr></table></figure>
+<hr>
+<p>使用绝对位置的资源文件：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">include_files&#x3D;[&#39;1.png&#39;, &#39;2.png&#39;, &#39;bg.png&#39;, &#39;bg1.png&#39;]</span><br></pre></td></tr></table></figure>
+<h1 id="build"><a href="#build" class="headerlink" title="build"></a>build</h1><p>build文件夹包含了所有的要用到的编译好的库文件，文件结构决定了程序运行非常快，基本能秒开了。</p>
+<h1 id="setup-py"><a href="#setup-py" class="headerlink" title="setup.py"></a>setup.py</h1><p>仅供参考。比较麻烦的几个库都用了，没用这些应该会简单很多。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> cx_Freeze <span class="keyword">import</span> setup, Executable</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line">os.environ[<span class="string">'TCL_LIBRARY'</span>] = <span class="string">'C:\\Users\\Chaolin Han\\AppData\\Local\\Programs\\Python\\Python36-32\\tcl\\tcl8.6'</span></span><br><span class="line">os.environ[<span class="string">'TK_LIBRARY'</span>] = <span class="string">'C:\\Users\\Chaolin Han\\AppData\\Local\\Programs\\Python\\Python36-32\\tcl\\tk8.6'</span></span><br><span class="line"></span><br><span class="line">base = <span class="string">'WIN32GUI'</span> <span class="keyword">if</span> sys.platform == <span class="string">"win32"</span> <span class="keyword">else</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">executables = [Executable(<span class="string">"Main_new.py"</span>, base=base)]</span><br><span class="line"></span><br><span class="line">packages = []</span><br><span class="line">include_files=[<span class="string">'1.png'</span>, <span class="string">'2.png'</span>, <span class="string">'bg.png'</span>, <span class="string">'bg1.png'</span>]</span><br><span class="line">options = &#123;</span><br><span class="line">    <span class="string">'build_exe'</span>: &#123;</span><br><span class="line">        <span class="string">'packages'</span>:[<span class="string">'scipy'</span>, <span class="string">'numpy'</span>, <span class="string">'matplotlib'</span>, <span class="string">'tkinter'</span>],</span><br><span class="line">        <span class="string">'include_files'</span>: [<span class="string">'C:\\Users\\Chaolin Han\\AppData\\Local\\Programs\\Python\\Python36-32\\DLLs\\tcl86t.dll'</span>, <span class="string">'C:\\Users\\Chaolin Han\\AppData\\Local\\Programs\\Python\\Python36-32\\DLLs\\tk86t.dll'</span>],</span><br><span class="line">        <span class="string">'includes'</span>: [<span class="string">'numpy.core._methods'</span>]</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">setup(</span><br><span class="line">    name = <span class="string">"Prog"</span>,</span><br><span class="line">    options = options,</span><br><span class="line">    version = <span class="string">"1.0"</span>,</span><br><span class="line">    description = <span class="string">'desc of program'</span>,</span><br><span class="line">    executables = executables</span><br><span class="line">)</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>Python</tag>
+        <tag>PyQt</tag>
       </tags>
   </entry>
   <entry>
@@ -505,65 +534,6 @@ U2FsdGVkX1/E923JnRpRyO4miOHqSOx8aRZyzxbR0g2sv4pHSAiW1/i1pIRfLeZC0IcacxVc2VBbZ7ST
       </tags>
   </entry>
   <entry>
-    <title>cx_Freeze发布Python程序的一些经验</title>
-    <url>/myblog.github.io/cx_Freeze%E5%8F%91%E5%B8%83Python%E7%A8%8B%E5%BA%8F%E7%9A%84%E4%B8%80%E4%BA%9B%E7%BB%8F%E9%AA%8C/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="﻿前言"></a>﻿前言</h1><p>最近用Python写了一个化工方面的辅助计算软件，使用PyQt实现界面，同时用了很多库来实现作图和科学计算、求解等功能。使用界面与逻辑分离的方法，画好UI再编码具体功能。这次规模比第一次写的PyQt+SQL的单一界面复杂很多，在打包发布时遇到的问题也是非常多，一方面代码量非常大，另一方面涉及到的库非常多。</p>
- <a id="more"></a>
-<h1 id="pyinstaller和cx-Freeze的对比"><a href="#pyinstaller和cx-Freeze的对比" class="headerlink" title="pyinstaller和cx_Freeze的对比"></a>pyinstaller和cx_Freeze的对比</h1><p>之前用pyinstaller打包，遇到的问题也就是decimal的问题，属于隐藏的库的没有导入，这次由于库太多，用pyinstaller打包的时候单个程序出来大概60M，而且打开极慢。同时根据报错来看，pyinstaller并非支持所有库，有的库无法打包发布，比如这次程序使用的scipy。<br>于是采用了cx_Freeze来打包。虽然理论上来讲是可以成功打包的，但是由于这个工具的简单性导致了一系列error。</p>
-<h1 id="matplotlib，numpy，scipy"><a href="#matplotlib，numpy，scipy" class="headerlink" title="matplotlib，numpy，scipy"></a>matplotlib，numpy，scipy</h1><p>matplotlib库在导入时会出现报错，这是因为它的作图依赖于tkinter，cx_Freeze打包不会将它直接包括；</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">os.environ[<span class="string">'TCL_LIBRARY'</span>] = <span class="string">'*\\Python36-32\\tcl\\tcl8.6'</span></span><br><span class="line">os.environ[<span class="string">'TK_LIBRARY'</span>] = <span class="string">'*\\Python36-32\\tcl\\tk8.6'</span></span><br><span class="line"><span class="comment"># *处为Python目录位置，反斜杠依然两个</span></span><br></pre></td></tr></table></figure>
-<hr>
-<p>numpy.core._methods无法找到的报错：options里面includes：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">'includes'</span>: [<span class="string">'numpy.core._methods'</span>]</span><br></pre></td></tr></table></figure>
-<hr>
-<p>程序中使用from … import … ，cx_Freeze打包可能出现库导入不完全的情况，即是看报错信息，没有什么module，在程序中import all或者在setup中include：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">'packages'</span>:[<span class="string">'scipy'</span>, <span class="string">'numpy'</span>, <span class="string">'matplotlib'</span>, <span class="string">'tkinter'</span>]</span><br></pre></td></tr></table></figure>
-<hr>
-<p>目前Python 3.6里面包括的tk导入会出现dll错误：ImportError: DLL load failed，这个和cx_Freeze自身有关，需要include：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">'include_files'</span>: [<span class="string">'*\\Python36-32\\DLLs\\tk86t.dll'</span>],</span><br><span class="line"><span class="comment"># *处为Python目录位置，反斜杠依然两个</span></span><br></pre></td></tr></table></figure>
-<hr>
-<p>使用绝对位置的资源文件：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">include_files&#x3D;[&#39;1.png&#39;, &#39;2.png&#39;, &#39;bg.png&#39;, &#39;bg1.png&#39;]</span><br></pre></td></tr></table></figure>
-<h1 id="build"><a href="#build" class="headerlink" title="build"></a>build</h1><p>build文件夹包含了所有的要用到的编译好的库文件，文件结构决定了程序运行非常快，基本能秒开了。</p>
-<h1 id="setup-py"><a href="#setup-py" class="headerlink" title="setup.py"></a>setup.py</h1><p>仅供参考。比较麻烦的几个库都用了，没用这些应该会简单很多。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> cx_Freeze <span class="keyword">import</span> setup, Executable</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line">os.environ[<span class="string">'TCL_LIBRARY'</span>] = <span class="string">'C:\\Users\\Chaolin Han\\AppData\\Local\\Programs\\Python\\Python36-32\\tcl\\tcl8.6'</span></span><br><span class="line">os.environ[<span class="string">'TK_LIBRARY'</span>] = <span class="string">'C:\\Users\\Chaolin Han\\AppData\\Local\\Programs\\Python\\Python36-32\\tcl\\tk8.6'</span></span><br><span class="line"></span><br><span class="line">base = <span class="string">'WIN32GUI'</span> <span class="keyword">if</span> sys.platform == <span class="string">"win32"</span> <span class="keyword">else</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">executables = [Executable(<span class="string">"Main_new.py"</span>, base=base)]</span><br><span class="line"></span><br><span class="line">packages = []</span><br><span class="line">include_files=[<span class="string">'1.png'</span>, <span class="string">'2.png'</span>, <span class="string">'bg.png'</span>, <span class="string">'bg1.png'</span>]</span><br><span class="line">options = &#123;</span><br><span class="line">    <span class="string">'build_exe'</span>: &#123;</span><br><span class="line">        <span class="string">'packages'</span>:[<span class="string">'scipy'</span>, <span class="string">'numpy'</span>, <span class="string">'matplotlib'</span>, <span class="string">'tkinter'</span>],</span><br><span class="line">        <span class="string">'include_files'</span>: [<span class="string">'C:\\Users\\Chaolin Han\\AppData\\Local\\Programs\\Python\\Python36-32\\DLLs\\tcl86t.dll'</span>, <span class="string">'C:\\Users\\Chaolin Han\\AppData\\Local\\Programs\\Python\\Python36-32\\DLLs\\tk86t.dll'</span>],</span><br><span class="line">        <span class="string">'includes'</span>: [<span class="string">'numpy.core._methods'</span>]</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">setup(</span><br><span class="line">    name = <span class="string">"Prog"</span>,</span><br><span class="line">    options = options,</span><br><span class="line">    version = <span class="string">"1.0"</span>,</span><br><span class="line">    description = <span class="string">'desc of program'</span>,</span><br><span class="line">    executables = executables</span><br><span class="line">)</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>Python</tag>
-        <tag>PyQt</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Down</title>
-    <url>/myblog.github.io/down/</url>
-    <content><![CDATA[<blockquote>
-<p>  世界在下沉，VICE在狂欢</p>
-</blockquote>
-<p>今天才发现vice中国已经关闭，而且已经关了两个多月了。高质量读者越来越少了，高质量内容也越来越少。</p>
-<p>这几天睡不着一直在想反智主义。看到一个很有趣的笑话，宣扬反智主义本身就是一种反智主义。</p>
-<p>能看的杂志越来越少，订阅的RSS也一个个灰掉了。新的媒体的冲击太大了。新的媒体传播的东西却太没有价值了。</p>
- <a id="more"></a>
-<p>想只看我喜欢的就好，可是各个平台终究会被低质量快节奏占据的趋势越来越明显。</p>
-<p>一直很想找有深度的新闻，除了<a href="https://theinitium.com/" target="_blank" rel="noopener">端</a>以外我也没有找到什么合适的，往往很多都是看一段时间就拉黑了（比如纽约时报）。</p>
-<p>我们现在这个社会环境还适合高质量内容生产吗，还会有人靠订阅博客，收听播客来接受自己真正青睐，真正启发自己启发生活的人吗？在这个环境之下，圈子会不会越来越小众？</p>
-<p>一直在收听<a href="https://fanpaiyingping.com/" target="_blank" rel="noopener">反派影评</a>的播客，每次看到那惨淡的播放量就寒心。也会有越来越多充满激情的人寒心吧，这么几年了真正能邀请到的还是那一波人，还没有被潮流冲走忘记初心的人。在赛车评论圈里面最受欢迎的解说永远是自己开着纯声音解说的金老师和邱老师，然而这几年我也看着这个圈子慢慢收窄。懂的自然懂，留住的永远是核心。</p>
-<h3 id="浪费"><a href="#浪费" class="headerlink" title="浪费"></a>浪费</h3><p>我之前也把大量时间花在碎片阅读上面，后来偶然间我发现了一点阅读障碍的迹象让我有点恐慌。我之后认真看了几本严肃文学，发现总是会被打扰会分心──很难有时间在认真阅读的时候，控制自己不去看手机，尽管没人给你发消息。</p>
-<h3 id="严肃"><a href="#严肃" class="headerlink" title="严肃"></a>严肃</h3><p>在思考，还会有反思社会现状的有深度的思维被发表出来吗──现在可能鲁迅这样的人会被审查，而接近他的层面的人会被众人同化吧。我超级期待能有一本书剖析社会现象而不被规则所限制，给出发人深省的观点或是打动人的故事。这种东西的反智主义体现就是如今的各大公众号文章，特别是追社会热点和电影评论的──对不起我看不起你们。</p>
-<p>与其看这种麻痹思维的文章不如就关注人民日报和新华社。至少它们文章中的每个字都充满着正气。</p>
-<hr>
-<p>我想以后RSS列表里面灰掉的源会越来越多。</p>
-<blockquote>
-<p>  VICE想要把叛逆和与众不同的文化带到中国来，它能吸引到多少年轻人一起“狂欢”？</p>
-</blockquote>
-<p>这是第一财经周刊在vice刚刚进入中国时的<a href="https://www.yicai.com/news/4052325.html" target="_blank" rel="noopener">报道</a>。可惜它死于新的传播潮流的兴起而不是水土不服。</p>
-<p>字媒已经不是趋势，很多传统或者爱好也再难找到圈子──甚至死于没有圈子：现在的蝴蝶刀教学视频还是六七年前的低清视频，还在维护贴吧的还是以前那群深爱的人，首页的帖子永远是三分钟热度的萌新。</p>
-<p>世界在下沉，狂欢的人也散了。</p>
-<p><img src="https://i.imgur.com/1cSYFI3.png" alt="image-20191213000142331"></p>
-]]></content>
-      <tags>
-        <tag>Thoughts</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>赛博 朋克 中国</title>
     <url>/myblog.github.io/cyberpunk-china-md/</url>
     <content><![CDATA[<p><img src="https://i.imgur.com/D6diXfy.jpg" alt="e83de66f-9cec-4207-8ee3-d5a7a7ad189d"></p>
@@ -607,6 +577,37 @@ U2FsdGVkX1/E923JnRpRyO4miOHqSOx8aRZyzxbR0g2sv4pHSAiW1/i1pIRfLeZC0IcacxVc2VBbZ7ST
       <tags>
         <tag>Trip</tag>
         <tag>Photograph</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Down</title>
+    <url>/myblog.github.io/down/</url>
+    <content><![CDATA[<blockquote>
+<p>  世界在下沉，VICE在狂欢</p>
+</blockquote>
+<p>今天才发现vice中国已经关闭，而且已经关了两个多月了。高质量读者越来越少了，高质量内容也越来越少。</p>
+<p>这几天睡不着一直在想反智主义。看到一个很有趣的笑话，宣扬反智主义本身就是一种反智主义。</p>
+<p>能看的杂志越来越少，订阅的RSS也一个个灰掉了。新的媒体的冲击太大了。新的媒体传播的东西却太没有价值了。</p>
+ <a id="more"></a>
+<p>想只看我喜欢的就好，可是各个平台终究会被低质量快节奏占据的趋势越来越明显。</p>
+<p>一直很想找有深度的新闻，除了<a href="https://theinitium.com/" target="_blank" rel="noopener">端</a>以外我也没有找到什么合适的，往往很多都是看一段时间就拉黑了（比如纽约时报）。</p>
+<p>我们现在这个社会环境还适合高质量内容生产吗，还会有人靠订阅博客，收听播客来接受自己真正青睐，真正启发自己启发生活的人吗？在这个环境之下，圈子会不会越来越小众？</p>
+<p>一直在收听<a href="https://fanpaiyingping.com/" target="_blank" rel="noopener">反派影评</a>的播客，每次看到那惨淡的播放量就寒心。也会有越来越多充满激情的人寒心吧，这么几年了真正能邀请到的还是那一波人，还没有被潮流冲走忘记初心的人。在赛车评论圈里面最受欢迎的解说永远是自己开着纯声音解说的金老师和邱老师，然而这几年我也看着这个圈子慢慢收窄。懂的自然懂，留住的永远是核心。</p>
+<h3 id="浪费"><a href="#浪费" class="headerlink" title="浪费"></a>浪费</h3><p>我之前也把大量时间花在碎片阅读上面，后来偶然间我发现了一点阅读障碍的迹象让我有点恐慌。我之后认真看了几本严肃文学，发现总是会被打扰会分心──很难有时间在认真阅读的时候，控制自己不去看手机，尽管没人给你发消息。</p>
+<h3 id="严肃"><a href="#严肃" class="headerlink" title="严肃"></a>严肃</h3><p>在思考，还会有反思社会现状的有深度的思维被发表出来吗──现在可能鲁迅这样的人会被审查，而接近他的层面的人会被众人同化吧。我超级期待能有一本书剖析社会现象而不被规则所限制，给出发人深省的观点或是打动人的故事。这种东西的反智主义体现就是如今的各大公众号文章，特别是追社会热点和电影评论的──对不起我看不起你们。</p>
+<p>与其看这种麻痹思维的文章不如就关注人民日报和新华社。至少它们文章中的每个字都充满着正气。</p>
+<hr>
+<p>我想以后RSS列表里面灰掉的源会越来越多。</p>
+<blockquote>
+<p>  VICE想要把叛逆和与众不同的文化带到中国来，它能吸引到多少年轻人一起“狂欢”？</p>
+</blockquote>
+<p>这是第一财经周刊在vice刚刚进入中国时的<a href="https://www.yicai.com/news/4052325.html" target="_blank" rel="noopener">报道</a>。可惜它死于新的传播潮流的兴起而不是水土不服。</p>
+<p>字媒已经不是趋势，很多传统或者爱好也再难找到圈子──甚至死于没有圈子：现在的蝴蝶刀教学视频还是六七年前的低清视频，还在维护贴吧的还是以前那群深爱的人，首页的帖子永远是三分钟热度的萌新。</p>
+<p>世界在下沉，狂欢的人也散了。</p>
+<p><img src="https://i.imgur.com/1cSYFI3.png" alt="image-20191213000142331"></p>
+]]></content>
+      <tags>
+        <tag>Thoughts</tag>
       </tags>
   </entry>
   <entry>
@@ -1037,7 +1038,7 @@ U2FsdGVkX1/E923JnRpRyO4miOHqSOx8aRZyzxbR0g2sv4pHSAiW1/i1pIRfLeZC0IcacxVc2VBbZ7ST
 <div id="decryptionError" style="display: none;">Incorrect Password!</div>
 <div id="noContentError" style="display: none;">No content to display!</div>
 <div id="encrypt-blog" style="display:none">
-U2FsdGVkX1+2mo0ks632d2Drymnjntq7Zbe/wV9IeN3QtL0FkFkiZBk3TPiUNKkfObopkNmwlgsGv52HH1uMJkavQHAIqfHQuFee60o8HZ+3MeGBIEvwc9nvdxQmmhw7otJ5MwDzZ8kE0vVK/WDWMvL6Mg3hs1qywslAmHvyaKoyw/182HJvcj0bjI8wVhbT9ByCMqDaEqXN0RwJNwntunY/qp+RxnADcgJY4cl6NgOdgVsnRdFuvrj1mUxPWWlbF1ZD8+ZIMWmwzLxvHxjXkkqoheoRIPEnkNSrolEEXX0snKSJ6LvQB6anZlO3gQhsbtuRkp8gKnEljMdWojc2dUFCSwhs329x+A7S3xOd8ZQzryygZU2n8GWTG5bqmM7TSWEhZbN4INCK7mVbdejzLcywzoj3+ZbO6qnmVWY/wU3IuT2ntAipiTafMreRZ5lnJ9+G+/Wk7HitzfSzN0RyafVpKK2sImuxi0BCTPbDw5sHODKGPMCkI6lPJaiOd07XVRwTb5c3IiNdE8PLHKTYOhR3AbItWextIm9c4gmKaCrV+DWAoQ6YOO8GwMJNogYIHRqAIn3mPcRA/uluBRxMgDQALTRuFLMg/zzj9S1FkuWkBeSIKT/B0hoyxZF0FB2GnddAQzuBiCr0v7Ld2m+OcCAQME7ZexrV5zpwg0FcUG31WDjq0cToIzRpFB7SLE6rEW4FyLrn8pHnIA1MNPMDz3c3AUveB7KiH5eg3fCaAUrtFIKknI3Oexkq2sEopD8g92QCGusr7AjMJz3W1dA49IuSQMiK32JC81HFGSEgoo1gtHGsgYPTQQL9xLuQv/NhNaKPo388nCTI92yIOdkZa73WLt5Q24GcTrwkC9K9di2omGje96vLookvicHkvoGVEc6NFJdq8FBZwmT1eQG5er0nAGkn2YtxFwVOPtczupZFGzGUYzul65FiUzozGEULki2DSUUz5cqe9HgCbJgKE9wp6sWY1DQ+NG9SEpIfYCtqu5fWnSzPfdVP8b90eM9qaNrmFk4daqsmKN00AOs1S0aaHgKO00wHuEvNc7n3CIBDwXNZstNpqYmXhgoxu7jMJop0RCXC4OkI4pviRWOEMhRmglSl2nq10O2EJO+gbZTd0yDIDvfKtOrRWDLFPkx0BUzg5IwooappFARXxHe/lMG+AHgSg3r4EGu4+xDrVmKPUANImGjEJpxYTrExIj/ES5TltPaM5PcN1uXhdNaWoEmJvoq+0AlcyvOv9m9d/xElFkMyzIZygDRe+AecoWTyMTTjwYuzLjqPjAyJqCPd4ruFjSmQGvd3EwrDrrKOt47NOplBqp9fuUdLRV/14uIqlyJzqw9PAaOCQGfsWw+sSw54uNCrLLvVhoFINMOADGQJGlMU1vIC7aq9KNYwOQL7EPj2K2sBYb1Pl9LrMK9eiCRW/5Ss8CdlhksugPzKKMY0XXNd7Iond4H7lxq8VI+XfE/lg+uQoozKxQETKu7QOAWSX19eXOJUPaHZFEiVdFeDVvaVpB/HTKf56zXPkY9BfCmeljv3RdU8FKNKlfOXBez7IMucULm79MCiP6E5jfTgr5FQHowSGHBJzlkYJgfddUfgLffqOJMWDRSE+NEfK22tCwSb8tzwmSm0wuWVz4WtnMP8hLc/8W1BjqkPoeHMD11BrzpxqLzh/4B67MefvvidvcuF/Lt6q8LeT6Wvv5Cr2TfmIyevY65C96lI3rA2nJ+uj7sLXtU8SyIKo+uWmAdE90cqlDUXv79+AjJh0u+3cPxrpfGYJbKn2RCquIK81LwZn+T4izW76Xb2CzFFPoXjRrkE/8L0VZV6HtT73PuIIN1BLPVHqb6fA7K2m09O+IMpqmVmZuYVG78Ra5Pdnkaj6+AjkoNjyH1vZZCSJCvcQLpJIcppvhxp/phG3AeD2HuKK5XJjM/JTMoc/9NQMWVV95nwCdSe5paDX38eadBi6Bh7OmcXnpNwqlmwqKEsdyuBdWm9DBMDr9JAwMWe6koiCg2ZANU5aDcU21Z3xUkcUnEuoBT7vpZRJ4E5AnDqx0asrdWzErblvXY3IyrriRE8n1CnmxuxY6POVp3H57ypETFu9gbw4aZC1D6puQq3es6jVDDFxPQYl3vxZfV6U73adDGAAK14SEZC8J6Adfs5XkMJ+mlmbdHo/AyjWtMJAb6uEA+KQhBRfZ9mCU6j1ZJ9Ns4n6TROQNJn/mSEQ6li3UE5ExDBTaxHqOUvhTGLYdll8NYH+9e1PilAsBIqoBQOrov+SaEYtUlGgVPLpPv/DIi4ImihFZGYU3vMucK46pBmg9lNRkH5hkofSnSyjlPuJhxFVhp07IziEoF/CZDHWciYJyKAPQ9oIQiNdasZvuriE2e84zmEZx2viEhCjEc6n0fAvRiYPE8wdI3H0ZyYuoRCQRwDIfZy+4harToWkQ0CVKk3vUEDuX31Kt7TvJgCajxoiNnfyogfhOYXPoOnxPLnep52fRW6gNNteoN8f2cLdVeKZf96V2vCY1ilkidK48MPX4Ngts92NZr4YR8xHcHGCRuHLyyXUnkS2euCmrqB56dQsxMTxCUoZCn932IGGransg6FH8EIoNwmvbQdhR9jR9VAwcmRynm1efksAb1LQu4StXRNhXMLWD2NR5vltLLzS6pJ2zTOFywDUdPtxaY2Jq/t52tbUVsUkMqRNUYgs62OCFENWG8PJxEnxXPP0TNLtCAmMGQ0Y5hsMx+bLeLn41/fdfr6EL9/sIbnFTHJRjF9jiIlCDUYwN1ADOQooyoU/hoEgMmo6okkFowwGyvek9HPSPMX3Hroybbw4/SNKEmPDGuKW0//1co4mOCA8vDm4vCqS6WDpG+j6XVsfilm25fSDY/WKKJQsYv3wrtwyRFZYqwXrOXWeR6896j5g8uzU+xO6Qmv3YFdNcvIagoYgjsO5vdQKUVqO5QCkpmFmzFYk6NGed62P5aiZHdVhgCTBTxvIFIcO6zsEToMUEV5MznaufR7up9KrPaOCP4+XhXsDwONsYhX1HWL+yPMzUO486pWghB1o1jqV+Qu5YQFFP3p7v0aHwcQA9yzHjUGYiGSFRzEP9He9GRXu+ROL0LNK7b2ADbB5ib3dHMZdH92ICJL8cxl8rGI1wnf0+kTYN0hgnEFNI602Sn52iSN5po6vHfyCVSRAq8KHPLvAqROkCjRFDQZH/oMjz6egqs6O3I4WP7bXuzqDtLhyZZDfXsM3/D0IpI9tF7sVkNxhztdBrD+EPjQuYY85EejMM63pq/RV93b/MtyFM4ck1IMPHN8GRbEYp4NQSUO0bDQT0GFaCfN4RYg3zb5TXAyXPRiPbx72Qi/IynDDEJ+mFAXHKuKkH88LdhvM513guEQe3kpodnUqv9EYL14uwcGQ7mFI8zzK7OPSwOgHvE0Mlji1a4nNTrUf9iRtG9Lk50AhRxnya/IBf7y4EIjprAgXes8u2z9RiFVkjDn3+5dLzCwNhV1RutteoNlkGGu7UYzn+mNc0XOyIRS9tRqd+muwYxo3PjP6xJBDEUbn4/ifu1NE7NVBil1Hc8fgrzhqUJVsFtha8a1uzDpG3CJnwPzxXxOm9MhnP0VeFrhmcj+DRcckaDCzkLSZ0S3W5uxtVx1bY+hPwkugHbU0/m8ozd+9Qrfuw05xyHhNqp4jT3Eg4zb2jnBJh9LK9uYGm8R3OLb1uRHkIFbQKkWSzW66OLtWli55KMTlxbTmAduIwfy2zuHFZMvQW3SIpRxYbhlv8zkNI8XI6CthL9+0kHcXsHwsh87iJK1wXIczqsGzXnyCr/qrd8b7qUR4hapgfzcpl06fvViUBdoAwNFwnqcTVtVULBCHprRTuOhiuynWqEoelmQNCEBTmmRoORLroGmdDioyk2kBIp/Qa0pcAm6XoSibJ0KiCk6rRUwjUHOKymBHcLsWAfmM4kuT/Jrxvek3butzu6ebm64+XNFkHbeM1pjdL6mRGcuxBZiLiuWlCWHLn6/GScbq9/T/yOG7hFfi75bjJfN/9qmajrE/jsoyOJDiH0+51RmKBtzvpAaoQ30Ybg8YHnaN6/KeuaxFzuzFAYlWALKHRNKXtjPJ2tzXXtlwkE+wh6OCKaf7nE4CifBLjTWmy0Ku1clNxQo7123NxQ2SeVSfhUvzH7ww+9wmxrzkZ4VeF2PqqJgOpDXc4OpD1xz34H8MvbMsRCrQY++T5i+3uMT5Q267UFgQ0oqMNNLlTQbsTqe7Cpwwxy3CC1gcLwwfYGuEcNlWnToBkmhCAkBr4t/JSaUxBmOnEipa5YB0kGUWJiktwrHo2cJxw+WxDmUmc1YIUpVBjoMi2Zsmg6zU9oPmGVrqCWAD95XleBniTAmwlOrmciLPM43RPnEolNrgdybYj9YYdt879MuXyNdZAA8NZ/G9W56b8Ra65/V+Xynk4pBC6FlsmHt1lnXEh5fYzCcBeZqLnSd+UT0ATTwTSCfDWVLvItMK1jirhkex4AfKkRGAGmHUhoXai6vIAqslbAf6QIoMyHxP5FG304Iqz5q8BZJluI8P3Hlt81e1VuStgvIVMhDSSmDtq8weGqAVZIGqwCOICtqmCgzozR3N7LWqZftL9wINHjsuRhOvyr3iY7WURWAZTLrPe3w4Z07Z3qs6kqx1122Dw3sAI7tWg6c1FFhNkZ47RkTAIhaw1cmxfb95BRWlkJ6JniEvFxKM5DwKlqC6hwAOQWTyE37Hod0ZRPPcBNtDNbCK8t+DqNIGCvRUlDImaTjibykiLbZ8/gk8iXm2ZKPdOfx+2Xll4QppxvVov3OBT6JiT53dywQVnwS+3AW8067VOdn+gyaR5jT6rdNBm5o0use/0jpVmQQ8DxLNVrdPufWgEoaxYgCp97kIruC3EQMYwbhQRGO/hR8ImheMhxk1aUE8SFI8QWlD3ImfoxbDSE+B5FjNnORQt1LWbGVM6tIw1TPoozlC3L54B5JGsNgkxJPW3KAOPsyPb1LxofSqGhXOrdVaOBCsYJQOZI30k0WI35FxFACQxB4fIZJwnEttTlf+/bHHOp9qCemt4METvr9FuKo2lfVhZnjc9qsYMNViVv0vrjeUi6Nzr//yr3nUpWbXrFNzl4p8t+Y5oRKDeqlNOtKZTFPpkfo9RbmsvtiHaDZrE2H2AREP7AI+U3+h/V9laTMbzDbgWFPfdPWsVO56edO7qvPzcGcSA22EzaLKqR+NX3d1A0/D5dHrtO+4D9c1MfF5HCRdWK3ciRs/KNEbBbnpUYSVthCOcBVQHUkhx+ofA86ElSGaJHg3BEFgHdG22cINPcgBxsAdAWxrNlrxIr4vGNKzr3JM4FqsuLx/6sWrhza1EHz9jwCvdeqsiPzbJOGq3oSvEB3pzx3ni/8vaajjkwEyAXx8ag1o9jefUXT4DpS7qoEf0Keuva/UO2aTI/g/9h0bzxFIOc7nWmluR9oDIavLGXjMdRDPNIjlazhLwz1k1RsMpaabHDExolG/86uiPNk4RKWn+3XAKZ4cGpXGlweNIoIZwpturlkp1s3DBqa6AAABHboA0jne4ZPk+4WlLIPxHsxQb18AXESkbtzvuL1hBteYSqAXx16H38mtQ8ZpUQI9shwBgBNOE1kAZxqZuN0nrx5XbvScyaFCszg550b47SNJO9QQQD6Xk71ci17uZLD5JJthswo/YFU86vUq8ezQeLsTgApIyvwuVlcUTvVSm7ag72s28LuatfbUgI9M4v/6OuoNx09LJU60XeQeHYEOeJvhevY7hvd9cN1D6+UFF4Vi7IsM/44ujemGNtrysqP9p71tPQr0w239tRRT5Z76WVCHAWw05yoF7mBmZS0iJmYgC+hGIN90m0ic3/x3y2Bgzef1ZQwizSS7wkuf8ZQz8PyVFJhGP014YDVF+djHd7yS9UBhY3Ez6L4a3LY2FRigNjXjc/DQz4G3OsjJwfkCBwOulbBG2oHKdZVBE9swpzp/pKTPo1FvsMy+PFdKPaDdV6RDYQpqkO5q2K+dTn3h1FQqP0Ow3uea/YSCu67/4D9YlpBIWXR+iH1GMxNcfN7fASUTXO2u//LbuKEZQzPFwcKqr8BQ9jlKYH5npzEa+4NnuYgmjZyqo1Wcf2JFU8C0jvgmECePD6Y4iOHkOgxjDTYRoxgU1lk8nUzFcd1G0yPy+99UCCSxIK3DvFO73hsQh0wvnGlhHgR2xEMSu4Gqa6kjk+sr3HNlmfDj0kZPugf9CgeAs2k1f3x2tiVpiUCYfwMMUjDvOv598szwvTgvyMu2j+TRmZDOI/CdHg1B+HzmUulOoCj3tJZ1p+Zqr3Br6UAFuuEug4DYtU69+daKATebvFkalgZGKg9XVPFnltM98pvY3qotHfyeZHyXjANzdvwWf51wHtUOEJDjkhF4tnL4ZL4Iy7py16DicjzOGvlaXu1z8T7D4SusDbetG1q+3XU80owGWJVKyMKYmstKLtJ7Jg1IpU24y3vEFfosgaKXYMaknISchkIbysedfQs33suP1YY8jbWVlneSkJdVjFqMPUx40mfMsRNkVk0MoCW8rsWVGTyWnAC/xLTYPjjWXAtknwg/TCZcTPBTvU4/W+LwNrIdJIq8XNTTxAcGRP6VXcqSVtjauIU2Q6VV1wmJZ6I8rOpNqM89KDxeqQRt005DwMGk+308fw+Ru+R7GYdQsORdYH4N6FJItFUER51ZkT6sItr4aAU9hH7WiKfhMu9uHSVxupqgxBS5lBFTXnaFt8z6etvgrp65Lo7l8l6F88LZXX8dnEns0tFxYWGx1brWvNfVhKHXi3hsIsMY+1I7cgpdp7KkAec9+w8pAge4Qjvn6fu3Hut5Aol3/+vnS7nYTkMtC+O6FzqXTE3qBzs6Z6ALbazlJk2ILmoKPuasTDtX24EIk+Vr0kIdKUJjrQjU88SoFVKggESQu+D45HTQ88P40RWXLwLeYG9ICQxNB14ZufmwSuO8NHbI+JR5P7cHLAsOBBjAREj9QyPuP3OTTG6JhdXtc5BGMpDcMVtMwASqE1AIjPEBYSB7kUX7J9B6XOVPzAqE3Eh1fK7wIq8xxc1l7ageUmuQYUlhd2sZysBcgfvwMdWaQkmsTjP1pm1e0B0t8W1A/00ZbQ67r96C1n+Z1Aarglrclohp+wmAS7yvRcpvj59Oi0c8Ge7t1lbHG8AyF/5Yl6St/TiDGD674XoWxOUlNRSQ6lOfTVrJ5P7kV4IwftcQ85FPm4nHXA2u/VBq7RC260ch9QBXYUQ++nASTXbD0B3TQ/M2yN4BTcskziDxK8oh5+Zy9QKbVSh6E5Ag2x/63eX/VgXMZ/F5jf2WZXIoEcxBmmerJBLthwz0QZlyFkj1pwSRWKWRt+myo+6J9RRShttQWC1oFCqCYUMYVoU5Zp0Cf+eYasG37RxVrdf7Bz2SOZsXekJAg3P58+Un6IKKUw+SNb/BKpYit9YDuoqQWpzSGc52N2njXTvDINBC17SKXFmH5z9z4yCtgXpKn/1+LZ8T3puOwkC8sVCM1fRSTce2xexp65Fp02ImBGrV/MjMexA/MYZJdoE0nL6j8ZGnCHffIqYIJ1pNfD5OchM3uGNED2A0VZsTkGXTTM/TYZ24FqtWHrOO7ix6TuzUVbw7u9FJqmq1z/1e+EPWHm7ZWQ0C3gRr7E/5DGBydSA3UQgRNLK2r6XWlCC2yOX9eOfTvKEodvtqtMq1HMdinFw3D8TkeSSOkOYYz5TlT+HG8bCh51NAhdey08GXBkF3jNgMqhzVDzDoViwF5RscJrFv+YwN96lmovuOLgQuFS1g7zlKqxYMOfpK4e6leyd+VUBArFrCqIl0/O5GSQTlovEjaEYTM6Zt9bp+FyksZRyRhdMHrdlItxWd0C3My+ghdEodWKqY+J7ELIJViLRQTY3a1kl01nncpHc+OWOxR2rfmRq2B9+zD4RsxhfZjUOIFHVCg0kcD8meUDbK+K55QhlQB1VnOhoCHUY/cJVjE/GLBslmOZ6hoOifgtdiC0SSmyuHUb7LsiRxKwdlBP1xulpRvocCUn9nKPxfg4cKBpQijhoV5V6l6Gl3GDXt53I5PyKKYmFyMQwf+eM7XwKaKXqjZo9SL4B71zXTEyM7rnUIoMaGaM8Tcd0k8lJNUngKUhN7Cz3A4bH2PggOgy4BZNfwkDy2lNypMeDVCuCCAQitMs+3JuaAs3e2vPiv2AEHcTj6LroPdcFGm9Ehakn9RzNqgZlUN7OcdQH9kR1Wdjyjx7CCQlumTReu3fpTR6Mgv/GGNHnYwCuPxftbEsr2m9g9lER5CO9Doc2GhVOP61RJnWZirNHqKoForWeq5jA8jcdhLuvcmuhr/NkzysDCMHmvlJz/M23QxM7qG/JXWx55Zro/OT9LvdyFg5JcazexsUa6wAMTuG8DgdPE+vnkbmulU43MKnLOX3Z3zW1eQr1Kqcmd+zcYbuOVkn7L7N53VJdy+/GrS6rgMLyaJh/rmjp2AFEpvNOhQ6Cu/u3QkQeTIoxKc99km2Db0zBEoH1GIp5qeWt/ugQQLJzWLVYA1G96s+8BvutGGww7JztIzBFM6od51Nt8UoBdfJI/KcqWvQdextZrnO23rKPblkCdsAnUJ1aVSnXmQRJ5IsljNjWUBA+dQAQMnDWCjaWY8meUiVlJ5g8SVMdq6tVKm7nTfd7XBESjs9pLzH2vBf6oSzy/X4iJH5jcV1YppAxqEXQiy9U/OLbNl4jwogi5y7v90b7Tvk1rK1h7lrzdicYGjdn42MqOTEDhqLmKEIQsWHRn9tIC2wQ5Dg/xfbWoXf/bcMcWMwXXI8N2ZwcNewTEv/JsusFWvYeO5Vi5iQjzSC93QqRbLqv7yTN/8tuzOcqzTIDve22FB+0J4boE/mqxVHcTDVuWu+sneAuKyQI8mnnz/WRt5Ud5lFmZgBV3tKk0yPRKU/9TLsKo3TBJBS7znD0g3l71PQ+cdd23iFNOSIcCxpJQzavvJLLJc67SJvPDHl5DmKYhzIc/Wq+8FYAYFgvIT+rbA21l7k+VAQYcY9Ige40YWcGnLyHOiiBF1QoNDesqvggmiavfMrd3tTJ06gjdvJVeX4Qx8JQECyBE6eL9f3q0mHdTepoRPf/5eZxlJ6lNj+wuaTGH53mQ406EbSfrVJrOkJLdQM8zsFgqhl2BC7b+wvqlqmeoRItIkwYRA5vhPUGlL/Mx1QbqhVLa3g4oXaSYpX47Jq0jRbf2YAONciqr6/77kRhOTtY88OA3rUJvJApi11EJ4EwthIiBFAw5DxyQSARRimIEDnoFqm8FuPjy/U6vsYPCzLfpF1JVJhQ98QlNuJr3eqo7SNGG0RwV1xag0F8n/H8pcZlCrJl5qngvk5nsKO/9Zzt8AMBrZPXhHaEj2SQsHB7jAwcciK+IpQCsPB2TsklulYzg3j/0LzY0zVkvHUKxx7gRpq1SN3x0mINL7921IHs2/U8mKsQ1VQpvN5WqS9K2DhMP3c1Uf1TPIQBrJvD4FfGjieT9ShJAj+roOhg/xySn3ruUobH1mBMPjYmrypoig02istRZBLbekR/w7ufMM+HZ2om5POb0cGdk5TS6DvIq0J+Ar+diuBPAPRs50+prJzL4gP4HDI5nDaPL/RTgopjYb2IkKn5DU6dopbfSxGMYoeCVlvbnh0qkzM5tLUOySRm9hwg/E2Njkyc1fZS3S+8ZV+oUy5j7Q2AOzZyQYpRU1dRW5/2BNamryTweODWcasW4cEsXHkJ8sUWlf2jPjSStb84g3GTggIeMiX3krRGQyucZfkoHYggJZyA2bO1hmXlNJhS+mhufARFV+DUJ3DsYI50nE6aHgwqgih8AbBVIOrpWV9SjVN85PbWAbv12pBUPs2tRqYIT1pkcOr1oq7QTrq5PdeBxw6aDDznbgHn2fI/wSNmT1vFrwAxYvmBfDy16JKKB4/Q5Hl07g5ka111aO6oN1Ctl85bg1QJiAV4fQSdt7vlOprRjZJMSPow+DrKiSPOqz/QG+43/EM9fe6I9qN09yWZN7HIztxU8rUT6vRk9zjWWLidHt2eJJEPho/b3lX9BjMUOywadJ6aHCwfGJ/SVKHwQh4CsC6099nMjLx7lK4nSk9qjHm5iPNbU6rXKvA5D0EjaxRltESS3NOAtTrWH/jxQyFzJdfkTbSCBQSSq/4Upq5x92vGcwzRrMrlVLYr40rANQyvqCbrQ84V4JPLkIkTBD+xdCj9Ll3n3C47o7+fxKxU7Camxhisx3CWNni5dlVrQevoGXYar41BMdZAemmCbZa1XksQzWK2IEgW68WE71Y37NZW93nT2GOV3Dddx9daDx9lI0ZR12pbf4pVgtOTnL+5wUBVw7pUQ8ymVLxZJ0ttGdhm/OM/Usq2FPFqmb/dOJCpBtu2RGzbWcUn/GuUrMivA/iFc344bYR/SH6j4tqCAve1LFwJBJb8vAFcprVsjGsOA5mfByWpdD4yc4e3GVRBNPcNCk2017pmyaq/aRS/6Ze5hfjlPR8RyVGYwnS94GjqEF+eNwauQa4OoqGhjZQr6e1F9WZR7GUTrRbZkVQkly6sSnyFZw5+NbG21GHy55J7Xn1ljkhMKkA9Fi/vogtNJA2nEuCiK0RHEjzBR7a4y517F2ozaL06oaq5NZ0QPOmWA3WIlR/ddFWaBfbfNIOVh6/7AVp8QUaJ6eGO90O+6x4z4of30F601e1MwP6fHT6a+lk7E09RmWVl8cC547UZWMjxaoeLhPZm9KldpDuRD14mYlo73/2+GYsMmVU0tSoMjwC1rDBiYFrwsEcPGF6JSp01wkrxH1RjIX++CoL/yb8Ecd0BEQBpWFKVwCEGWve68sAX9kqzB+FK2UR7CAs7i21uzHXI/6UqtqCdyUH2PYBUJZhj/roO19+l6EHzyrOxbO49dSbz/iH/ez4VRT3g6FX607910mPyEjjwzXpw5AV+wL9SsFvgc9rYTZ61qAUMUn8fTw6wRxJvyaXW9M8NusFtIhuCd5iRR1WZgcSLMr1wt0WQ69YzjJUn0ag6TQc5yA/m/AQZzCVWpMyrn8e59cjL41JwvbSx8ShScTlIDFn0DCIFYMxYIC/xJm6YuGUmG8zKkiIlVd89lqTctA9ajjU23QVp6HoSJy2fe/CGzGLxQT2PySNqtjJAtcx2V61EAn8SdyTA4irJNRUTaqLUTN/t9yUv43of1W9+y+P2rXc9kk/TucunbUStMvmptaA+LQnPFeUrcK5hBKG/uUo82ommMK6H0zBQgkN7H8tiRCiTWya2vdZ0v2RSoEpfpdKi7TzVlWb01IhPWyniGUdENwHPf/egUUBMZ2wFBedTCPuHVI4+DSbdQV6Ib8ZvQ3lyIE5ADdLFNBBv3wYr8/f09jJC5qyfXEfw1RdZNF5mNVhHPIFFdE9bvdJFuSuNlX8vISJukdm9+i/2hFegpQEj+HdFhqNoZQnsB9bP64s81soxoY0RLOsNacHhCldZP5bGKKj9568A+xi+3XIQDoeujnhfPGNu0Jr79WDZMiOnrjsvzpwbOqZxt9iiajn72ddHUa5SPhVhWFNo2DI/+DoMOX8lPGh15Qr8DbyVg9PN2Yz39tvsbxVFvHGaeWkukdpaGKgGh893OyG+M5bk8oPS40oQrJ247WuPg02S2ELV/C6wap3ANcqfAftLsEXlUh61fIId+tEHcD7bCvv2Q6uzX+ykFWWl+Zm//3kqArtsRdh4Sp9TiSJUZEGr8bB7HUWAO7A4BzUjswB2HSmvGemd+Frxs9djjKMdQEDCcHor4F1QmmZs5p3B3OrMK5pI9P5VeGvskSm68mSBZwPqx/DSaVA7SDxC5hZ8OGLHmAR+yq24GFmSOjYXZin3BaMUdJUTZpcaPqqNd6Y5n6OD0wctG/jHPVf8gXN/sGjP4JhWT0FSKJ16a8VYz8U+FUI2oABKP9GSkcoqE9dHLYHtIbPE61CN2jpbDPzT+50TAKBaoOtjvMz/hv+DzfWYoAIfCaUKjdCU0JriMFkhe1Mb8TwcTaxMCCQ0U1iJlM5go57J1b6JlUcNcZIcOeTFcYqiMBewVUUxo32HFNGHF4UspC3fCIA8YDx2BUCRkAsE8t2fLzGYqgkKFZUjwIr7StV61VDAygjnf0wZNkc5Vr4Cy03NlBjdXF5wvsYk1gZejwjBKfj8VkEInwxiHXWoSGoi8vdvzGSYMp3DkT+BT3NR957uZGuZLL1nvW809zRh4OObL/IFkXD/PWi4HIbiL/Fi3zlOmLPh1Qbkx0OH/qEEs3MnWgvQc7+GLuMI12gHRYz6wFMY9c6WMC4V7ehGvGQOuGf8QxfhIm28sCZeBxSrG1CM2n1E7Yuzz4KtpAZAHzq51dYuveFYNM8l8PZ7NrJTq2Er5BHcILOLkp8JJwofu1aDQX/9hOiorXG621U7WNs6eTL7XrC1QqFAmWHtRbvkSlsGG4ozOnYXQANaQmtFwsA106Infroc7FmaB7OkIj5PLXrnBXGYozcn16jpcSxferWNJhm0XzFQotC9k304UWvBNCSduo0HUTZrGefZAEmxxg6M6LKiifvsH1oUbydGD5s6bCQ7/KqSsRfp74Rb65Ta/a0CXVv4SlaZUC1Tp0ZPrBtfnU7VAHtJipgMm60hgzhbFtnM1dK+vmqEBToOwRFOxOeztaKTbsUqm5qU6sIyP4MDDsf66y60bsaF7h5C8rrvLnVEFdA6TTeQIQOh6HTggUcHgEkDcljpDn3VvQoA0No0es6GFHx8/M6YjLLp9txRrQcM5stxn8HWpCwrwnfcSCWJHP7B5Qhk78yxws8Y0Q5GoZOpz6/TU/OlsBk9mWOPimOutzdhd4VDQGgEKhu3Q/A9I6HwD5J/dAJwnjil0CZpRO5Bt1zRyCF+rUC2ZH14q6IpxC8CEnq3X/ERw53Z3tfyShqTjOlNVVKhLoqRMeZUSKbLOJhOZoD1YjBYzYUI/w8+luroj4Egdymz11zh47jMTzmQbRMTOXQOU1Id1mTDiUOY1Gf4GUjxhD7AJeu+matDQVEob9Gf7DXLManXZiRFKPyqBEnc4C4YohnRjCashmOTDI72H1Z9WZwBHvkEvj5PYCTryPAoyLHo90oTvtHZNtfF2eGe1HY9/j4V2yNI8bkC6bAXrQsmw2kYwg+BqsiREtvUxh76E6kIRahKJXjTujcbY0SPaBXQMkOEWWQ=
+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
 </div>
 <script src="/myblog.github.io/lib/crypto-js.js"></script><script src="/myblog.github.io/lib/blog-encrypt.js"></script><link href="/myblog.github.io/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
       <tags>
@@ -1248,6 +1249,33 @@ U2FsdGVkX1+2mo0ks632d2Drymnjntq7Zbe/wV9IeN3QtL0FkFkiZBk3TPiUNKkfObopkNmwlgsGv52H
       </tags>
   </entry>
   <entry>
+    <title>大马之行</title>
+    <url>/myblog.github.io/%E5%A4%A7%E9%A9%AC%E4%B9%8B%E8%A1%8C/</url>
+    <content><![CDATA[<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>去马来西亚玩了四天，主要是体验人文。前两天槟城，后两天吉隆坡。  时逢马来西亚大选，也看到街上密集的选战旗帜了。</p>
+<p><img src="https://i.imgur.com/F28yIRi.jpg" alt="842qK.jpg"></p>
+ <a id="more"></a>
+<h4 id="为什么会想去马来西亚呢"><a href="#为什么会想去马来西亚呢" class="headerlink" title="为什么会想去马来西亚呢"></a>为什么会想去马来西亚呢</h4><blockquote>
+<p>大概是因为<strong>便宜</strong>吧  </p>
+</blockquote>
+<h4 id="马来西亚好玩吗"><a href="#马来西亚好玩吗" class="headerlink" title="马来西亚好玩吗"></a>马来西亚好玩吗</h4><blockquote>
+<p>对第一次出国的我来说，马来西亚是体验异国人文的高性价比选择，所以我觉得很值得一去<br>马来西亚是一个<span id="inline-green">伊斯兰国家 </span>  。我在此之前对清真很反感，觉得到一个90％都是伊斯兰教徒的国家可能会有点失望的。<br>结果确是很惊喜。  </p>
+</blockquote>
+<p> <img src="https://i.imgur.com/J9s4JwS.jpg" alt="84gCn.md.jpg"></p>
+<iframe src="//player.bilibili.com/player.html?aid=22784971&cid=37836443&page=1" scrolling="no" border="0" frameborder="yes" framespacing="0" allowfullscreen="true"> </iframe>
+
+<h4 id="对马来西亚的印象"><a href="#对马来西亚的印象" class="headerlink" title="对马来西亚的印象"></a>对马来西亚的印象</h4><blockquote>
+<p><strong>包容和多元</strong><br>之前觉得，包容和多元可以形容上海。去过大马之后，才发现上海和马来西亚相比，根本不能叫多元。<br>这里有各种肤色的人在街头攒动，各种口音和语言交织在一起，各种风俗文化共存，却很少有冲突。<br>拿槟城举例，乔治市遗产区老街有英殖民时期的建筑和教堂，也有清真寺在晚上诵经，街上各种各样老店不少打着中文招牌；有小印度和印度寺庙，也有海边的姓氏桥，它们是很早以前中国渔民下南洋定居的地方，还有更早的<a href="https://baike.baidu.com/item/%E5%B3%87%E5%B3%87%E5%A8%98%E6%83%B9" target="_blank" rel="noopener">娘惹</a>文化，小吃和博物馆。<br>至于吉隆坡，更是如此了。这里不再是泥泞的河口，而是国际化的大城市。街上不只有亚洲面孔，其他大洲的面孔也非常多。随着各种民族定居，它们的文化传统也流了下来，在吉隆坡继续传承着。吉隆坡的华人街<span id="inline-red"> 茨厂街 </span>旁边有佳美清真寺，有印度教神庙，也有关公庙。<br>它们不冲突，也不极端。</p>
+</blockquote>
+<p><img src="https://i.imgur.com/UijRtLq.jpg" alt=""></p>
+<h4 id="印象最深的"><a href="#印象最深的" class="headerlink" title="印象最深的"></a>印象最深的</h4><blockquote>
+<p>这里的女性大部分带头巾，我还见到过只露出眼睛的那种。可能看到一个妹纸会去想要是她们不带头巾会不会很漂亮，会不会有很飘逸的头发。<br>但是她们并不封建，或者说并不是那种传统意义上的封建。似乎任何职业都有他们的身影。有女警察，售货员，酒店前台小姐姐，等等。头巾并不会给你任何负面的印象，反而会慢慢习惯。<br>虽然头巾限制了她们在头发上的发挥，但爱美和追求时尚仍然可行。 各种化妆品都有售卖，广告上的模特也戴着头巾。虽然上半身保留着传统，但是鲜艳前沿的鞋子和袜子展示着她们对时尚的理解。</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>Trip</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>屏幕杂谈</title>
     <url>/myblog.github.io/%E5%B1%8F%E5%B9%95%E6%9D%82%E8%B0%88/</url>
     <content><![CDATA[<blockquote>
@@ -1275,39 +1303,12 @@ U2FsdGVkX1+2mo0ks632d2Drymnjntq7Zbe/wV9IeN3QtL0FkFkiZBk3TPiUNKkfObopkNmwlgsGv52H
 <div id="decryptionError" style="display: none;">Incorrect Password!</div>
 <div id="noContentError" style="display: none;">No content to display!</div>
 <div id="encrypt-blog" style="display:none">
-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
+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
 </div>
 <script src="/myblog.github.io/lib/crypto-js.js"></script><script src="/myblog.github.io/lib/blog-encrypt.js"></script><link href="/myblog.github.io/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
       <tags>
         <tag>Geek</tag>
         <tag>Google</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>大马之行</title>
-    <url>/myblog.github.io/%E5%A4%A7%E9%A9%AC%E4%B9%8B%E8%A1%8C/</url>
-    <content><![CDATA[<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>去马来西亚玩了四天，主要是体验人文。前两天槟城，后两天吉隆坡。  时逢马来西亚大选，也看到街上密集的选战旗帜了。</p>
-<p><img src="https://i.imgur.com/F28yIRi.jpg" alt="842qK.jpg"></p>
- <a id="more"></a>
-<h4 id="为什么会想去马来西亚呢"><a href="#为什么会想去马来西亚呢" class="headerlink" title="为什么会想去马来西亚呢"></a>为什么会想去马来西亚呢</h4><blockquote>
-<p>大概是因为<strong>便宜</strong>吧  </p>
-</blockquote>
-<h4 id="马来西亚好玩吗"><a href="#马来西亚好玩吗" class="headerlink" title="马来西亚好玩吗"></a>马来西亚好玩吗</h4><blockquote>
-<p>对第一次出国的我来说，马来西亚是体验异国人文的高性价比选择，所以我觉得很值得一去<br>马来西亚是一个<span id="inline-green">伊斯兰国家 </span>  。我在此之前对清真很反感，觉得到一个90％都是伊斯兰教徒的国家可能会有点失望的。<br>结果确是很惊喜。  </p>
-</blockquote>
-<p> <img src="https://i.imgur.com/J9s4JwS.jpg" alt="84gCn.md.jpg"></p>
-<iframe src="//player.bilibili.com/player.html?aid=22784971&cid=37836443&page=1" scrolling="no" border="0" frameborder="yes" framespacing="0" allowfullscreen="true"> </iframe>
-
-<h4 id="对马来西亚的印象"><a href="#对马来西亚的印象" class="headerlink" title="对马来西亚的印象"></a>对马来西亚的印象</h4><blockquote>
-<p><strong>包容和多元</strong><br>之前觉得，包容和多元可以形容上海。去过大马之后，才发现上海和马来西亚相比，根本不能叫多元。<br>这里有各种肤色的人在街头攒动，各种口音和语言交织在一起，各种风俗文化共存，却很少有冲突。<br>拿槟城举例，乔治市遗产区老街有英殖民时期的建筑和教堂，也有清真寺在晚上诵经，街上各种各样老店不少打着中文招牌；有小印度和印度寺庙，也有海边的姓氏桥，它们是很早以前中国渔民下南洋定居的地方，还有更早的<a href="https://baike.baidu.com/item/%E5%B3%87%E5%B3%87%E5%A8%98%E6%83%B9" target="_blank" rel="noopener">娘惹</a>文化，小吃和博物馆。<br>至于吉隆坡，更是如此了。这里不再是泥泞的河口，而是国际化的大城市。街上不只有亚洲面孔，其他大洲的面孔也非常多。随着各种民族定居，它们的文化传统也流了下来，在吉隆坡继续传承着。吉隆坡的华人街<span id="inline-red"> 茨厂街 </span>旁边有佳美清真寺，有印度教神庙，也有关公庙。<br>它们不冲突，也不极端。</p>
-</blockquote>
-<p><img src="https://i.imgur.com/UijRtLq.jpg" alt=""></p>
-<h4 id="印象最深的"><a href="#印象最深的" class="headerlink" title="印象最深的"></a>印象最深的</h4><blockquote>
-<p>这里的女性大部分带头巾，我还见到过只露出眼睛的那种。可能看到一个妹纸会去想要是她们不带头巾会不会很漂亮，会不会有很飘逸的头发。<br>但是她们并不封建，或者说并不是那种传统意义上的封建。似乎任何职业都有他们的身影。有女警察，售货员，酒店前台小姐姐，等等。头巾并不会给你任何负面的印象，反而会慢慢习惯。<br>虽然头巾限制了她们在头发上的发挥，但爱美和追求时尚仍然可行。 各种化妆品都有售卖，广告上的模特也戴着头巾。虽然上半身保留着传统，但是鲜艳前沿的鞋子和袜子展示着她们对时尚的理解。</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>Trip</tag>
       </tags>
   </entry>
   <entry>

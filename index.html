@@ -184,6 +184,133 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="default">
+    <link itemprop="mainEntityOfPage" href="https://github.com/ChaosRinkHan/myblog.github.io/COVID-R/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/myblog.github.io/images/icn.jpg">
+      <meta itemprop="name" content="Chaolin Han">
+      <meta itemprop="description" content="Our business is life itself.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="EXECUTER">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/myblog.github.io/COVID-R/" class="post-title-link" itemprop="url">疫情数据的可视化和ARIMA预测</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-05-01 00:24:45 / Modified: 01:49:36" itemprop="dateCreated datePublished" datetime="2020-05-01T00:24:45+01:00">2020-05-01</time>
+            </span>
+
+          
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>简单记录下这些微小的工作。</p>
+<p>GitHub Pages: <a href="https://hrbinbin.github.io/Covid19predict/" target="_blank" rel="noopener">https://hrbinbin.github.io/Covid19predict/</a></p>
+<h1 id="初衷"><a href="#初衷" class="headerlink" title="初衷"></a>初衷</h1><ul>
+<li><p>探索一下，机器学习能否做到</p>
+<ul>
+<li>超越检测手段、统计方式的不确定性，对真实情况进行fit</li>
+<li>没见过下降趋势的时候预测下降趋势。这一点的范畴其实在deep reinforcement learning里面研究挺多，可惜本场景是否适用还未知</li>
+</ul>
+</li>
+<li><p>目标是拐点或者趋势</p>
+</li>
+</ul>
+<h2 id="现阶段"><a href="#现阶段" class="headerlink" title="现阶段"></a>现阶段</h2><ul>
+<li>英国首相今天宣布<a href="https://www.bbc.com/news/amp/uk-52493500" target="_blank" rel="noopener">疫情高峰已经过去</a>，不过从可视化结果来看，确实是“过去”了，但这好转速度也太慢了</li>
+<li>既然拐点过了，那么情况和数据肯定是越来越好的</li>
+<li>还有没有继续做，做什么<ul>
+<li>在日程上的有CNN for time-series和LSTM RNN</li>
+<li>总确诊人数肯定是S型曲线。现存确诊这个数据对英国来讲就是没有，比较治愈数目就没怎么更新</li>
+<li>现阶段预测现存确诊的意义大于预测总确诊的意义；预测的总确诊只能用来展示拐点情况了</li>
+<li>有很大的冲动想把这个项目archive了，因为没有现存确诊的每日数据和历史数据。就留个可视化</li>
+</ul>
+</li>
+</ul>
+<h1 id="数据源-json2csv-R"><a href="#数据源-json2csv-R" class="headerlink" title="数据源 json2csv.R"></a>数据源 <code>json2csv.R</code></h1><ol>
+<li>Jeff的API：<a href="https://github.com/isjeffcom/coronvirusFigureUK。用于获取英国历史数据。">https://github.com/isjeffcom/coronvirusFigureUK。用于获取英国历史数据。</a></li>
+<li>JHU的全球数据仓库：<a href="https://github.com/CSSEGISandData/COVID-19。用于获取欧洲三国数据。">https://github.com/CSSEGISandData/COVID-19。用于获取欧洲三国数据。</a></li>
+<li>韩国数据也源于JHU，中国大陆数据采用卫健委的数据。英国之外的数据均用于对比英国。</li>
+</ol>
+<p>代码没什么好讲的，全部输出csv。</p>
+<h1 id="现状可视化"><a href="#现状可视化" class="headerlink" title="现状可视化"></a>现状可视化</h1><p>一个很重要的点就是用普通的line plot（y轴：确诊人数，x轴：时间）很难对比或者看出一个国家情况的好坏。用对数数轴（log-y /w log-x）也凸显不出来显著差距。这里采用的是minutephysics的视频中提到的方法：<a href="https://youtu.be/54XLXg4fYsc" target="_blank" rel="noopener">How To Tell If We’re Beating COVID-19</a>。我也在寻找更优的数据展示方式，有知道的也欢迎告诉我。</p>
+<p>这个可视化采用y轴每日新增，x轴总确诊来做图，全对数数轴。上面的是视频已经很到展示了它的效果。下面的图片也说明了欧洲三国领先英国的一个抗疫局势。<a href="https://hrbinbin.github.io/Covid19predict/trendFigures.html" target="_blank" rel="noopener">更多对比</a></p>
+<p><img src="https://raw.githubusercontent.com/HRbinbin/Covid19predict/master/plot/UKlogTrend.png" alt=""></p>
+<p>所有可视化都通过ggplot2完成。确实很麻烦很费时间（特别是legend），但在目前我看来做可视化已经是最优方案了。</p>
+<p>对数数轴：</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scale_x_log10(limits = c(<span class="number">55</span>,<span class="number">316123</span>), breaks = trans_breaks(<span class="string">"log10"</span>, <span class="keyword">function</span>(x) <span class="number">10</span>^x), labels = trans_format(<span class="string">"log10"</span>, math_format(<span class="number">10</span>^.x)))+</span><br><span class="line"> scale_y_log10(limits = c(<span class="number">30</span>,<span class="number">31612</span>),breaks = trans_breaks(<span class="string">"log10"</span>, <span class="keyword">function</span>(x) <span class="number">10</span>^x), labels = trans_format(<span class="string">"log10"</span>, math_format(<span class="number">10</span>^.x)))</span><br></pre></td></tr></table></figure>
+<h1 id="ARIMA"><a href="#ARIMA" class="headerlink" title="ARIMA"></a>ARIMA</h1><p>非季节ARIMA就三个参数 (p, d, q)。p是AR（自回归）的阶数，描述时间序列的lag，d是差分的阶数，这个阶数下的时间序列应该具有平稳（stationary）的趋势。q是滑动平均的阶数，与滑动窗口大小有关。</p>
+<ul>
+<li>d在本情况下是不会超过3的，通过画一下差分后的数据序列就能看出来。最大化Heteroscedasticity的d可能就是2了。</li>
+<li>p和q就让它自动去寻找吧</li>
+</ul>
+<p>后期版本，自动寻优的ARIMA模型：</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">UK.autoARIMA = auto.arima(dfUK$confirmed, </span><br><span class="line">                          max.p = <span class="number">21</span>, max.q = <span class="number">21</span>, start.q = <span class="number">1</span>, max.d = <span class="number">4</span>, max.order = <span class="number">42</span>, </span><br><span class="line">                          seasonal = <span class="literal">F</span>,stepwise = <span class="literal">F</span>, </span><br><span class="line">                          <span class="comment">#parallel = T, num.cores = 8, </span></span><br><span class="line">                          approximation = <span class="literal">T</span>,trace = <span class="literal">T</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tsdiag(UK.autoARIMA)</span><br></pre></td></tr></table></figure>
+<p>这里默认的寻参目标是AIC，可选的目标还有AICc，BIC和likelihood。我并不知道哪个寻参目标更好，所以就用了默认的。</p>
+<p>正常情况为了一个更精确的结果，还是应该关闭<code>approximation</code>，打开并行，这样的结果更好，还可以避免q很大的时候，AIC计算直接蹦到Inf的问题。当然如上一段，换个寻参目标可以解决这个问题。</p>
+<p>早期版本中，我手动grid search寻参，结果p和q都落在10+的范围，寻参时间也很长。一个可视化三维或者更高维的grid search结果的方法是：</p>
+<ul>
+<li><p>假设变量a寻参范围为d1，变量b为d2，变量c为d3</p>
+</li>
+<li><p>y轴为寻参目标（这里是AIC），x轴为</p>
+<p><code>c+b*(d3+1)+a*(b*d2+d3+1)</code></p>
+</li>
+<li><p>这里的1可以换成别的正常数来增大间距</p>
+</li>
+</ul>
+<p>关于参数理解：<a href="https://alkaline-ml.com/pmdarima/tips_and_tricks.html#understand-p-d-and-q" target="_blank" rel="noopener">Understand <code>p</code>, <code>d</code>, and <code>q</code></a></p>
+<p>现阶段的自动寻参结果表明，p是肯定落在10以上的区间的，以likelihood为指标甚至会趋向于更复杂的模型；q对模型的影响难以简单描述，还是认真搜一下比较好。</p>
+<p>接下来就是构造data frame无脑作图了。AIC可视化出来可能很难理解，这里就做了residual也就是error的可视化。</p>
+<p>不得不说显而易见的的，这样的时移统计模型的误差可以做到非常小：我预测了这么多天，没有一天的误差超过1%，一般和当天公布的总确诊数字相差都不会超过1000人</p>
+<p>这就让我回到了<a href="#初衷">初衷</a>里面讲的，它都这么精确了，那么它达到我们的目标了吗？做更精确的CNN、RNN模型意义大吗？对我们的生活或是决策参考意义大吗？</p>
+<p>所以我准备再思考一下这个问题，或许明天写个1D-CNN试试看。DNN能吸收更多的特征，但对这种统计手段/统计方法会很大影响结果的场景，直接预测确诊意义确实不是很大。</p>
+<p>最早的目标是学习相似国家的数据，然后transfer learning到英国上面。现在想想，可能transfer完就预测一个确诊人数着实没啥用。试试才知道，说不定等几天过去它就变成一个纯可视化的项目了。</p>
+<p>目前最有价值的也就是如下两图了（GitHub的图床，每日更新）</p>
+<h2 id="英国趋势"><a href="#英国趋势" class="headerlink" title="英国趋势"></a>英国趋势</h2><p>1 May：确实不大像拐点的样子，尽管首相已经这么承认了。这个拐点是真的平缓，表明英国在收容这一块上做的很艰难。</p>
+<p><img src="https://raw.githubusercontent.com/HRbinbin/Covid19predict/master/prediction/UKlogTrend.png" alt=""></p>
+<h2 id="每日新增预测"><a href="#每日新增预测" class="headerlink" title="每日新增预测"></a>每日新增预测</h2><p>MA阶数q在快速寻优和高阶AR下趋向于选择小的值。更精确的自动寻优结果之后会更新。</p>
+<p><img src="https://raw.githubusercontent.com/HRbinbin/Covid19predict/master/prediction/DailyBar.png" alt=""></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="default">
     <link itemprop="mainEntityOfPage" href="https://github.com/ChaosRinkHan/myblog.github.io/COVID-PREDICTION/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -215,7 +342,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-04-26 00:18:26" itemprop="dateModified" datetime="2020-04-26T00:18:26+01:00">2020-04-26</time>
+                <time title="Modified: 2020-05-01 01:02:44" itemprop="dateModified" datetime="2020-05-01T01:02:44+01:00">2020-05-01</time>
               </span>
 
           
@@ -233,6 +360,7 @@
       
           <p>做了一个简单的ARIMA预测，和一大堆R语言的绘图。ggplot属实浪费生命。</p>
 <p><a href="https://hrbinbin.github.io/Covid19predict/" target="_blank" rel="noopener">https://hrbinbin.github.io/Covid19predict/</a></p>
+<p>正文在这里。</p>
 <p><img src="https://i.imgur.com/DtQDgwr.png" alt="image-20200425234510325"></p>
 
       
@@ -1274,88 +1402,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="default">
-    <link itemprop="mainEntityOfPage" href="https://github.com/ChaosRinkHan/myblog.github.io/thoughtsaboutf1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/myblog.github.io/images/icn.jpg">
-      <meta itemprop="name" content="Chaolin Han">
-      <meta itemprop="description" content="Our business is life itself.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="EXECUTER">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/myblog.github.io/thoughtsaboutf1/" class="post-title-link" itemprop="url">茫茫，Formula 1 (二)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2018-11-26 21:25:10" itemprop="dateCreated datePublished" datetime="2018-11-26T21:25:10+00:00">2018-11-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-04-25 23:50:11" itemprop="dateModified" datetime="2020-04-25T23:50:11+01:00">2020-04-25</time>
-              </span>
-
-          
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><a href="//user.qzone.qq.com/784631015/blog/1385866062" target="_blank" rel="noopener">前文地址</a> (茫茫， Formular 1)</p>
-<h2 id="引"><a href="#引" class="headerlink" title="引"></a>引</h2><p>前一次写F1相关话题的时候是在13年。当时看了红牛内斗有感而发，加上最喜欢的车手韦伯机长退役。现在五年过去了，14年开始混动时代来临，谁都想不到这五年全部被银箭垄断了。</p>
-<p>五年前机械轰鸣更加纯粹，银箭还叫梅赛德斯AMG。</p>
-<blockquote>
-<p>梅赛德斯-奔驰（或是叫梅赛德斯AMG？），同迈凯轮一样，在一二线车队间游走。简森巴顿、汉密尔顿、罗斯伯格、佩雷兹都很有潜力，但都被压制了。送走舒马赫，梅赛德斯的积分说明了它的稳定。</p>
-<p>神莲也分家了——路特斯还是莲花？车手无疑是神莲的优势，而且其“硬件”也不错。其长期保持的一二线间的位置更有利于向领奖台冲击——我还是挺支持神莲的。</p>
-<p>威廉姆斯无疑是一个悲剧。教授时代的威廉姆斯车队风光无限屡登宝座无人能拦。如今虎落平阳，只有偶尔在事故画面和最后几圈被套圈的让车镜头中看到威廉姆斯了——这样坚持一定很辛苦。</p>
-<p>其他的诸如索伯、印度力量、红牛二队也没什么了。不得不说日系主力本田退出F1，小林可梦伟的离开是让人伤心的——街车漂移之都的企业家也无心经营F1了，虽明年本田将以发动机提供商回归。</p>
-</blockquote>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/myblog.github.io/thoughtsaboutf1/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1427,7 +1473,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/myblog.github.io/archives/">
         
-          <span class="site-state-item-count">35</span>
+          <span class="site-state-item-count">36</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

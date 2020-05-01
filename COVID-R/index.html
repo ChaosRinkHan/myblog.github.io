@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/HRbinbin/Covid19predict/master/prediction/UKlogTrend.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/HRbinbin/Covid19predict/master/prediction/DailyBar.png">
 <meta property="article:published_time" content="2020-04-30T23:24:45.000Z">
-<meta property="article:modified_time" content="2020-05-01T01:15:29.009Z">
+<meta property="article:modified_time" content="2020-05-01T01:19:54.782Z">
 <meta property="article:author" content="Chaolin Han">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="R">
@@ -218,7 +218,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-05-01 00:24:45 / Modified: 02:15:29" itemprop="dateCreated datePublished" datetime="2020-05-01T00:24:45+01:00">2020-05-01</time>
+              <time title="Created: 2020-05-01 00:24:45 / Modified: 02:19:54" itemprop="dateCreated datePublished" datetime="2020-05-01T00:24:45+01:00">2020-05-01</time>
             </span>
 
           
@@ -316,7 +316,7 @@
 <p>关于参数理解：<a href="https://alkaline-ml.com/pmdarima/tips_and_tricks.html#understand-p-d-and-q" target="_blank" rel="noopener">Understand <code>p</code>, <code>d</code>, and <code>q</code></a></p>
 <p>现阶段的自动寻参结果表明，p是肯定落在10以上的区间的，以likelihood为指标甚至会趋向于最复杂的模型（p会落到寻参上界）；q对模型的影响难以简单描述，还是认真搜一下比较好。</p>
 <p>接下来就是构造data frame无脑作图了。AIC可视化出来可能很难理解，这里就做了residual的可视化。</p>
-<p>不得不说显而易见的，这样的时移统计模型的误差可以做到非常小：<strong>我预测了这么多天，没有一天的误差超过1%</strong>，一般和当天公布的总确诊数字相差都不会超过1000人</p>
+<p>不得不说显而易见的，这样的时移统计模型的误差可以做到非常小：<strong>我预测了这么多天，没有一天的误差超过1%</strong>，一般和当天公布的总确诊数字相差都不会超过1000人。</p>
 <p>这就让我回到了<a href="#初衷">初衷</a>里面讲的，它都这么精确了，那么它达到我们的目标了吗？做更精确的CNN、RNN模型意义大吗？对我们的生活或是决策参考意义大吗？</p>
 <p>所以我准备再思考一下这个问题，或许明天写个1D-CNN试试看。DNN能吸收更多的特征，但对这种统计手段/统计方法会很大影响结果的场景，如上讨论，直接预测总确诊意义确实不是很大。</p>
 <p>最早的目标是学习相似国家的数据，然后transfer learning到英国上面。现在想想，可能transfer完就预测一个确诊人数着实没啥用。试试才知道，说不定等几天过去它就变成一个纯可视化的项目了。</p>

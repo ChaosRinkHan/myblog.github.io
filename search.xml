@@ -94,10 +94,10 @@
 <p>接下来就是构造data frame无脑作图了。AIC可视化出来可能很难理解，这里就做了residual的可视化。</p>
 <p>不得不说显而易见的，这样的时移统计模型的误差可以做到非常小：<strong>我预测了这么多天，没有一天的误差超过1%</strong>，一般和当天公布的总确诊数字相差都不会超过1000人</p>
 <p>这就让我回到了<a href="#初衷">初衷</a>里面讲的，它都这么精确了，那么它达到我们的目标了吗？做更精确的CNN、RNN模型意义大吗？对我们的生活或是决策参考意义大吗？</p>
-<p>所以我准备再思考一下这个问题，或许明天写个1D-CNN试试看。DNN能吸收更多的特征，但对这种统计手段/统计方法会很大影响结果的场景，直接预测确诊意义确实不是很大。</p>
+<p>所以我准备再思考一下这个问题，或许明天写个1D-CNN试试看。DNN能吸收更多的特征，但对这种统计手段/统计方法会很大影响结果的场景，如上讨论，直接预测总确诊意义确实不是很大。</p>
 <p>最早的目标是学习相似国家的数据，然后transfer learning到英国上面。现在想想，可能transfer完就预测一个确诊人数着实没啥用。试试才知道，说不定等几天过去它就变成一个纯可视化的项目了。</p>
-<p>目前最有价值的也就是如下两图了（GitHub的图床，每日更新）</p>
-<h2 id="英国趋势"><a href="#英国趋势" class="headerlink" title="英国趋势"></a>英国趋势</h2><p>1 May：确实不大像拐点的样子，尽管首相已经这么承认了。这个拐点是真的平缓，表明英国在收容这一块上做的很艰难。</p>
+<p>目前最有价值的也就是如下两图了（GitHub的图床，每日更新）。</p>
+<h2 id="英国趋势"><a href="#英国趋势" class="headerlink" title="英国趋势"></a>英国趋势</h2><p>1 May：确实不大像拐点的样子，尽管首相已经这么承认了。这个拐点是真的平缓，表明英国在收容这一块上做的很艰难。还是要谨防上升趋势。</p>
 <p><img src="https://raw.githubusercontent.com/HRbinbin/Covid19predict/master/prediction/UKlogTrend.png" alt=""></p>
 <h2 id="每日新增预测"><a href="#每日新增预测" class="headerlink" title="每日新增预测"></a>每日新增预测</h2><p>MA阶数q在快速寻优和高阶AR下趋向于选择小的值。更精确的自动寻优结果之后会更新。</p>
 <p><img src="https://raw.githubusercontent.com/HRbinbin/Covid19predict/master/prediction/DailyBar.png" alt=""></p>

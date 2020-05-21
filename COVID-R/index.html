@@ -32,7 +32,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/HRbinbin/Covid19predict/master/prediction/UKlogTrend.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/HRbinbin/Covid19predict/master/prediction/DailyBar.png">
 <meta property="article:published_time" content="2020-04-30T23:24:45.000Z">
-<meta property="article:modified_time" content="2020-05-01T16:55:09.000Z">
+<meta property="article:modified_time" content="2020-05-21T14:35:07.491Z">
 <meta property="article:author" content="Chaolin Han">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="R">
@@ -227,10 +227,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2020-05-01 00:24:45 / Modified: 17:55:09" itemprop="dateCreated datePublished" datetime="2020-05-01T00:24:45+01:00">2020-05-01</time>
+              <time title="Created: 2020-05-01 00:24:45" itemprop="dateCreated datePublished" datetime="2020-05-01T00:24:45+01:00">2020-05-01</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-05-21 15:35:07" itemprop="dateModified" datetime="2020-05-21T15:35:07+01:00">2020-05-21</time>
+              </span>
 
           
             <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
@@ -339,6 +345,17 @@
 <p><img src="https://raw.githubusercontent.com/HRbinbin/Covid19predict/master/prediction/UKlogTrend.png" alt=""></p>
 <h2 id="每日新增预测"><a href="#每日新增预测" class="headerlink" title="每日新增预测"></a>每日新增预测</h2><p>MA阶数q在快速寻优和高阶AR下趋向于选择小的值。更精确的自动寻优结果之后会更新。</p>
 <p><img src="https://raw.githubusercontent.com/HRbinbin/Covid19predict/master/prediction/DailyBar.png" alt=""></p>
+<h1 id="Updates-on-21-May"><a href="#Updates-on-21-May" class="headerlink" title="Updates on 21 May"></a>Updates on 21 May</h1><p>准备结束预测功能。</p>
+<p>最早是手动寻参，后来用autoArima自动寻参，现在是周期在7的倍数里面寻优。</p>
+<p>思前想后现实意义不大，考虑到</p>
+<ul>
+<li>英国这个疫情趋势也没什么变数了</li>
+<li>增加慢慢放缓，有的开始清零了</li>
+<li>数据校对很难<ul>
+<li>有突然增加/减少的核对人数</li>
+</ul>
+</li>
+</ul>
 
     </div>
 
@@ -442,7 +459,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#初衷"><span class="nav-text">初衷</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#现阶段"><span class="nav-text">现阶段</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据源-json2csv-R"><span class="nav-text">数据源  json2csv.R</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#现状可视化-log-vis-R"><span class="nav-text">现状可视化 log_vis.R</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ARIMA-movingAverage-R"><span class="nav-text">ARIMA movingAverage.R</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#英国趋势"><span class="nav-text">英国趋势</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#每日新增预测"><span class="nav-text">每日新增预测</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#初衷"><span class="nav-text">初衷</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#现阶段"><span class="nav-text">现阶段</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据源-json2csv-R"><span class="nav-text">数据源  json2csv.R</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#现状可视化-log-vis-R"><span class="nav-text">现状可视化 log_vis.R</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ARIMA-movingAverage-R"><span class="nav-text">ARIMA movingAverage.R</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#英国趋势"><span class="nav-text">英国趋势</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#每日新增预测"><span class="nav-text">每日新增预测</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Updates-on-21-May"><span class="nav-text">Updates on 21 May</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

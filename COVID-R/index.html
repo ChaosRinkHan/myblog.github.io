@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#268785">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#268785">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"ltnexe.live","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","width":280,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="简单记录下这些微小的工作。 GitHub Pages https:&#x2F;&#x2F;hrbinbin.github.io&#x2F;Covid19predict&#x2F; 初衷 探索一下，机器学习能否做到  超越检测手段、统计方式的不确定性，对真实情况进行fit  没见过下降趋势的时候预测下降趋势。这一点的范畴其实在deep reinforcement learning里面研究挺多，可惜本场景是否适用还未知      目标是拐点">
+<meta property="og:type" content="article">
+<meta property="og:title" content="疫情数据的可视化和ARIMA预测">
+<meta property="og:url" content="https://ltnexe.live/COVID-R/index.html">
+<meta property="og:site_name" content="EXECUTER">
+<meta property="og:description" content="简单记录下这些微小的工作。 GitHub Pages https:&#x2F;&#x2F;hrbinbin.github.io&#x2F;Covid19predict&#x2F; 初衷 探索一下，机器学习能否做到  超越检测手段、统计方式的不确定性，对真实情况进行fit  没见过下降趋势的时候预测下降趋势。这一点的范畴其实在deep reinforcement learning里面研究挺多，可惜本场景是否适用还未知      目标是拐点">
+<meta property="og:image" content="https://raw.githubusercontent.com/HRbinbin/Covid19predict/master/plot/UKlogTrend.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/HRbinbin/Covid19predict/master/prediction/UKlogTrend.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/HRbinbin/Covid19predict/master/prediction/DailyBar.png">
+<meta property="article:published_time" content="2020-04-30T16:24:45.000Z">
+<meta property="article:modified_time" content="2020-05-21T14:35:07.000Z">
+<meta property="article:author" content="Chaolin Han">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="R">
+<meta property="article:tag" content="Data Analysis">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/HRbinbin/Covid19predict/master/plot/UKlogTrend.png">
+
+<link rel="canonical" href="https://ltnexe.live/COVID-R/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'default'
+  };
+</script>
+
+  <title>疫情数据的可视化和ARIMA预测 | EXECUTER</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-165305836-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-165305836-1');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">EXECUTER</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-address-card fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="default">
+    <link itemprop="mainEntityOfPage" href="https://ltnexe.live/COVID-R/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icn.jpg">
+      <meta itemprop="name" content="Chaolin Han">
+      <meta itemprop="description" content="Our business is life itself.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="EXECUTER">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          疫情数据的可视化和ARIMA预测
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-05-01 00:24:45" itemprop="dateCreated datePublished" datetime="2020-05-01T00:24:45+08:00">2020-05-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-05-21 22:35:07" itemprop="dateModified" datetime="2020-05-21T22:35:07+08:00">2020-05-21</time>
+              </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/COVID-R/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/COVID-R/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>简单记录下这些微小的工作。</p>
+<p>GitHub Pages</p>
+<p><a href="https://hrbinbin.github.io/Covid19predict/" target="_blank" rel="noopener">https://hrbinbin.github.io/Covid19predict/</a></p>
+<h1 id="初衷"><a href="#初衷" class="headerlink" title="初衷"></a>初衷</h1><ul>
+<li><p>探索一下，机器学习能否做到</p>
+<ul>
+<li><p>超越检测手段、统计方式的不确定性，对真实情况进行fit</p>
+</li>
+<li><p>没见过下降趋势的时候预测下降趋势。这一点的范畴其实在deep reinforcement learning里面研究挺多，可惜本场景是否适用还未知</p>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>目标是拐点或者趋势</li>
+</ul>
+<h2 id="现阶段"><a href="#现阶段" class="headerlink" title="现阶段"></a>现阶段</h2><ul>
+<li>英国首相今天宣布<a href="https://www.bbc.com/news/amp/uk-52493500" target="_blank" rel="noopener">疫情高峰已经过去</a>，不过从可视化结果来看，确实是“过去”了，但这好转速度也太慢了</li>
+<li>既然拐点过了，那么情况和数据肯定是越来越好的</li>
+</ul>
+<a id="more"></a>
+<ul>
+<li>还有没有继续做，做什么<ul>
+<li>在日程上的有CNN for time-series和LSTM RNN</li>
+<li>总确诊人数肯定是S型曲线。现存确诊这个数据对英国来讲就是没有，治愈数目、重症数目就没怎么更新</li>
+<li>现阶段预测现存确诊的意义大于预测总确诊的意义；预测的总确诊只能用来展示拐点情况了</li>
+<li>有很大的冲动想把这个项目archive了，因为没有现存确诊的每日数据和历史数据。就留个可视化</li>
+</ul>
+</li>
+</ul>
+<h1 id="数据源-json2csv-R"><a href="#数据源-json2csv-R" class="headerlink" title="数据源  json2csv.R"></a>数据源  <code>json2csv.R</code></h1><ol>
+<li><a href="https://github.com/isjeffcom/coronvirusFigureUK" target="_blank" rel="noopener">Jeff的API</a>。用于获取英国历史数据。</li>
+<li><a href="https://github.com/CSSEGISandData/COVID-19" target="_blank" rel="noopener">JHU的全球数据仓库</a>。用于获取欧洲三国数据。</li>
+<li>韩国数据也源于JHU，中国大陆数据采用卫健委的数据。英国之外的数据均用于对比英国。</li>
+</ol>
+<p>代码没什么好讲的，全部输出csv。</p>
+<h1 id="现状可视化-log-vis-R"><a href="#现状可视化-log-vis-R" class="headerlink" title="现状可视化 log_vis.R"></a>现状可视化 <code>log_vis.R</code></h1><p>一个很重要的点就是用普通的line plot（y轴：确诊人数，x轴：时间）很难对比或者看出一个国家情况的好坏。用对数数轴（log-y /w log-x）也凸显不出来显著差距。这里采用的是minutephysics的视频中提到的方法：<a href="https://youtu.be/54XLXg4fYsc" target="_blank" rel="noopener">How To Tell If We’re Beating COVID-19</a>。我也在寻找更优的数据展示方式，有知道的也欢迎告诉我。</p>
+<p>这个可视化采用y轴每日新增，x轴总确诊来作图，全对数数轴。上面的是视频已经很到位地展示了它的效果。下面的图片也说明了欧洲三国领先英国的一个抗疫局势。<a href="https://hrbinbin.github.io/Covid19predict/trendFigures.html" target="_blank" rel="noopener">更多对比</a></p>
+<p><img src="https://raw.githubusercontent.com/HRbinbin/Covid19predict/master/plot/UKlogTrend.png" alt=""></p>
+<p>所有可视化都通过<code>ggplot2</code>完成。确实很麻烦很费时间（特别是legend），但在目前我看来做可视化ggplot已经是最优方案了。</p>
+<p>对数数轴：</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scale_x_log10(limits = c(<span class="number">55</span>,<span class="number">316123</span>), breaks = trans_breaks(<span class="string">"log10"</span>, <span class="keyword">function</span>(x) <span class="number">10</span>^x), labels = trans_format(<span class="string">"log10"</span>, math_format(<span class="number">10</span>^.x)))+</span><br><span class="line">scale_y_log10(limits = c(<span class="number">30</span>,<span class="number">31612</span>),breaks = trans_breaks(<span class="string">"log10"</span>, <span class="keyword">function</span>(x) <span class="number">10</span>^x), labels = trans_format(<span class="string">"log10"</span>, math_format(<span class="number">10</span>^.x)))</span><br></pre></td></tr></table></figure>
+<h1 id="ARIMA-movingAverage-R"><a href="#ARIMA-movingAverage-R" class="headerlink" title="ARIMA movingAverage.R"></a>ARIMA <code>movingAverage.R</code></h1><p>非季节ARIMA就三个参数 <code>(p, d, q)</code>。p是AR（自回归）的阶数，描述时间序列的lag，d是差分的阶数，这个阶数下的时间序列应该具有平稳（stationary）的趋势。q是MA（滑动平均）的阶数，与滑动窗口大小有关。</p>
+<ul>
+<li>d在本情况下是不会超过3的，通过画一下差分后的数据序列就能看出来。最大化heteroscedasticity的d可能就是2了。</li>
+<li>p和q就让它自动去寻找吧，根据实际情况设一下上下界限</li>
+<li>p和q会显著增加模型复杂度，因此存在AIC(p, q)法则。不过我没有考虑23333。</li>
+</ul>
+<p>后期版本，自动寻优的ARIMA模型：</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">UK.autoARIMA = auto.arima(dfUK$confirmed, </span><br><span class="line">                          max.p = <span class="number">21</span>, max.q = <span class="number">21</span>, </span><br><span class="line">                          max.d = <span class="number">4</span>, max.order = <span class="number">42</span>, </span><br><span class="line">                          seasonal = <span class="literal">F</span>,stepwise = <span class="literal">F</span>, </span><br><span class="line">                          <span class="comment">#parallel = T, num.cores = 8, </span></span><br><span class="line">                          approximation = <span class="literal">T</span>,trace = <span class="literal">T</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tsdiag(UK.autoARIMA)</span><br></pre></td></tr></table></figure>
+<p>这里默认的寻参目标是AIC，可选的目标还有AICc，BIC和likelihood。我并不知道哪个寻参目标更好，所以就用了默认的。</p>
+<p>正常情况为了一个更精确的结果，还是应该关闭<code>approximation</code>，打开并行，这样的结果更好，还可以避免q很大的时候，AIC计算直接蹦到Inf的问题。当然如上一段落，换个寻参目标可以解决这个问题。</p>
+<p>早期版本中，我手动grid search寻参，结果p和q都落在10+的范围，寻参时间也很长。一个可视化三维或者更高维的grid search结果的方法是：</p>
+<ul>
+<li><p>假设变量a寻参范围为d1，变量b为d2，变量c为d3</p>
+</li>
+<li><p>y轴为寻参目标（这里是AIC），x轴为</p>
+<p><code>c+b*(d3+1)+a*(b*d2+d3+1)</code></p>
+</li>
+<li><p>这里的1可以换成别的正常数来增大间距</p>
+</li>
+</ul>
+<p>关于参数理解：<a href="https://alkaline-ml.com/pmdarima/tips_and_tricks.html#understand-p-d-and-q" target="_blank" rel="noopener">Understand <code>p</code>, <code>d</code>, and <code>q</code></a></p>
+<p>现阶段的自动寻参结果表明，p是肯定落在10以上的区间的，以likelihood为指标甚至会趋向于最复杂的模型（p会落到寻参上界）；q对模型的影响难以简单描述，还是认真搜一下比较好。</p>
+<p>接下来就是构造data frame无脑作图了。AIC可视化出来可能很难理解，这里就做了residual的可视化。</p>
+<p>不得不说显而易见的，这样的时移统计模型的误差可以做到非常小：<strong>我预测了这么多天，没有一天的误差超过1%</strong>，一般和当天公布的总确诊数字相差都不会超过1000人。</p>
+<p>这就让我回到了<a href="#初衷">初衷</a>里面讲的，它都这么精确了，那么它达到我们的目标了吗？做更精确的CNN、RNN模型意义大吗？对我们的生活或是决策参考意义大吗？</p>
+<p>所以我准备再思考一下这个问题，或许明天写个1D-CNN试试看。DNN能吸收更多的特征，但对这种统计手段/统计方法会很大影响结果的场景，如上讨论，直接预测总确诊意义确实不是很大。</p>
+<p>最早的目标是学习相似国家的数据，然后transfer learning到英国上面。现在想想，可能transfer完就预测一个确诊人数着实没啥用。试试才知道，说不定等几天过去它就变成一个纯可视化的项目了。</p>
+<p>目前最有价值的也就是如下两图了（GitHub的图床，每日更新）。</p>
+<h2 id="英国趋势"><a href="#英国趋势" class="headerlink" title="英国趋势"></a>英国趋势</h2><p>1 May：确实不大像拐点的样子，尽管首相已经这么承认了。这个拐点是真的平缓，表明英国在收容这一块上做的很艰难。还是要谨防上升趋势。</p>
+<p><img src="https://raw.githubusercontent.com/HRbinbin/Covid19predict/master/prediction/UKlogTrend.png" alt=""></p>
+<h2 id="每日新增预测"><a href="#每日新增预测" class="headerlink" title="每日新增预测"></a>每日新增预测</h2><p>MA阶数q在快速寻优和高阶AR下趋向于选择小的值。更精确的自动寻优结果之后会更新。</p>
+<p><img src="https://raw.githubusercontent.com/HRbinbin/Covid19predict/master/prediction/DailyBar.png" alt=""></p>
+<h1 id="Updates-on-21-May"><a href="#Updates-on-21-May" class="headerlink" title="Updates on 21 May"></a>Updates on 21 May</h1><p>准备结束预测功能。</p>
+<p>最早是手动寻参，后来用autoArima自动寻参，现在是周期在7的倍数里面寻优。</p>
+<p>思前想后现实意义不大，考虑到</p>
+<ul>
+<li>英国这个疫情趋势也没什么变数了</li>
+<li>增加慢慢放缓，有的开始清零了</li>
+<li>数据校对很难<ul>
+<li>有突然增加/减少的核对人数</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:  </strong>Chaolin Han
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link: </strong>
+    <a href="https://ltnexe.live/COVID-R/" title="疫情数据的可视化和ARIMA预测">https://ltnexe.live/COVID-R/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Python/" rel="tag"># Python</a>
+              <a href="/tags/R/" rel="tag"># R</a>
+              <a href="/tags/Data-Analysis/" rel="tag"># Data Analysis</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/macrepair/" rel="prev" title="Mac换电记">
+      <i class="fa fa-chevron-left"></i> Mac换电记
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/COVID-PREDICTION/" rel="next" title="COVID-19 Prediction">
+      COVID-19 Prediction <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#初衷"><span class="nav-text">初衷</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#现阶段"><span class="nav-text">现阶段</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据源-json2csv-R"><span class="nav-text">数据源  json2csv.R</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#现状可视化-log-vis-R"><span class="nav-text">现状可视化 log_vis.R</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ARIMA-movingAverage-R"><span class="nav-text">ARIMA movingAverage.R</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#英国趋势"><span class="nav-text">英国趋势</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#每日新增预测"><span class="nav-text">每日新增预测</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Updates-on-21-May"><span class="nav-text">Updates on 21 May</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Chaolin Han"
+      src="/images/icn.jpg">
+  <p class="site-author-name" itemprop="name">Chaolin Han</p>
+  <div class="site-description" itemprop="description">Our business is life itself.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/ChaosRinkHan" title="GitHub → https://github.com/ChaosRinkHan" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/chaolinhan@gmail.com" title="E-Mail → chaolinhan@gmail.com"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/C_R__Han" title="Twitter → https://twitter.com/C_R__Han" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.instagram.com/cl_han" title="Instagram → https://www.instagram.com/cl_han" rel="noopener" target="_blank"><i class="fab fa-instagram fa-fw"></i></a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-bolt"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chaolin Han</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a>
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : true,
+      appId      : '5dql56FUIB3HYuJdS8FpyeVP-gzGzoHsz',
+      appKey     : '6dn3IHWnKiBu9UXTxCuy6xJs',
+      placeholder: "Comment here anonymously. 支持匿名回复，昵称和邮箱可以留空",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

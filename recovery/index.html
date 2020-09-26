@@ -34,7 +34,7 @@
 <meta property="og:image" content="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/095242.jpg">
 <meta property="og:image" content="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/101248.png">
 <meta property="article:published_time" content="2020-09-26T04:02:46.000Z">
-<meta property="article:modified_time" content="2020-09-26T10:40:24.733Z">
+<meta property="article:modified_time" content="2020-09-26T11:05:46.321Z">
 <meta property="article:author" content="Chaolin Han">
 <meta property="article:tag" content="Writings">
 <meta name="twitter:card" content="summary">
@@ -229,7 +229,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-09-26 12:02:46 / Modified: 18:40:24" itemprop="dateCreated datePublished" datetime="2020-09-26T12:02:46+08:00">2020-09-26</time>
+              <time title="Created: 2020-09-26 12:02:46 / Modified: 19:05:46" itemprop="dateCreated datePublished" datetime="2020-09-26T12:02:46+08:00">2020-09-26</time>
             </span>
 
           
@@ -275,6 +275,7 @@
 </blockquote>
 <p>前情提要 👉 <a href="https://ltnexe.live/macrepair/">Mac换电记</a></p>
 <h2 id="变砖"><a href="#变砖" class="headerlink" title="变砖"></a>变砖</h2><p>在9月24号早上，习惯性打开电脑，手贱点了<code>macOS Big Sur beta 8</code>的升级，然后开始等待。结果几个小时也不见更新完，界面一直是卡在了无限重启进系统。</p>
+ <a id="more"></a>
 <p>然后就<code>⌘+R</code>进入Mac的<code>Recovery</code>准备重装系统。Mac的Recovery相当于PC的BIOS+PE系统，Mac硬件上也没有一个类似于BIOS的东西暴露给消费者，而且最坑的是Recovery这个恢复系统竟然没有隔离分区，这就直接导致了后来的变砖。</p>
 <p>Recovery本身也有好的，因为苹果的闭环让macOS不需要授权这个特性，Mac重装系统可以直接在Recovery里面选择在线重装，就是从网上下载一个新系统自己重装（而且据我观察这个下载速度还很快）。</p>
 <p><img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/090409.jpg" alt="341601110989_.pic" style="zoom:30%;" /></p>
@@ -296,9 +297,9 @@
 <p>也就是说我的电脑整个回到了十几天前的状态，但是系统被降级了。这就直接导致了以下几个事情：</p>
 <ol>
 <li>这十几天因为在到处跑没插时间机器备份，<strong>这十几天的工作全没了</strong>，比如我修的图</li>
-<li>git出了大问题，<strong>因为remote怎么也想不到，还有人能穿越到十几天的节点前来commit新的东西？</strong></li>
+<li>git出了大问题，<strong>因为remote怎么也想不到，还有人能穿越到十几天前的节点前来commit新的东西？</strong></li>
 <li>2直接导致了git revert到9月13前的版本，丢了很多东西，比如我前几天写的博客（托斯卡那大奖赛的评论），和我已经升级的博客框架</li>
-<li>macOS系统级别的一些设置没有恢复比如开机启动项，默认软件，猜测是因为Big Sur的设置方式是不一样的。但别的都恢复的很好，比如我的Rime输入法词库，我的账户同步什么的</li>
+<li>macOS系统级别的一些设置没有恢复，比如开机启动项，默认软件，猜测是因为Big Sur的设置方式是不一样的。但别的都恢复的很好，比如我的Rime输入法词库，我的账户同步什么的</li>
 </ol>
 <h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>之后不管有事没事一直插着时间机器了，然后做了一次全量备份。坑是真的多，阿三化的系统真的让苹果损失了太多的核心竞争力。例如：</p>
 <ul>

@@ -1021,7 +1021,7 @@ U2FsdGVkX19JP+O+0AF96Z9jUfIPlWeTs/diMKXpODErvPn5QiDNj7twDhOrcKfU+DT4nk7RJKjrdtUx
 <li>2直接导致了git revert到9月13前的版本，丢了很多东西，比如我前几天写的博客（托斯卡那大奖赛的评论），和我已经升级的博客框架</li>
 <li>macOS系统级别的一些设置没有恢复比如开机启动项，默认软件，猜测是因为Big Sur的设置方式是不一样的。但别的都恢复的很好，比如我的Rime输入法词库，我的账户同步什么的</li>
 </ol>
-<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>之后不管有事没事一直插着时间机器了，然后做了一次全量更新。坑是真的多，阿三化的系统真的让苹果损失了太多的核心竞争力。例如：</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>之后不管有事没事一直插着时间机器了，然后做了一次全量备份。坑是真的多，阿三化的系统真的让苹果损失了太多的核心竞争力。例如：</p>
 <ul>
 <li><p>Big Sur的系统设置的电池图标</p>
 <p><img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/101248.png" alt="Who the hell designed this battery icon? : MacOSBeta"></p>

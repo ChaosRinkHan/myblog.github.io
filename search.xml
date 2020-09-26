@@ -162,7 +162,7 @@
 </ol>
 </blockquote>
 <p>（感叹一句真不容易）</p>
-<p>我安装完在CDN那里一直报错，是``vendor.js<code>代码里面解析</code>local<code>的</code>call`一直出问题：</p>
+<p>我安装完在CDN那里一直报错，是<code>vendor.js</code>代码里面解析<code>local</code>的<code>call</code>一直出问题：</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">INFO  Start processing</span><br><span class="line">FATAL &#123;</span><br><span class="line">  err: TypeError: Cannot read property &#x27;call&#x27; of undefined</span><br><span class="line">      at module.exports (/Users/chaolinhan/Public/Hexo/init/themes/next/scripts/events/lib/vendors.js:27:25)</span><br><span class="line">      at Hexo.&lt;anonymous&gt; (/Users/chaolinhan/Public/Hexo/init/themes/next/scripts/events/index.js:9:27)</span><br><span class="line">      at Hexo.tryCatcher (/Users/chaolinhan/Public/Hexo/init/node_modules/hexo/node_modules/bluebird/js/release/util.js:16:23)</span><br><span class="line">      </span><br><span class="line">.</span><br><span class="line">.</span><br><span class="line">.</span><br><span class="line"></span><br><span class="line">&#125; Something&#x27;s wrong. Maybe you can find the solution here: %s https://hexo.io/docs/troubleshooting.html</span><br></pre></td></tr></table></figure>
 
 <p>可能是历史遗留的<code>lib</code>文件问题，因为测试了应该不是依赖的问题。解决方法简单粗暴，直接把``vendor.js<code>出问题的这个</code>call`（第二行）注释掉就行了，等以后有空了慢慢看看是什么问题 lol</p>

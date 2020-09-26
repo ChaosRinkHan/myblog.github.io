@@ -28,17 +28,17 @@
 <meta property="og:url" content="https://ltnexe.live/COVID-R/index.html">
 <meta property="og:site_name" content="EXECUTER">
 <meta property="og:description" content="简单记录下这些微小的工作。 GitHub Pages https:&#x2F;&#x2F;hrbinbin.github.io&#x2F;Covid19predict&#x2F; 初衷 探索一下，机器学习能否做到  超越检测手段、统计方式的不确定性，对真实情况进行fit  没见过下降趋势的时候预测下降趋势。这一点的范畴其实在deep reinforcement learning里面研究挺多，可惜本场景是否适用还未知      目标是拐点">
-<meta property="og:image" content="https://raw.githubusercontent.com/HRbinbin/Covid19predict/master/plot/UKlogTrend.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/HRbinbin/Covid19predict/master/prediction/UKlogTrend.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/HRbinbin/Covid19predict/master/prediction/DailyBar.png">
+<meta property="og:image" content="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/062019.png">
+<meta property="og:image" content="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/062023.png">
+<meta property="og:image" content="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/062025.png">
 <meta property="article:published_time" content="2020-04-30T16:24:45.000Z">
-<meta property="article:modified_time" content="2020-05-21T14:35:07.000Z">
+<meta property="article:modified_time" content="2020-09-26T06:20:28.753Z">
 <meta property="article:author" content="Chaolin Han">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="R">
 <meta property="article:tag" content="Data Analysis">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/HRbinbin/Covid19predict/master/plot/UKlogTrend.png">
+<meta name="twitter:image" content="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/062019.png">
 
 <link rel="canonical" href="https://ltnexe.live/COVID-R/">
 
@@ -235,7 +235,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-05-21 22:35:07" itemprop="dateModified" datetime="2020-05-21T22:35:07+08:00">2020-05-21</time>
+                <time title="Modified: 2020-09-26 14:20:28" itemprop="dateModified" datetime="2020-09-26T14:20:28+08:00">2020-09-26</time>
               </span>
 
           
@@ -308,7 +308,7 @@
 <p>代码没什么好讲的，全部输出csv。</p>
 <h1 id="现状可视化-log-vis-R"><a href="#现状可视化-log-vis-R" class="headerlink" title="现状可视化 log_vis.R"></a>现状可视化 <code>log_vis.R</code></h1><p>一个很重要的点就是用普通的line plot（y轴：确诊人数，x轴：时间）很难对比或者看出一个国家情况的好坏。用对数数轴（log-y /w log-x）也凸显不出来显著差距。这里采用的是minutephysics的视频中提到的方法：<a href="https://youtu.be/54XLXg4fYsc" target="_blank" rel="noopener">How To Tell If We’re Beating COVID-19</a>。我也在寻找更优的数据展示方式，有知道的也欢迎告诉我。</p>
 <p>这个可视化采用y轴每日新增，x轴总确诊来作图，全对数数轴。上面的是视频已经很到位地展示了它的效果。下面的图片也说明了欧洲三国领先英国的一个抗疫局势。<a href="https://hrbinbin.github.io/Covid19predict/trendFigures.html" target="_blank" rel="noopener">更多对比</a></p>
-<p><img src="https://raw.githubusercontent.com/HRbinbin/Covid19predict/master/plot/UKlogTrend.png" alt=""></p>
+<p><img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/062019.png" alt=""></p>
 <p>所有可视化都通过<code>ggplot2</code>完成。确实很麻烦很费时间（特别是legend），但在目前我看来做可视化ggplot已经是最优方案了。</p>
 <p>对数数轴：</p>
 <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scale_x_log10(limits = c(<span class="number">55</span>,<span class="number">316123</span>), breaks = trans_breaks(<span class="string">"log10"</span>, <span class="keyword">function</span>(x) <span class="number">10</span>^x), labels = trans_format(<span class="string">"log10"</span>, math_format(<span class="number">10</span>^.x)))+</span><br><span class="line">scale_y_log10(limits = c(<span class="number">30</span>,<span class="number">31612</span>),breaks = trans_breaks(<span class="string">"log10"</span>, <span class="keyword">function</span>(x) <span class="number">10</span>^x), labels = trans_format(<span class="string">"log10"</span>, math_format(<span class="number">10</span>^.x)))</span><br></pre></td></tr></table></figure>
@@ -342,9 +342,9 @@
 <p>最早的目标是学习相似国家的数据，然后transfer learning到英国上面。现在想想，可能transfer完就预测一个确诊人数着实没啥用。试试才知道，说不定等几天过去它就变成一个纯可视化的项目了。</p>
 <p>目前最有价值的也就是如下两图了（GitHub的图床，每日更新）。</p>
 <h2 id="英国趋势"><a href="#英国趋势" class="headerlink" title="英国趋势"></a>英国趋势</h2><p>1 May：确实不大像拐点的样子，尽管首相已经这么承认了。这个拐点是真的平缓，表明英国在收容这一块上做的很艰难。还是要谨防上升趋势。</p>
-<p><img src="https://raw.githubusercontent.com/HRbinbin/Covid19predict/master/prediction/UKlogTrend.png" alt=""></p>
+<p><img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/062023.png" alt=""></p>
 <h2 id="每日新增预测"><a href="#每日新增预测" class="headerlink" title="每日新增预测"></a>每日新增预测</h2><p>MA阶数q在快速寻优和高阶AR下趋向于选择小的值。更精确的自动寻优结果之后会更新。</p>
-<p><img src="https://raw.githubusercontent.com/HRbinbin/Covid19predict/master/prediction/DailyBar.png" alt=""></p>
+<p><img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/062025.png" alt=""></p>
 <h1 id="Updates-on-21-May"><a href="#Updates-on-21-May" class="headerlink" title="Updates on 21 May"></a>Updates on 21 May</h1><p>准备结束预测功能。</p>
 <p>最早是手动寻参，后来用autoArima自动寻参，现在是周期在7的倍数里面寻优。</p>
 <p>思前想后现实意义不大，考虑到</p>
@@ -475,7 +475,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-count">40</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

@@ -354,13 +354,6 @@
   </url>
   
   <url>
-    <loc>https://ltnexe.live/tags/Notes/</loc>
-    <lastmod>2020-09-26</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://ltnexe.live/tags/Writings/</loc>
     <lastmod>2020-09-26</lastmod>
     <changefreq>daily</changefreq>
@@ -369,6 +362,13 @@
   
   <url>
     <loc>https://ltnexe.live/tags/PyQt/</loc>
+    <lastmod>2020-09-26</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://ltnexe.live/tags/Notes/</loc>
     <lastmod>2020-09-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -396,13 +396,6 @@
   </url>
   
   <url>
-    <loc>https://ltnexe.live/tags/Phone/</loc>
-    <lastmod>2020-09-26</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://ltnexe.live/tags/Geek/</loc>
     <lastmod>2020-09-26</lastmod>
     <changefreq>daily</changefreq>
@@ -411,6 +404,13 @@
   
   <url>
     <loc>https://ltnexe.live/tags/Google/</loc>
+    <lastmod>2020-09-26</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://ltnexe.live/tags/Phone/</loc>
     <lastmod>2020-09-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>

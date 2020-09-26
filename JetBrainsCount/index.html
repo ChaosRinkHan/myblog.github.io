@@ -5,21 +5,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#268785">
 <meta name="generator" content="Hexo 5.2.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#268785">
+  <link rel="apple-touch-icon" sizes="180x180" href="/logo_g.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/logo_g.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/logo_g.png">
+  <link rel="mask-icon" href="/logo_g.png" color="#268785">
   <meta http-equiv="Cache-Control" content="no-transform">
   <meta http-equiv="Cache-Control" content="no-siteapp">
 
 <link rel="stylesheet" href="/css/main.css">
 
-<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Noto+Serif+SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 
-<script id="hexo-configurations">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"ltnexe.live","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","width":280,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"ltnexe.live","root":"/","scheme":"Mist","version":"8.0.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"width":280},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
 
   <meta name="description" content="The article has been encrypted, please enter your password to view.">
@@ -35,10 +37,11 @@
 <meta property="article:tag" content="Python">
 <meta name="twitter:card" content="summary">
 
+
 <link rel="canonical" href="https://ltnexe.live/JetBrainsCount/">
 
 
-<script id="page-configurations">
+<script class="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
@@ -67,49 +70,61 @@
 
   <noscript>
   <style>
-  .use-motion .brand,
+  body { margin-top: 2rem; }
+
   .use-motion .menu-item,
-  .sidebar-inner,
+  .use-motion .sidebar,
   .use-motion .post-block,
   .use-motion .pagination,
   .use-motion .comments,
   .use-motion .post-header,
   .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
 
   .use-motion .site-title,
-  .use-motion .site-subtitle {
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
     opacity: initial;
     top: initial;
   }
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
   </style>
 </noscript>
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
 
+  <main class="main">
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="Toggle navigation bar">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
   </div>
 
   <div class="site-meta">
 
     <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
+      <i class="logo-line"></i>
       <h1 class="site-title">LTN</h1>
-      <span class="logo-line-after"><i></i></span>
+      <i class="logo-line"></i>
     </a>
   </div>
 
@@ -122,9 +137,8 @@
 
 
 
-
 <nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
+  <ul class="main-menu menu">
         <li class="menu-item menu-item-home">
 
     <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
@@ -161,7 +175,7 @@
     <i class="fa fa-search"></i>
   </span>
   <div class="search-input-container">
-    <input autocomplete="off" autocapitalize="off"
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
            placeholder="Searching..." spellcheck="false"
            type="search" class="search-input">
   </div>
@@ -169,9 +183,9 @@
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
-<div id="search-result">
-  <div id="no-result">
-    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
   </div>
 </div>
 
@@ -179,195 +193,18 @@
   </div>
 
 </div>
-    </header>
-
-    
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content post posts-expand">
-            
-
-    
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="default">
-    <link itemprop="mainEntityOfPage" href="https://ltnexe.live/JetBrainsCount/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/icn.jpg">
-      <meta itemprop="name" content="Chaolin Han">
-      <meta itemprop="description" content="Our business is life itself.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="LTN">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          JetBrains学生免费版申请指南
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2018-08-21 22:54:22" itemprop="dateCreated datePublished" datetime="2018-08-21T22:54:22+08:00">2018-08-21</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-09-26 14:20:28" itemprop="dateModified" datetime="2020-09-26T14:20:28+08:00">2020-09-26</time>
-              </span>
-
-          
-            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span id="busuanzi_value_page_pv"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/JetBrainsCount/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/JetBrainsCount/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-        <div id="hbe-security">
-  <div class="hbe-input-container">
-  <input type="password" class="hbe-form-control" id="pass" placeholder="Please enter the password to read the blog." />
-    <label for="pass">Please enter the password to read the blog.</label>
-    <div class="bottom-line"></div>
-  </div>
-</div>
-<div id="decryptionError" style="display: none;">Incorrect Password!</div>
-<div id="noContentError" style="display: none;">No content to display!</div>
-<div id="encrypt-blog" style="display:none">
-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
-</div>
-<script src="/lib/crypto-js.js"></script><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">
-    </div>
-
-    
-    
-    
         
-
-<div>
-<ul class="post-copyright">
-  <li class="post-copyright-author">
-    <strong>Post author:  </strong>Chaolin Han
-  </li>
-  <li class="post-copyright-link">
-    <strong>Post link: </strong>
-    <a href="https://ltnexe.live/JetBrainsCount/" title="JetBrains学生免费版申请指南">https://ltnexe.live/JetBrainsCount/</a>
-  </li>
-  <li class="post-copyright-license">
-    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
-  </li>
-</ul>
-</div>
-
-
-      <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/Python/" rel="tag"># Python</a>
-          </div>
-
-        
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/MLNotes/" rel="prev" title="机器学习 李宏毅 笔记">
-      <i class="fa fa-chevron-left"></i> 机器学习 李宏毅 笔记
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/MLHW/" rel="next" title="机器学习 李宏毅 HW">
-      机器学习 李宏毅 HW <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
-  </article>
-  
-  
-  
-
-
-
-          </div>
-          
-    <div class="comments" id="valine-comments"></div>
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
-        </div>
-          
   
   <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
   </div>
 
   <aside class="sidebar">
-    <div class="sidebar-inner">
 
-      <ul class="sidebar-nav motion-element">
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
         </li>
@@ -377,18 +214,18 @@ U2FsdGVkX1/IHnpAQ7ARlcR0Rg3GpdBnjd3ovWWb3VNl7lHWfNpTplHy5yYrqsklsgpSrD4W1UC7N2Vo
       </ul>
 
       <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-      </div>
+      <section class="post-toc-wrap sidebar-panel">
+      </section>
       <!--/noindex-->
 
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <img class="site-author-image" itemprop="image" alt="Chaolin Han"
       src="/images/icn.jpg">
   <p class="site-author-name" itemprop="name">Chaolin Han</p>
   <div class="site-description" itemprop="description">Our business is life itself.</div>
 </div>
-<div class="site-state-wrap motion-element">
+<div class="site-state-wrap site-overview-item animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
@@ -405,12 +242,12 @@ U2FsdGVkX1/IHnpAQ7ARlcR0Rg3GpdBnjd3ovWWb3VNl7lHWfNpTplHy5yYrqsklsgpSrD4W1UC7N2Vo
       </div>
   </nav>
 </div>
-  <div class="links-of-author motion-element">
+  <div class="links-of-author site-overview-item animated">
       <span class="links-of-author-item">
-        <a href="https://github.com/ChaosRinkHan" title="GitHub → https://github.com/ChaosRinkHan" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+        <a href="https://github.com/chaolinhan" title="GitHub → https://github.com/chaolinhan" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
       </span>
       <span class="links-of-author-item">
-        <a href="/chaolinhan@gmail.com" title="E-Mail → chaolinhan@gmail.com"><i class="fa fa-envelope fa-fw"></i></a>
+        <a href="/chaolinhan@outlook.com" title="E-Mail → chaolinhan@outlook.com"><i class="fa fa-envelope fa-fw"></i></a>
       </span>
       <span class="links-of-author-item">
         <a href="https://twitter.com/C_R__Han" title="Twitter → https://twitter.com/C_R__Han" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i></a>
@@ -419,43 +256,215 @@ U2FsdGVkX1/IHnpAQ7ARlcR0Rg3GpdBnjd3ovWWb3VNl7lHWfNpTplHy5yYrqsklsgpSrD4W1UC7N2Vo
         <a href="https://www.instagram.com/cl_han" title="Instagram → https://www.instagram.com/cl_han" rel="noopener" target="_blank"><i class="fab fa-instagram fa-fw"></i></a>
       </span>
   </div>
-  <div class="cc-license motion-element" itemprop="license">
+  <div class="cc-license site-overview-item animated" itemprop="license">
     <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
   </div>
 
 
 
-      </div>
-
+      </section>
     </div>
   </aside>
-  <div id="sidebar-dimmer"></div>
+  <div class="sidebar-dimmer"></div>
 
 
-      </div>
-    </main>
+    </header>
 
-    <footer class="footer">
-      <div class="footer-inner">
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="default">
+    <link itemprop="mainEntityOfPage" href="https://ltnexe.live/JetBrainsCount/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icn.jpg">
+      <meta itemprop="name" content="Chaolin Han">
+      <meta itemprop="description" content="Our business is life itself.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LTN">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          JetBrains学生免费版申请指南
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2018-08-21 22:54:22" itemprop="dateCreated datePublished" datetime="2018-08-21T22:54:22+08:00">2018-08-21</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-09-26 14:20:28" itemprop="dateModified" datetime="2020-09-26T14:20:28+08:00">2020-09-26</time>
+      </span>
+
+  
+    <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/JetBrainsCount/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/JetBrainsCount/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <div id="hbe-security">
+  <div class="hbe-input-container">
+  <input type="password" class="hbe-form-control" id="pass" placeholder="Please enter the password to read the blog." />
+    <label for="pass">Please enter the password to read the blog.</label>
+    <div class="bottom-line"></div>
+  </div>
+</div>
+<div id="decryptionError" style="display: none;">Incorrect Password!</div>
+<div id="noContentError" style="display: none;">No content to display!</div>
+<div id="encrypt-blog" style="display:none">
+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
+</div>
+<script src="/lib/crypto-js.js"></script><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>Post author:  </strong>Chaolin Han
+  </li>
+  <li class="post-copyright-link">
+      <strong>Post link: </strong>
+      <a href="https://ltnexe.live/JetBrainsCount/" title="JetBrains学生免费版申请指南">https://ltnexe.live/JetBrainsCount/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Python/" rel="tag"># Python</a>
+          </div>
+
         
 
-        
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/MLNotes/" rel="prev" title="机器学习 李宏毅 笔记">
+                  <i class="fa fa-chevron-left"></i> 机器学习 李宏毅 笔记
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/MLHW/" rel="next" title="机器学习 李宏毅 HW">
+                  机器学习 李宏毅 HW <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
 
 <div class="copyright">
   
-  &copy; 2018 – 
+  &copy; 2017 – 
   <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-bolt"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Chaolin Han</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a>
-  </div>
-
-        
 <div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
       <span class="post-meta-item-icon">
         <i class="fa fa-user"></i>
@@ -464,7 +473,6 @@ U2FsdGVkX1/IHnpAQ7ARlcR0Rg3GpdBnjd3ovWWb3VNl7lHWfNpTplHy5yYrqsklsgpSrD4W1UC7N2Vo
         <span id="busuanzi_value_site_uv"></span>
       </span>
     </span>
-    <span class="post-meta-divider">|</span>
     <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
       <span class="post-meta-item-icon">
         <i class="fa fa-eye"></i>
@@ -474,36 +482,15 @@ U2FsdGVkX1/IHnpAQ7ARlcR0Rg3GpdBnjd3ovWWb3VNl7lHWfNpTplHy5yYrqsklsgpSrD4W1UC7N2Vo
       </span>
     </span>
 </div>
-
-
-
-
-
-
-
-
-      </div>
-    </footer>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a>
   </div>
 
+    </div>
+  </footer>
+
   
-  <script src="/lib/anime.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/muse.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-
-
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
 
   
   <script>
@@ -519,8 +506,7 @@ U2FsdGVkX1/IHnpAQ7ARlcR0Rg3GpdBnjd3ovWWb3VNl7lHWfNpTplHy5yYrqsklsgpSrD4W1UC7N2Vo
 
 
 
-  
-<script src="/js/local-search.js"></script>
+  <script src="/js/local-search.js"></script>
 
 
 
@@ -534,37 +520,31 @@ U2FsdGVkX1/IHnpAQ7ARlcR0Rg3GpdBnjd3ovWWb3VNl7lHWfNpTplHy5yYrqsklsgpSrD4W1UC7N2Vo
 
 
 
-  
 
-  
 
   
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
+
+
+
+
+
+
+  
+
+  
+
+  
 <script>
-NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
-  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
-    var GUEST = ['nick', 'mail', 'link'];
-    var guest = 'nick,mail';
-    guest = guest.split(',').filter(item => {
-      return GUEST.includes(item);
-    });
-    new Valine({
-      el         : '#valine-comments',
-      verify     : false,
-      notify     : true,
-      appId      : '5dql56FUIB3HYuJdS8FpyeVP-gzGzoHsz',
-      appKey     : '6dn3IHWnKiBu9UXTxCuy6xJs',
-      placeholder: "Comment here anonymously. 支持匿名回复，昵称和邮箱可以留空",
-      avatar     : 'mm',
-      meta       : guest,
-      pageSize   : '10' || 10,
-      visitor    : false,
-      lang       : '' || 'zh-cn',
-      path       : location.pathname,
-      recordIP   : false,
-      serverURLs : ''
-    });
+NexT.utils.loadComments('#valine-comments', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
+    new Valine(Object.assign({
+      el  : '#valine-comments',
+      path: "/JetBrainsCount/",
+    }, {"enable":true,"appId":"5dql56FUIB3HYuJdS8FpyeVP-gzGzoHsz","appKey":"6dn3IHWnKiBu9UXTxCuy6xJs","placeholder":"支持匿名回复，邮箱/网址可以留空","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"lang":null,"visitor":false,"comment_count":false,"recordIP":false,"serverURLs":null,"enableQQ":false,"requiredFields":["nick"]}
+    ));
   }, window.Valine);
 });
 </script>

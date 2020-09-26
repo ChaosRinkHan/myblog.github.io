@@ -5,21 +5,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#268785">
 <meta name="generator" content="Hexo 5.2.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#268785">
+  <link rel="apple-touch-icon" sizes="180x180" href="/logo_g.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/logo_g.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/logo_g.png">
+  <link rel="mask-icon" href="/logo_g.png" color="#268785">
   <meta http-equiv="Cache-Control" content="no-transform">
   <meta http-equiv="Cache-Control" content="no-siteapp">
 
 <link rel="stylesheet" href="/css/main.css">
 
-<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Noto+Serif+SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 
-<script id="hexo-configurations">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"ltnexe.live","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","width":280,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"ltnexe.live","root":"/","scheme":"Mist","version":"8.0.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"width":280},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
 
   <meta name="description" content="Our business is life itself.">
@@ -32,10 +34,11 @@
 <meta property="article:author" content="Chaolin Han">
 <meta name="twitter:card" content="summary">
 
+
 <link rel="canonical" href="https://ltnexe.live/">
 
 
-<script id="page-configurations">
+<script class="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
@@ -64,49 +67,61 @@
 
   <noscript>
   <style>
-  .use-motion .brand,
+  body { margin-top: 2rem; }
+
   .use-motion .menu-item,
-  .sidebar-inner,
+  .use-motion .sidebar,
   .use-motion .post-block,
   .use-motion .pagination,
   .use-motion .comments,
   .use-motion .post-header,
   .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
 
   .use-motion .site-title,
-  .use-motion .site-subtitle {
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
     opacity: initial;
     top: initial;
   }
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
   </style>
 </noscript>
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
 
+  <main class="main">
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="Toggle navigation bar">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
   </div>
 
   <div class="site-meta">
 
     <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
+      <i class="logo-line"></i>
       <h1 class="site-title">LTN</h1>
-      <span class="logo-line-after"><i></i></span>
+      <i class="logo-line"></i>
     </a>
   </div>
 
@@ -119,9 +134,8 @@
 
 
 
-
 <nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
+  <ul class="main-menu menu">
         <li class="menu-item menu-item-home">
 
     <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
@@ -158,7 +172,7 @@
     <i class="fa fa-search"></i>
   </span>
   <div class="search-input-container">
-    <input autocomplete="off" autocapitalize="off"
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
            placeholder="Searching..." spellcheck="false"
            type="search" class="search-input">
   </div>
@@ -166,9 +180,9 @@
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
-<div id="search-result">
-  <div id="no-result">
-    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
   </div>
 </div>
 
@@ -176,6 +190,81 @@
   </div>
 
 </div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Chaolin Han"
+      src="/images/icn.jpg">
+  <p class="site-author-name" itemprop="name">Chaolin Han</p>
+  <div class="site-description" itemprop="description">Our business is life itself.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/chaolinhan" title="GitHub → https://github.com/chaolinhan" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/chaolinhan@outlook.com" title="E-Mail → chaolinhan@outlook.com"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/C_R__Han" title="Twitter → https://twitter.com/C_R__Han" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.instagram.com/cl_han" title="Instagram → https://www.instagram.com/cl_han" rel="noopener" target="_blank"><i class="fab fa-instagram fa-fw"></i></a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
     </header>
 
     
@@ -184,14 +273,15 @@
     <span>0%</span>
   </div>
 
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
 
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
 
-          <div class="content index posts-expand">
-            
+    <div class="main-inner index posts-expand">
+      
+
+      
       
   
   
@@ -207,26 +297,31 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="LTN">
     </span>
+
+    
+    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
             <a href="/recovery/" class="post-title-link" itemprop="url">Mac升级救砖记</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
 
-              <time title="Created: 2020-09-26 12:02:46 / Modified: 19:05:46" itemprop="dateCreated datePublished" datetime="2020-09-26T12:02:46+08:00">2020-09-26</time>
-            </span>
+      <time title="Created: 2020-09-26 12:02:46 / Modified: 19:05:46" itemprop="dateCreated datePublished" datetime="2020-09-26T12:02:46+08:00">2020-09-26</time>
+    </span>
 
-          
   
   
+  
+</div>
 
         </div>
       </header>
@@ -235,8 +330,6 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
           <blockquote>
 <p>  自从上次电脑拿去修了之后，我再次意识到备份的重要性。这次救砖基本把雷都踩完了。这件事情告诉我不要手贱去玩不稳定的beta</p>
 <p>  概要</p>
@@ -262,9 +355,11 @@
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
   
   
@@ -285,32 +380,37 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="LTN">
     </span>
+
+    
+    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
             <a href="/msc1/" class="post-title-link" itemprop="url">MSc Project (1/N)</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2020-08-18 16:50:14" itemprop="dateCreated datePublished" datetime="2020-08-18T16:50:14+08:00">2020-08-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-09-26 14:20:28" itemprop="dateModified" datetime="2020-09-26T14:20:28+08:00">2020-09-26</time>
-              </span>
+      <time title="Created: 2020-08-18 16:50:14" itemprop="dateCreated datePublished" datetime="2020-08-18T16:50:14+08:00">2020-08-18</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-09-26 14:20:28" itemprop="dateModified" datetime="2020-09-26T14:20:28+08:00">2020-09-26</time>
+      </span>
 
-          
   
   
+  
+</div>
 
         </div>
       </header>
@@ -319,8 +419,6 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
           <h1 id="1"><a href="#1" class="headerlink" title="1"></a>1</h1><p>5个月，做了3个多月的实验，写了60页的论文，总结一下。</p>
 <ol>
 <li>Excel垃圾，Numbers垃圾，我只想在图上能显示下标，最后还是要靠PS</li>
@@ -339,9 +437,11 @@
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
   
   
@@ -362,32 +462,37 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="LTN">
     </span>
+
+    
+    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
             <a href="/edgeyear/" class="post-title-link" itemprop="url">Inferno</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2020-07-11 02:25:55" itemprop="dateCreated datePublished" datetime="2020-07-11T02:25:55+08:00">2020-07-11</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-09-26 14:20:28" itemprop="dateModified" datetime="2020-09-26T14:20:28+08:00">2020-09-26</time>
-              </span>
+      <time title="Created: 2020-07-11 02:25:55" itemprop="dateCreated datePublished" datetime="2020-07-11T02:25:55+08:00">2020-07-11</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-09-26 14:20:28" itemprop="dateModified" datetime="2020-09-26T14:20:28+08:00">2020-09-26</time>
+      </span>
 
-          
   
   
+  
+</div>
 
         </div>
       </header>
@@ -396,8 +501,6 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
           The article has been encrypted, please enter your password to view.<br>
           <!--noindex-->
             <div class="post-button">
@@ -413,9 +516,11 @@
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
   
   
@@ -436,32 +541,37 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="LTN">
     </span>
+
+    
+    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
             <a href="/macrepair/" class="post-title-link" itemprop="url">Mac换电记</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2020-05-15 22:45:41" itemprop="dateCreated datePublished" datetime="2020-05-15T22:45:41+08:00">2020-05-15</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-09-26 14:20:28" itemprop="dateModified" datetime="2020-09-26T14:20:28+08:00">2020-09-26</time>
-              </span>
+      <time title="Created: 2020-05-15 22:45:41" itemprop="dateCreated datePublished" datetime="2020-05-15T22:45:41+08:00">2020-05-15</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-09-26 14:20:28" itemprop="dateModified" datetime="2020-09-26T14:20:28+08:00">2020-09-26</time>
+      </span>
 
-          
   
   
+  
+</div>
 
         </div>
       </header>
@@ -470,8 +580,6 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
           <blockquote>
 <p>  C，D面全换了，没收钱。</p>
 </blockquote>
@@ -490,9 +598,11 @@
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
   
   
@@ -513,32 +623,37 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="LTN">
     </span>
+
+    
+    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
             <a href="/COVID-R/" class="post-title-link" itemprop="url">疫情数据的可视化和ARIMA预测</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2020-05-01 00:24:45" itemprop="dateCreated datePublished" datetime="2020-05-01T00:24:45+08:00">2020-05-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-09-26 14:20:28" itemprop="dateModified" datetime="2020-09-26T14:20:28+08:00">2020-09-26</time>
-              </span>
+      <time title="Created: 2020-05-01 00:24:45" itemprop="dateCreated datePublished" datetime="2020-05-01T00:24:45+08:00">2020-05-01</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-09-26 14:20:28" itemprop="dateModified" datetime="2020-09-26T14:20:28+08:00">2020-09-26</time>
+      </span>
 
-          
   
   
+  
+</div>
 
         </div>
       </header>
@@ -547,8 +662,6 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
           <p>简单记录下这些微小的工作。</p>
 <p>GitHub Pages</p>
 <p><a target="_blank" rel="noopener" href="https://hrbinbin.github.io/Covid19predict/">https://hrbinbin.github.io/Covid19predict/</a></p>
@@ -583,9 +696,11 @@
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
   
   
@@ -606,32 +721,37 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="LTN">
     </span>
+
+    
+    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
             <a href="/COVID-PREDICTION/" class="post-title-link" itemprop="url">COVID-19 Prediction</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2020-04-25 23:39:59" itemprop="dateCreated datePublished" datetime="2020-04-25T23:39:59+08:00">2020-04-25</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-09-26 14:20:28" itemprop="dateModified" datetime="2020-09-26T14:20:28+08:00">2020-09-26</time>
-              </span>
+      <time title="Created: 2020-04-25 23:39:59" itemprop="dateCreated datePublished" datetime="2020-04-25T23:39:59+08:00">2020-04-25</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-09-26 14:20:28" itemprop="dateModified" datetime="2020-09-26T14:20:28+08:00">2020-09-26</time>
+      </span>
 
-          
   
   
+  
+</div>
 
         </div>
       </header>
@@ -640,8 +760,6 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
           <p>做了一个简单的ARIMA预测，和一大堆R语言的绘图。ggplot属实浪费生命。</p>
 <p><a target="_blank" rel="noopener" href="https://hrbinbin.github.io/Covid19predict/">https://hrbinbin.github.io/Covid19predict/</a></p>
 <p>正文在<a target="_blank" rel="noopener" href="https://chaosrinkhan.github.io/myblog.github.io/COVID-R/">这里</a>。</p>
@@ -657,9 +775,11 @@
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
   
   
@@ -680,32 +800,37 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="LTN">
     </span>
+
+    
+    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
             <a href="/stupiddesign/" class="post-title-link" itemprop="url">Stupid Design</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2020-01-28 22:00:51" itemprop="dateCreated datePublished" datetime="2020-01-28T22:00:51+08:00">2020-01-28</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-09-26 14:20:28" itemprop="dateModified" datetime="2020-09-26T14:20:28+08:00">2020-09-26</time>
-              </span>
+      <time title="Created: 2020-01-28 22:00:51" itemprop="dateCreated datePublished" datetime="2020-01-28T22:00:51+08:00">2020-01-28</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-09-26 14:20:28" itemprop="dateModified" datetime="2020-09-26T14:20:28+08:00">2020-09-26</time>
+      </span>
 
-          
   
   
+  
+</div>
 
         </div>
       </header>
@@ -714,8 +839,6 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
           <h1 id="1"><a href="#1" class="headerlink" title="1"></a>1</h1><p>EPCC的灯总是忽明忽暗。顶上装的是照明+氛围灯，刚开学的时候都是好好的，一个时间节点后就总是忽明忽暗。</p>
 <p>上学期。我和Mario聊完一个毕设课题就回到工位，这时灯又开始明暗不定。</p>
 <blockquote>
@@ -740,9 +863,11 @@
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
   
   
@@ -763,32 +888,37 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="LTN">
     </span>
+
+    
+    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
             <a href="/down/" class="post-title-link" itemprop="url">Down</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2019-12-12 23:21:51" itemprop="dateCreated datePublished" datetime="2019-12-12T23:21:51+08:00">2019-12-12</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-09-26 14:20:28" itemprop="dateModified" datetime="2020-09-26T14:20:28+08:00">2020-09-26</time>
-              </span>
+      <time title="Created: 2019-12-12 23:21:51" itemprop="dateCreated datePublished" datetime="2019-12-12T23:21:51+08:00">2019-12-12</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-09-26 14:20:28" itemprop="dateModified" datetime="2020-09-26T14:20:28+08:00">2020-09-26</time>
+      </span>
 
-          
   
   
+  
+</div>
 
         </div>
       </header>
@@ -797,8 +927,6 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
           <blockquote>
 <p>  世界在下沉，VICE在狂欢</p>
 </blockquote>
@@ -819,9 +947,11 @@
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
   
   
@@ -842,32 +972,37 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="LTN">
     </span>
+
+    
+    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
             <a href="/thoughtsaboutf1p2/" class="post-title-link" itemprop="url">茫茫，Formula 1 (三)</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2019-10-15 22:53:30" itemprop="dateCreated datePublished" datetime="2019-10-15T22:53:30+08:00">2019-10-15</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-09-26 14:20:28" itemprop="dateModified" datetime="2020-09-26T14:20:28+08:00">2020-09-26</time>
-              </span>
+      <time title="Created: 2019-10-15 22:53:30" itemprop="dateCreated datePublished" datetime="2019-10-15T22:53:30+08:00">2019-10-15</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-09-26 14:20:28" itemprop="dateModified" datetime="2020-09-26T14:20:28+08:00">2020-09-26</time>
+      </span>
 
-          
   
   
+  
+</div>
 
         </div>
       </header>
@@ -876,8 +1011,6 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
           <p><img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/061100.jpg" alt="21571176658_.pic"></p>
 <p>梅奔六连贯，这么多年绝对的统治地位走到了最高峰。</p>
 <p>梅奔也有没落的时候，也有落空的时候，那时候没能给复出的舒马赫一台好车。</p>
@@ -896,9 +1029,11 @@
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
   
   
@@ -919,32 +1054,37 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="LTN">
     </span>
+
+    
+    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
             <a href="/cyberpunk-china-md/" class="post-title-link" itemprop="url">赛博 朋克 中国</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2019-09-29 23:02:07" itemprop="dateCreated datePublished" datetime="2019-09-29T23:02:07+08:00">2019-09-29</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-09-26 14:20:28" itemprop="dateModified" datetime="2020-09-26T14:20:28+08:00">2020-09-26</time>
-              </span>
+      <time title="Created: 2019-09-29 23:02:07" itemprop="dateCreated datePublished" datetime="2019-09-29T23:02:07+08:00">2019-09-29</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-09-26 14:20:28" itemprop="dateModified" datetime="2020-09-26T14:20:28+08:00">2020-09-26</time>
+      </span>
 
-          
   
   
+  
+</div>
 
         </div>
       </header>
@@ -953,8 +1093,6 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
           <p><img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/052547.jpg" alt="e83de66f-9cec-4207-8ee3-d5a7a7ad189d"></p>
 <h2 id="Cyberpunk"><a href="#Cyberpunk" class="headerlink" title="Cyberpunk"></a>Cyberpunk</h2><p>筛了下最近两年国内的照片，重新选片调色，加上暑假拍的几组赛博朋克风格调色的图片，整理了一组赛博朋克风格合集。我喜欢赛博朋克，也喜欢的中国。</p>
           <!--noindex-->
@@ -971,9 +1109,11 @@
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
   
   
@@ -994,32 +1134,37 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="LTN">
     </span>
+
+    
+    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
             <a href="/ontheedge-md/" class="post-title-link" itemprop="url">写在本科毕业之际</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2019-06-30 01:50:15" itemprop="dateCreated datePublished" datetime="2019-06-30T01:50:15+08:00">2019-06-30</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-09-26 14:20:28" itemprop="dateModified" datetime="2020-09-26T14:20:28+08:00">2020-09-26</time>
-              </span>
+      <time title="Created: 2019-06-30 01:50:15" itemprop="dateCreated datePublished" datetime="2019-06-30T01:50:15+08:00">2019-06-30</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-09-26 14:20:28" itemprop="dateModified" datetime="2020-09-26T14:20:28+08:00">2020-09-26</time>
+      </span>
 
-          
   
   
+  
+</div>
 
         </div>
       </header>
@@ -1028,8 +1173,6 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
           <h4 id="On-the-edge"><a href="#On-the-edge" class="headerlink" title="On the edge"></a>On the edge</h4><p>其实初中或是高中毕业，我都没有类似的感受。毕竟城市就只有那么大，大家不管去了哪儿都还能见到，聚也能聚起来吧。</p>
 <p>大学里面大家来自四面八方，也走向了四面八方。</p>
 <p>$&gt;-&lt;$</p>
@@ -1052,9 +1195,11 @@
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
   
   
@@ -1075,32 +1220,37 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="LTN">
     </span>
+
+    
+    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
             <a href="/pdeproject-md/" class="post-title-link" itemprop="url">Spruce budworm population behaviour</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2019-06-16 18:39:17" itemprop="dateCreated datePublished" datetime="2019-06-16T18:39:17+08:00">2019-06-16</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-09-26 14:20:28" itemprop="dateModified" datetime="2020-09-26T14:20:28+08:00">2020-09-26</time>
-              </span>
+      <time title="Created: 2019-06-16 18:39:17" itemprop="dateCreated datePublished" datetime="2019-06-16T18:39:17+08:00">2019-06-16</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-09-26 14:20:28" itemprop="dateModified" datetime="2020-09-26T14:20:28+08:00">2020-09-26</time>
+      </span>
 
-          
   
   
+  
+</div>
 
         </div>
       </header>
@@ -1109,8 +1259,6 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
           <blockquote>
 <p>This is a research project done by me and submitted as a part of an assignment.</p>
 <p>Reference usage only.</p>
@@ -1132,9 +1280,11 @@
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
   
   
@@ -1155,32 +1305,37 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="LTN">
     </span>
+
+    
+    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
             <a href="/alongthewinter/" class="post-title-link" itemprop="url">Along the winter</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2019-03-24 00:06:57" itemprop="dateCreated datePublished" datetime="2019-03-24T00:06:57+08:00">2019-03-24</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-09-26 14:20:28" itemprop="dateModified" datetime="2020-09-26T14:20:28+08:00">2020-09-26</time>
-              </span>
+      <time title="Created: 2019-03-24 00:06:57" itemprop="dateCreated datePublished" datetime="2019-03-24T00:06:57+08:00">2019-03-24</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-09-26 14:20:28" itemprop="dateModified" datetime="2020-09-26T14:20:28+08:00">2020-09-26</time>
+      </span>
 
-          
   
   
+  
+</div>
 
         </div>
       </header>
@@ -1189,8 +1344,6 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
           <h1 id="个人选片和出片"><a href="#个人选片和出片" class="headerlink" title="个人选片和出片"></a>个人选片和出片</h1><p>最近经常思考，我要拍什么东西？</p>
 <p>我拍过大片。银河，车轨。</p>
 <p>可是我还是更喜欢街头。更喜欢小品一样的格局，更喜欢不经意的对比。</p>
@@ -1213,9 +1366,11 @@
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
   
   
@@ -1236,32 +1391,37 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="LTN">
     </span>
+
+    
+    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
             <a href="/aboutfonts/" class="post-title-link" itemprop="url">杂──关于字体</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2019-03-12 23:20:59" itemprop="dateCreated datePublished" datetime="2019-03-12T23:20:59+08:00">2019-03-12</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-09-26 14:20:28" itemprop="dateModified" datetime="2020-09-26T14:20:28+08:00">2020-09-26</time>
-              </span>
+      <time title="Created: 2019-03-12 23:20:59" itemprop="dateCreated datePublished" datetime="2019-03-12T23:20:59+08:00">2019-03-12</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-09-26 14:20:28" itemprop="dateModified" datetime="2020-09-26T14:20:28+08:00">2020-09-26</time>
+      </span>
 
-          
   
   
+  
+</div>
 
         </div>
       </header>
@@ -1270,8 +1430,6 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
           <blockquote>
 <p>最近写论文写邮件，还是想起了很多和字体有关的东西。</p>
 </blockquote>
@@ -1293,9 +1451,11 @@
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
   
   
@@ -1316,32 +1476,37 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="LTN">
     </span>
+
+    
+    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
             <a href="/powered-to-7-0/" class="post-title-link" itemprop="url">Powered to 7.0</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2019-03-01 01:49:30" itemprop="dateCreated datePublished" datetime="2019-03-01T01:49:30+08:00">2019-03-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-09-26 14:20:28" itemprop="dateModified" datetime="2020-09-26T14:20:28+08:00">2020-09-26</time>
-              </span>
+      <time title="Created: 2019-03-01 01:49:30" itemprop="dateCreated datePublished" datetime="2019-03-01T01:49:30+08:00">2019-03-01</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-09-26 14:20:28" itemprop="dateModified" datetime="2020-09-26T14:20:28+08:00">2020-09-26</time>
+      </span>
 
-          
   
   
+  
+</div>
 
         </div>
       </header>
@@ -1350,8 +1515,6 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
           <p><strong>Next主题</strong>升级到7.0了。之前一从5.1.x升级失败，现在一步到位，powered to 7.0.</p>
 <h2 id="Hack-Guide"><a href="#Hack-Guide" class="headerlink" title="Hack Guide"></a>Hack Guide</h2><p>6.0之后，主仓库已从 <a target="_blank" rel="noopener" href="https://github.com/iissnan/hexo-theme-next">iissnan 名下</a> 迁移至 <a target="_blank" rel="noopener" href="https://github.com/theme-next">theme-next</a> 组织，参考<a target="_blank" rel="noopener" href="https://github.com/theme-next/hexo-theme-next/blob/master/docs/zh-CN/README.md">这里</a>。</p>
 <p><a target="_blank" rel="noopener" href="https://github.com/theme-next/hexo-theme-next/blob/master/docs/zh-CN/UPDATE-FROM-5.1.X.md">官方升级教程</a></p>
@@ -1370,9 +1533,11 @@
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
   
   
@@ -1386,8 +1551,7 @@
 
 
 
-          </div>
-          
+      
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -1396,7 +1560,7 @@
       activeClass = localStorage.getItem('comments_active') || activeClass;
     }
     if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
       if (activeTab) {
         activeTab.click();
       }
@@ -1405,113 +1569,31 @@
   if (CONFIG.comments.storage) {
     window.addEventListener('tabs:click', event => {
       if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
+      const commentClass = event.target.classList[1];
       localStorage.setItem('comments_active', commentClass);
     });
   }
 </script>
 
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          Table of Contents
-        </li>
-        <li class="sidebar-nav-overview">
-          Overview
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="Chaolin Han"
-      src="/images/icn.jpg">
-  <p class="site-author-name" itemprop="name">Chaolin Han</p>
-  <div class="site-description" itemprop="description">Our business is life itself.</div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">40</span>
-          <span class="site-state-item-name">posts</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
-        <span class="site-state-item-count">17</span>
-        <span class="site-state-item-name">tags</span></a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/ChaosRinkHan" title="GitHub → https://github.com/ChaosRinkHan" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="/chaolinhan@gmail.com" title="E-Mail → chaolinhan@gmail.com"><i class="fa fa-envelope fa-fw"></i></a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://twitter.com/C_R__Han" title="Twitter → https://twitter.com/C_R__Han" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i></a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://www.instagram.com/cl_han" title="Instagram → https://www.instagram.com/cl_han" rel="noopener" target="_blank"><i class="fab fa-instagram fa-fw"></i></a>
-      </span>
-  </div>
-  <div class="cc-license motion-element" itemprop="license">
-    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
-  </div>
-
-
-
-      </div>
-
     </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
+  </main>
 
+  <footer class="footer">
+    <div class="footer-inner">
+      
 
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-
-        
+      
 
 <div class="copyright">
   
-  &copy; 2018 – 
+  &copy; 2017 – 
   <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-bolt"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Chaolin Han</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a>
-  </div>
-
-        
 <div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
       <span class="post-meta-item-icon">
         <i class="fa fa-user"></i>
@@ -1520,7 +1602,6 @@
         <span id="busuanzi_value_site_uv"></span>
       </span>
     </span>
-    <span class="post-meta-divider">|</span>
     <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
       <span class="post-meta-item-icon">
         <i class="fa fa-eye"></i>
@@ -1530,36 +1611,15 @@
       </span>
     </span>
 </div>
-
-
-
-
-
-
-
-
-      </div>
-    </footer>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a>
   </div>
 
+    </div>
+  </footer>
+
   
-  <script src="/lib/anime.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/muse.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-
-
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
 
   
   <script>
@@ -1575,13 +1635,24 @@
 
 
 
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   
-<script src="/js/local-search.js"></script>
-
-
-
-
-
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
 
@@ -1593,17 +1664,9 @@
   
 
   
-      
-
-<script>
+      <script>
   if (typeof MathJax === 'undefined') {
     window.MathJax = {
-      loader: {
-        source: {
-          '[tex]/amsCd': '[tex]/amscd',
-          '[tex]/AMScd': '[tex]/amscd'
-        }
-      },
       tex: {
         inlineMath: {'[+]': [['$', '$']]},
         tags: 'ams'
@@ -1623,7 +1686,7 @@
           }, '', false],
           insertedScript: [200, () => {
             document.querySelectorAll('mjx-container').forEach(node => {
-              let target = node.parentNode;
+              const target = node.parentNode;
               if (target.nodeName.toLowerCase() === 'li') {
                 target.parentNode.classList.add('has-jax');
               }
@@ -1632,14 +1695,13 @@
         }
       }
     };
-    (function () {
-      var script = document.createElement('script');
-      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
-      script.defer = true;
-      document.head.appendChild(script);
-    })();
+    const script = document.createElement('script');
+    script.src = '//cdn.jsdelivr.net/npm/mathjax@3.1.0/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
   } else {
     MathJax.startup.document.state(0);
+    MathJax.typesetClear();
     MathJax.texReset();
     MathJax.typeset();
   }
@@ -1648,32 +1710,14 @@
     
 
   
-
-
 <script>
-NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
-  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
-    var GUEST = ['nick', 'mail', 'link'];
-    var guest = 'nick,mail';
-    guest = guest.split(',').filter(item => {
-      return GUEST.includes(item);
-    });
-    new Valine({
-      el         : '#valine-comments',
-      verify     : false,
-      notify     : true,
-      appId      : '5dql56FUIB3HYuJdS8FpyeVP-gzGzoHsz',
-      appKey     : '6dn3IHWnKiBu9UXTxCuy6xJs',
-      placeholder: "Comment here anonymously. 支持匿名回复，昵称和邮箱可以留空",
-      avatar     : 'mm',
-      meta       : guest,
-      pageSize   : '10' || 10,
-      visitor    : false,
-      lang       : '' || 'zh-cn',
-      path       : location.pathname,
-      recordIP   : false,
-      serverURLs : ''
-    });
+NexT.utils.loadComments('#valine-comments', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
+    new Valine(Object.assign({
+      el  : '#valine-comments',
+      path: "/",
+    }, {"enable":true,"appId":"5dql56FUIB3HYuJdS8FpyeVP-gzGzoHsz","appKey":"6dn3IHWnKiBu9UXTxCuy6xJs","placeholder":"支持匿名回复，邮箱/网址可以留空","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"lang":null,"visitor":false,"comment_count":false,"recordIP":false,"serverURLs":null,"enableQQ":false,"requiredFields":["nick"]}
+    ));
   }, window.Valine);
 });
 </script>

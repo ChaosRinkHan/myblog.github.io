@@ -5,21 +5,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#268785">
 <meta name="generator" content="Hexo 5.2.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#268785">
+  <link rel="apple-touch-icon" sizes="180x180" href="/logo_g.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/logo_g.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/logo_g.png">
+  <link rel="mask-icon" href="/logo_g.png" color="#268785">
   <meta http-equiv="Cache-Control" content="no-transform">
   <meta http-equiv="Cache-Control" content="no-siteapp">
 
 <link rel="stylesheet" href="/css/main.css">
 
-<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Noto+Serif+SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 
-<script id="hexo-configurations">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"ltnexe.live","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","width":280,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"ltnexe.live","root":"/","scheme":"Mist","version":"8.0.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"width":280},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
 
   <meta name="description" content="The article has been encrypted, please enter your password to view.">
@@ -35,10 +37,11 @@
 <meta property="article:tag" content="Thoughts">
 <meta name="twitter:card" content="summary">
 
+
 <link rel="canonical" href="https://ltnexe.live/edgeyear/">
 
 
-<script id="page-configurations">
+<script class="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
@@ -67,49 +70,61 @@
 
   <noscript>
   <style>
-  .use-motion .brand,
+  body { margin-top: 2rem; }
+
   .use-motion .menu-item,
-  .sidebar-inner,
+  .use-motion .sidebar,
   .use-motion .post-block,
   .use-motion .pagination,
   .use-motion .comments,
   .use-motion .post-header,
   .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
 
   .use-motion .site-title,
-  .use-motion .site-subtitle {
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
     opacity: initial;
     top: initial;
   }
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
   </style>
 </noscript>
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
 
+  <main class="main">
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="Toggle navigation bar">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
   </div>
 
   <div class="site-meta">
 
     <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
+      <i class="logo-line"></i>
       <h1 class="site-title">LTN</h1>
-      <span class="logo-line-after"><i></i></span>
+      <i class="logo-line"></i>
     </a>
   </div>
 
@@ -122,9 +137,8 @@
 
 
 
-
 <nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
+  <ul class="main-menu menu">
         <li class="menu-item menu-item-home">
 
     <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
@@ -161,7 +175,7 @@
     <i class="fa fa-search"></i>
   </span>
   <div class="search-input-container">
-    <input autocomplete="off" autocapitalize="off"
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
            placeholder="Searching..." spellcheck="false"
            type="search" class="search-input">
   </div>
@@ -169,9 +183,9 @@
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
-<div id="search-result">
-  <div id="no-result">
-    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
   </div>
 </div>
 
@@ -179,195 +193,18 @@
   </div>
 
 </div>
-    </header>
-
-    
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content post posts-expand">
-            
-
-    
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="default">
-    <link itemprop="mainEntityOfPage" href="https://ltnexe.live/edgeyear/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/icn.jpg">
-      <meta itemprop="name" content="Chaolin Han">
-      <meta itemprop="description" content="Our business is life itself.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="LTN">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          Inferno
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-07-11 02:25:55" itemprop="dateCreated datePublished" datetime="2020-07-11T02:25:55+08:00">2020-07-11</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-09-26 14:20:28" itemprop="dateModified" datetime="2020-09-26T14:20:28+08:00">2020-09-26</time>
-              </span>
-
-          
-            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span id="busuanzi_value_page_pv"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/edgeyear/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/edgeyear/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-        <div id="hbe-security">
-  <div class="hbe-input-container">
-  <input type="password" class="hbe-form-control" id="pass" placeholder="Please enter the password to read the blog." />
-    <label for="pass">Please enter the password to read the blog.</label>
-    <div class="bottom-line"></div>
-  </div>
-</div>
-<div id="decryptionError" style="display: none;">Incorrect Password!</div>
-<div id="noContentError" style="display: none;">No content to display!</div>
-<div id="encrypt-blog" style="display:none">
-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
-</div>
-<script src="/lib/crypto-js.js"></script><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">
-    </div>
-
-    
-    
-    
         
-
-<div>
-<ul class="post-copyright">
-  <li class="post-copyright-author">
-    <strong>Post author:  </strong>Chaolin Han
-  </li>
-  <li class="post-copyright-link">
-    <strong>Post link: </strong>
-    <a href="https://ltnexe.live/edgeyear/" title="Inferno">https://ltnexe.live/edgeyear/</a>
-  </li>
-  <li class="post-copyright-license">
-    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
-  </li>
-</ul>
-</div>
-
-
-      <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/Thoughts/" rel="tag"># Thoughts</a>
-          </div>
-
-        
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/msc1/" rel="prev" title="MSc Project (1/N)">
-      <i class="fa fa-chevron-left"></i> MSc Project (1/N)
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/macrepair/" rel="next" title="Mac换电记">
-      Mac换电记 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
-  </article>
-  
-  
-  
-
-
-
-          </div>
-          
-    <div class="comments" id="valine-comments"></div>
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
-        </div>
-          
   
   <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
   </div>
 
   <aside class="sidebar">
-    <div class="sidebar-inner">
 
-      <ul class="sidebar-nav motion-element">
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
         </li>
@@ -377,18 +214,18 @@ U2FsdGVkX1/EmpfBX4M6LSxfJSb5D9ou89fj7Mdd6256WoyxG1Eg7d79b1YSsDEZDtRgin7RAM1aq7dO
       </ul>
 
       <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-      </div>
+      <section class="post-toc-wrap sidebar-panel">
+      </section>
       <!--/noindex-->
 
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <img class="site-author-image" itemprop="image" alt="Chaolin Han"
       src="/images/icn.jpg">
   <p class="site-author-name" itemprop="name">Chaolin Han</p>
   <div class="site-description" itemprop="description">Our business is life itself.</div>
 </div>
-<div class="site-state-wrap motion-element">
+<div class="site-state-wrap site-overview-item animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
@@ -405,12 +242,12 @@ U2FsdGVkX1/EmpfBX4M6LSxfJSb5D9ou89fj7Mdd6256WoyxG1Eg7d79b1YSsDEZDtRgin7RAM1aq7dO
       </div>
   </nav>
 </div>
-  <div class="links-of-author motion-element">
+  <div class="links-of-author site-overview-item animated">
       <span class="links-of-author-item">
-        <a href="https://github.com/ChaosRinkHan" title="GitHub → https://github.com/ChaosRinkHan" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+        <a href="https://github.com/chaolinhan" title="GitHub → https://github.com/chaolinhan" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
       </span>
       <span class="links-of-author-item">
-        <a href="/chaolinhan@gmail.com" title="E-Mail → chaolinhan@gmail.com"><i class="fa fa-envelope fa-fw"></i></a>
+        <a href="/chaolinhan@outlook.com" title="E-Mail → chaolinhan@outlook.com"><i class="fa fa-envelope fa-fw"></i></a>
       </span>
       <span class="links-of-author-item">
         <a href="https://twitter.com/C_R__Han" title="Twitter → https://twitter.com/C_R__Han" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i></a>
@@ -419,43 +256,215 @@ U2FsdGVkX1/EmpfBX4M6LSxfJSb5D9ou89fj7Mdd6256WoyxG1Eg7d79b1YSsDEZDtRgin7RAM1aq7dO
         <a href="https://www.instagram.com/cl_han" title="Instagram → https://www.instagram.com/cl_han" rel="noopener" target="_blank"><i class="fab fa-instagram fa-fw"></i></a>
       </span>
   </div>
-  <div class="cc-license motion-element" itemprop="license">
+  <div class="cc-license site-overview-item animated" itemprop="license">
     <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
   </div>
 
 
 
-      </div>
-
+      </section>
     </div>
   </aside>
-  <div id="sidebar-dimmer"></div>
+  <div class="sidebar-dimmer"></div>
 
 
-      </div>
-    </main>
+    </header>
 
-    <footer class="footer">
-      <div class="footer-inner">
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="default">
+    <link itemprop="mainEntityOfPage" href="https://ltnexe.live/edgeyear/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icn.jpg">
+      <meta itemprop="name" content="Chaolin Han">
+      <meta itemprop="description" content="Our business is life itself.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LTN">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Inferno
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-07-11 02:25:55" itemprop="dateCreated datePublished" datetime="2020-07-11T02:25:55+08:00">2020-07-11</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-09-26 14:20:28" itemprop="dateModified" datetime="2020-09-26T14:20:28+08:00">2020-09-26</time>
+      </span>
+
+  
+    <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/edgeyear/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/edgeyear/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <div id="hbe-security">
+  <div class="hbe-input-container">
+  <input type="password" class="hbe-form-control" id="pass" placeholder="Please enter the password to read the blog." />
+    <label for="pass">Please enter the password to read the blog.</label>
+    <div class="bottom-line"></div>
+  </div>
+</div>
+<div id="decryptionError" style="display: none;">Incorrect Password!</div>
+<div id="noContentError" style="display: none;">No content to display!</div>
+<div id="encrypt-blog" style="display:none">
+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
+</div>
+<script src="/lib/crypto-js.js"></script><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>Post author:  </strong>Chaolin Han
+  </li>
+  <li class="post-copyright-link">
+      <strong>Post link: </strong>
+      <a href="https://ltnexe.live/edgeyear/" title="Inferno">https://ltnexe.live/edgeyear/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Thoughts/" rel="tag"># Thoughts</a>
+          </div>
+
         
 
-        
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/msc1/" rel="prev" title="MSc Project (1/N)">
+                  <i class="fa fa-chevron-left"></i> MSc Project (1/N)
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/macrepair/" rel="next" title="Mac换电记">
+                  Mac换电记 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
 
 <div class="copyright">
   
-  &copy; 2018 – 
+  &copy; 2017 – 
   <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-bolt"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Chaolin Han</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a>
-  </div>
-
-        
 <div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
       <span class="post-meta-item-icon">
         <i class="fa fa-user"></i>
@@ -464,7 +473,6 @@ U2FsdGVkX1/EmpfBX4M6LSxfJSb5D9ou89fj7Mdd6256WoyxG1Eg7d79b1YSsDEZDtRgin7RAM1aq7dO
         <span id="busuanzi_value_site_uv"></span>
       </span>
     </span>
-    <span class="post-meta-divider">|</span>
     <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
       <span class="post-meta-item-icon">
         <i class="fa fa-eye"></i>
@@ -474,36 +482,15 @@ U2FsdGVkX1/EmpfBX4M6LSxfJSb5D9ou89fj7Mdd6256WoyxG1Eg7d79b1YSsDEZDtRgin7RAM1aq7dO
       </span>
     </span>
 </div>
-
-
-
-
-
-
-
-
-      </div>
-    </footer>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a>
   </div>
 
+    </div>
+  </footer>
+
   
-  <script src="/lib/anime.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/muse.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-
-
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
 
   
   <script>
@@ -519,8 +506,7 @@ U2FsdGVkX1/EmpfBX4M6LSxfJSb5D9ou89fj7Mdd6256WoyxG1Eg7d79b1YSsDEZDtRgin7RAM1aq7dO
 
 
 
-  
-<script src="/js/local-search.js"></script>
+  <script src="/js/local-search.js"></script>
 
 
 
@@ -534,37 +520,31 @@ U2FsdGVkX1/EmpfBX4M6LSxfJSb5D9ou89fj7Mdd6256WoyxG1Eg7d79b1YSsDEZDtRgin7RAM1aq7dO
 
 
 
-  
 
-  
 
   
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
+
+
+
+
+
+
+  
+
+  
+
+  
 <script>
-NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
-  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
-    var GUEST = ['nick', 'mail', 'link'];
-    var guest = 'nick,mail';
-    guest = guest.split(',').filter(item => {
-      return GUEST.includes(item);
-    });
-    new Valine({
-      el         : '#valine-comments',
-      verify     : false,
-      notify     : true,
-      appId      : '5dql56FUIB3HYuJdS8FpyeVP-gzGzoHsz',
-      appKey     : '6dn3IHWnKiBu9UXTxCuy6xJs',
-      placeholder: "Comment here anonymously. 支持匿名回复，昵称和邮箱可以留空",
-      avatar     : 'mm',
-      meta       : guest,
-      pageSize   : '10' || 10,
-      visitor    : false,
-      lang       : '' || 'zh-cn',
-      path       : location.pathname,
-      recordIP   : false,
-      serverURLs : ''
-    });
+NexT.utils.loadComments('#valine-comments', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
+    new Valine(Object.assign({
+      el  : '#valine-comments',
+      path: "/edgeyear/",
+    }, {"enable":true,"appId":"5dql56FUIB3HYuJdS8FpyeVP-gzGzoHsz","appKey":"6dn3IHWnKiBu9UXTxCuy6xJs","placeholder":"支持匿名回复，邮箱/网址可以留空","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"lang":null,"visitor":false,"comment_count":false,"recordIP":false,"serverURLs":null,"enableQQ":false,"requiredFields":["nick"]}
+    ));
   }, window.Valine);
 });
 </script>

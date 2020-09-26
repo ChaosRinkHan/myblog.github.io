@@ -5,21 +5,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#268785">
 <meta name="generator" content="Hexo 5.2.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#268785">
+  <link rel="apple-touch-icon" sizes="180x180" href="/logo_g.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/logo_g.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/logo_g.png">
+  <link rel="mask-icon" href="/logo_g.png" color="#268785">
   <meta http-equiv="Cache-Control" content="no-transform">
   <meta http-equiv="Cache-Control" content="no-siteapp">
 
 <link rel="stylesheet" href="/css/main.css">
 
-<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Noto+Serif+SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 
-<script id="hexo-configurations">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"ltnexe.live","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","width":280,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"ltnexe.live","root":"/","scheme":"Mist","version":"8.0.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"width":280},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
 
   <meta name="description" content="Day 1第一天根据天气和时间来看只有下午晚上可以去玩一下，就安排了极乐寺和升旗山两个地方。晚上逛一逛就休息了。">
@@ -87,10 +89,11 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/055635.jpg">
 
+
 <link rel="canonical" href="https://ltnexe.live/%E6%A7%9F%E5%9F%8E%E2%80%94%E2%80%94%E5%8D%97%E6%B4%8B%E9%81%97%E4%BA%A7/">
 
 
-<script id="page-configurations">
+<script class="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
@@ -119,49 +122,61 @@
 
   <noscript>
   <style>
-  .use-motion .brand,
+  body { margin-top: 2rem; }
+
   .use-motion .menu-item,
-  .sidebar-inner,
+  .use-motion .sidebar,
   .use-motion .post-block,
   .use-motion .pagination,
   .use-motion .comments,
   .use-motion .post-header,
   .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
 
   .use-motion .site-title,
-  .use-motion .site-subtitle {
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
     opacity: initial;
     top: initial;
   }
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
   </style>
 </noscript>
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
 
+  <main class="main">
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="Toggle navigation bar">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
   </div>
 
   <div class="site-meta">
 
     <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
+      <i class="logo-line"></i>
       <h1 class="site-title">LTN</h1>
-      <span class="logo-line-after"><i></i></span>
+      <i class="logo-line"></i>
     </a>
   </div>
 
@@ -174,9 +189,8 @@
 
 
 
-
 <nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
+  <ul class="main-menu menu">
         <li class="menu-item menu-item-home">
 
     <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
@@ -213,7 +227,7 @@
     <i class="fa fa-search"></i>
   </span>
   <div class="search-input-container">
-    <input autocomplete="off" autocapitalize="off"
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
            placeholder="Searching..." spellcheck="false"
            type="search" class="search-input">
   </div>
@@ -221,9 +235,9 @@
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
-<div id="search-result">
-  <div id="no-result">
-    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
   </div>
 </div>
 
@@ -231,6 +245,82 @@
   </div>
 
 </div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Day-1"><span class="nav-text">Day 1</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%9E%81%E4%B9%90%E5%AF%BA-amp-%E5%8D%87%E6%97%97%E5%B1%B1"><span class="nav-text">极乐寺 &amp; 升旗山</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Day-2"><span class="nav-text">Day 2</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#George-Town"><span class="nav-text">George Town</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%A1%97%E5%A4%B4%E5%A3%81%E7%94%BB"><span class="nav-text">街头壁画</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%A1%97%E5%A4%B4%E5%BB%BA%E7%AD%91"><span class="nav-text">街头建筑</span></a></li></ol></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Chaolin Han"
+      src="/images/icn.jpg">
+  <p class="site-author-name" itemprop="name">Chaolin Han</p>
+  <div class="site-description" itemprop="description">Our business is life itself.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/chaolinhan" title="GitHub → https://github.com/chaolinhan" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/chaolinhan@outlook.com" title="E-Mail → chaolinhan@outlook.com"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/C_R__Han" title="Twitter → https://twitter.com/C_R__Han" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.instagram.com/cl_han" title="Instagram → https://www.instagram.com/cl_han" rel="noopener" target="_blank"><i class="fab fa-instagram fa-fw"></i></a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
     </header>
 
     
@@ -239,14 +329,15 @@
     <span>0%</span>
   </div>
 
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
 
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
 
-          <div class="content post posts-expand">
-            
+    <div class="main-inner post posts-expand">
+      
+
+      
 
     
   
@@ -263,36 +354,40 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="LTN">
     </span>
+
+    
+    
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           槟城——南洋遗产
         </h1>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2018-04-26 21:54:19" itemprop="dateCreated datePublished" datetime="2018-04-26T21:54:19+08:00">2018-04-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-09-26 14:20:28" itemprop="dateModified" datetime="2020-09-26T14:20:28+08:00">2020-09-26</time>
-              </span>
+      <time title="Created: 2018-04-26 21:54:19" itemprop="dateCreated datePublished" datetime="2018-04-26T21:54:19+08:00">2018-04-26</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-09-26 14:20:28" itemprop="dateModified" datetime="2020-09-26T14:20:28+08:00">2020-09-26</time>
+      </span>
 
-          
-            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span id="busuanzi_value_page_pv"></span>
-            </span>
+  
+    <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
   
   <span class="post-meta-item">
     
@@ -307,6 +402,7 @@
   </span>
   
   
+</div>
 
         </div>
       </header>
@@ -315,8 +411,6 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
         <h4 id="Day-1"><a href="#Day-1" class="headerlink" title="Day 1"></a>Day 1</h4><p>第一天根据天气和时间来看只有下午晚上可以去玩一下，就安排了极乐寺和升旗山两个地方。晚上逛一逛就休息了。</p>
 <p><img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/055635.jpg" alt="img"><a id="more"></a></p>
 <p>热带的云</p>
@@ -365,9 +459,8 @@
 <p>街头的<span id="inline-blue">马华选战海报</span></p>
 <h5 id="街头壁画"><a href="#街头壁画" class="headerlink" title="街头壁画"></a>街头壁画</h5><p>无论在乔治市的哪里，在大楼的墙面，在店铺的门口，在哪个暗巷，都能看到各式各样的<strong>壁画</strong>。风情各异，画的东西也千奇百怪。</p>
 <p>我拿到的地图提供了一些很多有名的壁画的地点，但有的由于装修或是别的原因已经看不到了，同时也有很多有趣的壁画它也没有收录。</p>
-<div class="note info">
-            <p><strong>乔治市是一个格局很小但是容量很大的城市，值得慢慢探索。随便走到一个小巷，都能发现让你惊喜的东西。</strong></p>
-          </div>
+<div class="note info"><p><strong>乔治市是一个格局很小但是容量很大的城市，值得慢慢探索。随便走到一个小巷，都能发现让你惊喜的东西。</strong></p>
+</div>
 
 <p><img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/060049.jpg"></p>
 <p>很想在这里度个半年的假。</p>
@@ -441,16 +534,18 @@
     
     
     
-        
 
-<div>
-<ul class="post-copyright">
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
   <li class="post-copyright-author">
-    <strong>Post author:  </strong>Chaolin Han
+      <strong>Post author:  </strong>Chaolin Han
   </li>
   <li class="post-copyright-link">
-    <strong>Post link: </strong>
-    <a href="https://ltnexe.live/%E6%A7%9F%E5%9F%8E%E2%80%94%E2%80%94%E5%8D%97%E6%B4%8B%E9%81%97%E4%BA%A7/" title="槟城——南洋遗产">https://ltnexe.live/槟城——南洋遗产/</a>
+      <strong>Post link: </strong>
+      <a href="https://ltnexe.live/%E6%A7%9F%E5%9F%8E%E2%80%94%E2%80%94%E5%8D%97%E6%B4%8B%E9%81%97%E4%BA%A7/" title="槟城——南洋遗产">https://ltnexe.live/槟城——南洋遗产/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
@@ -458,28 +553,25 @@
 </ul>
 </div>
 
-
-      <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/Trip/" rel="tag"># Trip</a>
           </div>
 
         
 
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/Thought-stays-upon-the-Penang-Hill/" rel="prev" title="Thought stays upon the Penang Hill">
-      <i class="fa fa-chevron-left"></i> Thought stays upon the Penang Hill
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/%E5%A4%A7%E9%A9%AC%E4%B9%8B%E8%A1%8C/" rel="next" title="大马之行">
-      大马之行 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/Thought-stays-upon-the-Penang-Hill/" rel="prev" title="Thought stays upon the Penang Hill">
+                  <i class="fa fa-chevron-left"></i> Thought stays upon the Penang Hill
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/%E5%A4%A7%E9%A9%AC%E4%B9%8B%E8%A1%8C/" rel="next" title="大马之行">
+                  大马之行 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
   </article>
   
   
@@ -487,8 +579,7 @@
 
 
 
-          </div>
-          
+      
     <div class="comments" id="valine-comments"></div>
 
 <script>
@@ -498,7 +589,7 @@
       activeClass = localStorage.getItem('comments_active') || activeClass;
     }
     if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
       if (activeTab) {
         activeTab.click();
       }
@@ -507,114 +598,31 @@
   if (CONFIG.comments.storage) {
     window.addEventListener('tabs:click', event => {
       if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
+      const commentClass = event.target.classList[1];
       localStorage.setItem('comments_active', commentClass);
     });
   }
 </script>
 
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          Table of Contents
-        </li>
-        <li class="sidebar-nav-overview">
-          Overview
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Day-1"><span class="nav-text">Day 1</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%9E%81%E4%B9%90%E5%AF%BA-amp-%E5%8D%87%E6%97%97%E5%B1%B1"><span class="nav-text">极乐寺 &amp; 升旗山</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Day-2"><span class="nav-text">Day 2</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#George-Town"><span class="nav-text">George Town</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%A1%97%E5%A4%B4%E5%A3%81%E7%94%BB"><span class="nav-text">街头壁画</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%A1%97%E5%A4%B4%E5%BB%BA%E7%AD%91"><span class="nav-text">街头建筑</span></a></li></ol></li></ol></div>
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="Chaolin Han"
-      src="/images/icn.jpg">
-  <p class="site-author-name" itemprop="name">Chaolin Han</p>
-  <div class="site-description" itemprop="description">Our business is life itself.</div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">40</span>
-          <span class="site-state-item-name">posts</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
-        <span class="site-state-item-count">17</span>
-        <span class="site-state-item-name">tags</span></a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/ChaosRinkHan" title="GitHub → https://github.com/ChaosRinkHan" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="/chaolinhan@gmail.com" title="E-Mail → chaolinhan@gmail.com"><i class="fa fa-envelope fa-fw"></i></a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://twitter.com/C_R__Han" title="Twitter → https://twitter.com/C_R__Han" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i></a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://www.instagram.com/cl_han" title="Instagram → https://www.instagram.com/cl_han" rel="noopener" target="_blank"><i class="fab fa-instagram fa-fw"></i></a>
-      </span>
-  </div>
-  <div class="cc-license motion-element" itemprop="license">
-    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
-  </div>
-
-
-
-      </div>
-
     </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
+  </main>
 
+  <footer class="footer">
+    <div class="footer-inner">
+      
 
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-
-        
+      
 
 <div class="copyright">
   
-  &copy; 2018 – 
+  &copy; 2017 – 
   <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-bolt"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Chaolin Han</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a>
-  </div>
-
-        
 <div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
       <span class="post-meta-item-icon">
         <i class="fa fa-user"></i>
@@ -623,7 +631,6 @@
         <span id="busuanzi_value_site_uv"></span>
       </span>
     </span>
-    <span class="post-meta-divider">|</span>
     <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
       <span class="post-meta-item-icon">
         <i class="fa fa-eye"></i>
@@ -633,36 +640,15 @@
       </span>
     </span>
 </div>
-
-
-
-
-
-
-
-
-      </div>
-    </footer>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a>
   </div>
 
+    </div>
+  </footer>
+
   
-  <script src="/lib/anime.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/muse.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-
-
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
 
   
   <script>
@@ -678,8 +664,7 @@
 
 
 
-  
-<script src="/js/local-search.js"></script>
+  <script src="/js/local-search.js"></script>
 
 
 
@@ -693,37 +678,31 @@
 
 
 
-  
 
-  
 
   
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
+
+
+
+
+
+
+  
+
+  
+
+  
 <script>
-NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
-  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
-    var GUEST = ['nick', 'mail', 'link'];
-    var guest = 'nick,mail';
-    guest = guest.split(',').filter(item => {
-      return GUEST.includes(item);
-    });
-    new Valine({
-      el         : '#valine-comments',
-      verify     : false,
-      notify     : true,
-      appId      : '5dql56FUIB3HYuJdS8FpyeVP-gzGzoHsz',
-      appKey     : '6dn3IHWnKiBu9UXTxCuy6xJs',
-      placeholder: "Comment here anonymously. 支持匿名回复，昵称和邮箱可以留空",
-      avatar     : 'mm',
-      meta       : guest,
-      pageSize   : '10' || 10,
-      visitor    : false,
-      lang       : '' || 'zh-cn',
-      path       : location.pathname,
-      recordIP   : false,
-      serverURLs : ''
-    });
+NexT.utils.loadComments('#valine-comments', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
+    new Valine(Object.assign({
+      el  : '#valine-comments',
+      path: "/%E6%A7%9F%E5%9F%8E%E2%80%94%E2%80%94%E5%8D%97%E6%B4%8B%E9%81%97%E4%BA%A7/",
+    }, {"enable":true,"appId":"5dql56FUIB3HYuJdS8FpyeVP-gzGzoHsz","appKey":"6dn3IHWnKiBu9UXTxCuy6xJs","placeholder":"支持匿名回复，邮箱/网址可以留空","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"lang":null,"visitor":false,"comment_count":false,"recordIP":false,"serverURLs":null,"enableQQ":false,"requiredFields":["nick"]}
+    ));
   }, window.Valine);
 });
 </script>

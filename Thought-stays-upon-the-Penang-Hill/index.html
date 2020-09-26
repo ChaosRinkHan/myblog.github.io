@@ -5,21 +5,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#268785">
 <meta name="generator" content="Hexo 5.2.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#268785">
+  <link rel="apple-touch-icon" sizes="180x180" href="/logo_g.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/logo_g.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/logo_g.png">
+  <link rel="mask-icon" href="/logo_g.png" color="#268785">
   <meta http-equiv="Cache-Control" content="no-transform">
   <meta http-equiv="Cache-Control" content="no-siteapp">
 
 <link rel="stylesheet" href="/css/main.css">
 
-<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Noto+Serif+SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 
-<script id="hexo-configurations">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"ltnexe.live","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","width":280,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"ltnexe.live","root":"/","scheme":"Mist","version":"8.0.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"width":280},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
 
   <meta name="description" content="The article has been encrypted, please enter your password to view.">
@@ -36,10 +38,11 @@
 <meta property="article:tag" content="Trip">
 <meta name="twitter:card" content="summary">
 
+
 <link rel="canonical" href="https://ltnexe.live/Thought-stays-upon-the-Penang-Hill/">
 
 
-<script id="page-configurations">
+<script class="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
@@ -68,49 +71,61 @@
 
   <noscript>
   <style>
-  .use-motion .brand,
+  body { margin-top: 2rem; }
+
   .use-motion .menu-item,
-  .sidebar-inner,
+  .use-motion .sidebar,
   .use-motion .post-block,
   .use-motion .pagination,
   .use-motion .comments,
   .use-motion .post-header,
   .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
 
   .use-motion .site-title,
-  .use-motion .site-subtitle {
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
     opacity: initial;
     top: initial;
   }
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
   </style>
 </noscript>
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
 
+  <main class="main">
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="Toggle navigation bar">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
   </div>
 
   <div class="site-meta">
 
     <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
+      <i class="logo-line"></i>
       <h1 class="site-title">LTN</h1>
-      <span class="logo-line-after"><i></i></span>
+      <i class="logo-line"></i>
     </a>
   </div>
 
@@ -123,9 +138,8 @@
 
 
 
-
 <nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
+  <ul class="main-menu menu">
         <li class="menu-item menu-item-home">
 
     <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
@@ -162,7 +176,7 @@
     <i class="fa fa-search"></i>
   </span>
   <div class="search-input-container">
-    <input autocomplete="off" autocapitalize="off"
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
            placeholder="Searching..." spellcheck="false"
            type="search" class="search-input">
   </div>
@@ -170,9 +184,9 @@
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
-<div id="search-result">
-  <div id="no-result">
-    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
   </div>
 </div>
 
@@ -180,196 +194,18 @@
   </div>
 
 </div>
-    </header>
-
-    
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content post posts-expand">
-            
-
-    
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="default">
-    <link itemprop="mainEntityOfPage" href="https://ltnexe.live/Thought-stays-upon-the-Penang-Hill/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/icn.jpg">
-      <meta itemprop="name" content="Chaolin Han">
-      <meta itemprop="description" content="Our business is life itself.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="LTN">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          Thought stays upon the Penang Hill
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2018-04-27 22:30:33" itemprop="dateCreated datePublished" datetime="2018-04-27T22:30:33+08:00">2018-04-27</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-09-26 14:20:28" itemprop="dateModified" datetime="2020-09-26T14:20:28+08:00">2020-09-26</time>
-              </span>
-
-          
-            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span id="busuanzi_value_page_pv"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/Thought-stays-upon-the-Penang-Hill/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/Thought-stays-upon-the-Penang-Hill/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-        <div id="hbe-security">
-  <div class="hbe-input-container">
-  <input type="password" class="hbe-form-control" id="pass" placeholder="Please enter the password to read the blog." />
-    <label for="pass">Please enter the password to read the blog.</label>
-    <div class="bottom-line"></div>
-  </div>
-</div>
-<div id="decryptionError" style="display: none;">Incorrect Password!</div>
-<div id="noContentError" style="display: none;">No content to display!</div>
-<div id="encrypt-blog" style="display:none">
-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
-</div>
-<script src="/lib/crypto-js.js"></script><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">
-    </div>
-
-    
-    
-    
         
-
-<div>
-<ul class="post-copyright">
-  <li class="post-copyright-author">
-    <strong>Post author:  </strong>Chaolin Han
-  </li>
-  <li class="post-copyright-link">
-    <strong>Post link: </strong>
-    <a href="https://ltnexe.live/Thought-stays-upon-the-Penang-Hill/" title="Thought stays upon the Penang Hill">https://ltnexe.live/Thought-stays-upon-the-Penang-Hill/</a>
-  </li>
-  <li class="post-copyright-license">
-    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
-  </li>
-</ul>
-</div>
-
-
-      <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/Thoughts/" rel="tag"># Thoughts</a>
-              <a href="/tags/Trip/" rel="tag"># Trip</a>
-          </div>
-
-        
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/%E5%90%89%E9%9A%86%E5%9D%A1%E2%80%94%E2%80%94%E9%83%BD%E4%BC%9A%E4%B8%8E%E5%AE%97%E6%95%99/" rel="prev" title="吉隆坡——大都会">
-      <i class="fa fa-chevron-left"></i> 吉隆坡——大都会
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/%E6%A7%9F%E5%9F%8E%E2%80%94%E2%80%94%E5%8D%97%E6%B4%8B%E9%81%97%E4%BA%A7/" rel="next" title="槟城——南洋遗产">
-      槟城——南洋遗产 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
-  </article>
-  
-  
-  
-
-
-
-          </div>
-          
-    <div class="comments" id="valine-comments"></div>
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
-        </div>
-          
   
   <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
   </div>
 
   <aside class="sidebar">
-    <div class="sidebar-inner">
 
-      <ul class="sidebar-nav motion-element">
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
         </li>
@@ -379,18 +215,18 @@ U2FsdGVkX19iWgPXnVgfeO/wjKGU1uEf/IOr9Zrfh5PIWanXN55Jbk6dQv2uSLyUvnjGDMwysHJxG0aj
       </ul>
 
       <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-      </div>
+      <section class="post-toc-wrap sidebar-panel">
+      </section>
       <!--/noindex-->
 
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <img class="site-author-image" itemprop="image" alt="Chaolin Han"
       src="/images/icn.jpg">
   <p class="site-author-name" itemprop="name">Chaolin Han</p>
   <div class="site-description" itemprop="description">Our business is life itself.</div>
 </div>
-<div class="site-state-wrap motion-element">
+<div class="site-state-wrap site-overview-item animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
@@ -407,12 +243,12 @@ U2FsdGVkX19iWgPXnVgfeO/wjKGU1uEf/IOr9Zrfh5PIWanXN55Jbk6dQv2uSLyUvnjGDMwysHJxG0aj
       </div>
   </nav>
 </div>
-  <div class="links-of-author motion-element">
+  <div class="links-of-author site-overview-item animated">
       <span class="links-of-author-item">
-        <a href="https://github.com/ChaosRinkHan" title="GitHub → https://github.com/ChaosRinkHan" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+        <a href="https://github.com/chaolinhan" title="GitHub → https://github.com/chaolinhan" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
       </span>
       <span class="links-of-author-item">
-        <a href="/chaolinhan@gmail.com" title="E-Mail → chaolinhan@gmail.com"><i class="fa fa-envelope fa-fw"></i></a>
+        <a href="/chaolinhan@outlook.com" title="E-Mail → chaolinhan@outlook.com"><i class="fa fa-envelope fa-fw"></i></a>
       </span>
       <span class="links-of-author-item">
         <a href="https://twitter.com/C_R__Han" title="Twitter → https://twitter.com/C_R__Han" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i></a>
@@ -421,43 +257,216 @@ U2FsdGVkX19iWgPXnVgfeO/wjKGU1uEf/IOr9Zrfh5PIWanXN55Jbk6dQv2uSLyUvnjGDMwysHJxG0aj
         <a href="https://www.instagram.com/cl_han" title="Instagram → https://www.instagram.com/cl_han" rel="noopener" target="_blank"><i class="fab fa-instagram fa-fw"></i></a>
       </span>
   </div>
-  <div class="cc-license motion-element" itemprop="license">
+  <div class="cc-license site-overview-item animated" itemprop="license">
     <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
   </div>
 
 
 
-      </div>
-
+      </section>
     </div>
   </aside>
-  <div id="sidebar-dimmer"></div>
+  <div class="sidebar-dimmer"></div>
 
 
-      </div>
-    </main>
+    </header>
 
-    <footer class="footer">
-      <div class="footer-inner">
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="default">
+    <link itemprop="mainEntityOfPage" href="https://ltnexe.live/Thought-stays-upon-the-Penang-Hill/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icn.jpg">
+      <meta itemprop="name" content="Chaolin Han">
+      <meta itemprop="description" content="Our business is life itself.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LTN">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Thought stays upon the Penang Hill
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2018-04-27 22:30:33" itemprop="dateCreated datePublished" datetime="2018-04-27T22:30:33+08:00">2018-04-27</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-09-26 14:20:28" itemprop="dateModified" datetime="2020-09-26T14:20:28+08:00">2020-09-26</time>
+      </span>
+
+  
+    <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/Thought-stays-upon-the-Penang-Hill/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/Thought-stays-upon-the-Penang-Hill/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <div id="hbe-security">
+  <div class="hbe-input-container">
+  <input type="password" class="hbe-form-control" id="pass" placeholder="Please enter the password to read the blog." />
+    <label for="pass">Please enter the password to read the blog.</label>
+    <div class="bottom-line"></div>
+  </div>
+</div>
+<div id="decryptionError" style="display: none;">Incorrect Password!</div>
+<div id="noContentError" style="display: none;">No content to display!</div>
+<div id="encrypt-blog" style="display:none">
+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
+</div>
+<script src="/lib/crypto-js.js"></script><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>Post author:  </strong>Chaolin Han
+  </li>
+  <li class="post-copyright-link">
+      <strong>Post link: </strong>
+      <a href="https://ltnexe.live/Thought-stays-upon-the-Penang-Hill/" title="Thought stays upon the Penang Hill">https://ltnexe.live/Thought-stays-upon-the-Penang-Hill/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Thoughts/" rel="tag"># Thoughts</a>
+              <a href="/tags/Trip/" rel="tag"># Trip</a>
+          </div>
+
         
 
-        
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/%E5%90%89%E9%9A%86%E5%9D%A1%E2%80%94%E2%80%94%E9%83%BD%E4%BC%9A%E4%B8%8E%E5%AE%97%E6%95%99/" rel="prev" title="吉隆坡——大都会">
+                  <i class="fa fa-chevron-left"></i> 吉隆坡——大都会
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/%E6%A7%9F%E5%9F%8E%E2%80%94%E2%80%94%E5%8D%97%E6%B4%8B%E9%81%97%E4%BA%A7/" rel="next" title="槟城——南洋遗产">
+                  槟城——南洋遗产 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
 
 <div class="copyright">
   
-  &copy; 2018 – 
+  &copy; 2017 – 
   <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-bolt"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Chaolin Han</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a>
-  </div>
-
-        
 <div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
       <span class="post-meta-item-icon">
         <i class="fa fa-user"></i>
@@ -466,7 +475,6 @@ U2FsdGVkX19iWgPXnVgfeO/wjKGU1uEf/IOr9Zrfh5PIWanXN55Jbk6dQv2uSLyUvnjGDMwysHJxG0aj
         <span id="busuanzi_value_site_uv"></span>
       </span>
     </span>
-    <span class="post-meta-divider">|</span>
     <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
       <span class="post-meta-item-icon">
         <i class="fa fa-eye"></i>
@@ -476,36 +484,15 @@ U2FsdGVkX19iWgPXnVgfeO/wjKGU1uEf/IOr9Zrfh5PIWanXN55Jbk6dQv2uSLyUvnjGDMwysHJxG0aj
       </span>
     </span>
 </div>
-
-
-
-
-
-
-
-
-      </div>
-    </footer>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a>
   </div>
 
+    </div>
+  </footer>
+
   
-  <script src="/lib/anime.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/muse.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-
-
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
 
   
   <script>
@@ -521,8 +508,7 @@ U2FsdGVkX19iWgPXnVgfeO/wjKGU1uEf/IOr9Zrfh5PIWanXN55Jbk6dQv2uSLyUvnjGDMwysHJxG0aj
 
 
 
-  
-<script src="/js/local-search.js"></script>
+  <script src="/js/local-search.js"></script>
 
 
 
@@ -536,37 +522,31 @@ U2FsdGVkX19iWgPXnVgfeO/wjKGU1uEf/IOr9Zrfh5PIWanXN55Jbk6dQv2uSLyUvnjGDMwysHJxG0aj
 
 
 
-  
 
-  
 
   
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
+
+
+
+
+
+
+  
+
+  
+
+  
 <script>
-NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
-  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
-    var GUEST = ['nick', 'mail', 'link'];
-    var guest = 'nick,mail';
-    guest = guest.split(',').filter(item => {
-      return GUEST.includes(item);
-    });
-    new Valine({
-      el         : '#valine-comments',
-      verify     : false,
-      notify     : true,
-      appId      : '5dql56FUIB3HYuJdS8FpyeVP-gzGzoHsz',
-      appKey     : '6dn3IHWnKiBu9UXTxCuy6xJs',
-      placeholder: "Comment here anonymously. 支持匿名回复，昵称和邮箱可以留空",
-      avatar     : 'mm',
-      meta       : guest,
-      pageSize   : '10' || 10,
-      visitor    : false,
-      lang       : '' || 'zh-cn',
-      path       : location.pathname,
-      recordIP   : false,
-      serverURLs : ''
-    });
+NexT.utils.loadComments('#valine-comments', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
+    new Valine(Object.assign({
+      el  : '#valine-comments',
+      path: "/Thought-stays-upon-the-Penang-Hill/",
+    }, {"enable":true,"appId":"5dql56FUIB3HYuJdS8FpyeVP-gzGzoHsz","appKey":"6dn3IHWnKiBu9UXTxCuy6xJs","placeholder":"支持匿名回复，邮箱/网址可以留空","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"lang":null,"visitor":false,"comment_count":false,"recordIP":false,"serverURLs":null,"enableQQ":false,"requiredFields":["nick"]}
+    ));
   }, window.Valine);
 });
 </script>

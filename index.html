@@ -220,7 +220,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-09-26 12:02:46 / Modified: 18:22:22" itemprop="dateCreated datePublished" datetime="2020-09-26T12:02:46+08:00">2020-09-26</time>
+              <time title="Created: 2020-09-26 12:02:46 / Modified: 18:32:29" itemprop="dateCreated datePublished" datetime="2020-09-26T12:02:46+08:00">2020-09-26</time>
             </span>
 
           
@@ -248,11 +248,11 @@
 <p>前情提要 👉 <a href="https://ltnexe.live/macrepair/">Mac换电记</a></p>
 <h2 id="变砖"><a href="#变砖" class="headerlink" title="变砖"></a>变砖</h2><p>在9月24号早上，习惯性打开电脑，手贱点了<code>macOS Big Sur beta 8</code>的升级，然后开始等待。结果几个小时也不见更新完，界面一直是卡在了无限重启进系统。</p>
 <p>然后就<code>⌘+R</code>进入Mac的<code>Recovery</code>准备重装系统。Mac的Recovery相当于PC的BIOS+PE系统，Mac硬件上也没有一个类似于BIOS的东西暴露给消费者，而且最坑的是Recovery这个恢复系统竟然没有隔离分区，这就直接导致了后来的变砖。</p>
-<p>Recovery本身也有好的，因为苹果的闭环让macOS不需要授权这个特性，Mac重装系统可以直接在Recovery里面选择在线重装，就是从网上下载一个新系统自己重装（而且据我观察这个下载数度还很快）。</p>
+<p>Recovery本身也有好的，因为苹果的闭环让macOS不需要授权这个特性，Mac重装系统可以直接在Recovery里面选择在线重装，就是从网上下载一个新系统自己重装（而且据我观察这个下载速度还很快）。</p>
 <p><img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/090409.jpg" alt="341601110989_.pic" style="zoom:30%;" /></p>
-<p>然而准备直接用我的时间机器备份来恢复，毕竟这样就等价于在线重装+恢复数据。时间机器恢复的时候报了很多错，磁盘也被格式化了无数次，直到我发现这样不可行。它提示要进入系统用迁移助理，然而我不就正在装系统么……</p>
+<p>准备直接用我的时间机器备份来恢复，毕竟这等价于在线重装+恢复数据。时间机器恢复的时候报了很多错，磁盘也被格式化了无数次，直到我发现这样不可行。它提示要进入系统用迁移助理，然而我不就正在装系统么……</p>
 <p><img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/091357.jpg" alt="331601110987_.pic" style="zoom:33%;" /></p>
-<p>此时做了一个错误的决定。因为下午还有面试，我决定用时间机器里面已经存在的macOS来恢复整个系统。这就关系到macOS的另外一个句巨坑了──从Catalina开始就是数据和系统在不同的分区了，用户的软件包，包括一些系统组件的安装都受到了很大限制，不能直接安装在系统分区。这样保证了系统的安全和独立性，也带来了很多别的问题（就像安卓的A/B分区一样，OTA可以只用一个几十M的包来更新一个大版本）。详情请看：<a href="https://sspai.com/post/57052" target="_blank" rel="noopener">当 Mac 升级到 Catalina 时，苹果在硬盘里施了点魔法【少数派】</a>。Big Sur的时间机器一个大Bug就在于，不会备份Big Sur的系统分区。我也是当时看到可用系统还是Catalina才知道的。</p>
+<p>此时做了一个错误的决定。因为下午还有面试，我决定用时间机器里面已经存在的macOS来恢复整个系统。这就关系到macOS的另外一个巨坑了──从Catalina开始就是数据和系统在不同的分区了，用户的软件包，包括一些系统组件的安装都受到了很大限制，不能直接安装在系统分区。这样保证了系统的安全和独立性，也带来了很多别的问题（就像安卓的A/B分区一样，OTA可以只用一个几十M的包来更新一个大版本）。详情请看：<a href="https://sspai.com/post/57052" target="_blank" rel="noopener">当 Mac 升级到 Catalina 时，苹果在硬盘里施了点魔法【少数派】</a>。Big Sur的时间机器一个大Bug就在于，不会备份Big Sur的系统分区。我也是当时看到可用系统还是Catalina才知道的。</p>
 <p>故我准备用时间机器从broken Big Sur（macOS 11.0 beta 8）强行降级到Catalina（macOS 10.15）。降级完发现系统也进不去，表现为开机就是一个一直在闪的问号文件夹。于是我继续进Recovery准备看看是啥问题，此时我发现Recovery没了？？？</p>
 <p>这就涉及到macOS的另外一个坑了，就是Recovery是跟随系统的，不像Win PE。Big Sur的Recovery也是新的UI，而且有bug，有卡顿。降级到Catalina理应是Catalina的Recovery，然而我发现没有Recovery，原因可能是因为两个大版本系统降级的时候分区规则不一样（后期看到的），导致Recovery没有写进SSD的分区。服了。</p>
 <p>此时电脑还不是砖，因为苹果还有联网Recovery这种终极备用方案。就是开机，验证Apple ID，然后从网上给你下载一个现成的Recovery，然后再进Recovery。详情：<a href="https://support.apple.com/zh-cn/HT201314" target="_blank" rel="noopener">如果您无法从 macOS 恢复功能启动【Apple】</a>。然而，试了几个WiFi之后我发现都不行，每次下载完就是如下界面：</p>

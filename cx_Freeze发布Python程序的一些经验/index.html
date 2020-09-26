@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#268785">
-<meta name="generator" content="Hexo 4.2.0">
+<meta name="generator" content="Hexo 5.2.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -26,8 +26,9 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="cx_Freeze发布Python程序的一些经验">
 <meta property="og:url" content="https://ltnexe.live/cx_Freeze%E5%8F%91%E5%B8%83Python%E7%A8%8B%E5%BA%8F%E7%9A%84%E4%B8%80%E4%BA%9B%E7%BB%8F%E9%AA%8C/index.html">
-<meta property="og:site_name" content="LTN Studio">
+<meta property="og:site_name" content="LTN">
 <meta property="og:description" content="前言最近用Python写了一个化工方面的辅助计算软件，使用PyQt实现界面，同时用了很多库来实现作图和科学计算、求解等功能。使用界面与逻辑分离的方法，画好UI再编码具体功能。这次规模比第一次写的PyQt+SQL的单一界面复杂很多，在打包发布时遇到的问题也是非常多，一方面代码量非常大，另一方面涉及到的库非常多。">
+<meta property="og:locale">
 <meta property="article:published_time" content="2018-03-31T14:44:37.000Z">
 <meta property="article:modified_time" content="2020-09-26T06:20:28.710Z">
 <meta property="article:author" content="Chaolin Han">
@@ -48,7 +49,7 @@
   };
 </script>
 
-  <title>cx_Freeze发布Python程序的一些经验 | LTN Studio</title>
+  <title>cx_Freeze发布Python程序的一些经验 | LTN</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-165305836-1"></script>
     <script>
@@ -108,7 +109,7 @@
 
     <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">LTN Studio</h1>
+      <h1 class="site-title">LTN</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
@@ -209,7 +210,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="LTN Studio">
+      <meta itemprop="name" content="LTN">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
@@ -267,24 +268,30 @@
       
         <h1 id="前言"><a href="#前言" class="headerlink" title="﻿前言"></a>﻿前言</h1><p>最近用Python写了一个化工方面的辅助计算软件，使用PyQt实现界面，同时用了很多库来实现作图和科学计算、求解等功能。使用界面与逻辑分离的方法，画好UI再编码具体功能。这次规模比第一次写的PyQt+SQL的单一界面复杂很多，在打包发布时遇到的问题也是非常多，一方面代码量非常大，另一方面涉及到的库非常多。</p>
  <a id="more"></a>
+
 <h1 id="pyinstaller和cx-Freeze的对比"><a href="#pyinstaller和cx-Freeze的对比" class="headerlink" title="pyinstaller和cx_Freeze的对比"></a>pyinstaller和cx_Freeze的对比</h1><p>之前用pyinstaller打包，遇到的问题也就是decimal的问题，属于隐藏的库的没有导入，这次由于库太多，用pyinstaller打包的时候单个程序出来大概60M，而且打开极慢。同时根据报错来看，pyinstaller并非支持所有库，有的库无法打包发布，比如这次程序使用的scipy。<br>于是采用了cx_Freeze来打包。虽然理论上来讲是可以成功打包的，但是由于这个工具的简单性导致了一系列error。</p>
 <h1 id="matplotlib，numpy，scipy"><a href="#matplotlib，numpy，scipy" class="headerlink" title="matplotlib，numpy，scipy"></a>matplotlib，numpy，scipy</h1><p>matplotlib库在导入时会出现报错，这是因为它的作图依赖于tkinter，cx_Freeze打包不会将它直接包括；</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">os.environ[<span class="string">'TCL_LIBRARY'</span>] = <span class="string">'*\\Python36-32\\tcl\\tcl8.6'</span></span><br><span class="line">os.environ[<span class="string">'TK_LIBRARY'</span>] = <span class="string">'*\\Python36-32\\tcl\\tk8.6'</span></span><br><span class="line"><span class="comment"># *处为Python目录位置，反斜杠依然两个</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">os.environ[<span class="string">&#x27;TCL_LIBRARY&#x27;</span>] = <span class="string">&#x27;*\\Python36-32\\tcl\\tcl8.6&#x27;</span></span><br><span class="line">os.environ[<span class="string">&#x27;TK_LIBRARY&#x27;</span>] = <span class="string">&#x27;*\\Python36-32\\tcl\\tk8.6&#x27;</span></span><br><span class="line"><span class="comment"># *处为Python目录位置，反斜杠依然两个</span></span><br></pre></td></tr></table></figure>
+
 <hr>
 <p>numpy.core._methods无法找到的报错：options里面includes：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'includes'</span>: [<span class="string">'numpy.core._methods'</span>]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;includes&#x27;</span>: [<span class="string">&#x27;numpy.core._methods&#x27;</span>]</span><br></pre></td></tr></table></figure>
+
 <hr>
 <p>程序中使用from … import … ，cx_Freeze打包可能出现库导入不完全的情况，即是看报错信息，没有什么module，在程序中import all或者在setup中include：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'packages'</span>:[<span class="string">'scipy'</span>, <span class="string">'numpy'</span>, <span class="string">'matplotlib'</span>, <span class="string">'tkinter'</span>]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;packages&#x27;</span>:[<span class="string">&#x27;scipy&#x27;</span>, <span class="string">&#x27;numpy&#x27;</span>, <span class="string">&#x27;matplotlib&#x27;</span>, <span class="string">&#x27;tkinter&#x27;</span>]</span><br></pre></td></tr></table></figure>
+
 <hr>
 <p>目前Python 3.6里面包括的tk导入会出现dll错误：ImportError: DLL load failed，这个和cx_Freeze自身有关，需要include：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'include_files'</span>: [<span class="string">'*\\Python36-32\\DLLs\\tk86t.dll'</span>],</span><br><span class="line"><span class="comment"># *处为Python目录位置，反斜杠依然两个</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;include_files&#x27;</span>: [<span class="string">&#x27;*\\Python36-32\\DLLs\\tk86t.dll&#x27;</span>],</span><br><span class="line"><span class="comment"># *处为Python目录位置，反斜杠依然两个</span></span><br></pre></td></tr></table></figure>
+
 <hr>
 <p>使用绝对位置的资源文件：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">include_files&#x3D;[&#39;1.png&#39;, &#39;2.png&#39;, &#39;bg.png&#39;, &#39;bg1.png&#39;]</span><br></pre></td></tr></table></figure>
+
 <h1 id="build"><a href="#build" class="headerlink" title="build"></a>build</h1><p>build文件夹包含了所有的要用到的编译好的库文件，文件结构决定了程序运行非常快，基本能秒开了。</p>
 <h1 id="setup-py"><a href="#setup-py" class="headerlink" title="setup.py"></a>setup.py</h1><p>仅供参考。比较麻烦的几个库都用了，没用这些应该会简单很多。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> cx_Freeze <span class="keyword">import</span> setup, Executable</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line">os.environ[<span class="string">'TCL_LIBRARY'</span>] = <span class="string">'C:\\Users\\Chaolin Han\\AppData\\Local\\Programs\\Python\\Python36-32\\tcl\\tcl8.6'</span></span><br><span class="line">os.environ[<span class="string">'TK_LIBRARY'</span>] = <span class="string">'C:\\Users\\Chaolin Han\\AppData\\Local\\Programs\\Python\\Python36-32\\tcl\\tk8.6'</span></span><br><span class="line"></span><br><span class="line">base = <span class="string">'WIN32GUI'</span> <span class="keyword">if</span> sys.platform == <span class="string">"win32"</span> <span class="keyword">else</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">executables = [Executable(<span class="string">"Main_new.py"</span>, base=base)]</span><br><span class="line"></span><br><span class="line">packages = []</span><br><span class="line">include_files=[<span class="string">'1.png'</span>, <span class="string">'2.png'</span>, <span class="string">'bg.png'</span>, <span class="string">'bg1.png'</span>]</span><br><span class="line">options = &#123;</span><br><span class="line">    <span class="string">'build_exe'</span>: &#123;</span><br><span class="line">        <span class="string">'packages'</span>:[<span class="string">'scipy'</span>, <span class="string">'numpy'</span>, <span class="string">'matplotlib'</span>, <span class="string">'tkinter'</span>],</span><br><span class="line">        <span class="string">'include_files'</span>: [<span class="string">'C:\\Users\\Chaolin Han\\AppData\\Local\\Programs\\Python\\Python36-32\\DLLs\\tcl86t.dll'</span>, <span class="string">'C:\\Users\\Chaolin Han\\AppData\\Local\\Programs\\Python\\Python36-32\\DLLs\\tk86t.dll'</span>],</span><br><span class="line">        <span class="string">'includes'</span>: [<span class="string">'numpy.core._methods'</span>]</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">setup(</span><br><span class="line">    name = <span class="string">"Prog"</span>,</span><br><span class="line">    options = options,</span><br><span class="line">    version = <span class="string">"1.0"</span>,</span><br><span class="line">    description = <span class="string">'desc of program'</span>,</span><br><span class="line">    executables = executables</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> cx_Freeze <span class="keyword">import</span> setup, Executable</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line">os.environ[<span class="string">&#x27;TCL_LIBRARY&#x27;</span>] = <span class="string">&#x27;C:\\Users\\Chaolin Han\\AppData\\Local\\Programs\\Python\\Python36-32\\tcl\\tcl8.6&#x27;</span></span><br><span class="line">os.environ[<span class="string">&#x27;TK_LIBRARY&#x27;</span>] = <span class="string">&#x27;C:\\Users\\Chaolin Han\\AppData\\Local\\Programs\\Python\\Python36-32\\tcl\\tk8.6&#x27;</span></span><br><span class="line"></span><br><span class="line">base = <span class="string">&#x27;WIN32GUI&#x27;</span> <span class="keyword">if</span> sys.platform == <span class="string">&quot;win32&quot;</span> <span class="keyword">else</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">executables = [Executable(<span class="string">&quot;Main_new.py&quot;</span>, base=base)]</span><br><span class="line"></span><br><span class="line">packages = []</span><br><span class="line">include_files=[<span class="string">&#x27;1.png&#x27;</span>, <span class="string">&#x27;2.png&#x27;</span>, <span class="string">&#x27;bg.png&#x27;</span>, <span class="string">&#x27;bg1.png&#x27;</span>]</span><br><span class="line">options = &#123;</span><br><span class="line">    <span class="string">&#x27;build_exe&#x27;</span>: &#123;</span><br><span class="line">        <span class="string">&#x27;packages&#x27;</span>:[<span class="string">&#x27;scipy&#x27;</span>, <span class="string">&#x27;numpy&#x27;</span>, <span class="string">&#x27;matplotlib&#x27;</span>, <span class="string">&#x27;tkinter&#x27;</span>],</span><br><span class="line">        <span class="string">&#x27;include_files&#x27;</span>: [<span class="string">&#x27;C:\\Users\\Chaolin Han\\AppData\\Local\\Programs\\Python\\Python36-32\\DLLs\\tcl86t.dll&#x27;</span>, <span class="string">&#x27;C:\\Users\\Chaolin Han\\AppData\\Local\\Programs\\Python\\Python36-32\\DLLs\\tk86t.dll&#x27;</span>],</span><br><span class="line">        <span class="string">&#x27;includes&#x27;</span>: [<span class="string">&#x27;numpy.core._methods&#x27;</span>]</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">setup(</span><br><span class="line">    name = <span class="string">&quot;Prog&quot;</span>,</span><br><span class="line">    options = options,</span><br><span class="line">    version = <span class="string">&quot;1.0&quot;</span>,</span><br><span class="line">    description = <span class="string">&#x27;desc of program&#x27;</span>,</span><br><span class="line">    executables = executables</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -386,7 +393,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-text">﻿前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pyinstaller和cx-Freeze的对比"><span class="nav-text">pyinstaller和cx_Freeze的对比</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#matplotlib，numpy，scipy"><span class="nav-text">matplotlib，numpy，scipy</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#build"><span class="nav-text">build</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#setup-py"><span class="nav-text">setup.py</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-text">﻿前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pyinstaller%E5%92%8Ccx-Freeze%E7%9A%84%E5%AF%B9%E6%AF%94"><span class="nav-text">pyinstaller和cx_Freeze的对比</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#matplotlib%EF%BC%8Cnumpy%EF%BC%8Cscipy"><span class="nav-text">matplotlib，numpy，scipy</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#build"><span class="nav-text">build</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#setup-py"><span class="nav-text">setup.py</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#268785">
-<meta name="generator" content="Hexo 4.2.0">
+<meta name="generator" content="Hexo 5.2.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -26,8 +26,9 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="Powered to 7.0">
 <meta property="og:url" content="https://ltnexe.live/powered-to-7-0/index.html">
-<meta property="og:site_name" content="LTN Studio">
+<meta property="og:site_name" content="LTN">
 <meta property="og:description" content="Next主题升级到7.0了。之前一从5.1.x升级失败，现在一步到位，powered to 7.0. Hack Guide6.0之后，主仓库已从 iissnan 名下 迁移至 theme-next 组织，参考这里。 官方升级教程 已经越来越完善，越来越成熟，各种bug基本已经被解决掉，包括曾经困扰我多日的子路径重复问题。同时代码也越来注重独立性，js和第三方插件也越来越规范，用起来的确是十分方便。">
+<meta property="og:locale">
 <meta property="og:image" content="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/052354.png">
 <meta property="article:published_time" content="2019-02-28T17:49:30.000Z">
 <meta property="article:modified_time" content="2020-09-26T06:20:28.708Z">
@@ -49,7 +50,7 @@
   };
 </script>
 
-  <title>Powered to 7.0 | LTN Studio</title>
+  <title>Powered to 7.0 | LTN</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-165305836-1"></script>
     <script>
@@ -109,7 +110,7 @@
 
     <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">LTN Studio</h1>
+      <h1 class="site-title">LTN</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
@@ -210,7 +211,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="LTN Studio">
+      <meta itemprop="name" content="LTN">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
@@ -267,14 +268,15 @@
 
       
         <p><strong>Next主题</strong>升级到7.0了。之前一从5.1.x升级失败，现在一步到位，powered to 7.0.</p>
-<h2 id="Hack-Guide"><a href="#Hack-Guide" class="headerlink" title="Hack Guide"></a>Hack Guide</h2><p>6.0之后，主仓库已从 <a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">iissnan 名下</a> 迁移至 <a href="https://github.com/theme-next" target="_blank" rel="noopener">theme-next</a> 组织，参考<a href="https://github.com/theme-next/hexo-theme-next/blob/master/docs/zh-CN/README.md" target="_blank" rel="noopener">这里</a>。</p>
-<p><a href="https://github.com/theme-next/hexo-theme-next/blob/master/docs/zh-CN/UPDATE-FROM-5.1.X.md" target="_blank" rel="noopener">官方升级教程</a></p>
+<h2 id="Hack-Guide"><a href="#Hack-Guide" class="headerlink" title="Hack Guide"></a>Hack Guide</h2><p>6.0之后，主仓库已从 <a target="_blank" rel="noopener" href="https://github.com/iissnan/hexo-theme-next">iissnan 名下</a> 迁移至 <a target="_blank" rel="noopener" href="https://github.com/theme-next">theme-next</a> 组织，参考<a target="_blank" rel="noopener" href="https://github.com/theme-next/hexo-theme-next/blob/master/docs/zh-CN/README.md">这里</a>。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/theme-next/hexo-theme-next/blob/master/docs/zh-CN/UPDATE-FROM-5.1.X.md">官方升级教程</a></p>
 <p>已经越来越完善，越来越成熟，各种bug基本已经被解决掉，包括曾经困扰我多日的子路径重复问题。同时代码也越来注重独立性，js和第三方插件也越来越规范，用起来的确是十分方便。</p>
  <a id="more"></a>
+
 <h2 id="Configuration"><a href="#Configuration" class="headerlink" title="Configuration"></a>Configuration</h2><p>将7.0克隆到目录后，主要对比新旧版本的config.yml文件进行配置；同时注意将之前的自定义样式对应导入新主题目录下：</p>
 <blockquote>
 <ol>
-<li><code>config.yml</code> 或 <code>next.yml</code>（如果你使用了<a href="https://github.com/theme-next/hexo-theme-next/blob/master/docs/zh-CN/DATA-FILES.md" target="_blank" rel="noopener">数据文件</a>）。</li>
+<li><code>config.yml</code> 或 <code>next.yml</code>（如果你使用了<a target="_blank" rel="noopener" href="https://github.com/theme-next/hexo-theme-next/blob/master/docs/zh-CN/DATA-FILES.md">数据文件</a>）。</li>
 <li>自定义的 CSS 配置，它们应在 <code>next/source/css/_custom/*</code> 和 <code>next/source/css/_variables/*</code> 中。</li>
 <li>自定义的排布配置，它们应在 <code>next/layout/_custom/*</code> 中。</li>
 <li>任何其它可能的附加自定义内容；为了定位它们，你可以通过某些工具在仓库间比较。</li>

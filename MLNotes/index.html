@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#268785">
-<meta name="generator" content="Hexo 4.2.0">
+<meta name="generator" content="Hexo 5.2.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -22,12 +22,13 @@
     var CONFIG = {"hostname":"ltnexe.live","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","width":280,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="Intro   Supervised Learning: 需要大量training data Structured Learning:  输出具有结构的结果，例如语句   Lecture 1: Regression - Case Study Regression: 输出是一个scalar  妙蛙种子cp值的例子 对可微分的f，可以用梯度下降法解最优（另：这可以直接最小二乘求最优）： 单参数做法">
+  <meta name="description" content="Intro   Supervised Learning: 需要大量training data Structured Learning:  输出具有结构的结果，例如语句   Lecture 1: Regression - Case Study Regression: 输出是一个scalar  妙蛙种子cp值的例子 对可微分的f，可以用梯度下降法解最优（另：这可以直接最小二乘求最优）： 单参数做">
 <meta property="og:type" content="article">
 <meta property="og:title" content="机器学习 李宏毅 笔记">
 <meta property="og:url" content="https://ltnexe.live/MLNotes/index.html">
-<meta property="og:site_name" content="LTN Studio">
-<meta property="og:description" content="Intro   Supervised Learning: 需要大量training data Structured Learning:  输出具有结构的结果，例如语句   Lecture 1: Regression - Case Study Regression: 输出是一个scalar  妙蛙种子cp值的例子 对可微分的f，可以用梯度下降法解最优（另：这可以直接最小二乘求最优）： 单参数做法">
+<meta property="og:site_name" content="LTN">
+<meta property="og:description" content="Intro   Supervised Learning: 需要大量training data Structured Learning:  输出具有结构的结果，例如语句   Lecture 1: Regression - Case Study Regression: 输出是一个scalar  妙蛙种子cp值的例子 对可微分的f，可以用梯度下降法解最优（另：这可以直接最小二乘求最优）： 单参数做">
+<meta property="og:locale">
 <meta property="og:image" content="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/052133.jpg">
 <meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwgy1ful6s6d342j31h613ijxy.jpg">
 <meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNbRwgy1ful6qdgpk5j31gk12qwli.jpg">
@@ -72,7 +73,7 @@
   };
 </script>
 
-  <title>机器学习 李宏毅 笔记 | LTN Studio</title>
+  <title>机器学习 李宏毅 笔记 | LTN</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-165305836-1"></script>
     <script>
@@ -132,7 +133,7 @@
 
     <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">LTN Studio</h1>
+      <h1 class="site-title">LTN</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
@@ -233,7 +234,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="LTN Studio">
+      <meta itemprop="name" content="LTN">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
@@ -290,64 +291,65 @@
 
       
          <a id="more"></a>
-<h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p><img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/052133.jpg" alt=""></p>
-<p><img src="https://ws2.sinaimg.cn/large/006tNbRwgy1ful6s6d342j31h613ijxy.jpg" alt=""></p>
+
+<h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p><img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/052133.jpg"></p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNbRwgy1ful6s6d342j31h613ijxy.jpg"></p>
 <ul>
 <li>Supervised Learning: 需要大量training data</li>
 <li>Structured Learning:  输出具有结构的结果，例如语句</li>
 </ul>
-<p><img src="https://ws4.sinaimg.cn/large/006tNbRwgy1ful6qdgpk5j31gk12qwli.jpg" alt=""></p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNbRwgy1ful6qdgpk5j31gk12qwli.jpg"></p>
 <h2 id="Lecture-1-Regression-Case-Study"><a href="#Lecture-1-Regression-Case-Study" class="headerlink" title="Lecture 1: Regression - Case Study"></a>Lecture 1: Regression - Case Study</h2><ul>
 <li>Regression: 输出是一个scalar</li>
 </ul>
-<h3 id="妙蛙种子cp值的例子"><a href="#妙蛙种子cp值的例子" class="headerlink" title="妙蛙种子cp值的例子"></a>妙蛙种子cp值的例子</h3><p><img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/052238.jpg" alt=""></p>
+<h3 id="妙蛙种子cp值的例子"><a href="#妙蛙种子cp值的例子" class="headerlink" title="妙蛙种子cp值的例子"></a>妙蛙种子cp值的例子</h3><p><img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/052238.jpg"></p>
 <p>对可微分的f，可以用<code>梯度下降法</code>解最优（另：这可以直接最小二乘求最优）：</p>
 <p>单参数做法：</p>
-<p><img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/052241.jpg" alt=""></p>
-<p><img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/052243.jpg" alt=""></p>
+<p><img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/052241.jpg"></p>
+<p><img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/052243.jpg"></p>
 <p>双参数做法：</p>
-<p><img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/052244.jpg" alt=""></p>
+<p><img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/052244.jpg"></p>
 <p>如此迭代</p>
-<p><img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/052247.jpg" alt=""></p>
+<p><img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/052247.jpg"></p>
 <p>黄色：f的梯度方向</p>
 <p>担心：初始值选取不同可能会陷入不同的鞍点（此时可能只到达局部最优）</p>
 <p>在线行回归中不必考虑，因为Loss Function是convex的</p>
-<p><img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/052248.jpg" alt=""></p>
+<p><img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/052248.jpg"></p>
 <p>后面讲拟合的误差，以及模型不同导致的拟合误差差异：</p>
-<p><img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/052250.jpg" alt=""></p>
+<p><img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/052250.jpg"></p>
 <p>圆圈代表了模型的空间，模型次数越高，空间越大但误差也越大</p>
 <p>所以要选择合适的Model：</p>
-<p><img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/052252.jpg" alt=""></p>
+<p><img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/052252.jpg"></p>
 <p>再考虑物种的情况，加入Xs。预测与决策的内容（4-5: 含虚变量的回归）Xs相当于一个决定截距的虚变量</p>
 <p>本节的话除了思想，基本都是很基本的知识.</p>
-<h3 id="Regularition"><a href="#Regularition" class="headerlink" title="Regularition"></a>Regularition</h3><p><img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/052254.jpg" alt=""></p>
+<h3 id="Regularition"><a href="#Regularition" class="headerlink" title="Regularition"></a>Regularition</h3><p><img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/052254.jpg"></p>
 <p>确定Loss function时，除开error项（第一项），往往加上第二项，这样确定下来的拟合函数系数可以尽量小，函数也会更加平滑：</p>
-<p><img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/052256.jpg" alt=""></p>
+<p><img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/052256.jpg"></p>
 <p>λ的选取：</p>
-<p><img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/052259.jpg" alt=""></p>
+<p><img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/052259.jpg"></p>
 <p>合适即可</p>
 <p>总结：</p>
-<p><img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/052302.jpg" alt=""></p>
+<p><img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/052302.jpg"></p>
 <h3 id="Demo："><a href="#Demo：" class="headerlink" title="Demo："></a>Demo：</h3><p>演示了梯度下降法逼近最优解的过程</p>
 <h2 id="Lecture-2-Error来源-Model选取"><a href="#Lecture-2-Error来源-Model选取" class="headerlink" title="Lecture 2: Error来源 - Model选取"></a>Lecture 2: Error来源 - Model选取</h2><p>数据误差的构成：</p>
-<p><img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/052304.jpg" alt=""></p>
+<p><img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/052304.jpg"></p>
 <p>表现在Loss Function函数上：</p>
-<p><img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/052308.jpg" alt=""></p>
-<p><img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/052311.jpg" alt=""></p>
+<p><img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/052308.jpg"></p>
+<p><img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/052311.jpg"></p>
 <p>1: 分布较为集中（方差小），但是距离f hat还是有距离，偏差较大 = 代表简单的Model</p>
 <p>2: 分布散乱（方差大），但是偏差小 = 代表复杂的Model</p>
 <p>蓝色圈：最初选定的Model set集合。例如，采用一次回归注定了这个set的偏差较大</p>
-<p><img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/052315.jpg" alt=""></p>
+<p><img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/052315.jpg"></p>
 <p>随着模型次数增加，偏差会越来越小（瞄得越来越准），但是分布会更加散乱</p>
 <p>同时考虑的时候，可以得到蓝色的线，采取最合适的点代表的模型</p>
 <h3 id="如何减小误差"><a href="#如何减小误差" class="headerlink" title="如何减小误差"></a>如何减小误差</h3><p>对Bias：• Add more features as input   • A more complex model</p>
 <p>简单来讲就是换个好点的模型</p>
 <p>对Var： · 更多的训练数据 · 采用规范化（加上 λ（w𝙞）^2 项）</p>
-<p><img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/052321.jpg" alt=""></p>
-<h3 id="模型的选择上的问题："><a href="#模型的选择上的问题：" class="headerlink" title="模型的选择上的问题："></a>模型的选择上的问题：</h3><p><img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/052324.jpg" alt=""></p>
+<p><img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/052321.jpg"></p>
+<h3 id="模型的选择上的问题："><a href="#模型的选择上的问题：" class="headerlink" title="模型的选择上的问题："></a>模型的选择上的问题：</h3><p><img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/052324.jpg"></p>
 <p>不应该：用手上已有的Testing Set去评价model好坏，因为真正的Testing Set全集是我们不具有的，真正的set下评价可能会不同</p>
-<p><img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/052327.jpg" alt=""></p>
-<p><img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/052331.jpg" alt=""></p>
+<p><img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/052327.jpg"></p>
+<p><img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/052331.jpg"></p>
 <p>通过交叉验证确定最优Model</p>
 <p>两个Demo：</p>
 <p>1：表明局部最优和全局最优的关系</p>
@@ -454,7 +456,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Intro"><span class="nav-text">Intro</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Lecture-1-Regression-Case-Study"><span class="nav-text">Lecture 1: Regression - Case Study</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#妙蛙种子cp值的例子"><span class="nav-text">妙蛙种子cp值的例子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Regularition"><span class="nav-text">Regularition</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Demo："><span class="nav-text">Demo：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Lecture-2-Error来源-Model选取"><span class="nav-text">Lecture 2: Error来源 - Model选取</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#如何减小误差"><span class="nav-text">如何减小误差</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模型的选择上的问题："><span class="nav-text">模型的选择上的问题：</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Intro"><span class="nav-text">Intro</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Lecture-1-Regression-Case-Study"><span class="nav-text">Lecture 1: Regression - Case Study</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%99%E8%9B%99%E7%A7%8D%E5%AD%90cp%E5%80%BC%E7%9A%84%E4%BE%8B%E5%AD%90"><span class="nav-text">妙蛙种子cp值的例子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Regularition"><span class="nav-text">Regularition</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Demo%EF%BC%9A"><span class="nav-text">Demo：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Lecture-2-Error%E6%9D%A5%E6%BA%90-Model%E9%80%89%E5%8F%96"><span class="nav-text">Lecture 2: Error来源 - Model选取</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%87%8F%E5%B0%8F%E8%AF%AF%E5%B7%AE"><span class="nav-text">如何减小误差</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%80%89%E6%8B%A9%E4%B8%8A%E7%9A%84%E9%97%AE%E9%A2%98%EF%BC%9A"><span class="nav-text">模型的选择上的问题：</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

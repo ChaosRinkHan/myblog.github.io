@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#268785">
-<meta name="generator" content="Hexo 4.2.0">
+<meta name="generator" content="Hexo 5.2.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -26,8 +26,9 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="PyQt5+python+数据库可视化操作界面">
 <meta property="og:url" content="https://ltnexe.live/%E5%9F%BA%E4%BA%8EPyQt5%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8F%AF%E8%A7%86%E5%8C%96%E6%93%8D%E4%BD%9C%E7%95%8C%E9%9D%A2/index.html">
-<meta property="og:site_name" content="LTN Studio">
+<meta property="og:site_name" content="LTN">
 <meta property="og:description" content="前言这是我python入门写的第一个项目，从前天晚上开始构思到今天做了第一个Release。这两天时间做了读了Qt库和pymssql的不少文档，边学边做写了一个可视化窗口实现数据库的操作。对PyQt的理解也就限于槽和信号沟通环节，pymssql主要是连接部分，并未过多涉及。内容为医院挂号系统，基本实现和练习了增删查改操作。介绍环境和配置上的操作以及搭建经验。">
+<meta property="og:locale">
 <meta property="og:image" content="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/054617.png">
 <meta property="og:image" content="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/054659.png">
 <meta property="og:image" content="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/054723.png">
@@ -61,7 +62,7 @@
   };
 </script>
 
-  <title>PyQt5+python+数据库可视化操作界面 | LTN Studio</title>
+  <title>PyQt5+python+数据库可视化操作界面 | LTN</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-165305836-1"></script>
     <script>
@@ -121,7 +122,7 @@
 
     <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">LTN Studio</h1>
+      <h1 class="site-title">LTN</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
@@ -222,7 +223,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="LTN Studio">
+      <meta itemprop="name" content="LTN">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
@@ -280,9 +281,10 @@
       
         <h1 id="前言"><a href="#前言" class="headerlink" title="﻿前言"></a>﻿前言</h1><p>这是我python入门写的第一个项目，从前天晚上开始构思到今天做了第一个Release。这两天时间做了读了Qt库和pymssql的不少文档，边学边做写了一个可视化窗口实现数据库的操作。对PyQt的理解也就限于槽和信号沟通环节，pymssql主要是连接部分，并未过多涉及。内容为<strong>医院挂号系统</strong>，基本实现和练习了增删查改操作。介绍环境和配置上的操作以及搭建经验。</p>
  <a id="more"></a>
-<h1 id="PyQt5环境"><a href="#PyQt5环境" class="headerlink" title="PyQt5环境"></a>PyQt5环境</h1><p>参考<a href="http://blog.csdn.net/a359680405/article/details/45074761%20PyQt5+python3+pycharm%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE" target="_blank" rel="noopener">PyQt5+python3+pycharm开发环境配置</a><br>集成了PyUIC和QtDeisgner。其中Designer跨语言，可以画一些简单的窗口和控件，输出.ui格式的文件，利用PyUIC转码为.py进行编辑。<br>PyQt库非常庞大，但我实际操作主要聚焦于控件的方法和定义。Qt的参考文档为C++环境，结合Pycharm自动补全基本可以避开转换的问题。<br>可以看到MainWindow代码很长，但大部分都是ui文件转码自动生成的（retranslateUi、setupUi），实际需要编写的就是逻辑和实现部分。</p>
-<h1 id="数据库连接"><a href="#数据库连接" class="headerlink" title="数据库连接"></a>数据库连接</h1><p>由于要求和环境的限制，我使用了SQL server 2012。MySQL,SQLite等连接更为简洁方便。选用的库为pymssql，参考官方文档<a href="http://www.pymssql.org/en/stable/pymssql_examples.html" target="_blank" rel="noopener">pymssql</a><br>连接方面，需要首先登陆SQL Management Studio以管理员身份，然后设置中添加用于该项目连接的用户并给它授权。授权选项中我是全部勾选。<br><img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/054617.png" alt="这里写图片描述"><br>然后在其中建好设计好的两个表Doctor（用于检索医生）和Reg（用于前端操作）<br>注意设计时，将<code>varchar()</code>数据类型更改为<code>nvarcahar</code>,便于中文输入输出，同时连接时采用utf8字集：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">server = <span class="string">"DESKTOP-9RUT87E"</span></span><br><span class="line">user = <span class="string">"Hospital"</span></span><br><span class="line">password = <span class="string">"123456"</span></span><br><span class="line"><span class="comment">#print('Connecting to MSSQL...')</span></span><br><span class="line">conn = pymssql.connect(server, user, password, database=<span class="string">"Hospital"</span>, charset=<span class="string">'utf8'</span>)</span><br></pre></td></tr></table></figure>
+
+<h1 id="PyQt5环境"><a href="#PyQt5环境" class="headerlink" title="PyQt5环境"></a>PyQt5环境</h1><p>参考<a target="_blank" rel="noopener" href="http://blog.csdn.net/a359680405/article/details/45074761%20PyQt5+python3+pycharm%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE">PyQt5+python3+pycharm开发环境配置</a><br>集成了PyUIC和QtDeisgner。其中Designer跨语言，可以画一些简单的窗口和控件，输出.ui格式的文件，利用PyUIC转码为.py进行编辑。<br>PyQt库非常庞大，但我实际操作主要聚焦于控件的方法和定义。Qt的参考文档为C++环境，结合Pycharm自动补全基本可以避开转换的问题。<br>可以看到MainWindow代码很长，但大部分都是ui文件转码自动生成的（retranslateUi、setupUi），实际需要编写的就是逻辑和实现部分。</p>
+<h1 id="数据库连接"><a href="#数据库连接" class="headerlink" title="数据库连接"></a>数据库连接</h1><p>由于要求和环境的限制，我使用了SQL server 2012。MySQL,SQLite等连接更为简洁方便。选用的库为pymssql，参考官方文档<a target="_blank" rel="noopener" href="http://www.pymssql.org/en/stable/pymssql_examples.html">pymssql</a><br>连接方面，需要首先登陆SQL Management Studio以管理员身份，然后设置中添加用于该项目连接的用户并给它授权。授权选项中我是全部勾选。<br><img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/054617.png" alt="这里写图片描述"><br>然后在其中建好设计好的两个表Doctor（用于检索医生）和Reg（用于前端操作）<br>注意设计时，将<code>varchar()</code>数据类型更改为<code>nvarcahar</code>,便于中文输入输出，同时连接时采用utf8字集：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">server = <span class="string">&quot;DESKTOP-9RUT87E&quot;</span></span><br><span class="line">user = <span class="string">&quot;Hospital&quot;</span></span><br><span class="line">password = <span class="string">&quot;123456&quot;</span></span><br><span class="line"><span class="comment">#print(&#x27;Connecting to MSSQL...&#x27;)</span></span><br><span class="line">conn = pymssql.connect(server, user, password, database=<span class="string">&quot;Hospital&quot;</span>, charset=<span class="string">&#x27;utf8&#x27;</span>)</span><br></pre></td></tr></table></figure>
 <p>之后阅读学习python中获取光标进行简单的数据库操作，即可实现在程序中实现数据库操作了，可以参考pymaasql的example。</p>
 <h1 id="Python编辑"><a href="#Python编辑" class="headerlink" title="Python编辑"></a>Python编辑</h1><p>本项目的意义在于简单的图像化操作代替数据库语言来实现数据的增删查改。考虑到绘制的问题，采用的简单的单一界面交互。对于多界面交互则需要绘制多个ui文件并在主程序中调用。</p>
 <ul>
@@ -312,17 +314,21 @@
 <h1 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h1></li>
 <li><p>按钮槽函数的编写<br>DB_开头的函数为自定槽函数，用于响应按钮点击的事件。同时需要一些自定辅助函数和全局变量用于系统状态的维护。<br>编写思路见代码注释。</p>
 </li>
-<li>引用并执行<br>编写HospitalRegSys.py作为主程序来调用编写好的ui转码而来的文件，实现主程序和UI界面代码的分离，也方便添加多个界面。</li>
+<li><p>引用并执行<br>编写HospitalRegSys.py作为主程序来调用编写好的ui转码而来的文件，实现主程序和UI界面代码的分离，也方便添加多个界面。</p>
+</li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># HospitalRegSys0045.py</span></span><br><span class="line"><span class="keyword">from</span> PyQt5 <span class="keyword">import</span> QtCore, QtGui, QtWidgets</span><br><span class="line"><span class="keyword">from</span> MainWindow <span class="keyword">import</span> Ui_MainWindow</span><br><span class="line"><span class="keyword">import</span> decimal</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">mwindow</span><span class="params">(QtWidgets.QMainWindow,Ui_MainWindow)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        super(mwindow,self).__init__()</span><br><span class="line">        self.setupUi(self)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    <span class="keyword">import</span> sys</span><br><span class="line">    app=QtWidgets.QApplication(sys.argv)</span><br><span class="line">    mshow=mwindow()</span><br><span class="line">    mshow.show()</span><br><span class="line">    sys.exit(app.exec_())</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># HospitalRegSys0045.py</span></span><br><span class="line"><span class="keyword">from</span> PyQt5 <span class="keyword">import</span> QtCore, QtGui, QtWidgets</span><br><span class="line"><span class="keyword">from</span> MainWindow <span class="keyword">import</span> Ui_MainWindow</span><br><span class="line"><span class="keyword">import</span> decimal</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">mwindow</span>(<span class="params">QtWidgets.QMainWindow,Ui_MainWindow</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span></span><br><span class="line">        super(mwindow,self).__init__()</span><br><span class="line">        self.setupUi(self)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    <span class="keyword">import</span> sys</span><br><span class="line">    app=QtWidgets.QApplication(sys.argv)</span><br><span class="line">    mshow=mwindow()</span><br><span class="line">    mshow.show()</span><br><span class="line">    sys.exit(app.exec_())</span><br></pre></td></tr></table></figure>
 <p>主窗口代码</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 不再提供</span></span><br><span class="line"><span class="comment"># No avilable now</span></span><br></pre></td></tr></table></figure>
+
 <h1 id="pyinstaller生成可执行文件"><a href="#pyinstaller生成可执行文件" class="headerlink" title="pyinstaller生成可执行文件"></a>pyinstaller生成可执行文件</h1><p>生成exe的时候遇到了很多困难，和python3.6环境以及pymssql、pyinstaller设置的参数有关。经过多次测试和参考官方文档，在cmd中执行程序，根据报错“没有找到模块XXX”，直接在主程序中引入该模块即可，即是</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> decimal</span><br><span class="line"><span class="comment"># import的具体模块和报错缺少的模块有关</span></span><br></pre></td></tr></table></figure>
 <p>这个模块和_mssql有关，可见库和环境的不兼容性。</p>
 <h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><h2 id="数据库结构"><a href="#数据库结构" class="headerlink" title="数据库结构"></a>数据库结构</h2><p><img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/054902.png" alt="这里写图片描述"><br><img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/054904.png" alt="这里写图片描述"></p>
-<h2 id="retranslateUi、setupUi代码"><a href="#retranslateUi、setupUi代码" class="headerlink" title="retranslateUi、setupUi代码"></a>retranslateUi、setupUi代码</h2><p>只需编辑setupUi最后连接部分的信号，以实现按钮的功能。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 不再提供</span></span><br><span class="line"><span class="comment"># No avilable now</span></span><br></pre></td></tr></table></figure></p>
-<h2 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h2><p><a href="http://pyqt.sourceforge.net/Docs/PyQt5/" target="_blank" rel="noopener">PyQt5 Reference Guide</a><br><a href="http://www.pymssql.org/en/stable/intro.html" target="_blank" rel="noopener">pymssql</a></p>
+<h2 id="retranslateUi、setupUi代码"><a href="#retranslateUi、setupUi代码" class="headerlink" title="retranslateUi、setupUi代码"></a>retranslateUi、setupUi代码</h2><p>只需编辑setupUi最后连接部分的信号，以实现按钮的功能。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 不再提供</span></span><br><span class="line"><span class="comment"># No avilable now</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h2><p><a target="_blank" rel="noopener" href="http://pyqt.sourceforge.net/Docs/PyQt5/">PyQt5 Reference Guide</a><br><a target="_blank" rel="noopener" href="http://www.pymssql.org/en/stable/intro.html">pymssql</a></p>
 
     </div>
 
@@ -426,7 +432,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-text">﻿前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#PyQt5环境"><span class="nav-text">PyQt5环境</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库连接"><span class="nav-text">数据库连接</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Python编辑"><span class="nav-text">Python编辑</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#交互设计"><span class="nav-text">交互设计</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实现"><span class="nav-text">实现</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pyinstaller生成可执行文件"><span class="nav-text">pyinstaller生成可执行文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#附录"><span class="nav-text">附录</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库结构"><span class="nav-text">数据库结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#retranslateUi、setupUi代码"><span class="nav-text">retranslateUi、setupUi代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ref"><span class="nav-text">Ref</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-text">﻿前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#PyQt5%E7%8E%AF%E5%A2%83"><span class="nav-text">PyQt5环境</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5"><span class="nav-text">数据库连接</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Python%E7%BC%96%E8%BE%91"><span class="nav-text">Python编辑</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%A4%E4%BA%92%E8%AE%BE%E8%AE%A1"><span class="nav-text">交互设计</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0"><span class="nav-text">实现</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pyinstaller%E7%94%9F%E6%88%90%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6"><span class="nav-text">pyinstaller生成可执行文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%99%84%E5%BD%95"><span class="nav-text">附录</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E7%BB%93%E6%9E%84"><span class="nav-text">数据库结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#retranslateUi%E3%80%81setupUi%E4%BB%A3%E7%A0%81"><span class="nav-text">retranslateUi、setupUi代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ref"><span class="nav-text">Ref</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

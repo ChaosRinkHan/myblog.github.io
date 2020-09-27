@@ -32,7 +32,7 @@
 <meta property="og:description" content="Hexo 5.0.0+从Hexo 4升级到Hexo +，直接改package.json里面的依赖版本： 1&quot;hexo&quot;: &quot;^5.0.0&quot;,  然后命令行 1npm install  然后看情况，需要npm audit fix或者单独安装所需要的依赖。 建议在升级NexT之前先把Hexo升级了再测试，避免新的node module依赖又出问题。 Hexo 5">
 <meta property="og:locale">
 <meta property="article:published_time" content="2020-09-26T14:41:59.000Z">
-<meta property="article:modified_time" content="2020-09-26T15:14:42.939Z">
+<meta property="article:modified_time" content="2020-09-27T01:48:34.643Z">
 <meta property="article:author" content="Chaolin Han">
 <meta property="article:tag" content="Hexo">
 <meta name="twitter:card" content="summary">
@@ -317,10 +317,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2020-09-26 22:41:59 / Modified: 23:14:42" itemprop="dateCreated datePublished" datetime="2020-09-26T22:41:59+08:00">2020-09-26</time>
+      <time title="Created: 2020-09-26 22:41:59" itemprop="dateCreated datePublished" datetime="2020-09-26T22:41:59+08:00">2020-09-26</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-09-27 09:48:34" itemprop="dateModified" datetime="2020-09-27T09:48:34+08:00">2020-09-27</time>
+      </span>
 
   
     <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
@@ -382,7 +388,7 @@
 <p>我安装完在CDN那里一直报错，是<code>vendor.js</code>代码里面解析<code>local</code>的<code>call</code>一直出问题：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">INFO  Start processing</span><br><span class="line">FATAL &#123;</span><br><span class="line">  err: TypeError: Cannot read property &#x27;call&#x27; of undefined</span><br><span class="line">      at module.exports (/Users/chaolinhan/Public/Hexo/init/themes/next/scripts/events/lib/vendors.js:27:25)</span><br><span class="line">      at Hexo.&lt;anonymous&gt; (/Users/chaolinhan/Public/Hexo/init/themes/next/scripts/events/index.js:9:27)</span><br><span class="line">      at Hexo.tryCatcher (/Users/chaolinhan/Public/Hexo/init/node_modules/hexo/node_modules/bluebird/js/release/util.js:16:23)</span><br><span class="line">      </span><br><span class="line">.</span><br><span class="line">.</span><br><span class="line">.</span><br><span class="line"></span><br><span class="line">&#125; Something&#x27;s wrong. Maybe you can find the solution here: %s https://hexo.io/docs/troubleshooting.html</span><br></pre></td></tr></table></figure>
 
-<p>可能是历史遗留的<code>lib</code>文件问题，因为测试了应该不是依赖的问题。解决方法简单粗暴，直接把``vendor.js<code>出问题的这个</code>call`（第二行）注释掉就行了，等以后有空了慢慢看看是什么问题 lol</p>
+<p>可能是历史遗留的<code>lib</code>文件问题，因为测试了应该不是依赖的问题。解决方法简单粗暴，直接把<code>vendor.js</code>出问题的这个<code>call</code>（第二行）注释掉就行了，等以后有空了慢慢看看是什么问题 lol</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> links = &#123;</span><br><span class="line">  <span class="comment">// local: url_for.call(hexo, `lib/$&#123;name&#125;/$&#123;file&#125;`),</span></span><br><span class="line">  jsdelivr: <span class="string">`//cdn.jsdelivr.net/npm/<span class="subst">$&#123;name&#125;</span>@<span class="subst">$&#123;version&#125;</span>/<span class="subst">$&#123;file&#125;</span>`</span>,</span><br><span class="line">  unpkg: <span class="string">`//unpkg.com/<span class="subst">$&#123;name&#125;</span>@<span class="subst">$&#123;version&#125;</span>/<span class="subst">$&#123;file&#125;</span>`</span>,</span><br><span class="line">  cdnjs: <span class="string">`//cdnjs.cloudflare.com/ajax/libs/<span class="subst">$&#123;</span></span></span><br><span class="line"><span class="string"><span class="subst">    alias || name</span></span></span><br><span class="line"><span class="string"><span class="subst">  &#125;</span>/<span class="subst">$&#123;version&#125;</span>/<span class="subst">$&#123;file.replace(<span class="regexp">/^(dist|lib|)\/(browser\/|)/</span>, <span class="string">&quot;&quot;</span>)&#125;</span>`</span>,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
 <p>别的问题大部分都是依赖的问题，用<code>npm audix</code>好好查一下然后把报错的挨着修复下就行了。</p>

@@ -21,23 +21,23 @@
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"ltnexe.live","root":"/","scheme":"Mist","version":"8.0.1","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"width":280},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+    var CONFIG = {"hostname":"ltnexe.live","root":"/","scheme":"Mist","version":"8.0.1","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"width":280},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
 
-  <meta name="description" content="Next主题升级到7.0了。之前一从5.1.x升级失败，现在一步到位，powered to 7.0. Hack Guide6.0之后，主仓库已从 iissnan 名下 迁移至 theme-next 组织，参考这里。 官方升级教程 已经越来越完善，越来越成熟，各种bug基本已经被解决掉，包括曾经困扰我多日的子路径重复问题。同时代码也越来注重独立性，js和第三方插件也越来越规范，用起来的确是十分方便。">
+  <meta name="description" content="Next 主题升级到 7.0 了。之前一从 5.1.x 升级失败，现在一步到位，powered to 7.0. Hack Guide6.0 之后，主仓库已从 iissnan 名下 迁移至 theme-next 组织，参考这里。 官方升级教程 已经越来越完善，越来越成熟，各种 bug 基本已经被解决掉，包括曾经困扰我多日的子路径重复问题。同时代码也越来注重独立性，js 和第三方插件也越来越规范，用起">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Powered to 7.0">
 <meta property="og:url" content="https://ltnexe.live/powered-to-7-0/index.html">
 <meta property="og:site_name" content="LTN">
-<meta property="og:description" content="Next主题升级到7.0了。之前一从5.1.x升级失败，现在一步到位，powered to 7.0. Hack Guide6.0之后，主仓库已从 iissnan 名下 迁移至 theme-next 组织，参考这里。 官方升级教程 已经越来越完善，越来越成熟，各种bug基本已经被解决掉，包括曾经困扰我多日的子路径重复问题。同时代码也越来注重独立性，js和第三方插件也越来越规范，用起来的确是十分方便。">
+<meta property="og:description" content="Next 主题升级到 7.0 了。之前一从 5.1.x 升级失败，现在一步到位，powered to 7.0. Hack Guide6.0 之后，主仓库已从 iissnan 名下 迁移至 theme-next 组织，参考这里。 官方升级教程 已经越来越完善，越来越成熟，各种 bug 基本已经被解决掉，包括曾经困扰我多日的子路径重复问题。同时代码也越来注重独立性，js 和第三方插件也越来越规范，用起">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/052354.png">
+<meta property="og:image" content="https://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/052354.png">
 <meta property="article:published_time" content="2019-02-28T17:49:30.000Z">
-<meta property="article:modified_time" content="2020-09-26T06:20:28.708Z">
+<meta property="article:modified_time" content="2020-10-07T05:31:55.428Z">
 <meta property="article:author" content="Chaolin Han">
 <meta property="article:tag" content="Hexo">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/052354.png">
+<meta name="twitter:image" content="https://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/052354.png">
 
 
 <link rel="canonical" href="https://ltnexe.live/powered-to-7-0/">
@@ -233,14 +233,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-count">43</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -310,7 +310,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Powered to 7.0
+          Powered to 7.0<a href="https://github.com/chaolinhan/blogSourceHexo/tree/master/source/_posts/powered-to-7-0.md" class="post-edit-link" title="编辑" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
         </h1>
 
         <div class="post-meta-container">
@@ -328,17 +328,10 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-09-26 14:20:28" itemprop="dateModified" datetime="2020-09-26T14:20:28+08:00">2020-09-26</time>
+        <time title="修改时间：2020-10-07 13:31:55" itemprop="dateModified" datetime="2020-10-07T13:31:55+08:00">2020-10-07</time>
       </span>
 
   
-    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span id="busuanzi_value_page_pv"></span>
-    </span>
   
   <span class="post-meta-item">
     
@@ -362,13 +355,13 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p><strong>Next主题</strong>升级到7.0了。之前一从5.1.x升级失败，现在一步到位，powered to 7.0.</p>
-<h2 id="Hack-Guide"><a href="#Hack-Guide" class="headerlink" title="Hack Guide"></a>Hack Guide</h2><p>6.0之后，主仓库已从 <a target="_blank" rel="noopener" href="https://github.com/iissnan/hexo-theme-next">iissnan 名下</a> 迁移至 <a target="_blank" rel="noopener" href="https://github.com/theme-next">theme-next</a> 组织，参考<a target="_blank" rel="noopener" href="https://github.com/theme-next/hexo-theme-next/blob/master/docs/zh-CN/README.md">这里</a>。</p>
+        <p><strong>Next 主题</strong>升级到 7.0 了。之前一从 5.1.x 升级失败，现在一步到位，powered to 7.0.</p>
+<h2 id="Hack-Guide"><a href="#Hack-Guide" class="headerlink" title="Hack Guide"></a>Hack Guide</h2><p>6.0 之后，主仓库已从 <a target="_blank" rel="noopener" href="https://github.com/iissnan/hexo-theme-next">iissnan 名下</a> 迁移至 <a target="_blank" rel="noopener" href="https://github.com/theme-next">theme-next</a> 组织，参考<a target="_blank" rel="noopener" href="https://github.com/theme-next/hexo-theme-next/blob/master/docs/zh-CN/README.md">这里</a>。</p>
 <p><a target="_blank" rel="noopener" href="https://github.com/theme-next/hexo-theme-next/blob/master/docs/zh-CN/UPDATE-FROM-5.1.X.md">官方升级教程</a></p>
-<p>已经越来越完善，越来越成熟，各种bug基本已经被解决掉，包括曾经困扰我多日的子路径重复问题。同时代码也越来注重独立性，js和第三方插件也越来越规范，用起来的确是十分方便。</p>
+<p>已经越来越完善，越来越成熟，各种 bug 基本已经被解决掉，包括曾经困扰我多日的子路径重复问题。同时代码也越来注重独立性，js 和第三方插件也越来越规范，用起来的确是十分方便。</p>
  <a id="more"></a>
 
-<h2 id="Configuration"><a href="#Configuration" class="headerlink" title="Configuration"></a>Configuration</h2><p>将7.0克隆到目录后，主要对比新旧版本的config.yml文件进行配置；同时注意将之前的自定义样式对应导入新主题目录下：</p>
+<h2 id="Configuration"><a href="#Configuration" class="headerlink" title="Configuration"></a>Configuration</h2><p>将 7.0 克隆到目录后，主要对比新旧版本的 config.yml 文件进行配置；同时注意将之前的自定义样式对应导入新主题目录下：</p>
 <blockquote>
 <ol>
 <li><code>config.yml</code> 或 <code>next.yml</code>（如果你使用了<a target="_blank" rel="noopener" href="https://github.com/theme-next/hexo-theme-next/blob/master/docs/zh-CN/DATA-FILES.md">数据文件</a>）。</li>
@@ -377,9 +370,9 @@
 <li>任何其它可能的附加自定义内容；为了定位它们，你可以通过某些工具在仓库间比较。</li>
 </ol>
 </blockquote>
-<p>这里推荐Atom对比工具Split Diff：对比修改十分方便，同步滚动，修改内容后亦是实时对比：</p>
-<p><img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/052354.png" alt="Screenshot 2019-03-01 at 01.09.14"></p>
-<h2 id="Add-Ons"><a href="#Add-Ons" class="headerlink" title="Add-Ons"></a>Add-Ons</h2><p>许多第三方工具也变得更加易用，包括评论系统和字数/访客统计系统。这次我使用了valine的<strong>无后端评论系统</strong>，大家可以<strong>直接评论而不需要登录、填写个人信息</strong>（样式见下方测试）。</p>
+<p>这里推荐 Atom 对比工具 Split Diff：对比修改十分方便，同步滚动，修改内容后亦是实时对比：</p>
+<p><img src="https://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/052354.png" alt="Screenshot 2019-03-01 at 01.09.14"></p>
+<h2 id="Add-Ons"><a href="#Add-Ons" class="headerlink" title="Add-Ons"></a>Add-Ons</h2><p>许多第三方工具也变得更加易用，包括评论系统和字数/访客统计系统。这次我使用了 valine 的<strong>无后端评论系统</strong>，大家可以<strong>直接评论而不需要登录、填写个人信息</strong>（样式见下方测试）。</p>
 <hr>
 
     </div>
@@ -552,8 +545,8 @@
 
 <script>
 NexT.utils.loadComments('#valine-comments', () => {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
-    new Valine(Object.assign({"enable":true,"appId":"5dql56FUIB3HYuJdS8FpyeVP-gzGzoHsz","appKey":"6dn3IHWnKiBu9UXTxCuy6xJs","serverURLs":null,"placeholder":"支持匿名回复，邮箱/网址可以留空","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"lang":"zh-cn","visitor":false,"comment_count":false,"recordIP":false,"enableQQ":false,"requiredFields":["nick"]}, {
+  NexT.utils.getScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
+    new Valine(Object.assign({"enable":true,"appId":"5dql56FUIB3HYuJdS8FpyeVP-gzGzoHsz","appKey":"6dn3IHWnKiBu9UXTxCuy6xJs","serverURLs":null,"placeholder":"支持匿名回复，邮箱/网址可以留空","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"lang":null,"visitor":false,"comment_count":false,"recordIP":false,"enableQQ":false,"requiredFields":["nick"]}, {
       el: '#valine-comments',
       path: "/powered-to-7-0/",
       serverURLs: "https://5dql56fu.api.lncldglobal.com"

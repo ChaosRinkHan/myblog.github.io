@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#268785">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/logo_g.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/logo_g.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/logo_g.png">
+  <link rel="mask-icon" href="/images/logo_g.png" color="#268785">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Noto+Serif+SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"ltnexe.live","root":"/","scheme":"Mist","version":"8.0.1","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"width":280},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+  </script>
+
+  <meta name="description" content="TL;DR拿到树莓派估计也有一周多了，折腾了不少东西。在折腾之前，很多人可能只知道树莓派，但是慢慢上手了才发现针对不同的应用都有更专业更有性价比的产品，比如简单的做路由和NAS相关功能的蜗牛、N1，做工业开发的国产版。树莓派就是一个什么都能做一点的东西，可惜在一些方面做不到那么专业。这里讲了怎么点亮树莓派4B上的Manjaro，OpenWrt中的NAS，自建密码服务器和一些脚本。讲结构居多，具体手">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【树莓派】路由，NAS，密码服务器和一些定时脚本">
+<meta property="og:url" content="https://ltnexe.live/rpi1/index.html">
+<meta property="og:site_name" content="LTN">
+<meta property="og:description" content="TL;DR拿到树莓派估计也有一周多了，折腾了不少东西。在折腾之前，很多人可能只知道树莓派，但是慢慢上手了才发现针对不同的应用都有更专业更有性价比的产品，比如简单的做路由和NAS相关功能的蜗牛、N1，做工业开发的国产版。树莓派就是一个什么都能做一点的东西，可惜在一些方面做不到那么专业。这里讲了怎么点亮树莓派4B上的Manjaro，OpenWrt中的NAS，自建密码服务器和一些脚本。讲结构居多，具体手">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/033539.png">
+<meta property="og:image" content="https://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/064118.png">
+<meta property="og:image" content="https://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/064156.png">
+<meta property="og:image" content="https://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/055743.png">
+<meta property="og:image" content="https://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/055809.png">
+<meta property="og:image" content="https://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/065750.png">
+<meta property="og:image" content="https://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/061602.png">
+<meta property="og:image" content="https://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/063259.png">
+<meta property="og:image" content="https://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/063524.png">
+<meta property="article:published_time" content="2020-10-26T02:50:15.000Z">
+<meta property="article:modified_time" content="2020-10-26T07:05:25.639Z">
+<meta property="article:author" content="Chaolin Han">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Raspberry Pi">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/033539.png">
+
+
+<link rel="canonical" href="https://ltnexe.live/rpi1/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>【树莓派】路由，NAS，密码服务器和一些定时脚本 | LTN</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-165305836-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-165305836-1');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">LTN</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-address-card fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#TL-DR"><span class="nav-text">TL;DR</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Plan"><span class="nav-text">Plan</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Path"><span class="nav-text">Path</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A3%85%E7%B3%BB%E7%BB%9F"><span class="nav-text">装系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OpenWrt-in-Docker"><span class="nav-text">OpenWrt in Docker</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bitwarden-in-Docker"><span class="nav-text">Bitwarden in Docker</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Scripts"><span class="nav-text">Scripts</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E6%9C%9F%E6%A3%80%E6%9F%A5%E5%85%AC%E7%BD%91IP%EF%BC%8C%E5%8F%91%E7%94%9F%E5%8F%98%E5%8A%A8%E5%88%99%E9%82%AE%E4%BB%B6%E9%80%9A%E7%9F%A5"><span class="nav-text">定期检查公网IP，发生变动则邮件通知</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Next"><span class="nav-text">Next</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Chaolin Han"
+      src="/images/icn.jpg">
+  <p class="site-author-name" itemprop="name">Chaolin Han</p>
+  <div class="site-description" itemprop="description">Our business is life itself.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">43</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/chaolinhan" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;chaolinhan" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/chaolinhan@outlook.com" title="E-Mail → chaolinhan@outlook.com"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/C_R__Han" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;C_R__Han" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.instagram.com/cl_han" title="Instagram → https:&#x2F;&#x2F;www.instagram.com&#x2F;cl_han" rel="noopener" target="_blank"><i class="fab fa-instagram fa-fw"></i></a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ltnexe.live/rpi1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icn.jpg">
+      <meta itemprop="name" content="Chaolin Han">
+      <meta itemprop="description" content="Our business is life itself.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LTN">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【树莓派】路由，NAS，密码服务器和一些定时脚本<a href="https://github.com/chaolinhan/blogSourceHexo/tree/master/source/_posts/rpi1.md" class="post-edit-link" title="编辑" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2020-10-26 10:50:15 / 修改时间：15:05:25" itemprop="dateCreated datePublished" datetime="2020-10-26T10:50:15+08:00">2020-10-26</time>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/rpi1/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/rpi1/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="TL-DR"><a href="#TL-DR" class="headerlink" title="TL;DR"></a>TL;DR</h2><p>拿到树莓派估计也有一周多了，折腾了不少东西。在折腾之前，很多人可能只知道树莓派，但是慢慢上手了才发现针对不同的应用都有更专业更有性价比的产品，比如简单的做路由和NAS相关功能的蜗牛、N1，做工业开发的国产版。树莓派就是一个什么都能做一点的东西，可惜在一些方面做不到那么专业。这里讲了怎么<strong>点亮树莓派4B上的Manjaro</strong>，OpenWrt中的<strong>NAS</strong>，<strong>自建密码服务器</strong>和一些脚本。讲结构居多，具体手把手教程有附链接就不重复了。</p>
+<h2 id="Plan"><a href="#Plan" class="headerlink" title="Plan"></a>Plan</h2><p>前期计划：</p>
+<ul>
+<li><strong>私有云和NAS</strong>：连接到我的好几块硬盘，先能够局域网访问，再考虑内网穿透实现公网访问</li>
+<li><strong>部署Bitwarden密码服务器</strong>：有一篇计划之中的post「什么样的密码管理才是我们需要的」<del>（本来很早就应该写好的）</del>，部署开源的密码服务到私有服务器是这个计划的<strong>最后一步</strong>。目前未考虑开放公网访问</li>
+<li>运行一些全天任务，如RSS定时抓取，天气等定时脚本</li>
+<li>Web开发</li>
+</ul>
+<p>后期计划：见<a href="##Next">Next</a></p>
+<h2 id="Path"><a href="#Path" class="headerlink" title="Path"></a>Path</h2><h3 id="装系统"><a href="#装系统" class="headerlink" title="装系统"></a>装系统</h3><p>树莓派4B的系统最初可以通过TF卡安装。针对树莓派的Linux系统很多，随便一搜就可以看到推荐和对比。树莓派4B可以直接安装arm 64的系统，我安装的是<code>Manjaro-ARM 20.10</code>，有<a target="_blank" rel="noopener" href="https://manjaro.org/downloads/arm/raspberry-pi-4/arm8-raspberry-pi-4-kde-plasma/">树莓派版</a>。</p>
+ <a id="more"></a>
+
+<ol>
+<li>Manjaro的第一次启动<strong>必须要</strong>外接屏幕和键盘来设置账户，不能像树莓盘官方系统那样直接用默认账户ssh进去</li>
+<li>Manjaro的<code>ssh</code>服务是默认开机启动的，第一次启动之后的每次开机就不再需要外接屏幕和键盘了，除非启动失败</li>
+<li>远程看桌面GUI可以用VNC或者ssh的<code>X-forwarding</code>。折腾了几天VNC也没有成功，<code>tigervnc</code>切换不了默认的DE（默认DE是LXDE。推测这和arm arch有关，arm上很多默认path不一样）。别的VNC也不行，浪费了好几天。于是现在纯<code>ssh</code>使用</li>
+<li>有的软件包<strong>并不支持</strong>arm 64这种架构，要干特定事情之前最好查一下支持情况。实测<code>mutt</code>这种强行编译也是可以用的</li>
+<li>终端换成了<code>zsh</code>，用了<code>oh my zsh</code>，和我本地的<code>zsh</code>配置文件同步了，软件包和主题都有了。我的<code>.zshrc</code> gist在<a target="_blank" rel="noopener" href="https://gist.github.com/chaolinhan/20d1fda4768cb64a2ec11829fc0b57eb">这里</a>。还装了<code>yay</code>，<code>autojump</code>和自动补全等一系列工具</li>
+</ol>
+<img src="https://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/033539.png" alt="截屏2020-10-26 11.35.09" style="zoom:70%;" />
+
+<h3 id="OpenWrt-in-Docker"><a href="#OpenWrt-in-Docker" class="headerlink" title="OpenWrt in Docker"></a>OpenWrt in Docker</h3><p>OpenWrt的功能非常多，通常是给路由器用的固件，但是别的Linux也可以刷它来做<strong>旁路由</strong>，甚至像树莓派这种带网口和WiFi的机器可以做<strong>主路由</strong>。NAS，梯子，计划任务，aria，Transmission等都有。我是把它安装在Docker中的，也可以直接把它装成树莓派的主系统。</p>
+<ol>
+<li>安装Docker</li>
+<li>安装针对树莓派的Docker镜像。OpenWrt有两个主要的社区buff版本，具体的可以搜一下</li>
+<li>运行镜像，通过本地端口在随便一个浏览器访问<code>192.168.x.x</code>就进入到了管理页面</li>
+</ol>
+<div class="note warning"><p>在树莓派的docker上运行的OpenWrt是不支持WiFi桥接的（也就是，树莓派主机必须和路由器通过物理网线连接），等待后续更新，或者一些别的方法出现。</p>
+<p>2020.10.26</p>
+</div>
+
+<ol start="4">
+<li>挂载外部硬盘，启动<code>SAMBA</code>或者<code>ftp</code>，当NAS</li>
+<li>OpenWrt还有很多别的功能，比如服务监控，很实用</li>
+</ol>
+<p>别人的全套教程：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://blog.sillyson.com/archives/7.html">https://blog.sillyson.com/archives/7.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://mlapp.cn/373.html">https://mlapp.cn/373.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.hostarr.com/samba-on-openwrt/">https://www.hostarr.com/samba-on-openwrt/</a></li>
+</ul>
+<p>固件：（DockerHub上面一搜也有很多）</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/SuLingGG/OpenWrt-Rpi">https://github.com/SuLingGG/OpenWrt-Rpi</a></li>
+</ul>
+<p>服务通知：</p>
+<ul>
+<li>Server酱 <a target="_blank" rel="noopener" href="http://sc.ftqq.com/3.version">http://sc.ftqq.com/3.version</a></li>
+</ul>
+<p>涉及到硬盘挂载时，由于之前不熟悉，踩了很多坑：</p>
+<ul>
+<li>ntfs格式的硬盘支持需要软件包</li>
+<li>由于我两块SSD以前都是Mac专用，都是苹果的HFS+日志格式，这种格式在Linux系统上是<strong>只读</strong>的；苹果的时间机器对磁盘格式还有要求（必须是HFS+或者APFS，见：<a target="_blank" rel="noopener" href="https://support.apple.com/zh-cn/guide/mac-help/mh15139/mac">在 Mac 上可以与时间机器配合使用的磁盘类型</a>），所以打算用此来当NAS实现时间机器备份，需要在Mac上关闭磁盘的日志功能，再在Linux中安装<code>hfsprogs</code>来实现读写</li>
+<li>开机挂载点，挂载目录的权限都要设置，不然可能重启就挂载到新目录了，或者某些设备出现读写权限的问题</li>
+<li>可以先用shell在<code>/mnt</code>下面测试挂载硬盘的权限再在OpenWrt页面中开启网络存储</li>
+</ul>
+<p>OpenWrt还可以换主题，安装别的支持软件包等等。</p>
+<p>我试过两种连接方式：</p>
+<ol>
+<li>路由器有线桥接。速度限制在网线或路由器WiFi的最大速度，远远达不到硬盘本身的USB 3.0速度</li>
+<li>直接和我的电脑有线桥接。速度就是硬盘本身的速度减去传输的损耗。<del>但是既然都用网线连接到我的电脑了，为什么不直接把硬盘插在电脑上直接用呢？</del></li>
+</ol>
+<img src="https://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/064118.png" alt="image-20201026144113643" style="zoom: 33%;" />
+
+<img src="https://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/064156.png" alt="image-20201026144153489" style="zoom:33%;" />
+
+<p>配置好了之后，在Mac和Android上都能直接访问SMB硬盘。macOS的Finder提供了原生支持，三星的文件浏览器也支持直接挂载SMB网络存储，甚至可以设置为存储目录。如果计划长期作为NAS使用，建议使用带电源的硬盘SATA接口和使用专门的NAS硬盘，并做好备份和防挂措施。</p>
+<p><strong>下一步：100MB/s读写的NAS</strong></p>
+<h3 id="Bitwarden-in-Docker"><a href="#Bitwarden-in-Docker" class="headerlink" title="Bitwarden in Docker"></a>Bitwarden in Docker</h3><p>Bitwarden是开源的密码服务，你可以选择使用在线版，并交钱解锁会员功能；或者将它部署在自己的服务器上，免费使用所有功能。它是跨平台的，支持自动填充。</p>
+<p><a target="_blank" rel="noopener" href="https://bitwarden.com/help/article/install-on-premise/">Bitwarden官方的部署指南</a>写的非常详细，同时Bitwarden本身配置也很复杂。我使用的是buff版本的<a target="_blank" rel="noopener" href="https://github.com/dani-garcia/bitwarden_rs">Bitwarden_rs</a>。部署的教程很多，我全程看的是这一篇：</p>
+<blockquote>
+<p>  <a target="_blank" rel="noopener" href="https://medium.com/swlh/set-up-your-own-personal-password-vault-313d76374046">Setting up a Private Password Vault in 5 Minutes with Docker</a></p>
+</blockquote>
+<p>然后就可以直接通过网页访问了。</p>
+<p>登录页面</p>
+<p><img src="https://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/055743.png" alt="image-20201026135742060"></p>
+<p>因为本地部署而解锁的付费功能</p>
+<p><img src="https://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/055809.png" alt="image-20201026135806154"></p>
+<p>教程中提到了创建私人CA证书来实现<strong>局域网内https访问</strong>（SSL证书是在移动端使用app所<strong>必须的</strong>），然而我折腾了好几天依然没有成功。现在依然是http访问，同时不能在手机app上访问。以后如果有公共证书了我再继续配置，目前就是在局域网内能实现浏览器访问和电脑Chrome上自动填充。<del>为什么使用它和更多密码管理的事情我会在以后的post中讲到。</del></p>
+<p>那篇教程所使用的镜像除了Bitwarden主服务，还包括配置好的nginx反向代理和Bitwarden备份服务，一站解决。</p>
+<p>除此之外，还做了几个别的事：</p>
+<ul>
+<li><p>开启admin页面，有各种后台管理。相当于配置文件的GUI</p>
+<p><code>docker-compose.yaml</code></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">bitwarden:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">bitwardenrs/server:raspberry</span> <span class="comment">#swap tag to raspberry to run on a raspberry pi</span></span><br><span class="line">    <span class="attr">expose:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;80&quot;</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./data/bitwarden:/data</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">on-failure</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="attr">WEBSOCKET_ENABLED:</span> <span class="string">&#x27;true&#x27;</span></span><br><span class="line">      <span class="attr">ADMIN_TOKEN:</span> <span class="string">&#x27;XXXXXX&#x27;</span> </span><br><span class="line">      <span class="comment"># 设置token之后，admin页面就可用了。在&lt;server ip&gt;/admin输入token就可以进入</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/065750.png" alt="image-20201026145748625"></p>
+</li>
+<li><p>关闭用户注册功能。因为只有我一个人用。在配置文件或者admin页面可以关</p>
+</li>
+<li><p>路由器上配置端口映射，由于家里的网有公网IP，可以实现公网访问；正常情况下为了防止攻击，端口映射都关了</p>
+</li>
+</ul>
+<p><strong>总结：想配置一个私人的https太难了，有经验欢迎交流</strong>。PS 底下的评论系统好像被LeanClound挂了，暂时没有迁移到别的评论系统的打算（毕竟评论那么少），可以通过邮箱联系到我。</p>
+<p><strong>目前docker上在跑的服务</strong></p>
+<p><img src="https://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/061602.png" alt="image-20201026141559830"></p>
+<h3 id="Scripts"><a href="#Scripts" class="headerlink" title="Scripts"></a>Scripts</h3><p>写了两个定时shell脚本，用<code>cron</code>来实现定时或者周期执行。</p>
+<h4 id="定期检查公网IP，发生变动则邮件通知"><a href="#定期检查公网IP，发生变动则邮件通知" class="headerlink" title="定期检查公网IP，发生变动则邮件通知"></a>定期检查公网IP，发生变动则邮件通知</h4><p>邮件发送用的mutt+qq邮箱的smtp</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/zsh</span></span><br><span class="line">echo &quot;Checking IP&quot;</span><br><span class="line">NEW_IP=$(wget -qO - https://api.ipify.org)</span><br><span class="line">OLD_IP=$(&lt;externalip)</span><br><span class="line">export OLD_IP</span><br><span class="line">export NEW_IP</span><br><span class="line">if [ &quot;$NEW_IP&quot; = &quot;$OLD_IP&quot; ]</span><br><span class="line">then</span><br><span class="line">	echo &quot;External IP not changed&quot;</span><br><span class="line">else</span><br><span class="line">	echo &quot;External IP changed&quot; &gt; ip_mail.txt</span><br><span class="line">	echo &quot;OLD: $&#123;OLD_IP&#125;&quot; &gt;&gt; ip_mail.txt</span><br><span class="line">	echo &quot;NEW: $&#123;NEW_IP&#125;&quot; &gt;&gt; ip_mail.txt</span><br><span class="line">	mutt XXX@XXX.com -s &quot;External IP changed&quot; &lt; ip_mail.txt</span><br><span class="line">	echo $NEW_IP &gt; externalip</span><br><span class="line">	echo &quot;Email has been sent.\nNew IP $&#123;NEW_IP&#125; has been recorded in ~/externalip.&quot;</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/063259.png" alt="截屏2020-10-26 14.32.51"></p>
+<p>每天早上发送系统报告</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/zsh</span></span><br><span class="line">vcgencmd measure_temp &gt; sys_report.txt</span><br><span class="line">uptime &gt;&gt; sys_report.txt</span><br><span class="line">iostat -mt &gt;&gt; sys_report.txt</span><br><span class="line">vmstat 3 3 &gt;&gt; sys_report.txt</span><br><span class="line">echo &quot;\nIP: $&#123;NEW_IP&#125;&quot; &gt;&gt; sys_report.txt</span><br><span class="line">echo &quot;Host name: $(hostname -f), addresses: $(hostname -i)\n&quot; &gt;&gt; sys_report.txt</span><br><span class="line">docker ps --format &quot;table &#123;&#123;.ID&#125;&#125;\t&#123;&#123;.Names&#125;&#125;\t&#123;&#123;.Status&#125;&#125;&quot; -a &gt;&gt; sys_report.txt</span><br><span class="line">echo &quot; &quot;  &gt;&gt; sys_report.txt</span><br><span class="line">crontab -l &gt;&gt; sys_report.txt</span><br><span class="line"></span><br><span class="line">mutt xxx@xxx.com -s &quot;[System Report] Usage&quot; -a sys_report.txt &lt; sys_report.txt</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/063524.png" alt="截屏2020-10-26 14.35.10"></p>
+<p><strong>PS</strong> <code>mutt</code>发邮件不支持换字体，所以邮件正文对不齐。解决方式是发送html编码的邮件。</p>
+<h2 id="Next"><a href="#Next" class="headerlink" title="Next"></a>Next</h2><p>这篇也就写到这里，接下来的Roadmap计划里的东西就开新篇写了。</p>
+<p>可能的有</p>
+<ul>
+<li>买个小显示屏，显示系统状态，公网/内网IP，天气等</li>
+<li>作为服务器，先把我这个博客放上来 <del>然后试试app的后台数据库（又是一个被搁置的项目）</del></li>
+<li>作为一个闲时计算平台，跑一些non-intensive的代码，或者没事跑跑网络profile</li>
+<li>外接硬件，温度湿度空气质量</li>
+<li>独立于NAS的本地串流服务</li>
+<li>CI服务，私有GitLab</li>
+<li>挖矿（调查了一两天，因为单机算力暂时搁置）</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Chaolin Han
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://ltnexe.live/rpi1/" title="【树莓派】路由，NAS，密码服务器和一些定时脚本">https://ltnexe.live/rpi1/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
+              <a href="/tags/Raspberry-Pi/" rel="tag"># Raspberry Pi</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+            </div>
+            <div class="post-nav-item">
+                <a href="/wastedmoreorless/" rel="next" title="最近折腾的">
+                  最近折腾的 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 2017 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-bolt"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chaolin Han</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+<script>
+NexT.utils.loadComments('#valine-comments', () => {
+  NexT.utils.getScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
+    new Valine(Object.assign({"enable":true,"appId":"5dql56FUIB3HYuJdS8FpyeVP-gzGzoHsz","appKey":"6dn3IHWnKiBu9UXTxCuy6xJs","serverURLs":null,"placeholder":"支持匿名回复，邮箱/网址可以留空","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"lang":null,"visitor":false,"comment_count":false,"recordIP":false,"enableQQ":false,"requiredFields":["nick"]}, {
+      el: '#valine-comments',
+      path: "/rpi1/",
+      serverURLs: "https://5dql56fu.api.lncldglobal.com"
+    }));
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

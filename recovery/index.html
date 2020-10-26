@@ -21,27 +21,27 @@
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"ltnexe.live","root":"/","scheme":"Mist","version":"8.0.1","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"width":280},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+    var CONFIG = {"hostname":"ltnexe.live","root":"/","scheme":"Mist","version":"8.0.1","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"width":280},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
 
-  <meta name="description" content="自从上次电脑拿去修了之后，我再次意识到备份的重要性。这次救砖基本把雷都踩完了。这件事情告诉我不要手贱去玩不稳定的beta   概要  Recovery跟随系统，坑很多 Catalina和Big Sur之间升级和降级都有很多不兼容的问题，比如分区 时间机器跨版本恢复的这一块功能有明显的bug，直接导致了这次变砖   前情提要 👉 Mac换电记 变砖在9月24号早上，习惯性打开电脑，手贱点了m">
+  <meta name="description" content="自从上次电脑拿去修了之后，我再次意识到备份的重要性。这次救砖基本把雷都踩完了。这件事情告诉我不要手贱去玩不稳定的 beta 概要  Recovery 跟随系统，坑很多 Catalina 和 Big Sur 之间升级和降级都有很多不兼容的问题，比如分区 时间机器跨版本恢复的这一块功能有明显的 bug，直接导致了这次变砖   前情提要 👉 Mac 换电记 变砖在 9 月 24 号早上，习惯性打开电">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Mac升级救砖记">
 <meta property="og:url" content="https://ltnexe.live/recovery/index.html">
 <meta property="og:site_name" content="LTN">
-<meta property="og:description" content="自从上次电脑拿去修了之后，我再次意识到备份的重要性。这次救砖基本把雷都踩完了。这件事情告诉我不要手贱去玩不稳定的beta   概要  Recovery跟随系统，坑很多 Catalina和Big Sur之间升级和降级都有很多不兼容的问题，比如分区 时间机器跨版本恢复的这一块功能有明显的bug，直接导致了这次变砖   前情提要 👉 Mac换电记 变砖在9月24号早上，习惯性打开电脑，手贱点了m">
+<meta property="og:description" content="自从上次电脑拿去修了之后，我再次意识到备份的重要性。这次救砖基本把雷都踩完了。这件事情告诉我不要手贱去玩不稳定的 beta 概要  Recovery 跟随系统，坑很多 Catalina 和 Big Sur 之间升级和降级都有很多不兼容的问题，比如分区 时间机器跨版本恢复的这一块功能有明显的 bug，直接导致了这次变砖   前情提要 👉 Mac 换电记 变砖在 9 月 24 号早上，习惯性打开电">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/090409.jpg">
-<meta property="og:image" content="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/091357.jpg">
-<meta property="og:image" content="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/093748.jpg">
-<meta property="og:image" content="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/095242.jpg">
-<meta property="og:image" content="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/101248.png">
+<meta property="og:image" content="https://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/090409.jpg">
+<meta property="og:image" content="https://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/091357.jpg">
+<meta property="og:image" content="https://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/093748.jpg">
+<meta property="og:image" content="https://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/095242.jpg">
+<meta property="og:image" content="https://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/101248.png">
 <meta property="article:published_time" content="2020-09-26T04:02:46.000Z">
-<meta property="article:modified_time" content="2020-09-26T11:05:46.321Z">
+<meta property="article:modified_time" content="2020-10-07T05:31:55.224Z">
 <meta property="article:author" content="Chaolin Han">
 <meta property="article:tag" content="Writings">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/090409.jpg">
+<meta name="twitter:image" content="https://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/090409.jpg">
 
 
 <link rel="canonical" href="https://ltnexe.live/recovery/">
@@ -237,14 +237,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-count">43</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -314,7 +314,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Mac升级救砖记
+          Mac升级救砖记<a href="https://github.com/chaolinhan/blogSourceHexo/tree/master/source/_posts/recovery.md" class="post-edit-link" title="编辑" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
         </h1>
 
         <div class="post-meta-container">
@@ -324,19 +324,18 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2020-09-26 12:02:46 / 修改时间：19:05:46" itemprop="dateCreated datePublished" datetime="2020-09-26T12:02:46+08:00">2020-09-26</time>
+      <time title="创建时间：2020-09-26 12:02:46" itemprop="dateCreated datePublished" datetime="2020-09-26T12:02:46+08:00">2020-09-26</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-10-07 13:31:55" itemprop="dateModified" datetime="2020-10-07T13:31:55+08:00">2020-10-07</time>
+      </span>
 
   
-    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span id="busuanzi_value_page_pv"></span>
-    </span>
   
   <span class="post-meta-item">
     
@@ -361,64 +360,66 @@
     
     <div class="post-body" itemprop="articleBody">
         <blockquote>
-<p>  自从上次电脑拿去修了之后，我再次意识到备份的重要性。这次救砖基本把雷都踩完了。这件事情告诉我不要手贱去玩不稳定的beta</p>
-<p>  概要</p>
+<p>自从上次电脑拿去修了之后，我再次意识到备份的重要性。这次救砖基本把雷都踩完了。这件事情告诉我不要手贱去玩不稳定的 beta</p>
+<p>概要</p>
 <ul>
-<li>Recovery跟随系统，坑很多</li>
-<li>Catalina和Big Sur之间升级和降级都有很多不兼容的问题，比如分区</li>
-<li>时间机器跨版本恢复的这一块功能有明显的bug，直接导致了这次变砖</li>
+<li>Recovery 跟随系统，坑很多</li>
+<li>Catalina 和 Big Sur 之间升级和降级都有很多不兼容的问题，比如分区</li>
+<li>时间机器跨版本恢复的这一块功能有明显的 bug，直接导致了这次变砖</li>
 </ul>
 </blockquote>
-<p>前情提要 👉 <a href="https://ltnexe.live/macrepair/">Mac换电记</a></p>
-<h2 id="变砖"><a href="#变砖" class="headerlink" title="变砖"></a>变砖</h2><p>在9月24号早上，习惯性打开电脑，手贱点了<code>macOS Big Sur beta 8</code>的升级，然后开始等待。结果几个小时也不见更新完，界面一直是卡在了无限重启进系统。</p>
+<p>前情提要 👉 <a href="https://ltnexe.live/macrepair/">Mac 换电记</a></p>
+<h2 id="变砖"><a href="#变砖" class="headerlink" title="变砖"></a>变砖</h2><p>在 9 月 24 号早上，习惯性打开电脑，手贱点了<code>macOS Big Sur beta 8</code>的升级，然后开始等待。结果几个小时也不见更新完，界面一直是卡在了无限重启进系统。</p>
  <a id="more"></a>
 
-<p>然后就<code>⌘+R</code>进入Mac的<code>Recovery</code>准备重装系统。Mac的Recovery相当于PC的BIOS+PE系统，Mac硬件上也没有一个类似于BIOS的东西暴露给消费者，而且最坑的是Recovery这个恢复系统竟然没有隔离分区，这就直接导致了后来的变砖。</p>
-<p>Recovery本身也有好的，因为苹果的闭环让macOS不需要授权这个特性，Mac重装系统可以直接在Recovery里面选择在线重装，就是从网上下载一个新系统自己重装（而且据我观察这个下载速度还很快）。</p>
-<img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/090409.jpg" alt="341601110989_.pic" style="zoom:30%;" />
+<p>然后就<code>⌘+R</code>进入 Mac 的<code>Recovery</code>准备重装系统。Mac 的 Recovery 相当于 PC 的 BIOS+PE 系统，Mac 硬件上也没有一个类似于 BIOS 的东西暴露给消费者，而且最坑的是 Recovery 这个恢复系统竟然没有隔离分区，这就直接导致了后来的变砖。</p>
+<p>Recovery 本身也有好的，因为苹果的闭环让 macOS 不需要授权这个特性，Mac 重装系统可以直接在 Recovery 里面选择在线重装，就是从网上下载一个新系统自己重装（而且据我观察这个下载速度还很快）。</p>
+<img src="https://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/090409.jpg" alt="341601110989_.pic" style="zoom:30%;" />
 
 <p>准备直接用我的时间机器备份来恢复，毕竟这等价于在线重装+恢复数据。时间机器恢复的时候报了很多错，磁盘也被格式化了无数次，直到我发现这样不可行。它提示要进入系统用迁移助理，然而我不就正在装系统么……</p>
-<img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/091357.jpg" alt="331601110987_.pic" style="zoom:33%;" />
+<img src="https://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/091357.jpg" alt="331601110987_.pic" style="zoom:33%;" />
 
-<p>此时做了一个错误的决定。因为下午还有面试，我决定用时间机器里面已经存在的macOS来恢复整个系统。这就关系到macOS的另外一个巨坑了──从Catalina开始就是数据和系统在不同的分区了，用户的软件包，包括一些系统组件的安装都受到了很大限制，不能直接安装在系统分区。这样保证了系统的安全和独立性，也带来了很多别的问题（就像安卓的A/B分区一样，OTA可以只用一个几十M的包来更新一个大版本）。详情请看：<a target="_blank" rel="noopener" href="https://sspai.com/post/57052">当 Mac 升级到 Catalina 时，苹果在硬盘里施了点魔法【少数派】</a>。Big Sur的时间机器一个大bug就在于，它不会备份Big Sur的系统分区。我也是当时看到时间机器里面可用的恢复系统还是Catalina才知道的。</p>
-<p>故准备用时间机器从broken Big Sur（macOS 11.0 beta 8）强行降级到Catalina（macOS 10.15）。降级完发现系统也进不去，表现为开机就是一个一直在闪的问号文件夹。于是我继续进Recovery准备看看是啥问题，此时我发现Recovery没了？？？</p>
-<p>这就涉及到macOS的另外一个坑了，就是Recovery是跟随系统的，不像Win PE。Big Sur的Recovery也是新的UI，而且有bug，有卡顿。降级到Catalina理应是Catalina的Recovery，然而我发现没有Recovery，原因可能是因为两个大版本系统降级的时候分区规则不一样（后期看到的），导致Recovery没有写进SSD的分区。服了。</p>
-<p>此时电脑还不是砖，因为苹果还有<strong>联网Recovery</strong>这种终极备用方案。就是开机，验证Apple ID，然后从网上给你下载一个现成的Recovery，然后再进Recovery。详情：<a target="_blank" rel="noopener" href="https://support.apple.com/zh-cn/HT201314">如果您无法从 macOS 恢复功能启动【Apple】</a>。然而，试了几个WiFi之后我发现都不行，每次下载完就是如下界面：</p>
-<img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/093748.jpg" alt="321601110987_.pic" style="zoom:33%;" />
+<p>此时做了一个错误的决定。因为下午还有面试，我决定用时间机器里面已经存在的 macOS 来恢复整个系统。这就关系到 macOS 的另外一个巨坑了 ── 从 Catalina 开始就是数据和系统在不同的分区了，用户的软件包，包括一些系统组件的安装都受到了很大限制，不能直接安装在系统分区。这样保证了系统的安全和独立性，也带来了很多别的问题（就像安卓的 A/B 分区一样，OTA 可以只用一个几十 M 的包来更新一个大版本）。详情请看：<a target="_blank" rel="noopener" href="https://sspai.com/post/57052">当 Mac 升级到 Catalina 时，苹果在硬盘里施了点魔法【少数派】</a>。Big Sur 的时间机器一个大 bug 就在于，它不会备份 Big Sur 的系统分区。我也是当时看到时间机器里面可用的恢复系统还是 Catalina 才知道的。</p>
+<p>故准备用时间机器从 broken Big Sur（macOS 11.0 beta 8）强行降级到 Catalina（macOS 10.15）。降级完发现系统也进不去，表现为开机就是一个一直在闪的问号文件夹。于是我继续进 Recovery 准备看看是啥问题，此时我发现 Recovery 没了？？？</p>
+<p>这就涉及到 macOS 的另外一个坑了，就是 Recovery 是跟随系统的，不像 Win PE。Big Sur 的 Recovery 也是新的 UI，而且有 bug，有卡顿。降级到 Catalina 理应是 Catalina 的 Recovery，然而我发现没有 Recovery，原因可能是因为两个大版本系统降级的时候分区规则不一样（后期看到的），导致 Recovery 没有写进 SSD 的分区。服了。</p>
+<p>此时电脑还不是砖，因为苹果还有<strong>联网 Recovery</strong>这种终极备用方案。就是开机，验证 Apple ID，然后从网上给你下载一个现成的 Recovery，然后再进 Recovery。详情：<a target="_blank" rel="noopener" href="https://support.apple.com/zh-cn/HT201314">如果您无法从 macOS 恢复功能启动【Apple】</a>。然而，试了几个 WiFi 之后我发现都不行，每次下载完就是如下界面：</p>
+<img src="https://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/093748.jpg" alt="321601110987_.pic" style="zoom:33%;" />
 
-<p>然后就开始各种查各种试，都改变不了它是砖🧱的事实了。帮别人修了无数电脑，最后自己的电脑反而修不好🙂️</p>
-<h2 id="救砖"><a href="#救砖" class="headerlink" title="救砖"></a>救砖</h2><p>🧱的状态在当天中午就改变不了了，下午的面试改成了电话面试，然后让家里送电脑到隔离酒店，同时开始看成都的Apple Store的天才吧的空位。</p>
-<p>理论上首选肯定是去天才吧修，应该是免费。备用方案包括去第三方修（刷主板）。本来在PC上很好解决的问题，在Mac上因为SSD硬盘是焊死在主板取不下来，所以没法直接把系统或者引导直接刷在硬盘里面，况且MBP的SSD还是自己的PCI-E接口，正常人连插座都没有。</p>
-<p>中途做了很多无谓的尝试，包括用iPad或者手机继续干电脑的事，后来发现还是太别扭了。</p>
-<p>转机出现在第二天，彼时我已经拿到了备用的Windows电脑，准备看看要不要做网络介质启动的尝试，同时偶然看到在线Recovery对WiFi的一些安全性要求，故准备Mac放在一边慢慢试各种安全性的WiFi。之前也偶然成功过一次，然而装完系统直接报不完整的错误：</p>
-<img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/095242.jpg" alt="311601110986_.pic" style="zoom:33%;" />
+<p>然后就开始各种查各种试，都改变不了它是砖 🧱 的事实了。帮别人修了无数电脑，最后自己的电脑反而修不好 🙂️</p>
+<h2 id="救砖"><a href="#救砖" class="headerlink" title="救砖"></a>救砖</h2><p>🧱 的状态在当天中午就改变不了了，下午的面试改成了电话面试，然后让家里送电脑到隔离酒店，同时开始看成都的 Apple Store 的天才吧的空位。</p>
+<p>理论上首选肯定是去天才吧修，应该是免费。备用方案包括去第三方修（刷主板）。本来在 PC 上很好解决的问题，在 Mac 上因为 SSD 硬盘是焊死在主板取不下来，所以没法直接把系统或者引导直接刷在硬盘里面，况且 MBP 的 SSD 还是自己的 PCI-E 接口，正常人连插座都没有。</p>
+<p>中途做了很多无谓的尝试，包括用 iPad 或者手机继续干电脑的事，后来发现还是太别扭了。</p>
+<p>转机出现在第二天，彼时我已经拿到了备用的 Windows 电脑，准备看看要不要做网络介质启动的尝试，同时偶然看到在线 Recovery 对 WiFi 的一些安全性要求，故准备 Mac 放在一边慢慢试各种安全性的 WiFi。之前也偶然成功过一次，然而装完系统直接报不完整的错误：</p>
+<img src="https://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/095242.jpg" alt="311601110986_.pic" style="zoom:33%;" />
 
-<p>例如安全模式什么的也没用，再重启Recovery也又没了（WTF）。</p>
-<p>这样试了很多次（平均一次20min），终于有次成功的了。这次吸取教训把整个SSD全部抹掉了，还把macOS的legacy分区直接删除了，避免出现任何系统不兼容的问题，然后不再选择从时间机器恢复（后来意识到，因为分区系统不一样，Catalina识别不到Data分区的系统版本，故以为也是Catalina的Data，于是连同系统分区一起当作Catalina来恢复的，然而<strong>时间机器真实存的是Catalina的OS和Big Sur的Data分区</strong>），选择了在线重装Catalina，然后在开机的时候恢复Big Sur的时候备份的Data分区。终于成功了。但是很多Big Sur时期的软件就直接不能用了（例如微软一家人，升级后软件适配了Big Sur），还好所有的数据，App，用户文件以及Data分区上的软件包都还在（最重要的命令行工具和brew的包都还在），虽然它们全部都是9月13号，也就是十几天前在广州隔离的时候的版本。</p>
+<p>例如安全模式什么的也没用，再重启 Recovery 也又没了（WTF）。</p>
+<p>这样试了很多次（平均一次 20min），终于有次成功的了。这次吸取教训把整个 SSD 全部抹掉了，还把 macOS 的 legacy 分区直接删除了，避免出现任何系统不兼容的问题，然后不再选择从时间机器恢复（后来意识到，因为分区系统不一样，Catalina 识别不到 Data 分区的系统版本，故以为也是 Catalina 的 Data，于是连同系统分区一起当作 Catalina 来恢复的，然而<strong>时间机器真实存的是 Catalina 的 OS 和 Big Sur 的 Data 分区</strong>），选择了在线重装 Catalina，然后在开机的时候恢复 Big Sur 的时候备份的 Data 分区。终于成功了。但是很多 Big Sur 时期的软件就直接不能用了（例如微软一家人，升级后软件适配了 Big Sur），还好所有的数据，App，用户文件以及 Data 分区上的软件包都还在（最重要的命令行工具和 brew 的包都还在），虽然它们全部都是 9 月 13 号，也就是十几天前在广州隔离的时候的版本。</p>
 <p>也就是说我的电脑整个回到了十几天前的状态，但是系统被降级了。这就直接导致了以下几个事情：</p>
 <ol>
 <li>这十几天因为在到处跑没插时间机器备份，<strong>这十几天的工作全没了</strong>，比如我修的图</li>
-<li>git出了大问题，<strong>因为remote怎么也想不到，还有人能穿越到十几天前的节点前来commit新的东西？</strong></li>
-<li>2直接导致了git revert到9月13前的版本，丢了很多东西，比如我前几天写的博客（托斯卡那大奖赛的评论），和我已经升级的博客框架</li>
-<li>macOS系统级别的一些设置没有恢复，比如开机启动项，默认软件，猜测是因为Big Sur的设置方式是不一样的。但别的都恢复的很好，比如我的Rime输入法词库，我的账户同步什么的</li>
+<li>git 出了大问题，<strong>因为 remote 怎么也想不到，还有人能穿越到十几天前的节点前来 commit 新的东西？</strong></li>
+<li>2 直接导致了 git revert 到 9 月 13 前的版本，丢了很多东西，比如我前几天写的博客（托斯卡那大奖赛的评论），和我已经升级的博客框架</li>
+<li>macOS 系统级别的一些设置没有恢复，比如开机启动项，默认软件，猜测是因为 Big Sur 的设置方式是不一样的。但别的都恢复的很好，比如我的 Rime 输入法词库，我的账户同步什么的</li>
 </ol>
 <h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>之后不管有事没事一直插着时间机器了，然后做了一次全量备份。坑是真的多，阿三化的系统真的让苹果损失了太多的核心竞争力。例如：</p>
 <ul>
-<li><p>Big Sur的系统设置的电池图标</p>
-<p><img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/101248.png" alt="Who the hell designed this battery icon? : MacOSBeta"></p>
+<li><p>Big Sur 的系统设置的电池图标</p>
+<p><img src="https://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/101248.png" alt="Who the hell designed this battery icon? : MacOSBeta"></p>
 </li>
 <li><p>天气</p>
-<blockquote>
-<p>  macOS 一个「天气」的通知中心插件，修了 7 个 beta 都没有修明白。</p>
-<p>  * beta 1-4: 永远定位在 Cupertino<br>  * beta 5: 提示定位服务关闭<br>  * beta 6: 依旧提示定位服务关闭<br>  * beta 7: 通知中心只要编辑就闪退<br>  * beta 8: 终于修复</p>
-<p>  来源：<a target="_blank" rel="noopener" href="https://www.v2ex.com/t/709601">https://www.v2ex.com/t/709601</a></p>
-</blockquote>
-</li>
-<li><p>Xcode</p>
-<p>又变安装位置和CLT的位置，软件编译和依赖的噩梦。</p>
 </li>
 </ul>
-<p>最后，不要手贱去升级beta系统。我当初只是因为想着新系统（beta 8）修复了天气和状态栏的bug，谁知道这一升级直接浪费了我两天，最后还降级了🙂️</p>
+<blockquote>
+<p>macOS 一个「天气」的通知中心插件，修了 7 个 beta 都没有修明白。</p>
+<p>* beta 1-4: 永远定位在 Cupertino * beta 5: 提示定位服务关闭 * beta 6: 依旧提示定位服务关闭 * beta 7: 通知中心只要编辑就闪退 * beta 8: 终于修复</p>
+<p>来源：<a target="_blank" rel="noopener" href="https://www.v2ex.com/t/709601">https://www.v2ex.com/t/709601</a></p>
+</blockquote>
+<ul>
+<li><p>Xcode</p>
+<p>又变安装位置和 CLT 的位置，软件编译和依赖的噩梦。</p>
+</li>
+</ul>
+<p>最后，不要手贱去升级 beta 系统。我当初只是因为想着新系统（beta 8）修复了天气和状态栏的 bug，谁知道这一升级直接浪费了我两天，最后还降级了 🙂️</p>
 
     </div>
 
@@ -590,8 +591,8 @@
 
 <script>
 NexT.utils.loadComments('#valine-comments', () => {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
-    new Valine(Object.assign({"enable":true,"appId":"5dql56FUIB3HYuJdS8FpyeVP-gzGzoHsz","appKey":"6dn3IHWnKiBu9UXTxCuy6xJs","serverURLs":null,"placeholder":"支持匿名回复，邮箱/网址可以留空","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"lang":"zh-cn","visitor":false,"comment_count":false,"recordIP":false,"enableQQ":false,"requiredFields":["nick"]}, {
+  NexT.utils.getScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
+    new Valine(Object.assign({"enable":true,"appId":"5dql56FUIB3HYuJdS8FpyeVP-gzGzoHsz","appKey":"6dn3IHWnKiBu9UXTxCuy6xJs","serverURLs":null,"placeholder":"支持匿名回复，邮箱/网址可以留空","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"lang":null,"visitor":false,"comment_count":false,"recordIP":false,"enableQQ":false,"requiredFields":["nick"]}, {
       el: '#valine-comments',
       path: "/recovery/",
       serverURLs: "https://5dql56fu.api.lncldglobal.com"

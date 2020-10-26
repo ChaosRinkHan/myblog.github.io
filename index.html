@@ -21,7 +21,7 @@
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"ltnexe.live","root":"/","scheme":"Mist","version":"8.0.1","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"width":280},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+    var CONFIG = {"hostname":"ltnexe.live","root":"/","scheme":"Mist","version":"8.0.1","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"width":280},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
 
   <meta name="description" content="Our business is life itself.">
@@ -227,14 +227,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-count">43</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -290,6 +290,268 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ltnexe.live/rpi1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icn.jpg">
+      <meta itemprop="name" content="Chaolin Han">
+      <meta itemprop="description" content="Our business is life itself.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LTN">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/rpi1/" class="post-title-link" itemprop="url">【树莓派】路由，NAS，密码服务器和一些定时脚本</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2020-10-26 10:50:15 / 修改时间：15:05:25" itemprop="dateCreated datePublished" datetime="2020-10-26T10:50:15+08:00">2020-10-26</time>
+    </span>
+
+  
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="TL-DR"><a href="#TL-DR" class="headerlink" title="TL;DR"></a>TL;DR</h2><p>拿到树莓派估计也有一周多了，折腾了不少东西。在折腾之前，很多人可能只知道树莓派，但是慢慢上手了才发现针对不同的应用都有更专业更有性价比的产品，比如简单的做路由和NAS相关功能的蜗牛、N1，做工业开发的国产版。树莓派就是一个什么都能做一点的东西，可惜在一些方面做不到那么专业。这里讲了怎么<strong>点亮树莓派4B上的Manjaro</strong>，OpenWrt中的<strong>NAS</strong>，<strong>自建密码服务器</strong>和一些脚本。讲结构居多，具体手把手教程有附链接就不重复了。</p>
+<h2 id="Plan"><a href="#Plan" class="headerlink" title="Plan"></a>Plan</h2><p>前期计划：</p>
+<ul>
+<li><strong>私有云和NAS</strong>：连接到我的好几块硬盘，先能够局域网访问，再考虑内网穿透实现公网访问</li>
+<li><strong>部署Bitwarden密码服务器</strong>：有一篇计划之中的post「什么样的密码管理才是我们需要的」<del>（本来很早就应该写好的）</del>，部署开源的密码服务到私有服务器是这个计划的<strong>最后一步</strong>。目前未考虑开放公网访问</li>
+<li>运行一些全天任务，如RSS定时抓取，天气等定时脚本</li>
+<li>Web开发</li>
+</ul>
+<p>后期计划：见<a href="##Next">Next</a></p>
+<h2 id="Path"><a href="#Path" class="headerlink" title="Path"></a>Path</h2><h3 id="装系统"><a href="#装系统" class="headerlink" title="装系统"></a>装系统</h3><p>树莓派4B的系统最初可以通过TF卡安装。针对树莓派的Linux系统很多，随便一搜就可以看到推荐和对比。树莓派4B可以直接安装arm 64的系统，我安装的是<code>Manjaro-ARM 20.10</code>，有<a target="_blank" rel="noopener" href="https://manjaro.org/downloads/arm/raspberry-pi-4/arm8-raspberry-pi-4-kde-plasma/">树莓派版</a>。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/rpi1/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ltnexe.live/wastedmoreorless/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icn.jpg">
+      <meta itemprop="name" content="Chaolin Han">
+      <meta itemprop="description" content="Our business is life itself.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LTN">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/wastedmoreorless/" class="post-title-link" itemprop="url">最近折腾的</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-10-21 02:03:08" itemprop="dateCreated datePublished" datetime="2020-10-21T02:03:08+08:00">2020-10-21</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-10-26 14:27:35" itemprop="dateModified" datetime="2020-10-26T14:27:35+08:00">2020-10-26</time>
+      </span>
+
+  
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote>
+<p>第一次尝试直接在手机上写博客</p>
+</blockquote>
+<p>最近一个月在捣鼓的事情有</p>
+<ul>
+<li><p>给我的mac救砖：<a href="https://ltnexe.live/recovery/">这里</a></p>
+</li>
+<li><p>给我的两个手机刷系统（有空就写）</p>
+<ul>
+<li>三星S9+港行无痛刷国行</li>
+<li>索尼XZ安卓9.0降级到发行版安卓8</li>
+</ul>
+</li>
+<li><p>给我的博客升级，启用了自动部署：<a href="https://ltnexe.live/how-blog/">这里</a></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/wastedmoreorless/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ltnexe.live/how-blog/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icn.jpg">
+      <meta itemprop="name" content="Chaolin Han">
+      <meta itemprop="description" content="Our business is life itself.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LTN">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/how-blog/" class="post-title-link" itemprop="url">如何愉快地写博客：Hexo, NexT, 图床和自动部署</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2020-10-08 11:46:06 / 修改时间：17:21:05" itemprop="dateCreated datePublished" datetime="2020-10-08T11:46:06+08:00">2020-10-08</time>
+    </span>
+
+  
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="整体框架"><a href="#整体框架" class="headerlink" title="整体框架"></a>整体框架</h2><ul>
+<li><p><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/">Hexo</a>：开源静态博客框架 <strong><mark class="label info">free</mark></strong></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://theme-next.js.org/">NexT</a>：一个Hexo博客主题 <strong><mark class="label info">free</mark></strong></p>
+</li>
+<li><p>图床：阿里云OSS <strong><mark class="label danger">¥<1/mo</mark></strong> ；可选免费图床，如Imgur，微博图床</p>
+</li>
+<li><p>自动部署（CI）：<a target="_blank" rel="noopener" href="https://pages.github.com/">GitHub Pages</a> <strong><mark class="label info">free</mark></strong> ，<a target="_blank" rel="noopener" href="https://www.netlify.com/">Netlify</a>  <strong><mark class="label danger">free</mark></strong> </p>
+</li>
+<li><p>域名：本站域名 <code>ltnexe.live</code> <strong><mark class="label danger">£5/yr</mark></strong></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/how-blog/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://ltnexe.live/Hexo-and-NexT-upgrade/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -322,7 +584,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-09-27 09:48:48" itemprop="dateModified" datetime="2020-09-27T09:48:48+08:00">2020-09-27</time>
+        <time title="修改时间：2020-10-08 10:11:29" itemprop="dateModified" datetime="2020-10-08T10:11:29+08:00">2020-10-08</time>
       </span>
 
   
@@ -403,10 +665,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2020-09-26 12:02:46 / 修改时间：19:05:46" itemprop="dateCreated datePublished" datetime="2020-09-26T12:02:46+08:00">2020-09-26</time>
+      <time title="创建时间：2020-09-26 12:02:46" itemprop="dateCreated datePublished" datetime="2020-09-26T12:02:46+08:00">2020-09-26</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-10-07 13:31:55" itemprop="dateModified" datetime="2020-10-07T13:31:55+08:00">2020-10-07</time>
+      </span>
 
   
   
@@ -421,16 +689,16 @@
     
     <div class="post-body" itemprop="articleBody">
           <blockquote>
-<p>  自从上次电脑拿去修了之后，我再次意识到备份的重要性。这次救砖基本把雷都踩完了。这件事情告诉我不要手贱去玩不稳定的beta</p>
-<p>  概要</p>
+<p>自从上次电脑拿去修了之后，我再次意识到备份的重要性。这次救砖基本把雷都踩完了。这件事情告诉我不要手贱去玩不稳定的 beta</p>
+<p>概要</p>
 <ul>
-<li>Recovery跟随系统，坑很多</li>
-<li>Catalina和Big Sur之间升级和降级都有很多不兼容的问题，比如分区</li>
-<li>时间机器跨版本恢复的这一块功能有明显的bug，直接导致了这次变砖</li>
+<li>Recovery 跟随系统，坑很多</li>
+<li>Catalina 和 Big Sur 之间升级和降级都有很多不兼容的问题，比如分区</li>
+<li>时间机器跨版本恢复的这一块功能有明显的 bug，直接导致了这次变砖</li>
 </ul>
 </blockquote>
-<p>前情提要 👉 <a href="https://ltnexe.live/macrepair/">Mac换电记</a></p>
-<h2 id="变砖"><a href="#变砖" class="headerlink" title="变砖"></a>变砖</h2><p>在9月24号早上，习惯性打开电脑，手贱点了<code>macOS Big Sur beta 8</code>的升级，然后开始等待。结果几个小时也不见更新完，界面一直是卡在了无限重启进系统。</p>
+<p>前情提要 👉 <a href="https://ltnexe.live/macrepair/">Mac 换电记</a></p>
+<h2 id="变砖"><a href="#变砖" class="headerlink" title="变砖"></a>变砖</h2><p>在 9 月 24 号早上，习惯性打开电脑，手贱点了<code>macOS Big Sur beta 8</code>的升级，然后开始等待。结果几个小时也不见更新完，界面一直是卡在了无限重启进系统。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/recovery/#more" rel="contents">
@@ -580,7 +848,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-09-26 14:20:28" itemprop="dateModified" datetime="2020-09-26T14:20:28+08:00">2020-09-26</time>
+        <time title="修改时间：2020-10-07 13:31:55" itemprop="dateModified" datetime="2020-10-07T13:31:55+08:00">2020-10-07</time>
       </span>
 
   
@@ -595,9 +863,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>说实话，我现在在这个平台特别奇怪。</p>
-<p>都说人往高处走，稍微有一点交流会发现决定人高低的不是学历、家庭情况，而是行为习惯、品德和情商。</p>
-<p>我一直在面对一个事情，仿佛大家以为这个一年的时间很短，于是可以肆意暴露自己的过去也不用担心熟人知晓，可以先入为主评价很多很多人事物，因为互相本来就不认识，留学这个圈子也不会有半生不熟的人，只会有很熟的朋友和只打过招呼的泛泛之交，毕竟每个人都有自己的事情。</p>
+          请输入密码查看.
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/edgeyear/#more" rel="contents">
@@ -663,7 +929,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-09-26 14:20:28" itemprop="dateModified" datetime="2020-09-26T14:20:28+08:00">2020-09-26</time>
+        <time title="修改时间：2020-10-07 13:31:55" itemprop="dateModified" datetime="2020-10-07T13:31:55+08:00">2020-10-07</time>
       </span>
 
   
@@ -679,9 +945,9 @@
     
     <div class="post-body" itemprop="articleBody">
           <blockquote>
-<p>  C，D面全换了，没收钱。</p>
+<p>C，D 面全换了，没收钱。</p>
 </blockquote>
-<h1 id="坏了"><a href="#坏了" class="headerlink" title="坏了"></a>坏了</h1><p>4月中旬的时候我应该在写点什么有的没的，加上疫情期间经常开会需要用到摄像头，就常把我的MacBook Pro从墙上取下来以一个正常笔记本姿态来用。在此期间我发现Mac在我桌面上移动的时候，底面会和我的桌面摩擦地沙沙响。首先怀疑的是桌面的问题，然后试了别的几个平面发现都有这个问题，于是发现是电脑的D面不平整了。</p>
+<h1 id="坏了"><a href="#坏了" class="headerlink" title="坏了"></a>坏了</h1><p>4 月中旬的时候我应该在写点什么有的没的，加上疫情期间经常开会需要用到摄像头，就常把我的 MacBook Pro 从墙上取下来以一个正常笔记本姿态来用。在此期间我发现 Mac 在我桌面上移动的时候，底面会和我的桌面摩擦地沙沙响。首先怀疑的是桌面的问题，然后试了别的几个平面发现都有这个问题，于是发现是电脑的 D 面不平整了。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/macrepair/#more" rel="contents">
@@ -747,7 +1013,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-09-26 14:20:28" itemprop="dateModified" datetime="2020-09-26T14:20:28+08:00">2020-09-26</time>
+        <time title="修改时间：2020-10-07 13:31:54" itemprop="dateModified" datetime="2020-10-07T13:31:54+08:00">2020-10-07</time>
       </span>
 
   
@@ -768,15 +1034,14 @@
 <h1 id="初衷"><a href="#初衷" class="headerlink" title="初衷"></a>初衷</h1><ul>
 <li><p>探索一下，机器学习能否做到</p>
 <ul>
-<li><p>超越检测手段、统计方式的不确定性，对真实情况进行fit</p>
+<li><p>超越检测手段、统计方式的不确定性，对真实情况进行 fit</p>
 </li>
-<li><p>没见过下降趋势的时候预测下降趋势。这一点的范畴其实在deep reinforcement learning里面研究挺多，可惜本场景是否适用还未知</p>
-</li>
-</ul>
+<li><p>没见过下降趋势的时候预测下降趋势。这一点的范畴其实在 deep reinforcement learning 里面研究挺多，可惜本场景是否适用还未知</p>
 </li>
 </ul>
-<ul>
-<li>目标是拐点或者趋势</li>
+</li>
+<li><p>目标是拐点或者趋势</p>
+</li>
 </ul>
 <h2 id="现阶段"><a href="#现阶段" class="headerlink" title="现阶段"></a>现阶段</h2><ul>
 <li>英国首相今天宣布<a target="_blank" rel="noopener" href="https://www.bbc.com/news/amp/uk-52493500">疫情高峰已经过去</a>，不过从可视化结果来看，确实是“过去”了，但这好转速度也太慢了</li>
@@ -847,7 +1112,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-09-26 14:20:28" itemprop="dateModified" datetime="2020-09-26T14:20:28+08:00">2020-09-26</time>
+        <time title="修改时间：2020-10-07 13:31:55" itemprop="dateModified" datetime="2020-10-07T13:31:55+08:00">2020-10-07</time>
       </span>
 
   
@@ -862,275 +1127,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>做了一个简单的ARIMA预测，和一大堆R语言的绘图。ggplot属实浪费生命。</p>
+          <p>做了一个简单的 ARIMA 预测，和一大堆 R 语言的绘图。ggplot 属实浪费生命。</p>
 <p><a target="_blank" rel="noopener" href="https://hrbinbin.github.io/Covid19predict/">https://hrbinbin.github.io/Covid19predict/</a></p>
 <p>正文在<a target="_blank" rel="noopener" href="https://chaosrinkhan.github.io/myblog.github.io/COVID-R/">这里</a>。</p>
 <blockquote>
-<p>  On 21 May:</p>
-<p>  预测已经放弃，转可视化为主了</p>
+<p>On 21 May:</p>
+<p>预测已经放弃，转可视化为主了</p>
 </blockquote>
-<p><img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/054339.png" alt="image-20200425234510325"></p>
+<p><img src="https://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/054339.png" alt="image-20200425234510325"></p>
 
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://ltnexe.live/stupiddesign/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/icn.jpg">
-      <meta itemprop="name" content="Chaolin Han">
-      <meta itemprop="description" content="Our business is life itself.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="LTN">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/stupiddesign/" class="post-title-link" itemprop="url">Stupid Design</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-01-28 22:00:51" itemprop="dateCreated datePublished" datetime="2020-01-28T22:00:51+08:00">2020-01-28</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-09-26 14:20:28" itemprop="dateModified" datetime="2020-09-26T14:20:28+08:00">2020-09-26</time>
-      </span>
-
-  
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="1"><a href="#1" class="headerlink" title="1"></a>1</h1><p>EPCC的灯总是忽明忽暗。顶上装的是照明+氛围灯，刚开学的时候都是好好的，一个时间节点后就总是忽明忽暗。</p>
-<p>上学期。我和Mario聊完一个毕设课题就回到工位，这时灯又开始明暗不定。</p>
-<blockquote>
-<p>  Why is it?</p>
-<p>  Mark: 这是一套很复杂的自适应灯光系统，会参考室外的光照和室内的情况来调节亮度，但现在它明显没有工作。</p>
-<p>  Mario: It’s broken.</p>
-<p>  Mark: It’s not broken. It’s just not woking properly.</p>
-<p>  Mario: That’s called ‘broken’</p>
-</blockquote>
-<p>到现在它也没有被修好。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/stupiddesign/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://ltnexe.live/down/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/icn.jpg">
-      <meta itemprop="name" content="Chaolin Han">
-      <meta itemprop="description" content="Our business is life itself.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="LTN">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/down/" class="post-title-link" itemprop="url">Down</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-12-12 23:21:51" itemprop="dateCreated datePublished" datetime="2019-12-12T23:21:51+08:00">2019-12-12</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-09-26 14:20:28" itemprop="dateModified" datetime="2020-09-26T14:20:28+08:00">2020-09-26</time>
-      </span>
-
-  
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <blockquote>
-<p>  世界在下沉，VICE在狂欢</p>
-</blockquote>
-<p>今天才发现vice中国已经关闭，而且已经关了两个多月了。高质量读者越来越少了，高质量内容也越来越少。</p>
-<p>这几天睡不着一直在想反智主义。看到一个很有趣的笑话，宣扬反智主义本身就是一种反智主义。</p>
-<p>能看的杂志越来越少，订阅的RSS也一个个灰掉了。新的媒体的冲击太大了。新的媒体传播的东西却太没有价值了。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/down/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://ltnexe.live/thoughtsaboutf1p2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/icn.jpg">
-      <meta itemprop="name" content="Chaolin Han">
-      <meta itemprop="description" content="Our business is life itself.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="LTN">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/thoughtsaboutf1p2/" class="post-title-link" itemprop="url">茫茫，Formula 1 (三)</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-10-15 22:53:30" itemprop="dateCreated datePublished" datetime="2019-10-15T22:53:30+08:00">2019-10-15</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-09-26 14:20:28" itemprop="dateModified" datetime="2020-09-26T14:20:28+08:00">2020-09-26</time>
-      </span>
-
-  
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/061100.jpg" alt="21571176658_.pic"></p>
-<p>梅奔六连贯，这么多年绝对的统治地位走到了最高峰。</p>
-<p>梅奔也有没落的时候，也有落空的时候，那时候没能给复出的舒马赫一台好车。</p>
-<p>金钱是万能的，只要有钱，想拿多少个车队年度冠军都可以，当然是要在不作死的情况下。这么六年要是问我，这么一家独大的F1好看吗，车的差距超过了人的差距那么这项运动还会有活力吗？</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/thoughtsaboutf1p2/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
       
     </div>
 
@@ -1151,7 +1156,7 @@
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1274,8 +1279,8 @@
 
 <script>
 NexT.utils.loadComments('#valine-comments', () => {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
-    new Valine(Object.assign({"enable":true,"appId":"5dql56FUIB3HYuJdS8FpyeVP-gzGzoHsz","appKey":"6dn3IHWnKiBu9UXTxCuy6xJs","serverURLs":null,"placeholder":"支持匿名回复，邮箱/网址可以留空","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"lang":"zh-cn","visitor":false,"comment_count":false,"recordIP":false,"enableQQ":false,"requiredFields":["nick"]}, {
+  NexT.utils.getScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
+    new Valine(Object.assign({"enable":true,"appId":"5dql56FUIB3HYuJdS8FpyeVP-gzGzoHsz","appKey":"6dn3IHWnKiBu9UXTxCuy6xJs","serverURLs":null,"placeholder":"支持匿名回复，邮箱/网址可以留空","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"lang":null,"visitor":false,"comment_count":false,"recordIP":false,"enableQQ":false,"requiredFields":["nick"]}, {
       el: '#valine-comments',
       path: "/",
       serverURLs: "https://5dql56fu.api.lncldglobal.com"

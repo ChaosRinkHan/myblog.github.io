@@ -21,35 +21,35 @@
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"ltnexe.live","root":"/","scheme":"Mist","version":"8.0.1","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"width":280},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+    var CONFIG = {"hostname":"ltnexe.live","root":"/","scheme":"Mist","version":"8.0.1","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"width":280},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
 
-  <meta name="description" content="前言这是我python入门写的第一个项目，从前天晚上开始构思到今天做了第一个Release。这两天时间做了读了Qt库和pymssql的不少文档，边学边做写了一个可视化窗口实现数据库的操作。对PyQt的理解也就限于槽和信号沟通环节，pymssql主要是连接部分，并未过多涉及。内容为医院挂号系统，基本实现和练习了增删查改操作。介绍环境和配置上的操作以及搭建经验。">
+  <meta name="description" content="前言这是我 python 入门写的第一个项目，从前天晚上开始构思到今天做了第一个 Release。这两天时间做了读了 Qt 库和 pymssql 的不少文档，边学边做写了一个可视化窗口实现数据库的操作。对 PyQt 的理解也就限于槽和信号沟通环节，pymssql 主要是连接部分，并未过多涉及。内容为医院挂号系统，基本实现和练习了增删查改操作。介绍环境和配置上的操作以及搭建经验。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PyQt5+python+数据库可视化操作界面">
 <meta property="og:url" content="https://ltnexe.live/%E5%9F%BA%E4%BA%8EPyQt5%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8F%AF%E8%A7%86%E5%8C%96%E6%93%8D%E4%BD%9C%E7%95%8C%E9%9D%A2/index.html">
 <meta property="og:site_name" content="LTN">
-<meta property="og:description" content="前言这是我python入门写的第一个项目，从前天晚上开始构思到今天做了第一个Release。这两天时间做了读了Qt库和pymssql的不少文档，边学边做写了一个可视化窗口实现数据库的操作。对PyQt的理解也就限于槽和信号沟通环节，pymssql主要是连接部分，并未过多涉及。内容为医院挂号系统，基本实现和练习了增删查改操作。介绍环境和配置上的操作以及搭建经验。">
+<meta property="og:description" content="前言这是我 python 入门写的第一个项目，从前天晚上开始构思到今天做了第一个 Release。这两天时间做了读了 Qt 库和 pymssql 的不少文档，边学边做写了一个可视化窗口实现数据库的操作。对 PyQt 的理解也就限于槽和信号沟通环节，pymssql 主要是连接部分，并未过多涉及。内容为医院挂号系统，基本实现和练习了增删查改操作。介绍环境和配置上的操作以及搭建经验。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/054617.png">
-<meta property="og:image" content="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/054659.png">
-<meta property="og:image" content="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/054723.png">
-<meta property="og:image" content="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/054745.png">
-<meta property="og:image" content="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/054806.png">
-<meta property="og:image" content="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/054854.png">
-<meta property="og:image" content="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/054858.png">
-<meta property="og:image" content="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/054859.png">
-<meta property="og:image" content="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/054900.png">
-<meta property="og:image" content="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/054902.png">
-<meta property="og:image" content="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/054904.png">
+<meta property="og:image" content="https://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/054617.png">
+<meta property="og:image" content="https://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/054659.png">
+<meta property="og:image" content="https://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/054723.png">
+<meta property="og:image" content="https://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/054745.png">
+<meta property="og:image" content="https://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/054806.png">
+<meta property="og:image" content="https://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/054854.png">
+<meta property="og:image" content="https://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/054858.png">
+<meta property="og:image" content="https://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/054859.png">
+<meta property="og:image" content="https://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/054900.png">
+<meta property="og:image" content="https://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/054902.png">
+<meta property="og:image" content="https://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/054904.png">
 <meta property="article:published_time" content="2017-12-10T14:51:46.000Z">
-<meta property="article:modified_time" content="2020-09-26T06:20:28.728Z">
+<meta property="article:modified_time" content="2020-10-07T05:31:53.995Z">
 <meta property="article:author" content="Chaolin Han">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="PyQt">
 <meta property="article:tag" content="Database">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/054617.png">
+<meta name="twitter:image" content="https://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/054617.png">
 
 
 <link rel="canonical" href="https://ltnexe.live/%E5%9F%BA%E4%BA%8EPyQt5%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8F%AF%E8%A7%86%E5%8C%96%E6%93%8D%E4%BD%9C%E7%95%8C%E9%9D%A2/">
@@ -229,7 +229,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-text">﻿前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#PyQt5%E7%8E%AF%E5%A2%83"><span class="nav-text">PyQt5环境</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5"><span class="nav-text">数据库连接</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Python%E7%BC%96%E8%BE%91"><span class="nav-text">Python编辑</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%A4%E4%BA%92%E8%AE%BE%E8%AE%A1"><span class="nav-text">交互设计</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0"><span class="nav-text">实现</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pyinstaller%E7%94%9F%E6%88%90%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6"><span class="nav-text">pyinstaller生成可执行文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%99%84%E5%BD%95"><span class="nav-text">附录</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E7%BB%93%E6%9E%84"><span class="nav-text">数据库结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#retranslateUi%E3%80%81setupUi%E4%BB%A3%E7%A0%81"><span class="nav-text">retranslateUi、setupUi代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ref"><span class="nav-text">Ref</span></a></li></ol></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-text">﻿ 前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#PyQt5-%E7%8E%AF%E5%A2%83"><span class="nav-text">PyQt5 环境</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5"><span class="nav-text">数据库连接</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Python-%E7%BC%96%E8%BE%91"><span class="nav-text">Python 编辑</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%A4%E4%BA%92%E8%AE%BE%E8%AE%A1"><span class="nav-text">交互设计</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pyinstaller-%E7%94%9F%E6%88%90%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6"><span class="nav-text">pyinstaller 生成可执行文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%99%84%E5%BD%95"><span class="nav-text">附录</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E7%BB%93%E6%9E%84"><span class="nav-text">数据库结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#retranslateUi%E3%80%81setupUi-%E4%BB%A3%E7%A0%81"><span class="nav-text">retranslateUi、setupUi 代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ref"><span class="nav-text">Ref</span></a></li></ol></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -245,14 +245,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-count">43</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -322,7 +322,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          PyQt5+python+数据库可视化操作界面
+          PyQt5+python+数据库可视化操作界面<a href="https://github.com/chaolinhan/blogSourceHexo/tree/master/source/_posts/%E5%9F%BA%E4%BA%8EPyQt5%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8F%AF%E8%A7%86%E5%8C%96%E6%93%8D%E4%BD%9C%E7%95%8C%E9%9D%A2.md" class="post-edit-link" title="编辑" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
         </h1>
 
         <div class="post-meta-container">
@@ -340,17 +340,10 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-09-26 14:20:28" itemprop="dateModified" datetime="2020-09-26T14:20:28+08:00">2020-09-26</time>
+        <time title="修改时间：2020-10-07 13:31:53" itemprop="dateModified" datetime="2020-10-07T13:31:53+08:00">2020-10-07</time>
       </span>
 
   
-    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span id="busuanzi_value_page_pv"></span>
-    </span>
   
   <span class="post-meta-item">
     
@@ -374,53 +367,56 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="前言"><a href="#前言" class="headerlink" title="﻿前言"></a>﻿前言</h1><p>这是我python入门写的第一个项目，从前天晚上开始构思到今天做了第一个Release。这两天时间做了读了Qt库和pymssql的不少文档，边学边做写了一个可视化窗口实现数据库的操作。对PyQt的理解也就限于槽和信号沟通环节，pymssql主要是连接部分，并未过多涉及。内容为<strong>医院挂号系统</strong>，基本实现和练习了增删查改操作。介绍环境和配置上的操作以及搭建经验。</p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="﻿ 前言"></a>﻿ 前言</h1><p>这是我 python 入门写的第一个项目，从前天晚上开始构思到今天做了第一个 Release。这两天时间做了读了 Qt 库和 pymssql 的不少文档，边学边做写了一个可视化窗口实现数据库的操作。对 PyQt 的理解也就限于槽和信号沟通环节，pymssql 主要是连接部分，并未过多涉及。内容为<strong>医院挂号系统</strong>，基本实现和练习了增删查改操作。介绍环境和配置上的操作以及搭建经验。</p>
  <a id="more"></a>
 
-<h1 id="PyQt5环境"><a href="#PyQt5环境" class="headerlink" title="PyQt5环境"></a>PyQt5环境</h1><p>参考<a target="_blank" rel="noopener" href="http://blog.csdn.net/a359680405/article/details/45074761%20PyQt5+python3+pycharm%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE">PyQt5+python3+pycharm开发环境配置</a><br>集成了PyUIC和QtDeisgner。其中Designer跨语言，可以画一些简单的窗口和控件，输出.ui格式的文件，利用PyUIC转码为.py进行编辑。<br>PyQt库非常庞大，但我实际操作主要聚焦于控件的方法和定义。Qt的参考文档为C++环境，结合Pycharm自动补全基本可以避开转换的问题。<br>可以看到MainWindow代码很长，但大部分都是ui文件转码自动生成的（retranslateUi、setupUi），实际需要编写的就是逻辑和实现部分。</p>
-<h1 id="数据库连接"><a href="#数据库连接" class="headerlink" title="数据库连接"></a>数据库连接</h1><p>由于要求和环境的限制，我使用了SQL server 2012。MySQL,SQLite等连接更为简洁方便。选用的库为pymssql，参考官方文档<a target="_blank" rel="noopener" href="http://www.pymssql.org/en/stable/pymssql_examples.html">pymssql</a><br>连接方面，需要首先登陆SQL Management Studio以管理员身份，然后设置中添加用于该项目连接的用户并给它授权。授权选项中我是全部勾选。<br><img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/054617.png" alt="这里写图片描述"><br>然后在其中建好设计好的两个表Doctor（用于检索医生）和Reg（用于前端操作）<br>注意设计时，将<code>varchar()</code>数据类型更改为<code>nvarcahar</code>,便于中文输入输出，同时连接时采用utf8字集：</p>
+<h1 id="PyQt5-环境"><a href="#PyQt5-环境" class="headerlink" title="PyQt5 环境"></a>PyQt5 环境</h1><p>参考<a target="_blank" rel="noopener" href="http://blog.csdn.net/a359680405/article/details/45074761%20PyQt5+python3+pycharm%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE">PyQt5+python3+pycharm 开发环境配置</a><br>集成了 PyUIC 和 QtDeisgner。其中 Designer 跨语言，可以画一些简单的窗口和控件，输出.ui 格式的文件，利用 PyUIC 转码为.py 进行编辑。<br>PyQt 库非常庞大，但我实际操作主要聚焦于控件的方法和定义。Qt 的参考文档为 C++环境，结合 Pycharm 自动补全基本可以避开转换的问题。<br>可以看到 MainWindow 代码很长，但大部分都是 ui 文件转码自动生成的（retranslateUi、setupUi），实际需要编写的就是逻辑和实现部分。</p>
+<h1 id="数据库连接"><a href="#数据库连接" class="headerlink" title="数据库连接"></a>数据库连接</h1><p>由于要求和环境的限制，我使用了 SQL server 2012。MySQL,SQLite 等连接更为简洁方便。选用的库为 pymssql，参考官方文档<a target="_blank" rel="noopener" href="http://www.pymssql.org/en/stable/pymssql_examples.html">pymssql</a><br>连接方面，需要首先登陆 SQL Management Studio 以管理员身份，然后设置中添加用于该项目连接的用户并给它授权。授权选项中我是全部勾选。<br><img src="https://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/054617.png" alt="这里写图片描述"><br>然后在其中建好设计好的两个表 Doctor（用于检索医生）和 Reg（用于前端操作）<br>注意设计时，将<code>varchar()</code>数据类型更改为<code>nvarcahar</code>,便于中文输入输出，同时连接时采用 utf8 字集：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">server = <span class="string">&quot;DESKTOP-9RUT87E&quot;</span></span><br><span class="line">user = <span class="string">&quot;Hospital&quot;</span></span><br><span class="line">password = <span class="string">&quot;123456&quot;</span></span><br><span class="line"><span class="comment">#print(&#x27;Connecting to MSSQL...&#x27;)</span></span><br><span class="line">conn = pymssql.connect(server, user, password, database=<span class="string">&quot;Hospital&quot;</span>, charset=<span class="string">&#x27;utf8&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<p>之后阅读学习python中获取光标进行简单的数据库操作，即可实现在程序中实现数据库操作了，可以参考pymaasql的example。</p>
-<h1 id="Python编辑"><a href="#Python编辑" class="headerlink" title="Python编辑"></a>Python编辑</h1><p>本项目的意义在于简单的图像化操作代替数据库语言来实现数据的增删查改。考虑到绘制的问题，采用的简单的单一界面交互。对于多界面交互则需要绘制多个ui文件并在主程序中调用。</p>
+
+<p>之后阅读学习 python 中获取光标进行简单的数据库操作，即可实现在程序中实现数据库操作了，可以参考 pymaasql 的 example。</p>
+<h1 id="Python-编辑"><a href="#Python-编辑" class="headerlink" title="Python 编辑"></a>Python 编辑</h1><p>本项目的意义在于简单的图像化操作代替数据库语言来实现数据的增删查改。考虑到绘制的问题，采用的简单的单一界面交互。对于多界面交互则需要绘制多个 ui 文件并在主程序中调用。</p>
 <ul>
-<li>QtDesigner绘界面</li>
+<li>QtDesigner 绘界面</li>
 </ul>
 <hr>
-<p> <img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/054659.png" alt="这里写图片描述"><br> 非常方便地从左侧选取想要加入的元素，右侧属性栏也可以很好地自定义。对应生成了<strong>retranslateUi、setupUi中的代码，参考意义不大故移入附录。</strong></p>
+<p><img src="https://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/054659.png" alt="这里写图片描述"><br>非常方便地从左侧选取想要加入的元素，右侧属性栏也可以很好地自定义。对应生成了<strong>retranslateUi、setupUi 中的代码，参考意义不大故移入附录。</strong></p>
 <ul>
-<li>转码为.py文件进行编辑</li>
+<li>转码为.py 文件进行编辑</li>
 </ul>
 <hr>
-<p>若搭建好开发环境，可直接从Pycharm中选择外部工具对ui文件转码，或是直接文件夹下shift+右键打开cmd调用pyuic转码。<br> 由于 QtDesigner提供的信号和槽连接非常简单而且多数需要实现的功能为SQL连接和操作，故需要自定信号和槽函数来实现这些按钮，所以转码后在IDE中进行编写。<br> 熟悉了PyQT空间的语法和事件命名方式后，就可以轻松写出自定槽函数来接受按钮信号，同时获取和改变它们的各种状态。有空会写PyQt常见类的常见操作供交流。接下来就是由设计的界面、数据库结构设计交互逻辑并实现。</p>
-<h1 id="交互设计"><a href="#交互设计" class="headerlink" title="交互设计"></a>交互设计</h1><p>窗口的交互分了7个按钮，交互逻辑如下</p>
+<p>若搭建好开发环境，可直接从 Pycharm 中选择外部工具对 ui 文件转码，或是直接文件夹下 shift+右键打开 cmd 调用 pyuic 转码。<br>由于 QtDesigner 提供的信号和槽连接非常简单而且多数需要实现的功能为 SQL 连接和操作，故需要自定信号和槽函数来实现这些按钮，所以转码后在 IDE 中进行编写。<br>熟悉了 PyQT 空间的语法和事件命名方式后，就可以轻松写出自定槽函数来接受按钮信号，同时获取和改变它们的各种状态。有空会写 PyQt 常见类的常见操作供交流。接下来就是由设计的界面、数据库结构设计交互逻辑并实现。</p>
+<h1 id="交互设计"><a href="#交互设计" class="headerlink" title="交互设计"></a>交互设计</h1><p>窗口的交互分了 7 个按钮，交互逻辑如下</p>
 <ul>
 <li><p><strong>查询在岗医生</strong><br>根据科室和是否专家查询可用的医生</p>
 </li>
 <li><p><strong>挂号</strong><br>挂号需要提供个人信息，同时根据需要挂的科室，可执行上一步操作，选择合适的医生，填入医生号码进行挂号</p>
-<p><img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/054723.png" alt="这里写图片描述"><br>截图：此时点击<em>挂号</em>即可完成挂号<br><img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/054745.png" alt="这里写图片描述"><br>其中1、2两步顺序随意。</p>
-</li>
-<li><p><strong>查、删、改</strong><br>根据提供的信息构建操作来实现，要注意到这些信息并不是全部需要，例如可以查询急症科的所有病人，也可以查询具体的某一个人</p>
-<p><img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/054806.png" alt="这里写图片描述"><img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/054854.png" alt="这里写图片描述"><img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/054858.png" alt="这里写图片描述"><br>例：查询<strong>急症科</strong>的<strong>男</strong>病人<br><img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/054859.png" alt="这里写图片描述"></p>
 </li>
 </ul>
+<p><img src="https://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/054723.png" alt="这里写图片描述"><br>截图：此时点击<em>挂号</em>即可完成挂号<br><img src="https://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/054745.png" alt="这里写图片描述"><br>其中 1、2 两步顺序随意。</p>
 <ul>
-<li><p><strong>记录日志</strong><br>简单的文件写入操作</p>
-<p>保存的log：<br><img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/054900.png" alt="这里写图片描述"></p>
-<h1 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h1></li>
-<li><p>按钮槽函数的编写<br>DB_开头的函数为自定槽函数，用于响应按钮点击的事件。同时需要一些自定辅助函数和全局变量用于系统状态的维护。<br>编写思路见代码注释。</p>
-</li>
-<li><p>引用并执行<br>编写HospitalRegSys.py作为主程序来调用编写好的ui转码而来的文件，实现主程序和UI界面代码的分离，也方便添加多个界面。</p>
-</li>
+<li><strong>查、删、改</strong><br>根据提供的信息构建操作来实现，要注意到这些信息并不是全部需要，例如可以查询急症科的所有病人，也可以查询具体的某一个人</li>
+</ul>
+<p><img src="https://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/054806.png" alt="这里写图片描述"><img src="https://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/054854.png" alt="这里写图片描述"><img src="https://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/054858.png" alt="这里写图片描述"><br>例：查询<strong>急症科</strong>的<strong>男</strong>病人<br><img src="https://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/054859.png" alt="这里写图片描述"></p>
+<ul>
+<li><strong>记录日志</strong><br>简单的文件写入操作</li>
+</ul>
+<p>保存的 log：<br><img src="https://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/054900.png" alt="这里写图片描述"><br>实现<br>==</p>
+<ul>
+<li>按钮槽函数的编写<br>DB_开头的函数为自定槽函数，用于响应按钮点击的事件。同时需要一些自定辅助函数和全局变量用于系统状态的维护。<br>编写思路见代码注释。</li>
+<li>引用并执行<br>编写 HospitalRegSys.py 作为主程序来调用编写好的 ui 转码而来的文件，实现主程序和 UI 界面代码的分离，也方便添加多个界面。</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># HospitalRegSys0045.py</span></span><br><span class="line"><span class="keyword">from</span> PyQt5 <span class="keyword">import</span> QtCore, QtGui, QtWidgets</span><br><span class="line"><span class="keyword">from</span> MainWindow <span class="keyword">import</span> Ui_MainWindow</span><br><span class="line"><span class="keyword">import</span> decimal</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">mwindow</span>(<span class="params">QtWidgets.QMainWindow,Ui_MainWindow</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span></span><br><span class="line">        super(mwindow,self).__init__()</span><br><span class="line">        self.setupUi(self)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    <span class="keyword">import</span> sys</span><br><span class="line">    app=QtWidgets.QApplication(sys.argv)</span><br><span class="line">    mshow=mwindow()</span><br><span class="line">    mshow.show()</span><br><span class="line">    sys.exit(app.exec_())</span><br></pre></td></tr></table></figure>
+
 <p>主窗口代码</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 不再提供</span></span><br><span class="line"><span class="comment"># No avilable now</span></span><br></pre></td></tr></table></figure>
 
-<h1 id="pyinstaller生成可执行文件"><a href="#pyinstaller生成可执行文件" class="headerlink" title="pyinstaller生成可执行文件"></a>pyinstaller生成可执行文件</h1><p>生成exe的时候遇到了很多困难，和python3.6环境以及pymssql、pyinstaller设置的参数有关。经过多次测试和参考官方文档，在cmd中执行程序，根据报错“没有找到模块XXX”，直接在主程序中引入该模块即可，即是</p>
+<h1 id="pyinstaller-生成可执行文件"><a href="#pyinstaller-生成可执行文件" class="headerlink" title="pyinstaller 生成可执行文件"></a>pyinstaller 生成可执行文件</h1><p>生成 exe 的时候遇到了很多困难，和 python3.6 环境以及 pymssql、pyinstaller 设置的参数有关。经过多次测试和参考官方文档，在 cmd 中执行程序，根据报错“没有找到模块 XXX”，直接在主程序中引入该模块即可，即是</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> decimal</span><br><span class="line"><span class="comment"># import的具体模块和报错缺少的模块有关</span></span><br></pre></td></tr></table></figure>
-<p>这个模块和_mssql有关，可见库和环境的不兼容性。</p>
-<h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><h2 id="数据库结构"><a href="#数据库结构" class="headerlink" title="数据库结构"></a>数据库结构</h2><p><img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/054902.png" alt="这里写图片描述"><br><img src="http://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/054904.png" alt="这里写图片描述"></p>
-<h2 id="retranslateUi、setupUi代码"><a href="#retranslateUi、setupUi代码" class="headerlink" title="retranslateUi、setupUi代码"></a>retranslateUi、setupUi代码</h2><p>只需编辑setupUi最后连接部分的信号，以实现按钮的功能。</p>
+
+<p>这个模块和_mssql 有关，可见库和环境的不兼容性。</p>
+<h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><h2 id="数据库结构"><a href="#数据库结构" class="headerlink" title="数据库结构"></a>数据库结构</h2><p><img src="https://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/054902.png" alt="这里写图片描述"><br><img src="https://ltnexe-blog-pic.oss-cn-hangzhou.aliyuncs.com/blog_pic/054904.png" alt="这里写图片描述"></p>
+<h2 id="retranslateUi、setupUi-代码"><a href="#retranslateUi、setupUi-代码" class="headerlink" title="retranslateUi、setupUi 代码"></a>retranslateUi、setupUi 代码</h2><p>只需编辑 setupUi 最后连接部分的信号，以实现按钮的功能。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 不再提供</span></span><br><span class="line"><span class="comment"># No avilable now</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h2><p><a target="_blank" rel="noopener" href="http://pyqt.sourceforge.net/Docs/PyQt5/">PyQt5 Reference Guide</a><br><a target="_blank" rel="noopener" href="http://www.pymssql.org/en/stable/intro.html">pymssql</a></p>
@@ -597,8 +593,8 @@
 
 <script>
 NexT.utils.loadComments('#valine-comments', () => {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
-    new Valine(Object.assign({"enable":true,"appId":"5dql56FUIB3HYuJdS8FpyeVP-gzGzoHsz","appKey":"6dn3IHWnKiBu9UXTxCuy6xJs","serverURLs":null,"placeholder":"支持匿名回复，邮箱/网址可以留空","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"lang":"zh-cn","visitor":false,"comment_count":false,"recordIP":false,"enableQQ":false,"requiredFields":["nick"]}, {
+  NexT.utils.getScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
+    new Valine(Object.assign({"enable":true,"appId":"5dql56FUIB3HYuJdS8FpyeVP-gzGzoHsz","appKey":"6dn3IHWnKiBu9UXTxCuy6xJs","serverURLs":null,"placeholder":"支持匿名回复，邮箱/网址可以留空","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"lang":null,"visitor":false,"comment_count":false,"recordIP":false,"enableQQ":false,"requiredFields":["nick"]}, {
       el: '#valine-comments',
       path: "/%E5%9F%BA%E4%BA%8EPyQt5%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8F%AF%E8%A7%86%E5%8C%96%E6%93%8D%E4%BD%9C%E7%95%8C%E9%9D%A2/",
       serverURLs: "https://5dql56fu.api.lncldglobal.com"
